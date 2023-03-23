@@ -1,0 +1,36 @@
+@import "src/app/scss/colors";
+
+footer {
+    background-color: $footer-color;
+    margin: 0 auto;
+    height: 120px;
+    text-align: center;
+    display: flex !important;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    position: relative;
+    padding: 0 4.2%;
+
+    ul {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        list-style-type: none;
+        padding: 10px 0 0;
+
+        li {
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        li:not(:last-child) {
+            border-right: 1px solid #fff;
+        }
+    }
+
+    svg {
+        color: #fff;
+    }
+}

@@ -1,0 +1,51 @@
+@import "src/app/scss/colors";
+
+header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    height: 165px;
+    background-color: $header-color;
+    padding-top: 23px;
+    padding-left: 30px;
+    padding-right: 50px;
+
+    #header-left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100px;
+
+        a img {
+            height: 100px;
+            width: auto;
+        }
+
+        div {
+            color: #fff;
+            padding-left: 42px;
+            font-size: 22px;
+            align-self: center;
+        }
+    }
+
+    #header-right {
+        display: flex;
+        flex-direction: row-reverse;
+        height: 100px;
+        align-items: center;
+
+        #login {
+            color: darkblue;
+            background-color: white;
+        }
+
+        #login:hover {
+            background-color: #f5f5ff;
+        }
+
+        svg {
+            color: white;
+        }
+    }
+}
