@@ -8,7 +8,8 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "lint:test": "eslint \"{src,apps,libs,test}/**/*.{tsx,ts}\""
+        "lint:test": "eslint \"{src,apps,libs,test}/**/*.{tsx,ts}\"",
+        "stylelint:test": "stylelint \"{src,public}/**/*.scss\""
     },
     "dependencies": {
         "@emotion/react": "^11.10.6",
