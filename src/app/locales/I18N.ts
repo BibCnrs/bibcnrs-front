@@ -4,11 +4,17 @@ import { initReactI18next, useTranslation } from 'react-i18next';
 import fr from './common/fr';
 import en from './common/en';
 
+/**
+ * Type use to localized error message
+ */
 type Error = {
     title: string;
     message: string;
 };
 
+/**
+ * Type use to define the data use to localize the application
+ */
 export type Common = {
     header: {
         title: string;
@@ -45,13 +51,22 @@ i18next
     })
     .then();
 
+/**
+ * export the translation function
+ */
 export function translator() {
     const { t } = useTranslation('common');
     return t;
 }
 
+/**
+ * export the translation function and the i18n system
+ */
 export function getFullTranslator() {
     return useTranslation('common');
 }
 
+/**
+ * export i18next instance
+ */
 export default i18next;

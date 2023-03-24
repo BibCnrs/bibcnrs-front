@@ -1,5 +1,8 @@
 import { Common } from '../I18N';
 
+/**
+ * English translation
+ */
 const fr: Common = {
     header: { login: 'Connexion', title: 'Accès aux ressources documentaires du CNRS' },
     footer: {

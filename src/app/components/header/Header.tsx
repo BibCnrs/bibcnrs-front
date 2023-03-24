@@ -5,6 +5,9 @@ import LocalButton from './element/LocalButton';
 import SignInButton from './element/SignInButton';
 import { LinkRoot } from '../routes';
 
+/**
+ * Application header
+ */
 export default function Header() {
     const { t, i18n } = getFullTranslator();
     return (

@@ -4,6 +4,9 @@ import CNRSLogo from '/logos/cnrs.png';
 import './Footer.scss';
 import { LinkAbout, LinkContact, LinkLegal } from '../routes';
 
+/**
+ * Application footer
+ */
 export default function Footer() {
     const t = translator();
     return (
