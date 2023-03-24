@@ -49,3 +49,26 @@ header {
         }
     }
 }
+
+@media screen and (max-width: 900px) {
+    header {
+        #header-left {
+            div {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    header {
+        #header-left {
+            display: none;
+        }
+
+        #header-right {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}

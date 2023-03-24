@@ -34,3 +34,24 @@ footer {
         color: #fff;
     }
 }
+
+@media screen and (max-width: 550px) {
+    footer {
+        a {
+            display: none;
+        }
+
+        div {
+            display: none;
+        }
+
+        ul {
+            margin-left: auto;
+            margin-right: auto;
+
+            li a {
+                display: inline;
+            }
+        }
+    }
+}
