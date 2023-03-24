@@ -19,7 +19,9 @@ root.render(
     <StrictMode>
         <I18nextProvider i18n={I18N}>
             <BrowserRouter>
-                <Header />
+                <div>
+                    <Header />
+                </div>
                 <div id="app">
                     <Routes>
                         <Route path={RouteRoot} element={<h1>Hello, World !</h1>} />
@@ -29,7 +31,9 @@ root.render(
                         <Route path="*" element={<Error404 />} />
                     </Routes>
                 </div>
-                <Footer />
+                <div>
+                    <Footer />
+                </div>
             </BrowserRouter>
         </I18nextProvider>
     </StrictMode>,

@@ -1,9 +1,17 @@
 body {
+    min-height: 100vh;
     margin: 0;
     line-height: 2.2rem;
     font-family: 'DM Sans', sans-serif;
 }
 
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 #app {
+    flex: 1;
     margin: 1rem 50px 2rem;
 }
