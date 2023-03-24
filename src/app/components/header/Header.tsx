@@ -3,15 +3,16 @@ import './Header.scss';
 import { getFullTranslator } from '../../locales/I18N';
 import LocalButton from './element/LocalButton';
 import SignInButton from './element/SignInButton';
+import { LinkRoot } from '../routes';
 
 export default function Header() {
     const { t, i18n } = getFullTranslator();
     return (
         <header>
             <div id="header-left">
-                <a href="/">
+                <LinkRoot>
                     <img src={BibCNRSLogo} alt="BibCNRS Logo" />
-                </a>
+                </LinkRoot>
                 <div>
                     <p>{t('header.title')}</p>
                 </div>

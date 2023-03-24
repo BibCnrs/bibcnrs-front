@@ -4,6 +4,11 @@ import { initReactI18next, useTranslation } from 'react-i18next';
 import fr from './common/fr';
 import en from './common/en';
 
+type Error = {
+    title: string;
+    message: string;
+};
+
 export type Common = {
     header: {
         title: string;
@@ -13,6 +18,10 @@ export type Common = {
         about: string;
         contact: string;
         legal: string;
+    };
+    error: {
+        return: string;
+        '404': Error;
     };
 };
 
