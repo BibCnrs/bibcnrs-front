@@ -20,6 +20,12 @@ export type Common = {
         title: string;
         login: string;
     };
+    nav: {
+        article: string;
+        journal: string;
+        database: string;
+        researchData: string;
+    };
     footer: {
         about: string;
         contact: string;

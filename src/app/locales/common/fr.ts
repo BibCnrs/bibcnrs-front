@@ -1,9 +1,15 @@
 import { Common } from '../I18N';
 
 /**
- * English translation
+ * French translation
  */
 const fr: Common = {
+    nav: {
+        article: 'Article',
+        database: 'Base de données',
+        journal: 'Revue, ouvrage',
+        researchData: 'Données de recherche',
+    },
     header: { login: 'Connexion', title: 'Accès aux ressources documentaires du CNRS' },
     footer: {
         about: 'A propos',

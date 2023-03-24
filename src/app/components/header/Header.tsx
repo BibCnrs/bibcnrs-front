@@ -3,7 +3,8 @@ import './Header.scss';
 import { getFullTranslator } from '../../locales/I18N';
 import LocalButton from './element/LocalButton';
 import SignInButton from './element/SignInButton';
-import { LinkRoot } from '../routes';
+import { RouteRoot } from '../../shared/Routes';
+import CustomLink from '../customlink/CustomLink';
 
 /**
  * Application header
@@ -13,9 +14,9 @@ export default function Header() {
     return (
         <header>
             <div id="header-left">
-                <LinkRoot>
+                <CustomLink to={RouteRoot}>
                     <img src={BibCNRSLogo} alt="BibCNRS Logo" />
-                </LinkRoot>
+                </CustomLink>
                 <div>
                     <p>{t('header.title')}</p>
                 </div>

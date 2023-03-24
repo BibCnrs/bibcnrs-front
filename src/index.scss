@@ -1,8 +1,9 @@
+@import "src/app/scss/colors";
+
 body {
     min-height: 100vh;
     margin: 0;
     line-height: 2.2rem;
-    font-family: 'DM Sans', sans-serif;
 }
 
 #root {
@@ -14,4 +15,8 @@ body {
 #app {
     flex: 1;
     margin: 1rem 50px 2rem;
+}
+
+#head {
+    background-color: $header-color;
 }

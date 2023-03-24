@@ -2,7 +2,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import { translator } from '../../locales/I18N';
 import CNRSLogo from '/logos/cnrs.png';
 import './Footer.scss';
-import { LinkAbout, LinkContact, LinkLegal } from '../routes';
+import { RouteAbout, RouteContact, RouteLegal } from '../../shared/Routes';
+import CustomLink from '../customlink/CustomLink';
 
 /**
  * Application footer
@@ -16,13 +17,13 @@ export default function Footer() {
             </a>
             <ul>
                 <li>
-                    <LinkAbout>{t('footer.about')}</LinkAbout>
+                    <CustomLink to={RouteAbout}>{t('footer.about')}</CustomLink>
                 </li>
                 <li>
-                    <LinkContact>{t('footer.contact')}</LinkContact>
+                    <CustomLink to={RouteContact}>{t('footer.contact')}</CustomLink>
                 </li>
                 <li>
-                    <LinkLegal>{t('footer.legal')}</LinkLegal>
+                    <CustomLink to={RouteLegal}>{t('footer.legal')}</CustomLink>
                 </li>
             </ul>
             <div id={'social-media'}>
