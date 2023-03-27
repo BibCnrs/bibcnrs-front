@@ -27,6 +27,7 @@ import Contact from './app/pages/Contact';
 import Legal from './app/pages/Legal';
 import Error404 from './app/pages/errors/Error404';
 import Footer from './app/components/footer/Footer';
+import SearchBar from './app/components/searchbar/SearchBar';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);
@@ -44,6 +45,14 @@ root.render(
                     <div id="head">
                         <Header />
                         <NavBar />
+                        {/* TODO: To remove, use for testing only */}
+                        <SearchBar
+                            placeholder={'test'}
+                            onSearch={(v) => {
+                                // eslint-disable-next-line no-console
+                                console.log(v);
+                            }}
+                        />
                     </div>
                     <div id="app">
                         <Routes>
