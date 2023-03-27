@@ -10,7 +10,10 @@ const fr: Common = {
         journal: 'Revue, ouvrage',
         researchData: 'Données de recherche',
     },
-    header: { login: 'Connexion', title: 'Accès aux ressources documentaires du CNRS' },
+    header: {
+        login: 'Connexion',
+        title: 'Accès aux ressources documentaires du CNRS',
+    },
     footer: {
         about: 'A propos',
         contact: 'Contact',

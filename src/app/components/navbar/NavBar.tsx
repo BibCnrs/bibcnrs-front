@@ -1,14 +1,25 @@
 import Button from '@mui/material/Button';
 import './NavBar.scss';
-import { translator } from '../../locales/I18N';
-import { buildLinkClickHandler } from '../../shared/Routes';
+import {
+    buildLinkClickHandler,
+    isMatching,
+    RouteArticle,
+    RouteDatabase,
+    RouteJournal,
+    RouteResearchData,
+} from '../../shared/Routes';
+import { translator } from '../../shared/locales/I18N';
 
-export default function NavBar(props: { pageIndex: number }) {
-    const index = props.pageIndex;
-    const article = buildLinkClickHandler('/about');
-    const journal = buildLinkClickHandler('/about');
-    const database = buildLinkClickHandler('/about');
-    const researchData = buildLinkClickHandler('/about');
+export default function NavBar() {
+    const article = buildLinkClickHandler(RouteArticle);
+    const journal = buildLinkClickHandler(RouteJournal);
+    const database = buildLinkClickHandler(RouteDatabase);
+    const researchData = buildLinkClickHandler(RouteResearchData);
+    const articleMatch = !!isMatching(RouteArticle);
+    const journalMatch = !!isMatching(RouteJournal);
+    const databaseMatch = !!isMatching(RouteDatabase);
+    const researchDataMatch = !!isMatching(RouteResearchData);
+    const noneMatch = !articleMatch && !journalMatch && !databaseMatch && !researchDataMatch;
     const t = translator();
 
     return (
@@ -16,8 +27,8 @@ export default function NavBar(props: { pageIndex: number }) {
             <div>
                 <Button
                     className="nav-button"
-                    id={index === 0 ? 'active-nav-button' : ''}
-                    disabled={index === 0}
+                    id={articleMatch || noneMatch ? 'active-nav-button' : ''}
+                    disabled={articleMatch || noneMatch}
                     onClick={article.handler}
                     href={article.href}
                 >
@@ -25,8 +36,8 @@ export default function NavBar(props: { pageIndex: number }) {
                 </Button>
                 <Button
                     className="nav-button"
-                    id={index === 1 ? 'active-nav-button' : ''}
-                    disabled={index === 1}
+                    id={journalMatch ? 'active-nav-button' : ''}
+                    disabled={journalMatch}
                     onClick={journal.handler}
                     href={journal.href}
                 >
@@ -34,8 +45,8 @@ export default function NavBar(props: { pageIndex: number }) {
                 </Button>
                 <Button
                     className="nav-button"
-                    id={index === 2 ? 'active-nav-button' : ''}
-                    disabled={index === 2}
+                    id={databaseMatch ? 'active-nav-button' : ''}
+                    disabled={databaseMatch}
                     onClick={database.handler}
                     href={database.href}
                 >
@@ -43,8 +54,8 @@ export default function NavBar(props: { pageIndex: number }) {
                 </Button>
                 <Button
                     className="nav-button"
-                    id={index === 3 ? 'active-nav-button' : ''}
-                    disabled={index === 3}
+                    id={researchDataMatch ? 'active-nav-button' : ''}
+                    disabled={researchDataMatch}
                     onClick={researchData.handler}
                     href={researchData.href}
                 >

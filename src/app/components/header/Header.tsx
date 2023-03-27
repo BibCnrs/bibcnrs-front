@@ -1,10 +1,10 @@
 import BibCNRSLogo from '/logos/bibcnrs.png';
 import './Header.scss';
-import { getFullTranslator } from '../../locales/I18N';
 import LocalButton from './element/LocalButton';
 import SignInButton from './element/SignInButton';
 import { RouteRoot } from '../../shared/Routes';
 import CustomLink from '../customlink/CustomLink';
+import { getFullTranslator } from '../../shared/locales/I18N';
 
 /**
  * Application header

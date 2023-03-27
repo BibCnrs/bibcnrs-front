@@ -1,4 +1,4 @@
-import { translator } from '../../locales/I18N';
+import { translator } from '../../shared/locales/I18N';
 import { Link } from 'react-router-dom';
 
 /**
