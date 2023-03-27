@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
 import Divider from '@mui/material/Divider';
+import './SearchBar.scss';
 
 export default function SearchBar(props: SearchBarProps) {
     const { placeholder, onSearch } = props;
@@ -32,19 +33,20 @@ export default function SearchBar(props: SearchBarProps) {
     };
 
     return (
-        <Paper>
+        <Paper id="search-box">
             <InputBase
                 placeholder={placeholder}
                 onChange={inputOnChange}
                 onKeyDown={inputKeyDown}
                 inputRef={inputRef}
+                id="search-box-input"
             />
             {value !== '' ? (
                 <>
                     <IconButton onClick={clearOnClick}>
                         <ClearIcon />
                     </IconButton>
-                    <Divider orientation="vertical" />
+                    <Divider orientation="vertical" id="search-box-divider" />
                 </>
             ) : (
                 <></>

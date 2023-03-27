@@ -1,0 +1,17 @@
+#search-box {
+    display: flex;
+    align-items: center;
+
+    div {
+        width: 100%;
+
+        #search-box-input {
+            margin-left: 20px;
+        }
+    }
+
+    #search-box-divider {
+        height: 28px;
+        margin: .5px;
+    }
+}
