@@ -1,0 +1,6 @@
+services:
+  bibcnrs-front:
+    build:
+      context: .
+    ports:
+      - "4200:4200"
