@@ -1,24 +1,24 @@
 @import "src/app/scss/colors";
 
 footer {
-    background-color: $footer-color;
-    margin: 0 auto;
-    height: 120px;
-    text-align: center;
+    position: relative;
     display: flex !important;
     flex-flow: row wrap;
-    justify-content: space-between;
     align-items: center;
-    color: #fff;
-    position: relative;
+    justify-content: space-between;
+    height: 120px;
     padding: 0 4.2%;
+    margin: 0 auto;
+    color: $white;
+    text-align: center;
+    background-color: $footer-color;
 
     ul {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
-        list-style-type: none;
         padding: 10px 0 0;
+        list-style-type: none;
 
         li {
             display: inline-block;
@@ -26,12 +26,12 @@ footer {
         }
 
         li:not(:last-child) {
-            border-right: 1px solid #fff;
+            border-right: 1px solid $white;
         }
     }
 
     svg {
-        color: #fff;
+        color: $white;
     }
 }
 
@@ -46,8 +46,8 @@ footer {
         }
 
         ul {
-            margin-left: auto;
             margin-right: auto;
+            margin-left: auto;
 
             li a {
                 display: inline;

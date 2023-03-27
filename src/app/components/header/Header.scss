@@ -6,8 +6,8 @@ header {
     justify-content: space-between;
     height: 165px;
     padding-top: 23px;
-    padding-left: 30px;
     padding-right: 50px;
+    padding-left: 30px;
 
     #header-left {
         display: flex;
@@ -16,35 +16,35 @@ header {
         height: 100px;
 
         a img {
-            height: 100px;
             width: auto;
+            height: 100px;
         }
 
         div {
-            color: #fff;
+            align-self: center;
             padding-left: 42px;
             font-size: 22px;
-            align-self: center;
+            color: $white;
         }
     }
 
     #header-right {
         display: flex;
         flex-direction: row-reverse;
-        height: 100px;
         align-items: center;
+        height: 100px;
 
         #login {
-            color: darkblue;
-            background-color: white;
+            color: $darkblue;
+            background-color: $white;
         }
 
         #login:hover {
-            background-color: #f5f5ff;
+            background-color: $lightest-white;
         }
 
         svg {
-            color: white;
+            color: $white;
         }
     }
 }
@@ -66,8 +66,8 @@ header {
         }
 
         #header-right {
-            margin-left: auto;
             margin-right: auto;
+            margin-left: auto;
         }
     }
 }
