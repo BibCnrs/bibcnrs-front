@@ -7,6 +7,7 @@ import {
     RouteDatabase,
     RouteJournal,
     RouteResearchData,
+    RouteRoot,
 } from '../../shared/Routes';
 import { translator } from '../../shared/locales/I18N';
 
@@ -19,9 +20,11 @@ export default function NavBar() {
     const journalMatch = !!isMatching(RouteJournal);
     const databaseMatch = !!isMatching(RouteDatabase);
     const researchDataMatch = !!isMatching(RouteResearchData);
+    const rootMatch = !!isMatching(RouteRoot);
     const noneMatch = !articleMatch && !journalMatch && !databaseMatch && !researchDataMatch;
+    const disable = noneMatch && !rootMatch;
     const t = translator();
-
+    if (disable) return <></>;
     return (
         <nav>
             <div>

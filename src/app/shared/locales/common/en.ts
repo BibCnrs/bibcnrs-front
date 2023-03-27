@@ -4,6 +4,32 @@ import { Common } from '../I18N';
  * English translation
  */
 const en: Common = {
+    pages: {
+        about: {
+            title: 'About',
+        },
+        article: {
+            searchBar: 'Search articles, book chapters, DOIs, authors, words from the title abstract, ISSN, ISBN.',
+            title: 'Article',
+        },
+        contact: {
+            title: 'Contact',
+        },
+        database: {
+            title: 'Database',
+        },
+        journal: {
+            searchBar: 'Search journal titles, book titles...',
+            title: 'Journal, book',
+        },
+        legal: {
+            title: 'Legal notice',
+        },
+        researchData: {
+            searchBar: 'Search',
+            title: 'Research data',
+        },
+    },
     nav: {
         article: 'Article',
         database: 'Database',

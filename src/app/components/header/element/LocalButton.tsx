@@ -5,14 +5,14 @@ import Menu from '@mui/material/Menu';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
 import { useState, MouseEvent } from 'react';
-import { i18n } from 'i18next';
+import { LocalButtonProps } from '../../../shared/types';
 
 /**
  * React element use by the healer.
  * This element is used to change the application language
  * @param props Element properties containing the i18n system
  */
-export default function LocalButton(props: { i18n: i18n }) {
+export default function LocalButton(props: LocalButtonProps) {
     const i18n = props.i18n;
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);

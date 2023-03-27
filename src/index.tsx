@@ -18,16 +18,16 @@ import {
     RouteResearchData,
     RouteRoot,
 } from './app/shared/Routes';
-import Article from './app/pages/Article';
-import Journal from './app/pages/Journal';
-import Database from './app/pages/Database';
-import ResearchData from './app/pages/ResearchData';
-import About from './app/pages/About';
-import Contact from './app/pages/Contact';
-import Legal from './app/pages/Legal';
+import Article from './app/pages/article/Article';
+import Journal from './app/pages/journal/Journal';
+import Database from './app/pages/database/Database';
+import ResearchData from './app/pages/researchdata/ResearchData';
+import About from './app/pages/about/About';
+import Contact from './app/pages/contact/Contact';
+import Legal from './app/pages/legal/Legal';
 import Error404 from './app/pages/errors/Error404';
 import Footer from './app/components/footer/Footer';
-import SearchBar from './app/components/searchbar/SearchBar';
+import Root from './app/pages/Root';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);
@@ -45,19 +45,11 @@ root.render(
                     <div id="head">
                         <Header />
                         <NavBar />
-                        {/* TODO: To remove, use for testing only */}
                     </div>
                     <div id="app-container">
-                        <SearchBar
-                            placeholder={'test'}
-                            onSearch={(v) => {
-                                // eslint-disable-next-line no-console
-                                console.log(v);
-                            }}
-                        />
                         <Routes>
                             {/* Header route route */}
-                            <Route path={RouteRoot} element={<h1>Hello, World !</h1>} />
+                            <Route path={RouteRoot} element={<Root />} />
                             {/* Navigation route */}
                             <Route path={RouteArticle} element={<Article />} />
                             <Route path={RouteJournal} element={<Journal />} />

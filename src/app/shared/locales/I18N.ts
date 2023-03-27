@@ -3,6 +3,7 @@ import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next, useTranslation } from 'react-i18next';
 import fr from './common/fr';
 import en from './common/en';
+import { T } from '../types';
 
 /**
  * Type use to localized error message
@@ -25,6 +26,32 @@ export type Common = {
         journal: string;
         database: string;
         researchData: string;
+    };
+    pages: {
+        article: {
+            title: string;
+            searchBar: string;
+        };
+        journal: {
+            title: string;
+            searchBar: string;
+        };
+        database: {
+            title: string;
+        };
+        researchData: {
+            title: string;
+            searchBar: string;
+        };
+        about: {
+            title: string;
+        };
+        contact: {
+            title: string;
+        };
+        legal: {
+            title: string;
+        };
     };
     footer: {
         about: string;
@@ -60,7 +87,7 @@ i18next
 /**
  * export the translation function
  */
-export function translator() {
+export function translator(): T {
     const { t } = useTranslation('common');
     return t;
 }
