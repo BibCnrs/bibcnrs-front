@@ -4,10 +4,7 @@ header {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    height: 165px;
-    padding-top: 23px;
-    padding-right: 50px;
-    padding-left: 30px;
+    padding: 23px 50px 23px 30px;
 
     #header-left {
         display: flex;

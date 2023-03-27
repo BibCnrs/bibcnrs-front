@@ -46,6 +46,8 @@ root.render(
                         <Header />
                         <NavBar />
                         {/* TODO: To remove, use for testing only */}
+                    </div>
+                    <div id="app-container">
                         <SearchBar
                             placeholder={'test'}
                             onSearch={(v) => {
@@ -53,8 +55,6 @@ root.render(
                                 console.log(v);
                             }}
                         />
-                    </div>
-                    <div id="app">
                         <Routes>
                             {/* Header route route */}
                             <Route path={RouteRoot} element={<h1>Hello, World !</h1>} />

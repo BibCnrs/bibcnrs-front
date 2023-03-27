@@ -33,27 +33,29 @@ export default function SearchBar(props: SearchBarProps) {
     };
 
     return (
-        <Paper id="search-box">
-            <InputBase
-                placeholder={placeholder}
-                onChange={inputOnChange}
-                onKeyDown={inputKeyDown}
-                inputRef={inputRef}
-                id="search-box-input"
-            />
-            {value !== '' ? (
-                <>
-                    <IconButton onClick={clearOnClick}>
-                        <ClearIcon />
-                    </IconButton>
-                    <Divider orientation="vertical" id="search-box-divider" />
-                </>
-            ) : (
-                <></>
-            )}
-            <IconButton onClick={searchOnClick}>
-                <SearchIcon />
-            </IconButton>
-        </Paper>
+        <div id="search-container">
+            <Paper id="search-box">
+                <InputBase
+                    placeholder={placeholder}
+                    onChange={inputOnChange}
+                    onKeyDown={inputKeyDown}
+                    inputRef={inputRef}
+                    id="search-box-input"
+                />
+                {value !== '' ? (
+                    <>
+                        <IconButton onClick={clearOnClick}>
+                            <ClearIcon />
+                        </IconButton>
+                        <Divider orientation="vertical" id="search-box-divider" />
+                    </>
+                ) : (
+                    <></>
+                )}
+                <IconButton onClick={searchOnClick}>
+                    <SearchIcon />
+                </IconButton>
+            </Paper>
+        </div>
     );
 }
