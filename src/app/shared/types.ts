@@ -8,6 +8,7 @@ export type T = TFunction<FallbackOrNS<string>[]>;
 
 export type SearchBarProps = {
     placeholder: string;
+    value?: string | null;
     onSearch: (value: string) => void;
 };
 

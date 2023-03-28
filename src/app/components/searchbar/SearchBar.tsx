@@ -11,7 +11,11 @@ import './SearchBar.scss';
 export default function SearchBar(props: SearchBarProps) {
     const { placeholder, onSearch } = props;
     const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>();
-    const [value, setValue] = useState('');
+    let defaultValue = '';
+    if (props.value) {
+        defaultValue = props.value;
+    }
+    const [value, setValue] = useState(defaultValue);
 
     const inputOnChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setValue(event.target.value);
@@ -40,6 +44,7 @@ export default function SearchBar(props: SearchBarProps) {
                     onChange={inputOnChange}
                     onKeyDown={inputKeyDown}
                     inputRef={inputRef}
+                    value={value}
                     id="search-box-input"
                 />
                 {value !== '' ? (

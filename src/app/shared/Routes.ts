@@ -1,16 +1,17 @@
-import { useHref, useLinkClickHandler, useMatch, useResolvedPath } from 'react-router-dom';
+import { useHref, useLinkClickHandler, useLocation, useMatch, useResolvedPath } from 'react-router-dom';
 import { To } from '@remix-run/router/history';
+import { useMemo } from 'react';
 
 /**
  * Export evey route use by the application
  */
-export const Routes = {
+const Routes = {
     root: '/',
     article: '/article',
     journal: '/journal',
     database: '/database',
     researchData: '/research-data',
-    about: 'about',
+    about: '/about',
     contact: '/contact',
     legal: '/legal',
 };
@@ -24,6 +25,11 @@ export function buildLinkClickHandler(to: string) {
 export function isMatching(to: To) {
     const resolved = useResolvedPath(to);
     return useMatch({ path: resolved.pathname, end: true });
+}
+
+export function useQuery(): URLSearchParams {
+    const { search } = useLocation();
+    return useMemo<URLSearchParams>(() => new URLSearchParams(search), [search]);
 }
 
 /**
