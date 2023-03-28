@@ -29,6 +29,7 @@ export default function ResearchData() {
                 <div>
                     {results.map((result: any, index: number) => (
                         <div key={index}>
+                            <hr />
                             <p>Title: {JSON.stringify(result.titles)}</p>
                             <p>Doi: {JSON.stringify(result.doi)}</p>
                             <p>Type: {JSON.stringify(result.type)}</p>
