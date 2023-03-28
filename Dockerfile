@@ -1,5 +1,6 @@
 FROM node:18-alpine as build
 WORKDIR /app
+COPY . /app/
 RUN npm ci && npm run build
 
 FROM nginx:latest AS ngi
