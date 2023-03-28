@@ -33,7 +33,7 @@ const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);
 const theme = createTheme({
     typography: {
-        fontFamily: '"DM Sans","Helvetica Neue",Helvetica,Arial,sans-serif',
+        fontFamily: '"DM Sans", sans-serif',
     },
 });
 
