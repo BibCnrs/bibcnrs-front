@@ -4,7 +4,7 @@ import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
-import { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import Divider from '@mui/material/Divider';
 import './SearchBar.scss';
 
@@ -15,7 +15,13 @@ export default function SearchBar(props: SearchBarProps) {
     if (props.value) {
         defaultValue = props.value;
     }
-    const [value, setValue] = useState(defaultValue);
+    const [value, setValue] = useState<string>(defaultValue);
+    const [firstRun, setFirstRun] = useState<boolean>(true);
+
+    useEffect(() => {
+        if (firstRun && value !== '') onSearch(value);
+        setFirstRun(false);
+    });
 
     const inputOnChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setValue(event.target.value);
