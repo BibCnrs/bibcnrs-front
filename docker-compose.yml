@@ -1,5 +1,6 @@
 services:
   bibcnrs-front:
+    container_name: bibcnrs-front
     build:
       context: .
     ports:

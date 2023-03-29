@@ -1,3 +1,13 @@
+# If the first argument is one of the supported commands...
+SUPPORTED_COMMANDS := install run-dev build preview docker-start docker-stop readme-tree
+SUPPORTS_MAKE_ARGS := $(findstring $(firstword $(MAKECMDGOALS)), $(SUPPORTED_COMMANDS))
+ifneq "$(SUPPORTS_MAKE_ARGS)" ""
+    # use the rest as arguments for the command
+    COMMAND_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+    # ...and turn them into do-nothing targets
+    $(eval $(COMMAND_ARGS):;@:)
+endif
+
 install:
 	npm install
 
@@ -11,10 +21,11 @@ preview:
 	npm run preview
 
 docker-start:
-	docker compose --project-name foo -f docker-compose.yml -p bibcnrs-front rm -f && \
-	docker image rm bibcnrs-front_bibcnrs-front && \
-	docker compose --project-name foo -f docker-compose.yml -p bibcnrs-front build --no-cache && \
-	docker compose --project-name foo -f docker-compose.yml -p bibcnrs-front up -d
+	docker compose -f docker-compose.yml build --no-cache && \
+	docker compose -f docker-compose.yml up -d
+
+docker-stop:
+	docker-compose -f docker-compose.yml down --rmi all
 
 readme-tree:
 	tree -d -n src > tree.txt
