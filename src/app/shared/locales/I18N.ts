@@ -42,6 +42,14 @@ export type Common = {
         researchData: {
             title: string;
             searchBar: string;
+            content: {
+                doi: string;
+                doiColon: string;
+                type: string;
+                publicationYear: string;
+                description: string;
+                subjects: string;
+            };
         };
         about: {
             title: string;
@@ -97,6 +105,11 @@ export function translator(): T {
  */
 export function getFullTranslator() {
     return useTranslation('common');
+}
+
+export function getLanguageKey() {
+    const { i18n } = getFullTranslator();
+    return i18n.language;
 }
 
 /**

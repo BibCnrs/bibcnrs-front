@@ -1,0 +1,62 @@
+.table-element {
+    position: relative;
+    padding: 5px 20px 25px;
+    margin: 0 15px 20px;
+    line-height: 1em;
+    border-radius: 10px;
+
+    h4 {
+        display: flex;
+        max-width: 95%;
+        font-size: 16px;
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .table-button-position {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            padding: 6px 12px;
+            margin: 1.33em 0;
+        }
+
+        .table-button {
+            font-size: 1.1rem;
+            transition: transform 150ms ease-in-out;
+        }
+
+        .table-button-open {
+            transform: rotate(90deg);
+        }
+    }
+
+    dl, div {
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+
+        span {
+            display: flex;
+
+            dt, dd {
+                line-height: 1.42857143;
+            }
+
+            dt {
+                flex: 0 1 15%;
+                font-weight: 700;
+                text-align: right;
+            }
+
+            dd {
+                flex: 9;
+            }
+        }
+    }
+}

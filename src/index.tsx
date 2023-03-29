@@ -3,8 +3,6 @@ import { StrictMode } from 'react';
 import ReactDOMClient from 'react-dom/client';
 import { I18nextProvider } from 'react-i18next';
 import I18N from './app/shared/locales/I18N';
-import ThemeProvider from '@mui/material/styles/ThemeProvider';
-import createTheme from '@mui/material/styles/createTheme';
 import Header from './app/components/header/Header';
 import NavBar from './app/components/navbar/NavBar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -28,19 +26,15 @@ import Legal from './app/pages/legal/Legal';
 import Error404 from './app/pages/errors/Error404';
 import Footer from './app/components/footer/Footer';
 import Root from './app/pages/Root';
+import LocalizedThemeProvider from './app/components/utils/LocalizedThemeProvider';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);
-const theme = createTheme({
-    typography: {
-        fontFamily: '"DM Sans", sans-serif',
-    },
-});
 
 root.render(
     <StrictMode>
-        <ThemeProvider theme={theme}>
-            <I18nextProvider i18n={I18N}>
+        <I18nextProvider i18n={I18N}>
+            <LocalizedThemeProvider>
                 <BrowserRouter>
                     <div id="head">
                         <Header />
@@ -67,7 +61,7 @@ root.render(
                         <Footer />
                     </div>
                 </BrowserRouter>
-            </I18nextProvider>
-        </ThemeProvider>
+            </LocalizedThemeProvider>
+        </I18nextProvider>
     </StrictMode>,
 );

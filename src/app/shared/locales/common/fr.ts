@@ -29,6 +29,14 @@ const fr: Common = {
         researchData: {
             searchBar: 'Recherche',
             title: 'Données de recherche',
+            content: {
+                doi: 'DOI',
+                doiColon: 'DOI : ',
+                type: 'Type',
+                publicationYear: 'Année de publication',
+                description: 'Description',
+                subjects: 'Mots clés',
+            },
         },
     },
     nav: {

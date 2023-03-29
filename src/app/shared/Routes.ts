@@ -1,6 +1,7 @@
 import { useHref, useLinkClickHandler, useLocation, useMatch, useResolvedPath } from 'react-router-dom';
 import { To } from '@remix-run/router/history';
 import { useMemo } from 'react';
+import { NavigateFunction } from 'react-router/dist/lib/hooks';
 
 /**
  * Export evey route use by the application
@@ -20,6 +21,11 @@ export function buildLinkClickHandler(to: string) {
     const href = useHref(to);
     const handler = useLinkClickHandler(to);
     return { href, handler };
+}
+
+export function updatePageQueryUrl(route: string, navigate: NavigateFunction, param: any) {
+    const query = new URLSearchParams(param);
+    navigate(`${route}?${query.toString()}`);
 }
 
 export function isMatching(to: To) {

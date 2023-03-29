@@ -6,7 +6,7 @@ export function search(
     currentPage: number,
     setResults: any,
     setTotalHits: any,
-    setMaxPage: any,
+    setLoading: any,
 ) {
     fetch(
         createQuery(environment.get.metadore, {
@@ -18,13 +18,13 @@ export function search(
                 },
             ]),
             resultsPerPage,
-            currentPage,
+            currentPage: currentPage,
         }),
     )
         .then((response) => response.json())
         .then((data) => {
             setResults(data.results);
             setTotalHits(data.totalHits);
-            setMaxPage(data.maxPage);
+            setLoading(false);
         });
 }

@@ -19,7 +19,7 @@ export default function SearchBar(props: SearchBarProps) {
     const [firstRun, setFirstRun] = useState<boolean>(true);
 
     useEffect(() => {
-        if (firstRun && value !== '') onSearch(value);
+        if (firstRun && value && value !== '') onSearch(value, true);
         setFirstRun(false);
     });
 
@@ -28,7 +28,7 @@ export default function SearchBar(props: SearchBarProps) {
     };
 
     const inputKeyDown = (event: KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        if (event.key === 'Enter') onSearch(value);
+        if (event.key === 'Enter') onSearch(value, false);
     };
 
     const clearOnClick = () => {
@@ -39,7 +39,7 @@ export default function SearchBar(props: SearchBarProps) {
     };
 
     const searchOnClick = () => {
-        onSearch(value);
+        onSearch(value, false);
     };
 
     return (
