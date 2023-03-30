@@ -7,20 +7,25 @@ import './Table.scss';
 
 function PaginationComponent(props: PaginationComponentProps) {
     const { total, resultParPage, currentPage, onChange } = props;
-
+    const page = currentPage ? currentPage : 1;
+    const perPage = resultParPage ? resultParPage : 25;
     return (
         <div className="pagination">
-            <span className="current-page">
-                {1 + (currentPage - 1) * resultParPage}-{Math.min(1 + currentPage * resultParPage, total)} / {total}
-            </span>
+            {total === 0 ? (
+                <span>0-0 / 0</span>
+            ) : (
+                <span className="current-page">
+                    {1 + (page - 1) * perPage}-{Math.min(1 + page * perPage, total)} / {total}
+                </span>
+            )}
             <Pagination
-                onChange={(event, page) => {
-                    onChange(page, resultParPage);
+                onChange={(event, newPage) => {
+                    onChange(newPage, perPage);
                 }}
                 color="primary"
                 className="page-selector"
-                count={Math.ceil(total / resultParPage)}
-                page={currentPage}
+                count={Math.ceil(total / perPage)}
+                page={page}
             />
             <FormControl size="small">
                 <Select
@@ -28,7 +33,7 @@ function PaginationComponent(props: PaginationComponentProps) {
                         onChange(1, event.target.value as number);
                     }}
                     autoWidth
-                    value={resultParPage}
+                    value={perPage}
                     sx={{ borderRadius: '64px' }}
                 >
                     <MenuItem value={5}>5</MenuItem>
@@ -44,30 +49,35 @@ function PaginationComponent(props: PaginationComponentProps) {
 
 export default function Table(props: TableProps) {
     const { results, DisplayElement, total, args, setArgs, t } = props;
-    const realTotal = total ? total : 0;
     const onChange = (currentPage: number, resultParPage: number) =>
         setArgs({ ...args, perPage: resultParPage, page: currentPage });
     return (
         <div>
-            <PaginationComponent
-                currentPage={args.page}
-                onChange={onChange}
-                resultParPage={args.perPage}
-                total={realTotal}
-            />
-            <div>
-                {results ? (
-                    results.map((result: any, index: number) => <DisplayElement key={index} data={result} />)
-                ) : (
-                    <p>{t('')}</p>
-                )}
-            </div>
-            <PaginationComponent
-                currentPage={args.page}
-                onChange={onChange}
-                resultParPage={args.perPage}
-                total={realTotal}
-            />
+            {!results || !total ? (
+                <></>
+            ) : (
+                <>
+                    <PaginationComponent
+                        currentPage={args.page}
+                        onChange={onChange}
+                        resultParPage={args.perPage}
+                        total={total}
+                    />
+                    <div>
+                        {total !== 0 ? (
+                            results.map((result: any, index: number) => <DisplayElement key={index} data={result} />)
+                        ) : (
+                            <p>{t('')}</p>
+                        )}
+                    </div>
+                    <PaginationComponent
+                        currentPage={args.page}
+                        onChange={onChange}
+                        resultParPage={args.perPage}
+                        total={total}
+                    />
+                </>
+            )}
         </div>
     );
 }

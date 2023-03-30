@@ -2,17 +2,21 @@
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "project": "tsconfig.json",
-        "sourceType": "module",
+        "sourceType": "module"
     },
-    "plugins": ["@typescript-eslint/eslint-plugin"],
+    "plugins": [
+        "@typescript-eslint/eslint-plugin",
+        "eslint-plugin-import"
+    ],
     "extends": [
         "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended",
+        "plugin:prettier/recommended"
     ],
     "root": true,
     "env": {
         "node": true,
         "jest": true,
+        "browser": true
     },
     "ignorePatterns": [
         "vite.config.ts"
@@ -22,8 +26,67 @@
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-unused-vars": ["warn", { ignoreRestSiblings: true }],
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "ignoreRestSiblings": true
+            }
+        ],
         "no-console": "error",
-        "linebreak-style": ["error", "unix"]
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": false
+            }
+        ],
+        "no-import-assign": "error",
+        "no-undef": [
+            "error",
+            {
+                "typeof": true
+            }
+        ],
+        "no-unexpected-multiline": "error",
+        "no-self-assign": "error",
+        "no-unreachable": "error",
+        "no-unreachable-loop": "error",
+        "no-unsafe-optional-chaining": "error",
+        "no-use-before-define": "error",
+        "no-useless-backreference": "error",
+        "valid-typeof": [
+            "error",
+            {
+                "requireStringLiterals": false
+            }
+        ],
+        "camelcase": "error",
+        "curly": "error",
+        "eqeqeq": "error",
+        "no-shadow": "error",
+        "no-var": "error",
+        "radix": "error",
+        "import/first": "error",
+        "import/newline-after-import": "error",
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "index",
+                    "sibling",
+                    "parent",
+                    "internal",
+                    "external",
+                    "builtin",
+                    "object",
+                    "type"
+                ]
+            }
+        ]
     }
 }

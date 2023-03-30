@@ -1,7 +1,7 @@
 import { TableDisplayElementProps } from '../../../shared/types/props.types';
 import { MetadoreResultDescriptionType, MetadoreResultTitleType } from '../../../shared/types/data.types';
-import { useState } from 'react';
 import { getLanguageKey, translator } from '../../../shared/locales/I18N';
+import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Paper from '@mui/material/Paper';
@@ -9,18 +9,26 @@ import './DisplayElement.scss';
 
 function getTitle(titles: MetadoreResultTitleType[], langKey: string): string {
     for (const title of titles) {
-        if (title.lang === langKey) return title.title;
+        if (title.lang === langKey) {
+            return title.title;
+        }
     }
     return titles[0].title;
 }
 
 function getDescription(descriptions: MetadoreResultDescriptionType[], langKey: string): string | undefined {
-    if (descriptions.length === 0) return undefined;
-    for (const description of descriptions) {
-        if (description.lang === langKey && description.descriptionType === 'Abstract') return description.description;
+    if (descriptions.length === 0) {
+        return undefined;
     }
     for (const description of descriptions) {
-        if (description.descriptionType === 'Abstract') return description.description;
+        if (description.lang === langKey && description.descriptionType === 'Abstract') {
+            return description.description;
+        }
+    }
+    for (const description of descriptions) {
+        if (description.descriptionType === 'Abstract') {
+            return description.description;
+        }
     }
     return descriptions[0].description;
 }

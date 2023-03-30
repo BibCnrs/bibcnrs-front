@@ -1,7 +1,7 @@
-import { i18n } from 'i18next';
-import {Dispatch, ElementType, Key, ReactNode, SetStateAction} from 'react';
 import { T } from './types';
 import { MetadoreResultType } from './data.types';
+import { i18n } from 'i18next';
+import { Dispatch, ElementType, Key, ReactNode, SetStateAction } from 'react';
 
 type HaveReactChildren = {
     children: ReactNode;
@@ -10,7 +10,7 @@ type HaveReactChildren = {
 export type SearchBarProps = {
     placeholder: string;
     value?: string | null;
-    onSearch: (value: string, disableUrlUpdate: boolean) => void;
+    onSearch: (value: string) => void;
 };
 
 export type PageTitleProps = {
@@ -32,10 +32,9 @@ export type TableDisplayElementProps = {
 };
 
 export type TableArgsProps = {
-    value: string;
-    page: number;
-    perPage: number;
-    disableUrlUpdate: boolean;
+    value?: string;
+    page?: number;
+    perPage?: number;
 };
 
 export type TableProps = {
@@ -53,7 +52,7 @@ export type ExceptedErrorProps = HaveReactChildren;
 
 export type PaginationComponentProps = {
     total: number;
-    resultParPage: number;
-    currentPage: number;
+    resultParPage?: number;
+    currentPage?: number;
     onChange: (currentPage: number, resultParPage: number) => void;
 };

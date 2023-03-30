@@ -1,9 +1,9 @@
-import TwitterIcon from '@mui/icons-material/Twitter';
 import { translator } from '../../shared/locales/I18N';
 import CNRSLogo from '/logos/cnrs.png';
 import './Footer.scss';
 import { RouteAbout, RouteContact, RouteLegal } from '../../shared/Routes';
 import CustomLink from '../customlink/CustomLink';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 /**
  * Application footer

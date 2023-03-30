@@ -1,6 +1,6 @@
+import { ExceptedErrorProps } from '../../shared/types/props.types';
 import { Link } from 'react-router-dom';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { ExceptedErrorProps } from '../../shared/types/props.types';
 
 function ErrorFallback({ error }: FallbackProps) {
     return (

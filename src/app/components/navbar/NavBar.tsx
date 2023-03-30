@@ -1,15 +1,15 @@
-import Button from '@mui/material/Button';
 import './NavBar.scss';
 import {
-    buildLinkClickHandler,
-    isMatching,
     RouteArticle,
     RouteDatabase,
     RouteJournal,
     RouteResearchData,
     RouteRoot,
+    buildLinkClickHandler,
+    isMatching,
 } from '../../shared/Routes';
 import { translator } from '../../shared/locales/I18N';
+import Button from '@mui/material/Button';
 
 export default function NavBar() {
     const article = buildLinkClickHandler(RouteArticle);
@@ -24,7 +24,9 @@ export default function NavBar() {
     const noneMatch = !articleMatch && !journalMatch && !databaseMatch && !researchDataMatch;
     const disable = noneMatch && !rootMatch;
     const t = translator();
-    if (disable) return <></>;
+    if (disable) {
+        return <></>;
+    }
     return (
         <nav>
             <div>

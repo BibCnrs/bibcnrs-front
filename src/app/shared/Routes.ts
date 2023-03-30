@@ -38,6 +38,22 @@ export function useSearchParams(): URLSearchParams {
     return useMemo<URLSearchParams>(() => new URLSearchParams(search), [search]);
 }
 
+export function getString(query: URLSearchParams, key: string, fallback: string | undefined) {
+    const value = query.get(key);
+    if (value === null) {
+        return fallback;
+    }
+    return value;
+}
+
+export function getNumber(query: URLSearchParams, key: string, fallback: number | undefined) {
+    const value = query.get(key);
+    if (value === null) {
+        return fallback;
+    }
+    return parseInt(value, 10);
+}
+
 /**
  * Export the root route
  */

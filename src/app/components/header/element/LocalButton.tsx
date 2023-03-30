@@ -1,11 +1,11 @@
+import { LocalButtonProps } from '../../../shared/types/props.types';
 import LanguageIcon from '@mui/icons-material/Language';
 import CheckIcon from '@mui/icons-material/Check';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
-import { useState, MouseEvent } from 'react';
-import { LocalButtonProps } from '../../../shared/types/props.types';
+import { MouseEvent, useState } from 'react';
 
 /**
  * React element use by the healer.

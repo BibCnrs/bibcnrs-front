@@ -1,11 +1,7 @@
 import './index.scss';
-import { StrictMode } from 'react';
-import ReactDOMClient from 'react-dom/client';
-import { I18nextProvider } from 'react-i18next';
 import I18N from './app/shared/locales/I18N';
 import Header from './app/components/header/Header';
 import NavBar from './app/components/navbar/NavBar';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {
     RouteAbout,
     RouteArticle,
@@ -28,6 +24,10 @@ import Footer from './app/components/footer/Footer';
 import Root from './app/pages/Root';
 import LocalizedThemeProvider from './app/components/utils/LocalizedThemeProvider';
 import ExceptedError from './app/pages/errors/ExceptedError';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { I18nextProvider } from 'react-i18next';
+import ReactDOMClient from 'react-dom/client';
+import { StrictMode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const container = document.getElementById('root') as HTMLElement;
