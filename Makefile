@@ -25,7 +25,7 @@ docker-start:
 	docker compose -f docker-compose.yml up -d
 
 docker-stop:
-	docker-compose -f docker-compose.yml down --rmi all
+	docker compose -f docker-compose.yml down --rmi all
 
 readme-tree:
 	tree -d -n src > tree.txt
