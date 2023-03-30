@@ -5,7 +5,7 @@ import Menu from '@mui/material/Menu';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
 import { useState, MouseEvent } from 'react';
-import { LocalButtonProps } from '../../../shared/types';
+import { LocalButtonProps } from '../../../shared/types/props.types';
 
 /**
  * React element use by the healer.

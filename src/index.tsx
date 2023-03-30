@@ -27,6 +27,7 @@ import Error404 from './app/pages/errors/Error404';
 import Footer from './app/components/footer/Footer';
 import Root from './app/pages/Root';
 import LocalizedThemeProvider from './app/components/utils/LocalizedThemeProvider';
+import ExceptedError from './app/pages/errors/ExceptedError';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);
@@ -43,16 +44,72 @@ root.render(
                     <div id="app-container">
                         <Routes>
                             {/* Header route route */}
-                            <Route path={RouteRoot} element={<Root />} />
+                            <Route
+                                path={RouteRoot}
+                                element={
+                                    <ExceptedError>
+                                        <Root />
+                                    </ExceptedError>
+                                }
+                            />
                             {/* Navigation route */}
-                            <Route path={RouteArticle} element={<Article />} />
-                            <Route path={RouteJournal} element={<Journal />} />
-                            <Route path={RouteDatabase} element={<Database />} />
-                            <Route path={RouteResearchData} element={<ResearchData />} />
+                            <Route
+                                path={RouteArticle}
+                                element={
+                                    <ExceptedError>
+                                        <Article />
+                                    </ExceptedError>
+                                }
+                            />
+                            <Route
+                                path={RouteJournal}
+                                element={
+                                    <ExceptedError>
+                                        <Journal />
+                                    </ExceptedError>
+                                }
+                            />
+                            <Route
+                                path={RouteDatabase}
+                                element={
+                                    <ExceptedError>
+                                        <Database />
+                                    </ExceptedError>
+                                }
+                            />
+                            <Route
+                                path={RouteResearchData}
+                                element={
+                                    <ExceptedError>
+                                        <ResearchData />
+                                    </ExceptedError>
+                                }
+                            />
                             {/* Footer route */}
-                            <Route path={RouteAbout} element={<About />} />
-                            <Route path={RouteContact} element={<Contact />} />
-                            <Route path={RouteLegal} element={<Legal />} />
+                            <Route
+                                path={RouteAbout}
+                                element={
+                                    <ExceptedError>
+                                        <About />
+                                    </ExceptedError>
+                                }
+                            />
+                            <Route
+                                path={RouteContact}
+                                element={
+                                    <ExceptedError>
+                                        <Contact />
+                                    </ExceptedError>
+                                }
+                            />
+                            <Route
+                                path={RouteLegal}
+                                element={
+                                    <ExceptedError>
+                                        <Legal />
+                                    </ExceptedError>
+                                }
+                            />
                             {/* Error route */}
                             <Route path="*" element={<Error404 />} />
                         </Routes>

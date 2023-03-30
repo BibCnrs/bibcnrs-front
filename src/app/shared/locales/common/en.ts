@@ -59,6 +59,7 @@ const en: Common = {
             message: 'The current page as not been found.',
         },
         return: 'Go back to home',
+        component: 'The component {{name}} have encountered an error',
     },
 };
 

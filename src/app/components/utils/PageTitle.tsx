@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { PageTitleProps } from '../../shared/types';
+import { PageTitleProps } from '../../shared/types/props.types';
 
 export default class PageTitle extends Component<PageTitleProps> {
     constructor(props: PageTitleProps) {

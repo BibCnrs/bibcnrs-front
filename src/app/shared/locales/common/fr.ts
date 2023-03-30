@@ -60,6 +60,7 @@ const fr: Common = {
             message: "La page acutelle n'a pas étais trouvé.",
         },
         return: 'Retourner à l’accueil ',
+        component: 'Le composant {{name}} a rencontré une erreur',
     },
 };
 

@@ -1,11 +1,11 @@
-import { TableProps } from '../../shared/types';
+import { TableProps } from '../../shared/types/props.types';
 
 export default function Table(props: TableProps) {
     const { results, DisplayElement } = props;
     return (
         <div>
             {results.map((result: any, index: number) => (
-                <DisplayElement key={index} index={index} data={result} />
+                <DisplayElement key={index} data={result} />
             ))}
         </div>
     );

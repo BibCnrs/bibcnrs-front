@@ -1,4 +1,5 @@
-import { MetadoreResultDescriptionType, MetadoreResultTitleType, TableMetadoreProps } from '../../../shared/types';
+import { TableDisplayElementProps } from '../../../shared/types/props.types';
+import { MetadoreResultDescriptionType, MetadoreResultTitleType } from '../../../shared/types/data.types';
 import { useState } from 'react';
 import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import IconButton from '@mui/material/IconButton';
@@ -24,7 +25,7 @@ function getDescription(descriptions: MetadoreResultDescriptionType[], langKey: 
     return descriptions[0].description;
 }
 
-export default function TableMetadore(props: TableMetadoreProps) {
+export default function TableMetadore(props: TableDisplayElementProps) {
     const { data } = props;
     const t = translator();
     const languageKey = getLanguageKey();
@@ -43,7 +44,7 @@ export default function TableMetadore(props: TableMetadoreProps) {
                 >
                     <ArrowForwardIosIcon className={open ? 'table-button table-button-open' : 'table-button'} />
                 </IconButton>
-                <a href={data.url}>
+                <a href={data.url} target="_blank">
                     {data.id}. {title} [{data.type}]
                 </a>
             </h4>

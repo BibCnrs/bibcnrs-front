@@ -52,10 +52,7 @@ export default function ResearchData() {
                     setDisableUrlUpdate(disableUrlUpdate);
                 }}
             />
-            <div id="app">
-                <h1>Research Data</h1>
-                {loading ? <Loading /> : <Table DisplayElement={TableMetadore} results={results} />}
-            </div>
+            <div id="app">{loading ? <Loading /> : <Table DisplayElement={TableMetadore} results={results} />}</div>
         </div>
     );
 }

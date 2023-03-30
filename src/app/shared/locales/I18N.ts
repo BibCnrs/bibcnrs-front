@@ -3,7 +3,7 @@ import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next, useTranslation } from 'react-i18next';
 import fr from './common/fr';
 import en from './common/en';
-import { T } from '../types';
+import { T } from '../types/types';
 
 /**
  * Type use to localized error message
@@ -69,6 +69,7 @@ export type Common = {
     error: {
         return: string;
         '404': Error;
+        component: string;
     };
 };
 

@@ -1,4 +1,4 @@
-import { SearchBarProps } from '../../shared/types';
+import { SearchBarProps } from '../../shared/types/props.types';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';

@@ -3,7 +3,7 @@ import createTheme from '@mui/material/styles/createTheme';
 import { getFullTranslator } from '../../shared/locales/I18N';
 import { frFR } from '@mui/material/locale';
 import { enUS } from '@mui/material/locale';
-import { LocalizedThemeProviderProps } from '../../shared/types';
+import { LocalizedThemeProviderProps } from '../../shared/types/props.types';
 
 export default function LocalizedThemeProvider(props: LocalizedThemeProviderProps) {
     const { i18n } = getFullTranslator();

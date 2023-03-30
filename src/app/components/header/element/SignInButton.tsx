@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button';
-import { SignInButtonProps } from '../../../shared/types';
+import { SignInButtonProps } from '../../../shared/types/props.types';
 
 export default function SignInButton(props: SignInButtonProps) {
     const { t } = props;
