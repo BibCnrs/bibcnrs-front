@@ -1,5 +1,5 @@
 import { i18n } from 'i18next';
-import { ElementType, Key, ReactNode } from 'react';
+import {Dispatch, ElementType, Key, ReactNode, SetStateAction} from 'react';
 import { T } from './types';
 import { MetadoreResultType } from './data.types';
 
@@ -31,11 +31,29 @@ export type TableDisplayElementProps = {
     data: MetadoreResultType;
 };
 
+export type TableArgsProps = {
+    value: string;
+    page: number;
+    perPage: number;
+    disableUrlUpdate: boolean;
+};
+
 export type TableProps = {
     DisplayElement: ElementType<TableDisplayElementProps>;
-    results: any[];
+    results?: any[];
+    total?: number;
+    args: TableArgsProps;
+    setArgs: Dispatch<SetStateAction<TableArgsProps>>;
+    t: T;
 };
 
 export type LocalizedThemeProviderProps = HaveReactChildren;
 
 export type ExceptedErrorProps = HaveReactChildren;
+
+export type PaginationComponentProps = {
+    total: number;
+    resultParPage: number;
+    currentPage: number;
+    onChange: (currentPage: number, resultParPage: number) => void;
+};

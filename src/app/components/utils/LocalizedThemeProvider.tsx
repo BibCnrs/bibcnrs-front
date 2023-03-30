@@ -17,6 +17,11 @@ export default function LocalizedThemeProvider(props: LocalizedThemeProviderProp
             typography: {
                 fontFamily: '"DM Sans", sans-serif',
             },
+            palette: {
+                primary: {
+                    main: '#337ab7',
+                },
+            },
         },
         getLocal(),
     );

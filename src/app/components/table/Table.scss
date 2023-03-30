@@ -1,0 +1,14 @@
+.pagination {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+
+    .current-page {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .page-selector {
+        padding: 0;
+    }
+}

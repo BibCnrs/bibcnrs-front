@@ -33,7 +33,7 @@ export function isMatching(to: To) {
     return useMatch({ path: resolved.pathname, end: true });
 }
 
-export function useQuery(): URLSearchParams {
+export function useSearchParams(): URLSearchParams {
     const { search } = useLocation();
     return useMemo<URLSearchParams>(() => new URLSearchParams(search), [search]);
 }
