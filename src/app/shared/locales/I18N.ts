@@ -27,6 +27,11 @@ export type Common = {
         database: string;
         researchData: string;
     };
+    components: {
+        table: {
+            noData: string;
+        };
+    };
     pages: {
         article: {
             title: string;

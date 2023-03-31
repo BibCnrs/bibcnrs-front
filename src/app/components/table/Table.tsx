@@ -53,7 +53,7 @@ export default function Table(props: TableProps) {
         setArgs({ ...args, perPage: resultParPage, page: currentPage });
     return (
         <div>
-            {!results || !total ? (
+            {results === undefined || total === undefined ? (
                 <></>
             ) : (
                 <>
@@ -67,7 +67,7 @@ export default function Table(props: TableProps) {
                         {total !== 0 ? (
                             results.map((result: any, index: number) => <DisplayElement key={index} data={result} />)
                         ) : (
-                            <p>{t('')}</p>
+                            <p>{t('components.table.noData')}</p>
                         )}
                     </div>
                     <PaginationComponent

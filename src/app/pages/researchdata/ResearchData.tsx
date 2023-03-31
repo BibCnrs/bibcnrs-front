@@ -62,8 +62,8 @@ export default function ResearchData() {
         queryFn: async () => {
             if (!args.value || !args.perPage || !args.page) {
                 return {
-                    results: [],
-                    totalHits: 0,
+                    results: undefined,
+                    totalHits: undefined,
                     maxPage: 1,
                     currentPage: 1,
                 } as MetadoreDataType;

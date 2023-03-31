@@ -4,6 +4,11 @@ import { Common } from '../I18N';
  * English translation
  */
 const en: Common = {
+    components: {
+        table: {
+            noData: 'No result found.',
+        },
+    },
     pages: {
         about: {
             title: 'About',

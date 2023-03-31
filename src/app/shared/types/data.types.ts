@@ -21,8 +21,8 @@ export type MetadoreResultType = {
 };
 
 export type MetadoreDataType = {
-    results: MetadoreResultType[];
-    totalHits: number;
+    results?: MetadoreResultType[];
+    totalHits?: number;
     maxPage: number;
     currentPage: number;
 };
