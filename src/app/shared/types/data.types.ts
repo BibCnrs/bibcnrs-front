@@ -26,3 +26,20 @@ export type MetadoreDataType = {
     maxPage: number;
     currentPage: number;
 };
+
+export type AutoCompleteFragmentType = {
+    text: string;
+    user: boolean;
+};
+
+export type AutoCompleteTermType = {
+    term: string;
+    fragments: AutoCompleteFragmentType[];
+    score: number;
+    domain: string;
+};
+
+export type AutoCompleteDataType = {
+    processingTime: number;
+    terms: AutoCompleteTermType[];
+};
