@@ -34,6 +34,7 @@ const en: Common = {
             search: {
                 bar: 'Search',
                 chips: {
+                    by: 'By',
                     title: 'Title',
                     description: 'Description',
                     subject: 'Subject',

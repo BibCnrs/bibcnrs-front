@@ -112,6 +112,7 @@ export default function ResearchData() {
                 onSearch={handleSearch}
             />
             <div id="research-data-chips">
+                <span id="research-data-by">{t('pages.researchData.search.chips.by')}</span>
                 <StyledToggleButtonGroup size="small" value={args.field} exclusive onChange={handleField}>
                     <StyledToggleButton value="attributes.titles.title">
                         {t('pages.researchData.search.chips.title')}

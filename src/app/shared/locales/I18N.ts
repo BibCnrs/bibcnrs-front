@@ -49,6 +49,7 @@ export type Common = {
             search: {
                 bar: string;
                 chips: {
+                    by: string;
                     title: string;
                     description: string;
                     subject: string;

@@ -35,6 +35,7 @@ const fr: Common = {
             search: {
                 bar: 'Recherche',
                 chips: {
+                    by: 'Par',
                     title: 'Titre',
                     description: 'Description',
                     subject: 'Sujet',
