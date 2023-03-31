@@ -29,6 +29,7 @@ import { I18nextProvider } from 'react-i18next';
 import ReactDOMClient from 'react-dom/client';
 import { StrictMode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);
@@ -123,6 +124,7 @@ root.render(
                     </BrowserRouter>
                 </LocalizedThemeProvider>
             </I18nextProvider>
+            <ReactQueryDevtools />
         </QueryClientProvider>
     </StrictMode>,
 );

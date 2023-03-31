@@ -27,7 +27,15 @@ const fr: Common = {
             title: 'Politique de confidentialité',
         },
         researchData: {
-            searchBar: 'Recherche',
+            search: {
+                bar: 'Recherche',
+                chips: {
+                    title: 'Titre',
+                    description: 'Description',
+                    subject: 'Sujet',
+                    doi: 'DOI',
+                },
+            },
             title: 'Données de recherche',
             content: {
                 doi: 'DOI',

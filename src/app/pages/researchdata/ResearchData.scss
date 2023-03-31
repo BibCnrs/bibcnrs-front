@@ -1,1 +1,9 @@
 @import "src/app/scss/app";
+@import "src/app/scss/colors";
+
+#research-data-chips {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 25px;
+    background-color: $header-color;
+}

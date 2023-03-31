@@ -35,6 +35,7 @@ export type TableArgsProps = {
     value?: string;
     page?: number;
     perPage?: number;
+    field: string | null;
 };
 
 export type TableProps = {

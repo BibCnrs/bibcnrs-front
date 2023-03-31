@@ -26,7 +26,15 @@ const en: Common = {
             title: 'Legal notice',
         },
         researchData: {
-            searchBar: 'Search',
+            search: {
+                bar: 'Search',
+                chips: {
+                    title: 'Title',
+                    description: 'Description',
+                    subject: 'Subject',
+                    doi: 'DOI',
+                },
+            },
             title: 'Research data',
             content: {
                 doi: 'DOI',

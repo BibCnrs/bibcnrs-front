@@ -41,7 +41,15 @@ export type Common = {
         };
         researchData: {
             title: string;
-            searchBar: string;
+            search: {
+                bar: string;
+                chips: {
+                    title: string;
+                    description: string;
+                    subject: string;
+                    doi: string;
+                };
+            };
             content: {
                 doi: string;
                 doiColon: string;

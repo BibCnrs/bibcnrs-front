@@ -38,7 +38,7 @@ export function useSearchParams(): URLSearchParams {
     return useMemo<URLSearchParams>(() => new URLSearchParams(search), [search]);
 }
 
-export function getString(query: URLSearchParams, key: string, fallback: string | undefined) {
+export function getString<Extend>(query: URLSearchParams, key: string, fallback: string | Extend): string | Extend {
     const value = query.get(key);
     if (value === null) {
         return fallback;
