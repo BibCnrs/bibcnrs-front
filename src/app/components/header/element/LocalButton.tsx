@@ -20,7 +20,9 @@ export default function LocalButton(props: LocalButtonProps) {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = (key: 'fr' | 'en') => {
-        i18n.changeLanguage(key).then();
+        if (key === 'fr' || key === 'en') {
+            i18n.changeLanguage(key).then();
+        }
         setAnchorEl(null);
     };
 
