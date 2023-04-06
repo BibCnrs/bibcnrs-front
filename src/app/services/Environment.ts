@@ -2,6 +2,7 @@ export const environment = {
     host: import.meta.env.VITE_BIBAPI_HOST,
     get: {
         metadore: '/ebsco/metadore/search',
+        cms: '/ebsco/cms',
     },
 };
 

@@ -14,6 +14,7 @@ export type SearchBarProps = {
 };
 
 export type PageTitleProps = {
+    customTitle?: boolean;
     page?: string;
     t?: T;
 };

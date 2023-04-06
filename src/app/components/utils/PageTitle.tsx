@@ -7,11 +7,15 @@ export default class PageTitle extends Component<PageTitleProps> {
     }
 
     componentDidMount() {
+        if (this.props.customTitle && this.props.page) {
+            document.title = `BibCNRS - ${this.props.page}`;
+            return;
+        }
         if (this.props.page && this.props.t) {
             document.title = `BibCNRS - ${this.props.t(`pages.${this.props.page}.title`)}`;
-        } else {
-            document.title = 'BibCNRS';
+            return;
         }
+        document.title = 'BibCNRS';
     }
 
     render() {

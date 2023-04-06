@@ -43,3 +43,17 @@ export type AutoCompleteDataType = {
     processingTime: number;
     terms: AutoCompleteTermType[];
 };
+
+export type CMSDataType = {
+    id: number;
+    name_fr: string;
+    name_en: string;
+    content_fr: string;
+    content_en: string;
+    page: 'home' | 'faq' | 'legal';
+    from: string;
+    to: string | null;
+    enable: boolean;
+};
+
+export type CMSResultDataType = CMSDataType[];
