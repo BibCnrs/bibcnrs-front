@@ -20,9 +20,13 @@ build:
 preview:
 	npm run preview
 
-docker-start:
-	docker compose -f docker-compose.yml build --no-cache && \
+docker-build:
+	docker compose -f docker-compose.yml build --no-cache
+
+docker-up:
 	docker compose -f docker-compose.yml up -d
+
+docker-start: docker-build docker-up
 
 docker-stop:
 	docker compose -f docker-compose.yml down --rmi all

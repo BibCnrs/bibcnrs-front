@@ -1,6 +1,8 @@
 FROM node:18-alpine as build
 WORKDIR /app
 COPY . /app/
+ARG VITE_BIBAPI_HOST
+ENV VITE_BIBAPI_HOST=$VITE_BIBAPI_HOST
 RUN npm ci && npm run build
 
 FROM nginx:latest AS ngi

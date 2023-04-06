@@ -2,20 +2,19 @@ import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import eslint from 'vite-plugin-eslint';
 
-// https://vitejs.dev/config/
+const regex = /(.*node_modules\/)([^\/]+)(.*)/;
 export default defineConfig({
     plugins: [react(), eslint()],
     build: {
         rollupOptions: {
             output: {
-                manualChunks: (id) => {
+                manualChunks: (id, meta) => {
                     if (id.includes('node_modules')) {
-                        if (id.includes('react')) return 'vendor-rct';
-                        if (id.includes('mui')) return 'vendor-mui';
-                        return 'vendor-all';
+                        const name = id.match(regex)[2].replace('@', '');
+                        if (meta.getModuleInfo(id).isIncluded) return name;
                     }
-                }
-            }
+                },
+            },
         },
         minify: 'terser',
         terserOptions: {

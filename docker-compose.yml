@@ -5,8 +5,8 @@ services:
     container_name: bibcnrs-front
     build:
       context: .
-    environment:
-      VITE_BIBAPI_HOST: ${BIBAPI_HOST}
+      args:
+        VITE_BIBAPI_HOST: ${BIBAPI_HOST}
     ports:
       - "8080:8080"
     networks:
