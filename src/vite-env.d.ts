@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-    readonly VITE_API_URL_OR_PREFIX: string;
+    readonly VITE_BIBAPI_HOST: string;
 }
 
 interface ImportMeta {

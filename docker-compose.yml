@@ -5,8 +5,10 @@ services:
     container_name: bibcnrs-front
     build:
       context: .
+    environment:
+      VITE_BIBAPI_HOST: ${BIBAPI_HOST}
     ports:
-      - "4200:4200"
+      - "8080:8080"
     networks:
       bibfrontend :
 
