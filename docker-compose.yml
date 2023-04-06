@@ -1,3 +1,5 @@
+version: "3.5"
+
 services:
   bibcnrs-front:
     container_name: bibcnrs-front
@@ -5,3 +7,10 @@ services:
       context: .
     ports:
       - "4200:4200"
+    networks:
+      bibfrontend :
+
+networks:
+  bibfrontend:
+    driver: bridge
+    name: bibfrontend
