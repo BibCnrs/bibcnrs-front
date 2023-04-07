@@ -30,7 +30,7 @@ export default function RenderContent(props: RenderContentProps) {
             ) : (
                 <PageTitle page={page} t={t} />
             )}
-            {displayTitle ? <h1>{t(`pages.${page}.title`)}</h1> : <></>}
+            {displayTitle ? <h1>{content.title}</h1> : <></>}
             <div dangerouslySetInnerHTML={{ __html: content.text }}></div>
             {showDate ? <PageDate date={content.date} t={t} /> : <></>}
         </div>

@@ -19,6 +19,6 @@ export default function Legal() {
     });
 
     return (
-        <RenderContent data={data} displayTitle={true} page="legal" updateDocumentTitle={false} t={t} showDate={true} />
+        <RenderContent data={data} displayTitle={true} page="legal" updateDocumentTitle={true} t={t} showDate={true} />
     );
 }

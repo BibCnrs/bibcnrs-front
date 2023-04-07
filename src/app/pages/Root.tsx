@@ -30,9 +30,9 @@ export default function Root() {
             />
             <RenderContent
                 data={data}
-                displayTitle={false}
+                displayTitle={true}
                 page="root"
-                updateDocumentTitle={false}
+                updateDocumentTitle={true}
                 t={t}
                 showDate={false}
             />
