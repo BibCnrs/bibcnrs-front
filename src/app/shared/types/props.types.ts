@@ -1,5 +1,5 @@
 import { T } from './types';
-import {CMSResultDataType, MetadoreResultType} from './data.types';
+import { CMSResultDataType, MetadoreResultType } from './data.types';
 import { i18n } from 'i18next';
 import { Dispatch, ElementType, Key, ReactNode, SetStateAction } from 'react';
 
