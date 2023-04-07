@@ -9,7 +9,7 @@ export default function Legal() {
     const t = translator();
 
     const { data } = useQuery<CMSResultDataType, any, CMSResultDataType, any>({
-        queryKey: ['home'],
+        queryKey: ['legal'],
         queryFn: async () => {
             return await legal();
         },
