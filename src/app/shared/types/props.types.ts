@@ -1,5 +1,5 @@
 import { T } from './types';
-import { MetadoreResultType } from './data.types';
+import {CMSResultDataType, MetadoreResultType} from './data.types';
 import { i18n } from 'i18next';
 import { Dispatch, ElementType, Key, ReactNode, SetStateAction } from 'react';
 
@@ -57,4 +57,18 @@ export type PaginationComponentProps = {
     resultParPage?: number;
     currentPage?: number;
     onChange: (currentPage: number, resultParPage: number) => void;
+};
+
+export type RenderContentProps = {
+    data: CMSResultDataType | undefined;
+    updateDocumentTitle: boolean;
+    displayTitle: boolean;
+    page: string;
+    t: T;
+    showDate: boolean;
+};
+
+export type PageDateProps = {
+    date: string;
+    t: T;
 };

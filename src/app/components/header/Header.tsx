@@ -18,7 +18,7 @@ export default function Header() {
                     <img src={BibCNRSLogo} alt="BibCNRS Logo" />
                 </CustomLink>
                 <div>
-                    <p>{t('header.title')}</p>
+                    <p>{t('components.header.title')}</p>
                 </div>
             </div>
             <div id="header-right">

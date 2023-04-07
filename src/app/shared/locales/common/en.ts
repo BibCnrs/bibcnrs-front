@@ -5,17 +5,46 @@ import { Common } from '../I18N';
  */
 const en: Common = {
     components: {
+        header: {
+            login: 'Sign in',
+            title: 'CNRS documents access',
+        },
+        nav: {
+            article: 'Article',
+            database: 'Database',
+            journal: 'Journal, book',
+            researchData: 'Research data',
+        },
         table: {
             noData: 'No result found.',
+            content: {
+                doi: 'DOI',
+                doiColon: 'DOI: ',
+                type: 'Type',
+                publicationYear: 'Publication year',
+                description: 'Description',
+                subjects: 'Keys words',
+            },
+        },
+        pageDate: {
+            updateAt: 'updated on',
+        },
+        footer: {
+            about: 'About',
+            contact: 'Contact',
+            legal: 'Legal notice',
         },
     },
     pages: {
+        root: {
+            title: 'Home',
+        },
         about: {
             title: 'About',
         },
         article: {
-            searchBar: 'Search articles, book chapters, DOIs, authors, words from the title abstract, ISSN, ISBN.',
             title: 'Article',
+            searchBar: 'Search articles, book chapters, DOIs, authors, words from the title abstract, ISSN, ISBN.',
         },
         contact: {
             title: 'Contact',
@@ -24,13 +53,14 @@ const en: Common = {
             title: 'Database',
         },
         journal: {
-            searchBar: 'Search journal titles, book titles...',
             title: 'Journal, book',
+            searchBar: 'Search journal titles, book titles...',
         },
         legal: {
             title: 'Legal notice',
         },
         researchData: {
+            title: 'Research data',
             search: {
                 bar: 'Search',
                 chips: {
@@ -41,31 +71,7 @@ const en: Common = {
                     doi: 'DOI',
                 },
             },
-            title: 'Research data',
-            content: {
-                doi: 'DOI',
-                doiColon: 'DOI: ',
-                type: 'Type',
-                publicationYear: 'Publication year',
-                description: 'Description',
-                subjects: 'Keys words',
-            },
         },
-    },
-    nav: {
-        article: 'Article',
-        database: 'Database',
-        journal: 'Journal, book',
-        researchData: 'Research data',
-    },
-    header: {
-        login: 'Sign in',
-        title: 'CNRS documents access',
-    },
-    footer: {
-        about: 'About',
-        contact: 'Contact',
-        legal: 'Legal notice',
     },
     error: {
         '404': {

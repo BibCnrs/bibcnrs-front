@@ -5,18 +5,47 @@ import { Common } from '../I18N';
  */
 const fr: Common = {
     components: {
+        header: {
+            login: 'Connexion',
+            title: 'Accès aux ressources documentaires du CNRS',
+        },
+        nav: {
+            article: 'Article',
+            database: 'Base de données',
+            journal: 'Revue, ouvrage',
+            researchData: 'Données de recherche',
+        },
         table: {
             noData: 'Aucun résultat trouvé.',
+            content: {
+                doi: 'DOI',
+                doiColon: 'DOI : ',
+                type: 'Type',
+                publicationYear: 'Année de publication',
+                description: 'Description',
+                subjects: 'Mots clés',
+            },
+        },
+        pageDate: {
+            updateAt: 'mise à jour le',
+        },
+        footer: {
+            about: 'A propos',
+            contact: 'Contact',
+            legal: 'Mentions légales',
         },
     },
     pages: {
+        root: {
+            title: 'Accueil',
+        },
         about: {
             title: 'A propos',
         },
         article: {
+            title: 'Article',
             searchBar:
                 'Rechercher des articles, des chapitres de livre, des DOIs, des auteurs, des mots du résumé du titre, ISSN, ISBN.',
-            title: 'Article',
         },
         contact: {
             title: 'Contact',
@@ -25,13 +54,14 @@ const fr: Common = {
             title: 'Base de données',
         },
         journal: {
-            searchBar: 'Rechercher des titres de revues, de livres...',
             title: 'Revue, ouvrage',
+            searchBar: 'Rechercher des titres de revues, de livres...',
         },
         legal: {
-            title: 'Politique de confidentialité',
+            title: 'Mentions légales',
         },
         researchData: {
+            title: 'Données de recherche',
             search: {
                 bar: 'Recherche',
                 chips: {
@@ -42,31 +72,7 @@ const fr: Common = {
                     doi: 'DOI',
                 },
             },
-            title: 'Données de recherche',
-            content: {
-                doi: 'DOI',
-                doiColon: 'DOI : ',
-                type: 'Type',
-                publicationYear: 'Année de publication',
-                description: 'Description',
-                subjects: 'Mots clés',
-            },
         },
-    },
-    nav: {
-        article: 'Article',
-        database: 'Base de données',
-        journal: 'Revue, ouvrage',
-        researchData: 'Données de recherche',
-    },
-    header: {
-        login: 'Connexion',
-        title: 'Accès aux ressources documentaires du CNRS',
-    },
-    footer: {
-        about: 'A propos',
-        contact: 'Contact',
-        legal: 'Politique de confidentialité',
     },
     error: {
         '404': {

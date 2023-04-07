@@ -17,13 +17,13 @@ export default function Footer() {
             </a>
             <ul>
                 <li>
-                    <CustomLink to={RouteAbout}>{t('footer.about')}</CustomLink>
+                    <CustomLink to={RouteAbout}>{t('components.footer.about')}</CustomLink>
                 </li>
                 <li>
-                    <CustomLink to={RouteContact}>{t('footer.contact')}</CustomLink>
+                    <CustomLink to={RouteContact}>{t('components.footer.contact')}</CustomLink>
                 </li>
                 <li>
-                    <CustomLink to={RouteLegal}>{t('footer.legal')}</CustomLink>
+                    <CustomLink to={RouteLegal}>{t('components.footer.legal')}</CustomLink>
                 </li>
             </ul>
             <div id={'social-media'}>

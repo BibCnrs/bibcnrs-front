@@ -5,7 +5,7 @@ export default function SignInButton(props: SignInButtonProps) {
     const { t } = props;
     return (
         <div>
-            <Button id="login">{t('header.login')}</Button>
+            <Button id="login">{t('components.header.login')}</Button>
         </div>
     );
 }

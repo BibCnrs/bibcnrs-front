@@ -17,22 +17,41 @@ type Error = {
  * Type use to define the data use to localize the application
  */
 export type Common = {
-    header: {
-        title: string;
-        login: string;
-    };
-    nav: {
-        article: string;
-        journal: string;
-        database: string;
-        researchData: string;
-    };
     components: {
+        header: {
+            title: string;
+            login: string;
+        };
+        nav: {
+            article: string;
+            journal: string;
+            database: string;
+            researchData: string;
+        };
         table: {
             noData: string;
+            content: {
+                doi: string;
+                doiColon: string;
+                type: string;
+                publicationYear: string;
+                description: string;
+                subjects: string;
+            };
+        };
+        pageDate: {
+            updateAt: string;
+        };
+        footer: {
+            about: string;
+            contact: string;
+            legal: string;
         };
     };
     pages: {
+        root: {
+            title: string;
+        };
         article: {
             title: string;
             searchBar: string;
@@ -56,14 +75,6 @@ export type Common = {
                     doi: string;
                 };
             };
-            content: {
-                doi: string;
-                doiColon: string;
-                type: string;
-                publicationYear: string;
-                description: string;
-                subjects: string;
-            };
         };
         about: {
             title: string;
@@ -74,11 +85,6 @@ export type Common = {
         legal: {
             title: string;
         };
-    };
-    footer: {
-        about: string;
-        contact: string;
-        legal: string;
     };
     error: {
         return: string;

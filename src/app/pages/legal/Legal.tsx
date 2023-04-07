@@ -1,15 +1,24 @@
 import { translator } from '../../shared/locales/I18N';
-import PageTitle from '../../components/utils/PageTitle';
 import './Legal.scss';
+import { CMSResultDataType } from '../../shared/types/data.types';
+import { legal } from '../../services/cms/CMS';
+import RenderContent from '../../components/rendercontent/RenderContent';
+import { useQuery } from '@tanstack/react-query';
 
 export default function Legal() {
     const t = translator();
+
+    const { data } = useQuery<CMSResultDataType, any, CMSResultDataType, any>({
+        queryKey: ['home'],
+        queryFn: async () => {
+            return await legal();
+        },
+        keepPreviousData: true,
+        staleTime: 3600000, // 1 hour of cache
+        cacheTime: 3600000, // 1000 * 60 * 60
+    });
+
     return (
-        <div>
-            <PageTitle page={'legal'} t={t} />
-            <div id="app">
-                <h1>Legal</h1>
-            </div>
-        </div>
+        <RenderContent data={data} displayTitle={true} page="legal" updateDocumentTitle={false} t={t} showDate={true} />
     );
 }

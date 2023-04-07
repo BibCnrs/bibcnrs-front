@@ -37,7 +37,7 @@ export default function NavBar() {
                     onClick={article.handler}
                     href={article.href}
                 >
-                    {t('nav.article')}
+                    {t('components.nav.article')}
                 </Button>
                 <Button
                     className="nav-button"
@@ -46,7 +46,7 @@ export default function NavBar() {
                     onClick={journal.handler}
                     href={journal.href}
                 >
-                    {t('nav.journal')}
+                    {t('components.nav.journal')}
                 </Button>
                 <Button
                     className="nav-button"
@@ -55,7 +55,7 @@ export default function NavBar() {
                     onClick={database.handler}
                     href={database.href}
                 >
-                    {t('nav.database')}
+                    {t('components.nav.database')}
                 </Button>
                 <Button
                     className="nav-button"
@@ -64,7 +64,7 @@ export default function NavBar() {
                     onClick={researchData.handler}
                     href={researchData.href}
                 >
-                    {t('nav.researchData')}
+                    {t('components.nav.researchData')}
                 </Button>
             </div>
         </nav>

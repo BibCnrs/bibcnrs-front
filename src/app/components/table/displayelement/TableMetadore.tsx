@@ -59,20 +59,20 @@ export default function TableMetadore(props: TableDisplayElementProps) {
             {open ? (
                 <dl>
                     <span>
-                        <dt>{t('pages.researchData.content.doi')}</dt>
+                        <dt>{t('components.table.content.doi')}</dt>
                         <dd>{data.doi}</dd>
                     </span>
                     <span>
-                        <dt>{t('pages.researchData.content.type')}</dt>
+                        <dt>{t('components.table.content.type')}</dt>
                         <dd>{data.type}</dd>
                     </span>
                     <span>
-                        <dt>{t('pages.researchData.content.publicationYear')}</dt>
+                        <dt>{t('components.table.content.publicationYear')}</dt>
                         <dd>{data.publicationYear}</dd>
                     </span>
                     {description ? (
                         <span>
-                            <dt>{t('pages.researchData.content.description')}</dt>
+                            <dt>{t('components.table.content.description')}</dt>
                             <dd>{description}</dd>
                         </span>
                     ) : (
@@ -80,7 +80,7 @@ export default function TableMetadore(props: TableDisplayElementProps) {
                     )}
                     {data.subjects.length !== 0 ? (
                         <span>
-                            <dt>{t('pages.researchData.content.subjects')}</dt>
+                            <dt>{t('components.table.content.subjects')}</dt>
                             <dd>{data.subjects.join(', ')}</dd>
                         </span>
                     ) : (
@@ -89,7 +89,7 @@ export default function TableMetadore(props: TableDisplayElementProps) {
                 </dl>
             ) : (
                 <div>
-                    {t('pages.researchData.content.doiColon')}
+                    {t('components.table.content.doiColon')}
                     {data.doi}
                 </div>
             )}

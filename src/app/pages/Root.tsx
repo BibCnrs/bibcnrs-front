@@ -1,38 +1,10 @@
-import { getLanguageKey, translator } from '../shared/locales/I18N';
-import PageTitle from '../components/utils/PageTitle';
+import { translator } from '../shared/locales/I18N';
 import SearchBar from '../components/searchbar/SearchBar';
 import './Root.scss';
 import { home } from '../services/cms/CMS';
 import { CMSResultDataType } from '../shared/types/data.types';
+import RenderContent from '../components/rendercontent/RenderContent';
 import { useQuery } from '@tanstack/react-query';
-
-function RenderContent({ data }: any) {
-    if (!data || data.length < 1) {
-        return (
-            <div id="app">
-                <PageTitle />
-                <h1>BibCNRS</h1>
-            </div>
-        );
-    }
-
-    const content = {
-        title: data[0].name_fr,
-        text: data[0].content_fr,
-    };
-    if (getLanguageKey() === 'en') {
-        content.title = data[0].name_en;
-        content.text = data[0].content_en;
-    }
-    return (
-        <div id="app">
-            <PageTitle customTitle={true} page={content.title} />
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-            {/* @ts-ignore */}
-            <div dangerouslySetInnerHTML={{ __html: content.text }}></div>
-        </div>
-    );
-}
 
 export default function Root() {
     const t = translator();
@@ -48,7 +20,7 @@ export default function Root() {
     });
 
     return (
-        <div>
+        <>
             <SearchBar
                 placeholder={t('pages.article.searchBar')}
                 onSearch={(v) => {
@@ -56,7 +28,14 @@ export default function Root() {
                     console.log(v);
                 }}
             />
-            <RenderContent data={data} />
-        </div>
+            <RenderContent
+                data={data}
+                displayTitle={false}
+                page="root"
+                updateDocumentTitle={false}
+                t={t}
+                showDate={false}
+            />
+        </>
     );
 }

@@ -21,3 +21,7 @@ export async function legal(): Promise<CMSResultDataType> {
 export async function faq(): Promise<CMSResultDataType> {
     return await doQuery('faq');
 }
+
+export async function about(): Promise<CMSResultDataType> {
+    return await doQuery('about');
+}
