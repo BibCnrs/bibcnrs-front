@@ -37,12 +37,18 @@ export default function TableMetadore(props: TableDisplayElementProps) {
     const { data } = props;
     const t = translator();
     const languageKey = getLanguageKey();
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
+    const [elevation, setElevation] = useState<number>(1);
 
     const title = getTitle(data.titles, languageKey);
     const description = getDescription(data.descriptions, languageKey);
     return (
-        <Paper className="table-element">
+        <Paper
+            className="table-element"
+            onMouseOver={() => setElevation(4)}
+            onMouseOut={() => setElevation(1)}
+            elevation={elevation}
+        >
             <h4>
                 <IconButton
                     onClick={() => setOpen(!open)}
