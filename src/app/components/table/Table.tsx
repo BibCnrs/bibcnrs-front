@@ -5,12 +5,21 @@ import MenuItem from '@mui/material/MenuItem';
 import { FormControl } from '@mui/material';
 import './Table.scss';
 
+/**
+ * Pagination component use by Table.
+ * @param props Component parameters containing the action function and the stats of the Table component.
+ * @see PaginationComponentProps
+ * @see Table
+ */
 function PaginationComponent(props: PaginationComponentProps) {
-    const { total, resultParPage, currentPage, onChange } = props;
+    const { total, resultsPerPage, currentPage, onChange } = props;
+
+    // Set the default values if the current page and the number of results per page is not initialized
     const page = currentPage ? currentPage : 1;
-    const perPage = resultParPage ? resultParPage : 25;
+    const perPage = resultsPerPage ? resultsPerPage : 25;
     return (
         <div className="pagination">
+            {/* Show the current element index and the number of elements found */}
             {total === 0 ? (
                 <span>0-0 / 0</span>
             ) : (
@@ -18,6 +27,7 @@ function PaginationComponent(props: PaginationComponentProps) {
                     {1 + (page - 1) * perPage}-{Math.min(1 + page * perPage, total)} / {total}
                 </span>
             )}
+            {/* Pagination component use to show and change the current page */}
             <Pagination
                 onChange={(event, newPage) => {
                     onChange(newPage, perPage);
@@ -27,6 +37,7 @@ function PaginationComponent(props: PaginationComponentProps) {
                 count={Math.ceil(total / perPage)}
                 page={page}
             />
+            {/* Show and change select number of results per page */}
             <FormControl size="small">
                 <Select
                     onChange={(event: SelectChangeEvent<number>) => {
@@ -47,22 +58,34 @@ function PaginationComponent(props: PaginationComponentProps) {
     );
 }
 
+/**
+ * Table component use to display search results.
+ * @param props Component parameters containing the results to display,
+ * the React element uses to display those results and display options.
+ * @see TableProps
+ */
 export default function Table(props: TableProps) {
     const { results, DisplayElement, total, args, setArgs, t } = props;
-    const onChange = (currentPage: number, resultParPage: number) =>
-        setArgs({ ...args, perPage: resultParPage, page: currentPage });
+
+    // Update args parameters when we change page or results per page
+    const onChange = (currentPage: number, resultsPerPage: number) =>
+        setArgs({ ...args, perPage: resultsPerPage, page: currentPage });
+
     return (
         <div>
+            {/* Display an empty page if results and total are not initialized */}
             {results === undefined || total === undefined ? (
                 <></>
             ) : (
                 <>
+                    {/* Add pagination on top of the results */}
                     <PaginationComponent
                         currentPage={args.page}
                         onChange={onChange}
-                        resultParPage={args.perPage}
+                        resultsPerPage={args.perPage}
                         total={total}
                     />
+                    {/* Display the results with the React component given in parameter or display no data if the total is equals to 0 */}
                     <div>
                         {total !== 0 ? (
                             results.map((result: any, index: number) => <DisplayElement key={index} data={result} />)
@@ -70,10 +93,11 @@ export default function Table(props: TableProps) {
                             <p>{t('components.table.noData')}</p>
                         )}
                     </div>
+                    {/* Add pagination on bottom of the results */}
                     <PaginationComponent
                         currentPage={args.page}
                         onChange={onChange}
-                        resultParPage={args.perPage}
+                        resultsPerPage={args.perPage}
                         total={total}
                     />
                 </>

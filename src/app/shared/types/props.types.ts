@@ -54,7 +54,7 @@ export type ExceptedErrorProps = HaveReactChildren;
 
 export type PaginationComponentProps = {
     total: number;
-    resultParPage?: number;
+    resultsPerPage?: number;
     currentPage?: number;
     onChange: (currentPage: number, resultParPage: number) => void;
 };

@@ -7,6 +7,12 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Paper from '@mui/material/Paper';
 import './DisplayElement.scss';
 
+/**
+ * Function use to get the translated title if available
+ * @param titles Array of titles
+ * @param langKey Language key
+ * @return Translated title if found, or first if not found
+ */
 function getTitle(titles: MetadoreResultTitleType[], langKey: string): string {
     for (const title of titles) {
         if (title.lang === langKey) {
@@ -16,6 +22,12 @@ function getTitle(titles: MetadoreResultTitleType[], langKey: string): string {
     return titles[0].title;
 }
 
+/**
+ * Function use to get the translated description if available
+ * @param descriptions Array of descriptions
+ * @param langKey Language key
+ * @return Translated description if found, first if not found, or undefined as fallback if descriptions is empty
+ */
 function getDescription(descriptions: MetadoreResultDescriptionType[], langKey: string): string | undefined {
     if (descriptions.length === 0) {
         return undefined;
@@ -33,15 +45,26 @@ function getDescription(descriptions: MetadoreResultDescriptionType[], langKey: 
     return descriptions[0].description;
 }
 
+/**
+ * Table Metadore display component, this component is used to display Metadore results
+ * @param props Component parameter containing the data to display
+ * @see TableDisplayElementProps
+ */
 export default function TableMetadore(props: TableDisplayElementProps) {
     const { data } = props;
+
+    // Get translation function and langague key
     const t = translator();
     const languageKey = getLanguageKey();
+
+    // Metadore display stats
     const [open, setOpen] = useState<boolean>(false);
     const [elevation, setElevation] = useState<number>(1);
 
+    // Get translated title and description if available
     const title = getTitle(data.titles, languageKey);
     const description = getDescription(data.descriptions, languageKey);
+
     return (
         <Paper
             className="table-element"
@@ -49,6 +72,7 @@ export default function TableMetadore(props: TableDisplayElementProps) {
             onMouseOut={() => setElevation(1)}
             elevation={elevation}
         >
+            {/* Display title with result link and the button the show everything */}
             <h4>
                 <IconButton
                     onClick={() => setOpen(!open)}
@@ -62,6 +86,7 @@ export default function TableMetadore(props: TableDisplayElementProps) {
                     {data.id}. {title} [{data.type}]
                 </a>
             </h4>
+            {/* Show everything if open or juste show the doi */}
             {open ? (
                 <dl>
                     <span>
@@ -76,6 +101,7 @@ export default function TableMetadore(props: TableDisplayElementProps) {
                         <dt>{t('components.table.content.publicationYear')}</dt>
                         <dd>{data.publicationYear}</dd>
                     </span>
+                    {/* Show description if available */}
                     {description ? (
                         <span>
                             <dt>{t('components.table.content.description')}</dt>
@@ -84,6 +110,7 @@ export default function TableMetadore(props: TableDisplayElementProps) {
                     ) : (
                         <></>
                     )}
+                    {/* Show subjects if available */}
                     {data.subjects.length !== 0 ? (
                         <span>
                             <dt>{t('components.table.content.subjects')}</dt>

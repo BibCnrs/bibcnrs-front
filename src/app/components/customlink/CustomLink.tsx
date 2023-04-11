@@ -3,7 +3,7 @@ import { isMatching } from '../../shared/Routes';
 import { Link, LinkProps } from 'react-router-dom';
 
 /**
- * Custom link
+ * Custom link component use make an element clickable and use React router link
  * @param children Children html element
  * @param to Link href
  * @param props Extra props send to the link element

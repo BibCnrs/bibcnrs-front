@@ -1,19 +1,26 @@
-import { getFullTranslator } from '../../shared/locales/I18N';
+import { getLanguageKey } from '../../shared/locales/I18N';
 import { LocalizedThemeProviderProps } from '../../shared/types/props.types';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
 import { frFR } from '@mui/material/locale';
 import { enUS } from '@mui/material/locale';
 
+/**
+ * Utils component use to set up the material ui theme.
+ * @param props component parameters containing react children.
+ * @see LocalizedThemeProviderProps
+ */
 export default function LocalizedThemeProvider(props: LocalizedThemeProviderProps) {
-    const { i18n } = getFullTranslator();
+    // Get the language key and use it to get the material ui language pack
+    const language = getLanguageKey();
     const getLocal = () => {
-        if (i18n.language === 'en') {
+        if (language === 'en') {
             return enUS;
         }
         return frFR;
     };
 
+    // Create material ui theme
     const theme = createTheme(
         {
             typography: {

@@ -7,7 +7,8 @@ import CustomLink from '../customlink/CustomLink';
 import { getFullTranslator } from '../../shared/locales/I18N';
 
 /**
- * Application header
+ * Header component use in every page.
+ * This component also handles language selection and account navigation.
  */
 export default function Header() {
     const { t, i18n } = getFullTranslator();

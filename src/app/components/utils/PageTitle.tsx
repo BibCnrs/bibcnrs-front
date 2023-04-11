@@ -1,11 +1,21 @@
 import { PageTitleProps } from '../../shared/types/props.types';
 import { Component } from 'react';
 
+/**
+ * Utils component use to update the document title
+ */
 export default class PageTitle extends Component<PageTitleProps> {
+    /**
+     * Default constructor
+     * @param props Component parameters containing the page id and the update options
+     */
     constructor(props: PageTitleProps) {
         super(props);
     }
 
+    /**
+     * Update the document title when the component is mounted
+     */
     componentDidMount() {
         if (this.props.customTitle && this.props.page) {
             document.title = `BibCNRS - ${this.props.page}`;
@@ -18,6 +28,9 @@ export default class PageTitle extends Component<PageTitleProps> {
         document.title = 'BibCNRS';
     }
 
+    /**
+     * Render an empty component
+     */
     render() {
         return <></>;
     }

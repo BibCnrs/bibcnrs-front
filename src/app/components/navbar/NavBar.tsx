@@ -11,11 +11,20 @@ import {
 import { translator } from '../../shared/locales/I18N';
 import Button from '@mui/material/Button';
 
+/**
+ * Nav bar component use to navigate between: [Article], [Journal, book], [Database] and [Research data]
+ */
 export default function NavBar() {
+    // Get translation function
+    const t = translator();
+
+    // Button action handler
     const article = buildLinkClickHandler(RouteArticle);
     const journal = buildLinkClickHandler(RouteJournal);
     const database = buildLinkClickHandler(RouteDatabase);
     const researchData = buildLinkClickHandler(RouteResearchData);
+
+    // Current route
     const articleMatch = !!isMatching(RouteArticle);
     const journalMatch = !!isMatching(RouteJournal);
     const databaseMatch = !!isMatching(RouteDatabase);
@@ -23,10 +32,11 @@ export default function NavBar() {
     const rootMatch = !!isMatching(RouteRoot);
     const noneMatch = !articleMatch && !journalMatch && !databaseMatch && !researchDataMatch;
     const disable = noneMatch && !rootMatch;
-    const t = translator();
+
     if (disable) {
         return <></>;
     }
+
     return (
         <nav>
             <div>

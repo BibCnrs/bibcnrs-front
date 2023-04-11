@@ -6,7 +6,7 @@ import CustomLink from '../customlink/CustomLink';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
 /**
- * Application footer
+ * Footer component use in every page
  */
 export default function Footer() {
     const t = translator();
