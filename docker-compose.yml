@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   bibcnrs-front:
-    container_name: bibcnrs-front
+    container_name: bibcnrs-front-1
     build:
       context: .
       args:
