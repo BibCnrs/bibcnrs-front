@@ -32,7 +32,7 @@ export default function LocalButton(props: LocalButtonProps) {
     };
 
     return (
-        <div>
+        <div className="header-nav header-nav-spacer">
             <Button
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"

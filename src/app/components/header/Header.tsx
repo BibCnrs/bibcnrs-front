@@ -5,6 +5,10 @@ import SignInButton from './element/SignInButton';
 import { RouteRoot } from '../../shared/Routes';
 import CustomLink from '../customlink/CustomLink';
 import { getFullTranslator } from '../../shared/locales/I18N';
+import UserButton from './element/UserButton';
+import { useContext } from 'react';
+import { BibContext } from '../utils/ContextProvider';
+import NewsButton from './element/NewsButton';
 
 /**
  * Header component use in every page.
@@ -12,6 +16,7 @@ import { getFullTranslator } from '../../shared/locales/I18N';
  */
 export default function Header() {
     const { t, i18n } = getFullTranslator();
+    const { login } = useContext(BibContext);
     return (
         <header>
             <div id="header-left">
@@ -23,7 +28,18 @@ export default function Header() {
                 </div>
             </div>
             <div id="header-right">
-                <SignInButton t={t} />
+                {login ? (
+                    <>
+                        <UserButton />
+                        <NewsButton text={'news'} />
+                        <NewsButton text={'tests'} />
+                        <NewsButton text={'Lienses'} />
+                    </>
+                ) : (
+                    <SignInButton t={t} />
+                )}
+                <NewsButton text={'FAQ'} />
+                <NewsButton text={'Liste ressources'} />
                 <LocalButton i18n={i18n} />
             </div>
         </header>

@@ -9,9 +9,10 @@ import Table from '../../components/table/Table';
 import TableMetadore from '../../components/table/displayelement/TableMetadore';
 import { TableArgsProps } from '../../shared/types/props.types';
 import { MetadoreDataType } from '../../shared/types/data.types';
+import { BibContext } from '../../components/utils/ContextProvider';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { useState, MouseEvent, useEffect } from 'react';
+import { useState, MouseEvent, useEffect, useContext } from 'react';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import { styled } from '@mui/material/styles';
@@ -48,6 +49,7 @@ export default function ResearchData() {
     const navigate = useNavigate();
     const query = useSearchParams();
     const t = translator();
+    const { setGlobalQuery } = useContext(BibContext);
 
     const [first, setFirst] = useState<boolean>(true);
     const [args, setArgs] = useState<TableArgsProps>({
@@ -68,6 +70,7 @@ export default function ResearchData() {
                     currentPage: 1,
                 } as MetadoreDataType;
             }
+            setGlobalQuery(args.value);
             return await search(args.value, args.perPage, args.page, args.field);
         },
         keepPreviousData: true,

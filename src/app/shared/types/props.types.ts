@@ -52,6 +52,8 @@ export type LocalizedThemeProviderProps = HaveReactChildren;
 
 export type ExceptedErrorProps = HaveReactChildren;
 
+export type ContextProviderProps = HaveReactChildren;
+
 export type PaginationComponentProps = {
     total: number;
     resultsPerPage?: number;
