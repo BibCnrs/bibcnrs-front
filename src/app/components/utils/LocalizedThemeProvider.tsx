@@ -7,10 +7,10 @@ import { enUS } from '@mui/material/locale';
 
 /**
  * Utils component use to set up the material ui theme.
- * @param props component parameters containing react children.
+ * @param children component parameters containing react children.
  * @see LocalizedThemeProviderProps
  */
-export default function LocalizedThemeProvider(props: LocalizedThemeProviderProps) {
+const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
     // Get the language key and use it to get the material ui language pack
     const language = getLanguageKey();
     const getLocal = () => {
@@ -35,5 +35,7 @@ export default function LocalizedThemeProvider(props: LocalizedThemeProviderProp
         getLocal(),
     );
 
-    return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
-}
+    return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+};
+
+export default LocalizedThemeProvider;

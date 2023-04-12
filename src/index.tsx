@@ -5,7 +5,6 @@ import NavBar from './app/components/navbar/NavBar';
 import {
     RouteAbout,
     RouteArticle,
-    RouteContact,
     RouteDatabase,
     RouteJournal,
     RouteLegal,
@@ -17,7 +16,6 @@ import Journal from './app/pages/journal/Journal';
 import Database from './app/pages/database/Database';
 import ResearchData from './app/pages/researchdata/ResearchData';
 import About from './app/pages/about/About';
-import Contact from './app/pages/contact/Contact';
 import Legal from './app/pages/legal/Legal';
 import Error404 from './app/pages/errors/Error404';
 import Footer from './app/components/footer/Footer';
@@ -95,14 +93,6 @@ root.render(
                                     element={
                                         <ExceptedError>
                                             <About />
-                                        </ExceptedError>
-                                    }
-                                />
-                                <Route
-                                    path={RouteContact}
-                                    element={
-                                        <ExceptedError>
-                                            <Contact />
                                         </ExceptedError>
                                     }
                                 />

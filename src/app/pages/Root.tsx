@@ -6,7 +6,7 @@ import { CMSResultDataType } from '../shared/types/data.types';
 import RenderContent from '../components/rendercontent/RenderContent';
 import { useQuery } from '@tanstack/react-query';
 
-export default function Root() {
+const Root = () => {
     const t = translator();
 
     const { data } = useQuery<CMSResultDataType, any, CMSResultDataType, any>({
@@ -28,14 +28,18 @@ export default function Root() {
                     console.log(v);
                 }}
             />
-            <RenderContent
-                data={data}
-                displayTitle={true}
-                page="root"
-                updateDocumentTitle={true}
-                t={t}
-                showDate={false}
-            />
+            <div id="app">
+                <RenderContent
+                    data={data}
+                    displayTitle={true}
+                    page="root"
+                    updateDocumentTitle={true}
+                    t={t}
+                    showDate={false}
+                />
+            </div>
         </>
     );
-}
+};
+
+export default Root;

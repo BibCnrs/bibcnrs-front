@@ -3,7 +3,7 @@ import './Article.scss';
 import { translator } from '../../shared/locales/I18N';
 import PageTitle from '../../components/utils/PageTitle';
 
-export default function Article() {
+const Article = () => {
     const t = translator();
     return (
         <div>
@@ -20,4 +20,6 @@ export default function Article() {
             </div>
         </div>
     );
-}
+};
+
+export default Article;

@@ -10,11 +10,11 @@ import './SearchBar.scss';
 
 /**
  * Search bar component use in: [Root], [Article], [Journal, book], [Database] and [Research data]
- * @param props Components parameter who contain action function and options
+ * @param placeholder
+ * @param onSearch
+ * @param props Components parameter who contains action function and options
  */
-export default function SearchBar(props: SearchBarProps) {
-    const { placeholder, onSearch } = props;
-
+const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
     // Search bar input reference
     const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>();
 
@@ -78,4 +78,6 @@ export default function SearchBar(props: SearchBarProps) {
             </Paper>
         </div>
     );
-}
+};
+
+export default SearchBar;

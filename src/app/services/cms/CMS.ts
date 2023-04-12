@@ -1,27 +1,27 @@
 import { CMSResultDataType } from '../../shared/types/data.types';
 import { createQuery, environment } from '../Environment';
 
-async function doQuery(page: string): Promise<CMSResultDataType> {
+const doQuery = async (page: string): Promise<CMSResultDataType> => {
     const response: Response = await fetch(
         createQuery(environment.get.cms, {
             page,
         }),
     );
     return await response.json();
-}
+};
 
-export async function home(): Promise<CMSResultDataType> {
+export const home = async (): Promise<CMSResultDataType> => {
     return await doQuery('home');
-}
+};
 
-export async function legal(): Promise<CMSResultDataType> {
+export const legal = async (): Promise<CMSResultDataType> => {
     return await doQuery('legal');
-}
+};
 
-export async function faq(): Promise<CMSResultDataType> {
+export const faq = async (): Promise<CMSResultDataType> => {
     return await doQuery('faq');
-}
+};
 
-export async function about(): Promise<CMSResultDataType> {
+export const about = async (): Promise<CMSResultDataType> => {
     return await doQuery('about');
-}
+};

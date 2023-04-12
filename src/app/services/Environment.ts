@@ -6,7 +6,7 @@ export const environment = {
     },
 };
 
-export function createQuery(uri: string, param: any): string {
+export const createQuery = (uri: string, param: any): string => {
     const query = new URLSearchParams(param);
     return `${environment.host}${uri}?${query.toString()}`;
-}
+};

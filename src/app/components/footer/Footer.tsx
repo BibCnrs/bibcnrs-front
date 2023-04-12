@@ -1,15 +1,23 @@
 import { translator } from '../../shared/locales/I18N';
 import CNRSLogo from '/logos/cnrs.png';
 import './Footer.scss';
-import { RouteAbout, RouteContact, RouteLegal } from '../../shared/Routes';
+import { RouteAbout, RouteLegal } from '../../shared/Routes';
 import CustomLink from '../customlink/CustomLink';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
 /**
  * Footer component use in every page
  */
-export default function Footer() {
+const Footer = () => {
     const t = translator();
+    const mailBody = `Bonjour,
+Afin de répondre au mieux à votre demande, nous vous remercions de bien vouloir préciser votre :
+
+ • Nom, Prénom :
+ • Code unité (ex :UMR 12344) :
+ • Demande, question ou problème rencontré, suggestion de ressource, …
+
+Cordialement`;
     return (
         <footer>
             <a href="https://www.cnrs.fr" target="_blank">
@@ -20,7 +28,14 @@ export default function Footer() {
                     <CustomLink to={RouteAbout}>{t('components.footer.about')}</CustomLink>
                 </li>
                 <li>
-                    <CustomLink to={RouteContact}>{t('components.footer.contact')}</CustomLink>
+                    <a
+                        id="contact-mailto"
+                        href={`mailto:assistance-portail@inist.fr?subject=${encodeURIComponent(
+                            'Demande d’assistance',
+                        )}&body=${encodeURIComponent(mailBody)}`}
+                    >
+                        {t('components.footer.contact')}
+                    </a>
                 </li>
                 <li>
                     <CustomLink to={RouteLegal}>{t('components.footer.legal')}</CustomLink>
@@ -33,4 +48,6 @@ export default function Footer() {
             </div>
         </footer>
     );
-}
+};
+
+export default Footer;

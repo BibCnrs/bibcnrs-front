@@ -44,7 +44,7 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
     },
 }));
 
-export default function ResearchData() {
+const ResearchData = () => {
     const navigate = useNavigate();
     const query = useSearchParams();
     const t = translator();
@@ -144,4 +144,6 @@ export default function ResearchData() {
             </div>
         </div>
     );
-}
+};
+
+export default ResearchData;

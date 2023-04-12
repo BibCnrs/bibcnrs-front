@@ -2,7 +2,7 @@ import { translator } from '../../shared/locales/I18N';
 import PageTitle from '../../components/utils/PageTitle';
 import './Database.scss';
 
-export default function Database() {
+const Database = () => {
     const t = translator();
     return (
         <div>
@@ -12,4 +12,6 @@ export default function Database() {
             </div>
         </div>
     );
-}
+};
+
+export default Database;

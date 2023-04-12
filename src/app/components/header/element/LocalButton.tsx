@@ -1,5 +1,5 @@
 import { LocalButtonProps } from '../../../shared/types/props.types';
-import LanguageIcon from '@mui/icons-material/Language';
+import TranslateIcon from '@mui/icons-material/Translate';
 import CheckIcon from '@mui/icons-material/Check';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -10,10 +10,9 @@ import { MouseEvent, useState } from 'react';
 /**
  * Local Button component used by the header.
  * This element is used to change the application language
- * @param props Element properties containing the i18n system
+ * @param i18n Element properties containing the i18n system
  */
-export default function LocalButton(props: LocalButtonProps) {
-    const i18n = props.i18n;
+const LocalButton = ({ i18n }: LocalButtonProps) => {
     // Anchor use to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -39,7 +38,7 @@ export default function LocalButton(props: LocalButtonProps) {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
-                <LanguageIcon />
+                <TranslateIcon />
             </Button>
             <Menu
                 id="basic-menu"
@@ -73,4 +72,6 @@ export default function LocalButton(props: LocalButtonProps) {
             </Menu>
         </div>
     );
-}
+};
+
+export default LocalButton;

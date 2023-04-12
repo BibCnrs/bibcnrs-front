@@ -116,22 +116,22 @@ i18next
 /**
  * export the translation function
  */
-export function translator(): T {
+export const translator = (): T => {
     const { t } = useTranslation('common');
     return t;
-}
+};
 
 /**
  * export the translation function and the i18n system
  */
-export function getFullTranslator() {
+export const getFullTranslator = () => {
     return useTranslation('common');
-}
+};
 
-export function getLanguageKey() {
+export const getLanguageKey = () => {
     const { i18n } = getFullTranslator();
     return i18n.language;
-}
+};
 
 /**
  * export i18next instance

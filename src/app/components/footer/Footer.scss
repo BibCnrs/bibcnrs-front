@@ -23,6 +23,11 @@ footer {
         li {
             display: inline-block;
             padding: 0 10px;
+
+            #contact-mailto {
+                color: $white;
+                text-decoration: none;
+            }
         }
 
         li:not(:last-child) {

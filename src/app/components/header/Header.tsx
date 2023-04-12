@@ -10,7 +10,7 @@ import { getFullTranslator } from '../../shared/locales/I18N';
  * Header component use in every page.
  * This component also handles language selection and account navigation.
  */
-export default function Header() {
+const Header = () => {
     const { t, i18n } = getFullTranslator();
     return (
         <header>
@@ -28,4 +28,6 @@ export default function Header() {
             </div>
         </header>
     );
-}
+};
+
+export default Header;

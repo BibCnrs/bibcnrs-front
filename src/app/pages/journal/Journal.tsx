@@ -3,7 +3,7 @@ import PageTitle from '../../components/utils/PageTitle';
 import './Journal.scss';
 import SearchBar from '../../components/searchbar/SearchBar';
 
-export default function Journal() {
+const Journal = () => {
     const t = translator();
     return (
         <div>
@@ -20,4 +20,6 @@ export default function Journal() {
             </div>
         </div>
     );
-}
+};
+
+export default Journal;

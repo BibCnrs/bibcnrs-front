@@ -2,7 +2,7 @@ import { ExceptedErrorProps } from '../../shared/types/props.types';
 import { Link } from 'react-router-dom';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 
-function ErrorFallback({ error }: FallbackProps) {
+const ErrorFallback = ({ error }: FallbackProps) => {
     return (
         <div id="app">
             <h1>Unrecoverable Error</h1>
@@ -11,8 +11,10 @@ function ErrorFallback({ error }: FallbackProps) {
             <Link to="/">Go back to home</Link>
         </div>
     );
-}
+};
 
-export default function ExceptedError(props: ExceptedErrorProps) {
-    return <ErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ErrorBoundary>;
-}
+const ExceptedError = ({ children }: ExceptedErrorProps) => {
+    return <ErrorBoundary FallbackComponent={ErrorFallback}>{children}</ErrorBoundary>;
+};
+
+export default ExceptedError;

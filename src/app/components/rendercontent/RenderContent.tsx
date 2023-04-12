@@ -5,11 +5,15 @@ import PageDate from '../utils/PageDate';
 
 /**
  * Component use to create CMS pages
- * @param props Components parameter who contain data and options
+ * @param data
+ * @param updateDocumentTitle
+ * @param displayTitle
+ * @param page
+ * @param t
+ * @param showDate
+ * @param props Components parameter who contains data and options
  */
-export default function RenderContent(props: RenderContentProps) {
-    const { data, updateDocumentTitle, displayTitle, page, t, showDate } = props;
-
+const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, t, showDate }: RenderContentProps) => {
     // Return an empty page when data is empty,
     // this empty page contains only the page title.
     if (!data || data.length < 1) {
@@ -35,7 +39,7 @@ export default function RenderContent(props: RenderContentProps) {
     }
 
     return (
-        <div id="app">
+        <div>
             {updateDocumentTitle ? (
                 <PageTitle customTitle={true} page={content.title} />
             ) : (
@@ -46,4 +50,6 @@ export default function RenderContent(props: RenderContentProps) {
             {showDate ? <PageDate date={content.date} t={t} /> : <></>}
         </div>
     );
-}
+};
+
+export default RenderContent;

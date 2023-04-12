@@ -11,7 +11,7 @@ import './Table.scss';
  * @see PaginationComponentProps
  * @see Table
  */
-function PaginationComponent(props: PaginationComponentProps) {
+const PaginationComponent = (props: PaginationComponentProps) => {
     const { total, resultsPerPage, currentPage, onChange } = props;
 
     // Set the default values if the current page and the number of results per page is not initialized
@@ -56,17 +56,21 @@ function PaginationComponent(props: PaginationComponentProps) {
             </FormControl>
         </div>
     );
-}
+};
 
 /**
  * Table component use to display search results.
+ * @param results
+ * @param DisplayElement
+ * @param total
+ * @param args
+ * @param setArgs
+ * @param t
  * @param props Component parameters containing the results to display,
  * the React element uses to display those results and display options.
  * @see TableProps
  */
-export default function Table(props: TableProps) {
-    const { results, DisplayElement, total, args, setArgs, t } = props;
-
+const Table = ({ results, DisplayElement, total, args, setArgs, t }: TableProps) => {
     // Update args parameters when we change page or results per page
     const onChange = (currentPage: number, resultsPerPage: number) =>
         setArgs({ ...args, perPage: resultsPerPage, page: currentPage });
@@ -104,4 +108,6 @@ export default function Table(props: TableProps) {
             )}
         </div>
     );
-}
+};
+
+export default Table;

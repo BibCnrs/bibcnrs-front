@@ -1,12 +1,12 @@
 import { createQuery, environment } from '../Environment';
 import { MetadoreDataType } from '../../shared/types/data.types';
 
-export async function search(
+export const search = async (
     v: string,
     resultsPerPage: number,
     currentPage: number,
     field: string | null,
-): Promise<MetadoreDataType> {
+): Promise<MetadoreDataType> => {
     const response: Response = await fetch(
         createQuery(environment.get.metadore, {
             queries: JSON.stringify([
@@ -21,4 +21,4 @@ export async function search(
         }),
     );
     return await response.json();
-}
+};

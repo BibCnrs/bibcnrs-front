@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
  * React element use to display localized 404 error
  * @constructor
  */
-export default function Error404() {
+const Error404 = () => {
     const t = translator();
     return (
         <div id="app">
@@ -14,4 +14,6 @@ export default function Error404() {
             <Link to="/">{t('error.return')}</Link>
         </div>
     );
-}
+};
+
+export default Error404;

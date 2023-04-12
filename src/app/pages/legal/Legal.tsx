@@ -5,7 +5,7 @@ import { legal } from '../../services/cms/CMS';
 import RenderContent from '../../components/rendercontent/RenderContent';
 import { useQuery } from '@tanstack/react-query';
 
-export default function Legal() {
+const Legal = () => {
     const t = translator();
 
     const { data } = useQuery<CMSResultDataType, any, CMSResultDataType, any>({
@@ -19,6 +19,17 @@ export default function Legal() {
     });
 
     return (
-        <RenderContent data={data} displayTitle={true} page="legal" updateDocumentTitle={true} t={t} showDate={true} />
+        <div id="app">
+            <RenderContent
+                data={data}
+                displayTitle={true}
+                page="legal"
+                updateDocumentTitle={true}
+                t={t}
+                showDate={true}
+            />
+        </div>
     );
-}
+};
+
+export default Legal;

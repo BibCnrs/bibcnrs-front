@@ -13,46 +13,45 @@ const Routes = {
     database: '/database',
     researchData: '/research-data',
     about: '/about',
-    contact: '/contact',
     legal: '/legal',
 };
 
-export function buildLinkClickHandler(to: string) {
+export const buildLinkClickHandler = (to: string) => {
     const href = useHref(to);
     const handler = useLinkClickHandler(to);
     return { href, handler };
-}
+};
 
-export function updatePageQueryUrl(route: string, navigate: NavigateFunction, param: any) {
+export const updatePageQueryUrl = (route: string, navigate: NavigateFunction, param: any) => {
     const query = new URLSearchParams(param);
     navigate(`${route}?${query.toString()}`);
-}
+};
 
-export function isMatching(to: To) {
+export const isMatching = (to: To) => {
     const resolved = useResolvedPath(to);
     return useMatch({ path: resolved.pathname, end: true });
-}
+};
 
-export function useSearchParams(): URLSearchParams {
+export const useSearchParams = (): URLSearchParams => {
     const { search } = useLocation();
     return useMemo<URLSearchParams>(() => new URLSearchParams(search), [search]);
-}
+};
 
-export function getString<Extend>(query: URLSearchParams, key: string, fallback: string | Extend): string | Extend {
+export const getString = <Extend>(query: URLSearchParams, key: string, fallback: string | Extend): string | Extend => {
     const value = query.get(key);
     if (value === null) {
         return fallback;
     }
     return value;
-}
+};
 
-export function getNumber(query: URLSearchParams, key: string, fallback: number | undefined) {
+export const getNumber = (query: URLSearchParams, key: string, fallback: number | undefined) => {
     const value = query.get(key);
     if (value === null) {
         return fallback;
     }
     return parseInt(value, 10);
-}
+};
 
 /**
  * Export the root route
@@ -84,10 +83,6 @@ export const RouteResearchData = Routes.researchData;
  */
 export const RouteAbout = Routes.about;
 
-/**
- * Export the contact route
- */
-export const RouteContact = Routes.contact;
 /**
  * Export the legal route
  */

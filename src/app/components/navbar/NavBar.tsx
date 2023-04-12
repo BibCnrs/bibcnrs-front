@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 /**
  * Nav bar component use to navigate between: [Article], [Journal, book], [Database] and [Research data]
  */
-export default function NavBar() {
+const NavBar = () => {
     // Get translation function
     const t = translator();
 
@@ -79,4 +79,6 @@ export default function NavBar() {
             </div>
         </nav>
     );
-}
+};
+
+export default NavBar;

@@ -2,7 +2,7 @@ import PageTitle from '../../components/utils/PageTitle';
 import { translator } from '../../shared/locales/I18N';
 import './About.scss';
 
-export default function About() {
+const About = () => {
     const t = translator();
     return (
         <div>
@@ -12,4 +12,6 @@ export default function About() {
             </div>
         </div>
     );
-}
+};
+
+export default About;

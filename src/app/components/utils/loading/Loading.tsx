@@ -5,7 +5,7 @@ import './Loading.scss';
 /**
  * Center circular progress bar
  */
-export default function Loading() {
+const Loading = () => {
     return (
         <Box className="loading">
             <div></div>
@@ -13,4 +13,6 @@ export default function Loading() {
             <div></div>
         </Box>
     );
-}
+};
+
+export default Loading;

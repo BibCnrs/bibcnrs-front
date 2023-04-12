@@ -13,22 +13,22 @@ import './DisplayElement.scss';
  * @param langKey Language key
  * @return Translated title if found, or first if not found
  */
-function getTitle(titles: MetadoreResultTitleType[], langKey: string): string {
+const getTitle = (titles: MetadoreResultTitleType[], langKey: string): string => {
     for (const title of titles) {
         if (title.lang === langKey) {
             return title.title;
         }
     }
     return titles[0].title;
-}
+};
 
 /**
  * Function use to get the translated description if available
  * @param descriptions Array of descriptions
  * @param langKey Language key
- * @return Translated description if found, first if not found, or undefined as fallback if descriptions is empty
+ * @return Translated description if found, first if not found, or undefined as fallback if descriptions are empty
  */
-function getDescription(descriptions: MetadoreResultDescriptionType[], langKey: string): string | undefined {
+const getDescription = (descriptions: MetadoreResultDescriptionType[], langKey: string): string | undefined => {
     if (descriptions.length === 0) {
         return undefined;
     }
@@ -43,17 +43,15 @@ function getDescription(descriptions: MetadoreResultDescriptionType[], langKey: 
         }
     }
     return descriptions[0].description;
-}
+};
 
 /**
  * Table Metadore display component, this component is used to display Metadore results
- * @param props Component parameter containing the data to display
+ * @param data Component parameter containing the data to display
  * @see TableDisplayElementProps
  */
-export default function TableMetadore(props: TableDisplayElementProps) {
-    const { data } = props;
-
-    // Get translation function and langague key
+const TableMetadore = ({ data }: TableDisplayElementProps) => {
+    // Get translation function and language key
     const t = translator();
     const languageKey = getLanguageKey();
 
@@ -128,4 +126,6 @@ export default function TableMetadore(props: TableDisplayElementProps) {
             )}
         </Paper>
     );
-}
+};
+
+export default TableMetadore;
