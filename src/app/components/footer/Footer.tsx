@@ -1,4 +1,4 @@
-import { translator } from '../../shared/locales/I18N';
+import { getLanguageKey, translator } from '../../shared/locales/I18N';
 import CNRSLogo from '/logos/cnrs.png';
 import './Footer.scss';
 import { RouteAbout, RouteLegal } from '../../shared/Routes';
@@ -10,7 +10,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
  */
 const Footer = () => {
     const t = translator();
-    const mailBody = `Bonjour,
+    const language = getLanguageKey();
+    const mailBodyFr = `Bonjour,
 Afin de répondre au mieux à votre demande, nous vous remercions de bien vouloir préciser votre :
 
  • Nom, Prénom :
@@ -18,6 +19,16 @@ Afin de répondre au mieux à votre demande, nous vous remercions de bien vouloi
  • Demande, question ou problème rencontré, suggestion de ressource, …
 
 Cordialement`;
+
+    const mailBodyEn = `Hello,
+In order to best answer your request, we would be grateful if you could specify your :
+
+ • Name, First name:
+ • Unit code (e.g.: UMR 12344):
+ • Request, question or problem encountered, suggestion of resource...
+
+Sincerely`;
+
     return (
         <footer>
             <a href="https://www.cnrs.fr" target="_blank">
@@ -28,14 +39,25 @@ Cordialement`;
                     <CustomLink to={RouteAbout}>{t('components.footer.about')}</CustomLink>
                 </li>
                 <li>
-                    <a
-                        id="contact-mailto"
-                        href={`mailto:assistance-portail@inist.fr?subject=${encodeURIComponent(
-                            'Demande d’assistance',
-                        )}&body=${encodeURIComponent(mailBody)}`}
-                    >
-                        {t('components.footer.contact')}
-                    </a>
+                    {language === 'en' ? (
+                        <a
+                            id="contact-mailto"
+                            href={`mailto:assistance-portail@inist.fr?subject=${encodeURIComponent(
+                                'Request for assistance',
+                            )}&body=${encodeURIComponent(mailBodyEn)}`}
+                        >
+                            {t('components.footer.contact')}
+                        </a>
+                    ) : (
+                        <a
+                            id="contact-mailto"
+                            href={`mailto:assistance-portail@inist.fr?subject=${encodeURIComponent(
+                                'Demande d’assistance',
+                            )}&body=${encodeURIComponent(mailBodyFr)}`}
+                        >
+                            {t('components.footer.contact')}
+                        </a>
+                    )}
                 </li>
                 <li>
                     <CustomLink to={RouteLegal}>{t('components.footer.legal')}</CustomLink>
