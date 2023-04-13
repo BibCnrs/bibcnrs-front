@@ -2,7 +2,7 @@
 
 footer {
     position: relative;
-    display: flex !important;
+    display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-between;
@@ -11,7 +11,6 @@ footer {
     margin: 0 auto;
     color: $white;
     text-align: center;
-    background-color: $footer-color;
 
     ul {
         display: flex;

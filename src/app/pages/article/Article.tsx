@@ -8,13 +8,15 @@ const Article = () => {
     return (
         <div>
             <PageTitle page={'article'} t={t} />
-            <SearchBar
-                placeholder={t('pages.article.searchBar')}
-                onSearch={(v) => {
-                    // eslint-disable-next-line no-console
-                    console.log(v);
-                }}
-            />
+            <div className="header-footer">
+                <SearchBar
+                    placeholder={t('pages.article.searchBar')}
+                    onSearch={(v) => {
+                        // eslint-disable-next-line no-console
+                        console.log(v);
+                    }}
+                />
+            </div>
             <div id="app">
                 <h1>Article</h1>
             </div>

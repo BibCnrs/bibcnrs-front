@@ -5,6 +5,15 @@
     font-family: "DM Sans", sans-serif;
 }
 
+p {
+    color: $text-light;
+}
+
+.title, h1 {
+    font-family: "Source Sans Pro", sans-serif;
+    color: $text-light;
+}
+
 body {
     min-height: 100vh;
     margin: 0;
@@ -21,6 +30,6 @@ body {
     flex: 1;
 }
 
-#head {
-    background-color: $header-color;
+.header-footer {
+    background-color: $cnrs-secondary-dark-blue;
 }

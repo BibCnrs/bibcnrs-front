@@ -17,7 +17,7 @@ header {
             height: 100px;
         }
 
-        div {
+        div p {
             align-self: center;
             padding-left: 42px;
             font-size: 22px;
@@ -32,7 +32,7 @@ header {
         height: 100px;
 
         #login {
-            color: $darkblue;
+            color: $cnrs-secondary-blue;
             background-color: $white;
         }
 

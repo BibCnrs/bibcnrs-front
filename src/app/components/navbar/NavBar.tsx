@@ -9,7 +9,12 @@ import {
     isMatching,
 } from '../../shared/Routes';
 import { translator } from '../../shared/locales/I18N';
+import { getTheme } from '../../shared/Theme';
 import Button from '@mui/material/Button';
+
+if (getTheme() === 'dark') {
+    import('./NavBar.dark.scss');
+}
 
 /**
  * Nav bar component use to navigate between: [Article], [Journal, book], [Database] and [Research data]
@@ -38,8 +43,8 @@ const NavBar = () => {
     }
 
     return (
-        <nav>
-            <div>
+        <nav id="nav">
+            <div id="nav-container">
                 <Button
                     className="nav-button"
                     id={articleMatch || noneMatch ? 'active-nav-button' : ''}

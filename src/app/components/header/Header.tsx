@@ -5,6 +5,7 @@ import SignInButton from './element/SignInButton';
 import { RouteRoot } from '../../shared/Routes';
 import CustomLink from '../customlink/CustomLink';
 import { getFullTranslator } from '../../shared/locales/I18N';
+import ThemeButton from './element/ThemeButton';
 
 /**
  * Header component use in every page.
@@ -25,6 +26,7 @@ const Header = () => {
             <div id="header-right">
                 <SignInButton t={t} />
                 <LocalButton i18n={i18n} />
+                <ThemeButton />
             </div>
         </header>
     );

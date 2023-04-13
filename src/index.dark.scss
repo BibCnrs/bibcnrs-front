@@ -1,0 +1,19 @@
+@import "src/app/scss/colors";
+@import "src/app/scss/functions";
+
+p {
+    color: $text-dark;
+}
+
+.title, h1 {
+    color: $text-dark;
+}
+
+body {
+    background-color: $cnrs-background-dark;
+}
+
+.header-footer {
+    background-color: $cnrs-primary-dark;
+}
+

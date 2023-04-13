@@ -106,27 +106,29 @@ const ResearchData = () => {
     return (
         <div>
             <PageTitle page={'researchData'} t={t} />
-            <SearchBar
-                placeholder={t('pages.researchData.search.bar')}
-                value={query.get('q')}
-                onSearch={handleSearch}
-            />
-            <div id="research-data-chips">
-                <span id="research-data-by">{t('pages.researchData.search.chips.by')}</span>
-                <StyledToggleButtonGroup size="small" value={args.field} exclusive onChange={handleField}>
-                    <StyledToggleButton value="attributes.titles.title">
-                        {t('pages.researchData.search.chips.title')}
-                    </StyledToggleButton>
-                    <StyledToggleButton value="attributes.descriptions.description">
-                        {t('pages.researchData.search.chips.description')}
-                    </StyledToggleButton>
-                    <StyledToggleButton value="attributes.subjects.subject">
-                        {t('pages.researchData.search.chips.subject')}
-                    </StyledToggleButton>
-                    <StyledToggleButton value="attributes.doi">
-                        {t('pages.researchData.search.chips.doi')}
-                    </StyledToggleButton>
-                </StyledToggleButtonGroup>
+            <div className="header-footer">
+                <SearchBar
+                    placeholder={t('pages.researchData.search.bar')}
+                    value={query.get('q')}
+                    onSearch={handleSearch}
+                />
+                <div id="research-data-chips">
+                    <span id="research-data-by">{t('pages.researchData.search.chips.by')}</span>
+                    <StyledToggleButtonGroup size="small" value={args.field} exclusive onChange={handleField}>
+                        <StyledToggleButton value="attributes.titles.title">
+                            {t('pages.researchData.search.chips.title')}
+                        </StyledToggleButton>
+                        <StyledToggleButton value="attributes.descriptions.description">
+                            {t('pages.researchData.search.chips.description')}
+                        </StyledToggleButton>
+                        <StyledToggleButton value="attributes.subjects.subject">
+                            {t('pages.researchData.search.chips.subject')}
+                        </StyledToggleButton>
+                        <StyledToggleButton value="attributes.doi">
+                            {t('pages.researchData.search.chips.doi')}
+                        </StyledToggleButton>
+                    </StyledToggleButtonGroup>
+                </div>
             </div>
             <div id="app">
                 {isLoading || isFetching ? (

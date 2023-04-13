@@ -20,14 +20,16 @@ const Root = () => {
     });
 
     return (
-        <>
-            <SearchBar
-                placeholder={t('pages.article.searchBar')}
-                onSearch={(v) => {
-                    // eslint-disable-next-line no-console
-                    console.log(v);
-                }}
-            />
+        <div>
+            <div className="header-footer">
+                <SearchBar
+                    placeholder={t('pages.article.searchBar')}
+                    onSearch={(v) => {
+                        // eslint-disable-next-line no-console
+                        console.log(v);
+                    }}
+                />
+            </div>
             <div id="app">
                 <RenderContent
                     data={data}
@@ -38,7 +40,7 @@ const Root = () => {
                     showDate={false}
                 />
             </div>
-        </>
+        </div>
     );
 };
 
