@@ -18,7 +18,7 @@ const Legal = () => {
 
     return (
         <div id="app">
-            <RenderContent data={data} displayTitle page="legal" updateDocumentTitle showDate t={t} />
+            <RenderContent data={data} displayTitle={false} page="legal" updateDocumentTitle showDate={false} t={t} />
         </div>
     );
 };
