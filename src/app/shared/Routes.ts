@@ -14,16 +14,24 @@ const Routes = {
     researchData: '/research-data',
     about: '/about',
     legal: '/legal',
-};
+} as const;
 
-export const buildLinkClickHandler = (to: string) => {
+type RoutesType = typeof Routes;
+
+export const buildLinkClickHandler = <Route extends RoutesType[keyof RoutesType]>(to: Route) => {
     const href = useHref(to);
     const handler = useLinkClickHandler(to);
     return { href, handler };
 };
 
 export const updatePageQueryUrl = (route: string, navigate: NavigateFunction, param: any) => {
-    const query = new URLSearchParams(param);
+    const cleanupParam: any = {};
+    for (const [key, value] of Object.entries(param)) {
+        if (value !== null) {
+            cleanupParam[key] = value;
+        }
+    }
+    const query = new URLSearchParams(cleanupParam);
     navigate(`${route}?${query.toString()}`);
 };
 

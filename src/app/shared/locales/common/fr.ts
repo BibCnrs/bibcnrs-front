@@ -8,6 +8,11 @@ const fr: Common = {
         header: {
             login: 'Connexion',
             title: 'Accès aux ressources documentaires du CNRS',
+            questions: 'FAQ',
+            resources: 'Ressources',
+            licences: 'Licences',
+            tests: 'Testes',
+            news: 'Actualités',
         },
         nav: {
             article: 'Article',
@@ -33,6 +38,17 @@ const fr: Common = {
             about: 'A propos',
             contact: 'Contact',
             legal: 'Mentions légales',
+            mail: {
+                subject: 'Demande d’assistance',
+                body: `Bonjour,
+Afin de répondre au mieux à votre demande, nous vous remercions de bien vouloir préciser votre :
+
+ • Nom, Prénom :
+ • Code unité (ex :UMR 12344) :
+ • Demande, question ou problème rencontré, suggestion de ressource, …
+
+Cordialement`,
+            },
         },
     },
     pages: {

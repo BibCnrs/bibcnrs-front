@@ -1,6 +1,5 @@
-import { T } from './types';
+import { TFunction } from './types';
 import { CMSResultDataType, MetadoreResultType } from './data.types';
-import { i18n } from 'i18next';
 import { Dispatch, ElementType, Key, ReactNode, SetStateAction } from 'react';
 
 type HaveReactChildren = {
@@ -16,15 +15,7 @@ export type SearchBarProps = {
 export type PageTitleProps = {
     customTitle?: boolean;
     page?: string;
-    t?: T;
-};
-
-export type LocalButtonProps = {
-    i18n: i18n;
-};
-
-export type SignInButtonProps = {
-    t: T;
+    t?: TFunction;
 };
 
 export type TableDisplayElementProps = {
@@ -45,12 +36,13 @@ export type TableProps = {
     total?: number;
     args: TableArgsProps;
     setArgs: Dispatch<SetStateAction<TableArgsProps>>;
-    t: T;
 };
 
 export type LocalizedThemeProviderProps = HaveReactChildren;
 
 export type ExceptedErrorProps = HaveReactChildren;
+
+export type ContextProviderProps = HaveReactChildren;
 
 export type PaginationComponentProps = {
     total: number;
@@ -64,11 +56,9 @@ export type RenderContentProps = {
     updateDocumentTitle: boolean;
     displayTitle: boolean;
     page: string;
-    t: T;
     showDate: boolean;
 };
 
 export type PageDateProps = {
     date: string;
-    t: T;
 };

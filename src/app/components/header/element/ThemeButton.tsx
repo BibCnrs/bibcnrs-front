@@ -58,8 +58,8 @@ const ThemeButton = () => {
     };
 
     return (
-        <div>
-            <MaterialUISwitch checked={getTheme() === 'dark'} onChange={handleChange} />
+        <div className="header-nav header-nav-spacer">
+            <MaterialUISwitch className="header-button-icon" checked={getTheme() === 'dark'} onChange={handleChange} />
         </div>
     );
 };

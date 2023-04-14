@@ -8,6 +8,11 @@ const en: Common = {
         header: {
             login: 'Sign in',
             title: 'CNRS documents access',
+            questions: 'Q&A',
+            resources: 'Resources',
+            licences: 'Licences',
+            tests: 'Tests',
+            news: 'News',
         },
         nav: {
             article: 'Article',
@@ -33,6 +38,17 @@ const en: Common = {
             about: 'About',
             contact: 'Contact',
             legal: 'Legal notice',
+            mail: {
+                subject: 'Request for assistance',
+                body: `Hello,
+In order to best answer your request, we would be grateful if you could specify your :
+
+ • Name, First name:
+ • Unit code (e.g.: UMR 12344):
+ • Request, question or problem encountered, suggestion of resource...
+
+Sincerely`,
+            },
         },
     },
     pages: {

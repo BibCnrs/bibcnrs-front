@@ -1,5 +1,5 @@
 import PageTitle from '../utils/PageTitle';
-import { getLanguageKey } from '../../shared/locales/I18N';
+import { getLanguageKey, translator } from '../../shared/locales/I18N';
 import { RenderContentProps } from '../../shared/types/props.types';
 import PageDate from '../utils/PageDate';
 
@@ -11,9 +11,10 @@ import PageDate from '../utils/PageDate';
  * @param page
  * @param t
  * @param showDate
- * @param props Components parameter who contains data and options
  */
-const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, t, showDate }: RenderContentProps) => {
+const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, showDate }: RenderContentProps) => {
+    const t = translator();
+
     // Return an empty page when data is empty,
     // this empty page contains only the page title.
     if (!data || data.length < 1) {
@@ -47,7 +48,7 @@ const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, t, showD
             )}
             {displayTitle ? <h1>{content.title}</h1> : <></>}
             <div dangerouslySetInnerHTML={{ __html: content.text }}></div>
-            {showDate ? <PageDate date={content.date} t={t} /> : <></>}
+            {showDate ? <PageDate date={content.date} /> : <></>}
         </div>
     );
 };

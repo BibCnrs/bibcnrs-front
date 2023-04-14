@@ -1,12 +1,12 @@
 import fr from './common/fr';
 import en from './common/en';
-import { T } from '../types/types';
+import { SupportedLanguages, TFunction } from '../types/types';
 import i18next from 'i18next';
 import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next, useTranslation } from 'react-i18next';
 
 /**
- * Type use to localized error message
+ * Type use to a localized error message
  */
 type Error = {
     title: string;
@@ -21,6 +21,11 @@ export type Common = {
         header: {
             title: string;
             login: string;
+            questions: string;
+            resources: string;
+            licences: string;
+            tests: string;
+            news: string;
         };
         nav: {
             article: string;
@@ -46,6 +51,10 @@ export type Common = {
             about: string;
             contact: string;
             legal: string;
+            mail: {
+                subject: string;
+                body: string;
+            };
         };
     };
     pages: {
@@ -110,13 +119,12 @@ i18next
                 common: fr,
             },
         },
-    })
-    .then();
+    });
 
 /**
  * export the translation function
  */
-export const translator = (): T => {
+export const translator = (): TFunction => {
     const { t } = useTranslation('common');
     return t;
 };
@@ -132,6 +140,11 @@ export const getLanguageKey = () => {
     const { i18n } = getFullTranslator();
     return i18n.language;
 };
+
+export const supportedLanguages: SupportedLanguages = [
+    { key: 'en', label: 'English' },
+    { key: 'fr', label: 'Français' },
+];
 
 /**
  * export i18next instance

@@ -1,9 +1,10 @@
+import './Table.scss';
 import { PaginationComponentProps, TableProps } from '../../shared/types/props.types';
+import { translator } from '../../shared/locales/I18N';
 import Pagination from '@mui/material/Pagination';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { FormControl } from '@mui/material';
-import './Table.scss';
 
 /**
  * Pagination component use by Table.
@@ -70,7 +71,9 @@ const PaginationComponent = (props: PaginationComponentProps) => {
  * the React element uses to display those results and display options.
  * @see TableProps
  */
-const Table = ({ results, DisplayElement, total, args, setArgs, t }: TableProps) => {
+const Table = ({ results, DisplayElement, total, args, setArgs }: TableProps) => {
+    const t = translator();
+
     // Update args parameters when we change page or results per page
     const onChange = (currentPage: number, resultsPerPage: number) =>
         setArgs({ ...args, perPage: resultsPerPage, page: currentPage });

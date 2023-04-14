@@ -11,9 +11,7 @@ const Root = () => {
 
     const { data } = useQuery<CMSResultDataType, any, CMSResultDataType, any>({
         queryKey: ['home'],
-        queryFn: async () => {
-            return await home();
-        },
+        queryFn: home,
         keepPreviousData: true,
         staleTime: 3600000, // 1 hour of cache
         cacheTime: 3600000, // 1000 * 60 * 60
@@ -31,14 +29,7 @@ const Root = () => {
                 />
             </div>
             <div id="app">
-                <RenderContent
-                    data={data}
-                    displayTitle={true}
-                    page="root"
-                    updateDocumentTitle={true}
-                    t={t}
-                    showDate={false}
-                />
+                <RenderContent data={data} displayTitle page="root" updateDocumentTitle showDate={false} />
             </div>
         </div>
     );

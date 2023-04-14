@@ -1,29 +1,11 @@
 import './index.scss';
 import I18N from './app/shared/locales/I18N';
-import Header from './app/components/header/Header';
-import NavBar from './app/components/navbar/NavBar';
-import {
-    RouteAbout,
-    RouteArticle,
-    RouteDatabase,
-    RouteJournal,
-    RouteLegal,
-    RouteResearchData,
-    RouteRoot,
-} from './app/shared/Routes';
-import Article from './app/pages/article/Article';
-import Journal from './app/pages/journal/Journal';
-import Database from './app/pages/database/Database';
-import ResearchData from './app/pages/researchdata/ResearchData';
-import About from './app/pages/about/About';
-import Legal from './app/pages/legal/Legal';
-import Error404 from './app/pages/errors/Error404';
-import Footer from './app/components/footer/Footer';
-import Root from './app/pages/Root';
 import LocalizedThemeProvider from './app/components/utils/LocalizedThemeProvider';
-import ExceptedError from './app/pages/errors/ExceptedError';
 import { getTheme } from './app/shared/Theme';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ContextProvider from './app/components/utils/ContextProvider';
+import App from './app/App';
+import ExceptedError from './app/pages/errors/ExceptedError';
+import { BrowserRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import ReactDOMClient from 'react-dom/client';
 import { StrictMode } from 'react';
@@ -44,78 +26,11 @@ root.render(
             <I18nextProvider i18n={I18N}>
                 <LocalizedThemeProvider>
                     <BrowserRouter>
-                        <div className="header-footer">
-                            <Header />
-                            <NavBar />
-                        </div>
-                        <div id="app-container">
-                            <Routes>
-                                {/* Header route route */}
-                                <Route
-                                    path={RouteRoot}
-                                    element={
-                                        <ExceptedError>
-                                            <Root />
-                                        </ExceptedError>
-                                    }
-                                />
-                                {/* Navigation route */}
-                                <Route
-                                    path={RouteArticle}
-                                    element={
-                                        <ExceptedError>
-                                            <Article />
-                                        </ExceptedError>
-                                    }
-                                />
-                                <Route
-                                    path={RouteJournal}
-                                    element={
-                                        <ExceptedError>
-                                            <Journal />
-                                        </ExceptedError>
-                                    }
-                                />
-                                <Route
-                                    path={RouteDatabase}
-                                    element={
-                                        <ExceptedError>
-                                            <Database />
-                                        </ExceptedError>
-                                    }
-                                />
-                                <Route
-                                    path={RouteResearchData}
-                                    element={
-                                        <ExceptedError>
-                                            <ResearchData />
-                                        </ExceptedError>
-                                    }
-                                />
-                                {/* Footer route */}
-                                <Route
-                                    path={RouteAbout}
-                                    element={
-                                        <ExceptedError>
-                                            <About />
-                                        </ExceptedError>
-                                    }
-                                />
-                                <Route
-                                    path={RouteLegal}
-                                    element={
-                                        <ExceptedError>
-                                            <Legal />
-                                        </ExceptedError>
-                                    }
-                                />
-                                {/* Error route */}
-                                <Route path="*" element={<Error404 />} />
-                            </Routes>
-                        </div>
-                        <div className="header-footer">
-                            <Footer />
-                        </div>
+                        <ContextProvider>
+                            <ExceptedError>
+                                <App />
+                            </ExceptedError>
+                        </ContextProvider>
                     </BrowserRouter>
                 </LocalizedThemeProvider>
             </I18nextProvider>

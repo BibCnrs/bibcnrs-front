@@ -1,7 +1,9 @@
 import { CMSResultDataType } from '../../shared/types/data.types';
 import { createQuery, environment } from '../Environment';
 
-const doQuery = async (page: string): Promise<CMSResultDataType> => {
+type Pages = 'home' | 'legal' | 'faq' | 'about';
+
+const doQuery = async <Page extends Pages>(page: Page): Promise<CMSResultDataType> => {
     const response: Response = await fetch(
         createQuery(environment.get.cms, {
             page,
@@ -10,18 +12,10 @@ const doQuery = async (page: string): Promise<CMSResultDataType> => {
     return await response.json();
 };
 
-export const home = async (): Promise<CMSResultDataType> => {
-    return await doQuery('home');
-};
+export const home = (): Promise<CMSResultDataType> => doQuery('home');
 
-export const legal = async (): Promise<CMSResultDataType> => {
-    return await doQuery('legal');
-};
+export const legal = (): Promise<CMSResultDataType> => doQuery('legal');
 
-export const faq = async (): Promise<CMSResultDataType> => {
-    return await doQuery('faq');
-};
+export const faq = (): Promise<CMSResultDataType> => doQuery('faq');
 
-export const about = async (): Promise<CMSResultDataType> => {
-    return await doQuery('about');
-};
+export const about = (): Promise<CMSResultDataType> => doQuery('about');

@@ -1,4 +1,4 @@
-import { LocalButtonProps } from '../../../shared/types/props.types';
+import { getFullTranslator, supportedLanguages } from '../../../shared/locales/I18N';
 import TranslateIcon from '@mui/icons-material/Translate';
 import CheckIcon from '@mui/icons-material/Check';
 import Button from '@mui/material/Button';
@@ -10,9 +10,10 @@ import { MouseEvent, useState } from 'react';
 /**
  * Local Button component used by the header.
  * This element is used to change the application language
- * @param i18n Element properties containing the i18n system
  */
-const LocalButton = ({ i18n }: LocalButtonProps) => {
+const LocalButton = () => {
+    const { i18n } = getFullTranslator();
+
     // Anchor use to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -31,12 +32,13 @@ const LocalButton = ({ i18n }: LocalButtonProps) => {
     };
 
     return (
-        <div>
+        <div className="header-nav header-nav-spacer">
             <Button
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
+                aria-expanded={open || undefined}
                 onClick={handleClick}
+                className="header-button-icon"
             >
                 <TranslateIcon />
             </Button>
@@ -49,26 +51,16 @@ const LocalButton = ({ i18n }: LocalButtonProps) => {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={() => handleClose('fr')}>
-                    {i18n.language === 'fr' ? (
-                        <ListItemIcon>
-                            <CheckIcon />
-                        </ListItemIcon>
-                    ) : (
-                        <></>
-                    )}
-                    Français
-                </MenuItem>
-                <MenuItem onClick={() => handleClose('en')}>
-                    {i18n.language === 'en' ? (
-                        <ListItemIcon>
-                            <CheckIcon />
-                        </ListItemIcon>
-                    ) : (
-                        <></>
-                    )}
-                    Anglais
-                </MenuItem>
+                {supportedLanguages.map((lang, index) => (
+                    <MenuItem key={index} onClick={() => handleClose(lang.key)}>
+                        {i18n.language === lang.key ? (
+                            <ListItemIcon>
+                                <CheckIcon />
+                            </ListItemIcon>
+                        ) : null}
+                        {lang.label}
+                    </MenuItem>
+                ))}
             </Menu>
         </div>
     );

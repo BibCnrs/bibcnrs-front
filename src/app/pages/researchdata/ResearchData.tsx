@@ -105,7 +105,7 @@ const ResearchData = () => {
 
     return (
         <div>
-            <PageTitle page={'researchData'} t={t} />
+            <PageTitle page={'researchData'} />
             <div className="header-footer">
                 <SearchBar
                     placeholder={t('pages.researchData.search.bar')}
@@ -140,7 +140,6 @@ const ResearchData = () => {
                         args={args}
                         setArgs={setArgs}
                         total={data?.totalHits}
-                        t={t}
                     />
                 )}
             </div>

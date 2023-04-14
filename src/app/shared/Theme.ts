@@ -1,4 +1,4 @@
-const createIfNotExsite = () => {
+const createIfNotExist = () => {
     if (window.localStorage.getItem('mode') === null) {
         window.localStorage.setItem('mode', 'light');
     }
@@ -7,7 +7,7 @@ const createIfNotExsite = () => {
 export const getTheme = (): 'light' | 'dark' => {
     const mode = window.localStorage.getItem('mode');
     if (mode === null) {
-        createIfNotExsite();
+        createIfNotExist();
         return 'light';
     }
     return mode as 'light' | 'dark';
