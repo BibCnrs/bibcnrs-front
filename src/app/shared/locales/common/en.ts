@@ -7,6 +7,7 @@ const en: Common = {
     components: {
         header: {
             login: 'Sign in',
+            logout: 'Logout',
             title: 'CNRS documents access',
             questions: 'Q&A',
             resources: 'Resources',

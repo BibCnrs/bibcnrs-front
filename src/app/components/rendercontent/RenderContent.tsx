@@ -18,7 +18,7 @@ const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, showDate
     if (!data || data.length < 1) {
         return (
             <div id="app">
-                <PageTitle page={page} t={t} />
+                {updateDocumentTitle ? <PageTitle page={page} t={t} /> : <PageTitle />}
                 {displayTitle ? <h1>{t(`pages.${page}.title`)}</h1> : <></>}
             </div>
         );
@@ -39,11 +39,7 @@ const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, showDate
 
     return (
         <div>
-            {updateDocumentTitle ? (
-                <PageTitle customTitle={true} page={content.title} />
-            ) : (
-                <PageTitle page={page} t={t} />
-            )}
+            {updateDocumentTitle ? <PageTitle customTitle={true} page={content.title} /> : <PageTitle />}
             {displayTitle ? <h1>{content.title}</h1> : <></>}
             <div dangerouslySetInnerHTML={{ __html: content.text }}></div>
             {showDate ? <PageDate date={content.date} /> : <></>}

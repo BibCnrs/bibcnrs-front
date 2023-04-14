@@ -105,7 +105,7 @@ const ResearchData = () => {
 
     return (
         <div>
-            <PageTitle page={'researchData'} />
+            <PageTitle page={'researchData'} t={t} />
             <div className="header-footer">
                 <SearchBar
                     placeholder={t('pages.researchData.search.bar')}

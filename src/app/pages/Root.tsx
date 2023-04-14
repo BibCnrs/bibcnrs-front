@@ -29,7 +29,14 @@ const Root = () => {
                 />
             </div>
             <div id="app">
-                <RenderContent data={data} displayTitle page="root" updateDocumentTitle showDate={false} t={t} />
+                <RenderContent
+                    data={data}
+                    displayTitle={false}
+                    page="root"
+                    updateDocumentTitle={false}
+                    showDate={false}
+                    t={t}
+                />
             </div>
         </div>
     );

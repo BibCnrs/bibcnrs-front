@@ -1,4 +1,5 @@
 import { BibContext } from '../../utils/ContextProvider';
+import { translator } from '../../../shared/locales/I18N';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
@@ -9,6 +10,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 const UserButton = () => {
+    const t = translator();
+
     // Anchor use to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -65,7 +68,7 @@ const UserButton = () => {
                     <ListItemIcon>
                         <LogoutIcon fontSize="small" />
                     </ListItemIcon>
-                    Logout
+                    {t('components.header.logout')}
                 </MenuItem>
             </Menu>
         </div>

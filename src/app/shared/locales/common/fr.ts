@@ -7,11 +7,12 @@ const fr: Common = {
     components: {
         header: {
             login: 'Connexion',
+            logout: 'Déconnexion',
             title: 'Accès aux ressources documentaires du CNRS',
             questions: 'FAQ',
             resources: 'Ressources',
             licences: 'Licences',
-            tests: 'Testes',
+            tests: 'Tests',
             news: 'Actualités',
         },
         nav: {

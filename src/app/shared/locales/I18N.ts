@@ -21,6 +21,7 @@ export type Common = {
         header: {
             title: string;
             login: string;
+            logout: string;
             questions: string;
             resources: string;
             licences: string;
