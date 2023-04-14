@@ -14,6 +14,12 @@ const en: Common = {
             licences: 'Licences',
             tests: 'Tests',
             news: 'News',
+            user: {
+                history: 'My History',
+                bookmark: 'My Bookmark',
+                resources: 'My Resources',
+                notifications: 'My Alerts',
+            },
         },
         nav: {
             article: 'Article',

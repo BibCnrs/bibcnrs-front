@@ -1,13 +1,16 @@
 import { BibContext } from '../../utils/ContextProvider';
 import { translator } from '../../../shared/locales/I18N';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { MouseEvent, useContext, useState } from 'react';
 import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import LogoutIcon from '@mui/icons-material/Logout';
+import HistoryIcon from '@mui/icons-material/History';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import FolderSharedIcon from '@mui/icons-material/FolderShared';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const UserButton = () => {
     const t = translator();
@@ -33,7 +36,8 @@ const UserButton = () => {
 
     return (
         <div className="header-nav">
-            <Button
+            <button
+                id={open ? 'user-button-active' : 'user-button'}
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
@@ -41,7 +45,7 @@ const UserButton = () => {
                 className="header-button-icon"
             >
                 <Avatar>P</Avatar>
-            </Button>
+            </button>
             <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
@@ -56,6 +60,31 @@ const UserButton = () => {
                         <Avatar sx={{ width: 24, height: 24 }} />
                     </ListItemIcon>
                     Place Holder
+                </MenuItem>
+                <Divider />
+                <MenuItem>
+                    <ListItemIcon>
+                        <HistoryIcon fontSize="small" />
+                    </ListItemIcon>
+                    {t('components.header.user.history')}
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
+                        <BookmarkIcon fontSize="small" />
+                    </ListItemIcon>
+                    {t('components.header.user.bookmark')}
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
+                        <FolderSharedIcon fontSize="small" />
+                    </ListItemIcon>
+                    {t('components.header.user.resources')}
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
+                        <NotificationsIcon fontSize="small" />
+                    </ListItemIcon>
+                    {t('components.header.user.notifications')}
                 </MenuItem>
                 <Divider />
                 <MenuItem

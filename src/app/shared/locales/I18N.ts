@@ -27,6 +27,12 @@ export type Common = {
             licences: string;
             tests: string;
             news: string;
+            user: {
+                history: string;
+                bookmark: string;
+                resources: string;
+                notifications: string;
+            };
         };
         nav: {
             article: string;

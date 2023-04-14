@@ -1,4 +1,5 @@
 @import "src/app/scss/colors";
+@import "src/app/scss/functions";
 
 header {
     display: flex;
@@ -36,15 +37,41 @@ header {
             margin-bottom: auto;
 
             .header-button-icon {
+                margin-right: 6px;
+                margin-left: 6px;
                 background: #0000;
-                border-radius: 0;
             }
 
+            #user-button {
+                padding: 0;
+                margin: 6px;
+                border: #0000 solid 4px;
+                border-radius: 160px;
+            }
+
+            #user-button:hover {
+                background-color: shade-color($lightest-white, 35%);
+                border: shade-color($lightest-white, 35%) solid 4px;
+            }
+
+            #user-button-active {
+                padding: 0;
+                margin: 6px;
+                background-color: shade-color($lightest-white, 50%);
+                border: shade-color($lightest-white, 50%) solid 4px;
+                border-radius: 160px;
+            }
+
+
             .header-button {
+                padding: 4px;
+                margin: 6px;
+                font-family: "Source Sans Pro", sans-serif;
                 color: $white;
                 text-decoration: none;
                 background: linear-gradient($white, $white) no-repeat 0 100%;
                 background-size: 0 2px;
+                border: #0000 solid 4px;
                 border-radius: 0;
                 transition: background-size .3s ease;
             }

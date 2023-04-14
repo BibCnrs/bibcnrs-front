@@ -13,6 +13,7 @@
         .nav-button {
             height: 51px;
             padding: 15px 20px;
+            font-family: "Source Sans Pro", sans-serif;
             font-size: 18px;
             color: $white;
             text-transform: none;
@@ -27,7 +28,7 @@
         }
 
         #active-nav-button {
-            color: $black;
+            color: $text-light;
             background-color: $white;
         }
     }

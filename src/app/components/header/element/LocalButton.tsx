@@ -34,6 +34,7 @@ const LocalButton = () => {
     return (
         <div className="header-nav header-nav-spacer">
             <Button
+                sx={{ width: '36px', minWidth: '36px' }}
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open || undefined}

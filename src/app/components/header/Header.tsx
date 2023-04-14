@@ -6,7 +6,6 @@ import { RouteRoot } from '../../shared/Routes';
 import CustomLink from '../customlink/CustomLink';
 import { translator } from '../../shared/locales/I18N';
 import ThemeButton from './element/ThemeButton';
-import createSxProps from '../../shared/createSxProps';
 import UserButton from './element/UserButton';
 import { useContext } from 'react';
 import { BibContext } from '../utils/ContextProvider';
@@ -15,9 +14,14 @@ import TestsButton from './element/TestsButton';
 import LicencesButton from './element/licencesButton';
 import QuestionsButton from './element/QuestionsButton';
 import ResourcesButton from './element/ResourcesButton';
+import createSxProps from '../../shared/createSxProps';
 
 export const headerButtonStyle = createSxProps({
     fontFamily: '"Source Sans Pro", sans-serif',
+    textTransform: 'none',
+    fontSize: 'initial',
+    lineHeight: 'initial',
+    minWidth: 'initial',
 });
 
 /**
