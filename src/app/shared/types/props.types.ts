@@ -57,6 +57,7 @@ export type RenderContentProps = {
     displayTitle: boolean;
     page: string;
     showDate: boolean;
+    t: TFunction;
 };
 
 export type PageDateProps = {

@@ -1,5 +1,5 @@
 import PageTitle from '../utils/PageTitle';
-import { getLanguageKey, translator } from '../../shared/locales/I18N';
+import { getLanguageKey } from '../../shared/locales/I18N';
 import { RenderContentProps } from '../../shared/types/props.types';
 import PageDate from '../utils/PageDate';
 
@@ -12,9 +12,7 @@ import PageDate from '../utils/PageDate';
  * @param t
  * @param showDate
  */
-const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, showDate }: RenderContentProps) => {
-    const t = translator();
-
+const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, showDate, t }: RenderContentProps) => {
     // Return an empty page when data is empty,
     // this empty page contains only the page title.
     if (!data || data.length < 1) {
