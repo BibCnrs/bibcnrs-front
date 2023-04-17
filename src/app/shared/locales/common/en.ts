@@ -95,6 +95,9 @@ Sincerely`,
                 },
             },
         },
+        faq: {
+            title: 'Q&A',
+        },
     },
     error: {
         '404': {

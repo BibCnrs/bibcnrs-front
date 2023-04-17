@@ -96,6 +96,9 @@ Cordialement`,
                 },
             },
         },
+        faq: {
+            title: 'FAQ',
+        },
     },
     error: {
         '404': {

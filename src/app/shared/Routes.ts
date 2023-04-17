@@ -12,6 +12,7 @@ const Routes = {
     journal: '/journal',
     database: '/database',
     researchData: '/research-data',
+    faq: '/faq',
     about: '/about',
     legal: '/legal',
 } as const;
@@ -85,6 +86,11 @@ export const RouteDatabase = Routes.database;
  * Export the research data route
  */
 export const RouteResearchData = Routes.researchData;
+
+/**
+ * Export the faq route
+ */
+export const RouteFaq = Routes.faq;
 
 /**
  * Export the about route

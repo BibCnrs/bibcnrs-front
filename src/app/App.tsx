@@ -4,6 +4,7 @@ import {
     RouteAbout,
     RouteArticle,
     RouteDatabase,
+    RouteFaq,
     RouteJournal,
     RouteLegal,
     RouteResearchData,
@@ -18,6 +19,7 @@ import About from './pages/about/About';
 import Legal from './pages/legal/Legal';
 import Error404 from './pages/errors/Error404';
 import Footer from './components/footer/Footer';
+import Faq from './pages/faq/Faq';
 import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
@@ -29,13 +31,14 @@ const App = () => {
             </div>
             <div id="app-container">
                 <Routes>
-                    {/* Header route route */}
+                    {/* Header route */}
                     <Route path={RouteRoot} element={<Root />} />
                     {/* Navigation route */}
                     <Route path={RouteArticle} element={<Article />} />
                     <Route path={RouteJournal} element={<Journal />} />
                     <Route path={RouteDatabase} element={<Database />} />
                     <Route path={RouteResearchData} element={<ResearchData />} />
+                    <Route path={RouteFaq} element={<Faq />} />
                     {/* Footer route */}
                     <Route path={RouteAbout} element={<About />} />
                     <Route path={RouteLegal} element={<Legal />} />

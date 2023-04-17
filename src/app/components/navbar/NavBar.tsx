@@ -38,17 +38,13 @@ const NavBar = () => {
     const noneMatch = !articleMatch && !journalMatch && !databaseMatch && !researchDataMatch;
     const disable = noneMatch && !rootMatch;
 
-    if (disable) {
-        return <></>;
-    }
-
     return (
         <nav id="nav">
             <div id="nav-container">
                 <Button
                     className="nav-button"
-                    id={articleMatch || noneMatch ? 'active-nav-button' : ''}
-                    disabled={articleMatch || noneMatch}
+                    id={(articleMatch || noneMatch) && !disable ? 'active-nav-button' : ''}
+                    disabled={(articleMatch || noneMatch) && !disable}
                     onClick={article.handler}
                     href={article.href}
                 >

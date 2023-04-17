@@ -65,7 +65,7 @@ export type PageDateProps = {
 };
 
 export type OpenablePaperProps = {
-    Title: ReactElement;
-    SmallBody: ReactElement;
-    FullBody: ReactElement;
+    Title: ReactElement | null;
+    SmallBody: ReactElement | null;
+    FullBody: ReactElement | null;
 };

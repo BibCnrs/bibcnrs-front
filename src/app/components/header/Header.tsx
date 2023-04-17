@@ -12,7 +12,7 @@ import { BibContext } from '../utils/ContextProvider';
 import NewsButton from './element/NewsButton';
 import TestsButton from './element/TestsButton';
 import LicencesButton from './element/licencesButton';
-import QuestionsButton from './element/QuestionsButton';
+import FaqButton from './element/FaqButton';
 import ResourcesButton from './element/ResourcesButton';
 import createSxProps from '../../shared/createSxProps';
 
@@ -53,7 +53,7 @@ const Header = () => {
                     <SignInButton />
                 )}
                 <ResourcesButton />
-                <QuestionsButton />
+                <FaqButton />
                 <LocalButton />
                 <ThemeButton />
             </div>

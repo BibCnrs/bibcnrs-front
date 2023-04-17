@@ -92,6 +92,9 @@ export type Common = {
                 };
             };
         };
+        faq: {
+            title: string;
+        };
         about: {
             title: string;
         };
