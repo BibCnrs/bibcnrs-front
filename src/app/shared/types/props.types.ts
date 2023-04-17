@@ -1,6 +1,6 @@
 import { TFunction } from './types';
 import { CMSResultDataType, MetadoreResultType } from './data.types';
-import { Dispatch, ElementType, Key, ReactNode, SetStateAction } from 'react';
+import { Dispatch, ElementType, Key, ReactElement, ReactNode, SetStateAction } from 'react';
 
 type HaveReactChildren = {
     children: ReactNode;
@@ -62,4 +62,10 @@ export type RenderContentProps = {
 
 export type PageDateProps = {
     date: string;
+};
+
+export type OpenablePaperProps = {
+    Title: ReactElement;
+    SmallBody: ReactElement;
+    FullBody: ReactElement;
 };

@@ -1,10 +1,15 @@
 import './Table.scss';
 import { PaginationComponentProps, TableProps } from '../../shared/types/props.types';
 import { translator } from '../../shared/locales/I18N';
+import { getTheme } from '../../shared/Theme';
 import Pagination from '@mui/material/Pagination';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { FormControl } from '@mui/material';
+
+if (getTheme() === 'dark') {
+    import('./Table.dark.scss');
+}
 
 /**
  * Pagination component use by Table.
@@ -22,7 +27,7 @@ const PaginationComponent = (props: PaginationComponentProps) => {
         <div className="pagination">
             {/* Show the current element index and the number of elements found */}
             {total === 0 ? (
-                <span>0-0 / 0</span>
+                <span className="current-page">0-0 / 0</span>
             ) : (
                 <span className="current-page">
                     {1 + (page - 1) * perPage}-{Math.min(1 + page * perPage, total)} / {total}

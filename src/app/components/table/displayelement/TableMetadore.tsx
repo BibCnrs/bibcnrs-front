@@ -1,11 +1,8 @@
+import './TableMetadore.scss';
 import { TableDisplayElementProps } from '../../../shared/types/props.types';
 import { MetadoreResultDescriptionType, MetadoreResultTitleType } from '../../../shared/types/data.types';
 import { getLanguageKey, translator } from '../../../shared/locales/I18N';
-import { useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import Paper from '@mui/material/Paper';
-import './DisplayElement.scss';
+import OpenablePaper from '../../openablepaper/OpenablePaper';
 
 /**
  * Function use to get the translated title if available
@@ -55,38 +52,25 @@ const TableMetadore = ({ data }: TableDisplayElementProps) => {
     const t = translator();
     const languageKey = getLanguageKey();
 
-    // Metadore display stats
-    const [open, setOpen] = useState<boolean>(false);
-    const [elevation, setElevation] = useState<number>(1);
-
     // Get translated title and description if available
     const title = getTitle(data.titles, languageKey);
     const description = getDescription(data.descriptions, languageKey);
 
     return (
-        <Paper
-            className="table-element"
-            onMouseOver={() => setElevation(4)}
-            onMouseOut={() => setElevation(1)}
-            elevation={elevation}
-        >
-            {/* Display title with result link and the button the show everything */}
-            <h4>
-                <IconButton
-                    onClick={() => setOpen(!open)}
-                    size="small"
-                    color="primary"
-                    className="table-button-position"
-                >
-                    <ArrowForwardIosIcon className={open ? 'table-button table-button-open' : 'table-button'} />
-                </IconButton>
-                <a href={data.url} target="_blank">
+        <OpenablePaper
+            Title={
+                <a className="table-metadore-title" href={data.url} target="_blank">
                     {data.id}. {title} [{data.type}]
                 </a>
-            </h4>
-            {/* Show everything if open or juste show the doi */}
-            {open ? (
-                <dl>
+            }
+            SmallBody={
+                <div className="table-metadore-body">
+                    {t('components.table.content.doiColon')}
+                    {data.doi}
+                </div>
+            }
+            FullBody={
+                <dl className="table-metadore-body">
                     <span>
                         <dt>{t('components.table.content.doi')}</dt>
                         <dd>{data.doi}</dd>
@@ -118,13 +102,8 @@ const TableMetadore = ({ data }: TableDisplayElementProps) => {
                         <></>
                     )}
                 </dl>
-            ) : (
-                <div>
-                    {t('components.table.content.doiColon')}
-                    {data.doi}
-                </div>
-            )}
-        </Paper>
+            }
+        />
     );
 };
 
