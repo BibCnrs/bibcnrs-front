@@ -1,7 +1,7 @@
 import { translator } from '../shared/locales/I18N';
 import SearchBar from '../components/searchbar/SearchBar';
 import './Root.scss';
-import { home } from '../services/cms/CMS';
+import { alert, home } from '../services/cms/CMS';
 import { CMSResultDataType } from '../shared/types/data.types';
 import RenderContent from '../components/rendercontent/RenderContent';
 import { useQuery } from '@tanstack/react-query';
@@ -9,7 +9,15 @@ import { useQuery } from '@tanstack/react-query';
 const Root = () => {
     const t = translator();
 
-    const { data } = useQuery<CMSResultDataType, any, CMSResultDataType, any>({
+    const { data: alertData } = useQuery<CMSResultDataType, any, CMSResultDataType, any>({
+        queryKey: ['alert'],
+        queryFn: alert,
+        keepPreviousData: true,
+        staleTime: 3600000, // 1 hour of cache
+        cacheTime: 3600000, // 1000 * 60 * 60
+    });
+
+    const { data: homeData } = useQuery<CMSResultDataType, any, CMSResultDataType, any>({
         queryKey: ['home'],
         queryFn: home,
         keepPreviousData: true,
@@ -30,7 +38,15 @@ const Root = () => {
             </div>
             <div id="app">
                 <RenderContent
-                    data={data}
+                    data={alertData}
+                    displayTitle={false}
+                    page="root"
+                    updateDocumentTitle={false}
+                    showDate={false}
+                    t={t}
+                />
+                <RenderContent
+                    data={homeData}
                     displayTitle={false}
                     page="root"
                     updateDocumentTitle={false}
