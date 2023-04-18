@@ -1,3 +1,4 @@
+import './Faq.scss';
 import { CMSDataType, CMSResultDataType } from '../../shared/types/data.types';
 import { faq } from '../../services/cms/CMS';
 import PageTitle from '../../components/utils/PageTitle';
@@ -12,7 +13,7 @@ const FaqEntry = ({ data }: { data: CMSDataType }) => {
             <OpenablePaper
                 Title={<>{data.name_en}</>}
                 SmallBody={null}
-                FullBody={<div dangerouslySetInnerHTML={{ __html: data.content_en }}></div>}
+                FullBody={<div className="cms-content" dangerouslySetInnerHTML={{ __html: data.content_en }}></div>}
             />
         );
     }
@@ -20,7 +21,7 @@ const FaqEntry = ({ data }: { data: CMSDataType }) => {
         <OpenablePaper
             Title={<>{data.name_fr}</>}
             SmallBody={null}
-            FullBody={<div dangerouslySetInnerHTML={{ __html: data.content_fr }}></div>}
+            FullBody={<div className="cms-content" dangerouslySetInnerHTML={{ __html: data.content_fr }}></div>}
         />
     );
 };

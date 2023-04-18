@@ -1,0 +1,13 @@
+@import "colors";
+
+
+.cms-content {
+    a {
+        color: $cnrs-secondary-blue;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}

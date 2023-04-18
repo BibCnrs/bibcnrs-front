@@ -1,3 +1,4 @@
+import './RenderContent.scss';
 import PageTitle from '../utils/PageTitle';
 import { getLanguageKey } from '../../shared/locales/I18N';
 import { RenderContentProps } from '../../shared/types/props.types';
@@ -17,10 +18,10 @@ const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, showDate
     // this empty page contains only the page title.
     if (!data || data.length < 1) {
         return (
-            <div id="app">
+            <>
                 {updateDocumentTitle ? <PageTitle page={page} t={t} /> : <PageTitle />}
                 {displayTitle ? <h1>{t(`pages.${page}.title`)}</h1> : <></>}
-            </div>
+            </>
         );
     }
 
@@ -38,12 +39,12 @@ const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, showDate
     }
 
     return (
-        <div>
+        <>
             {updateDocumentTitle ? <PageTitle customTitle={true} page={content.title} /> : <PageTitle />}
             {displayTitle ? <h1>{content.title}</h1> : <></>}
-            <div dangerouslySetInnerHTML={{ __html: content.text }}></div>
+            <div className="cms-content" dangerouslySetInnerHTML={{ __html: content.text }}></div>
             {showDate ? <PageDate date={content.date} /> : <></>}
-        </div>
+        </>
     );
 };
 
