@@ -59,7 +59,7 @@ const TableMetadore = ({ data }: TableDisplayElementProps) => {
     return (
         <OpenablePaper
             Title={
-                <a className="table-metadore-title" href={data.url} target="_blank">
+                <a className="table-metadore-title" href={data.url} target="_blank" rel="noopener noreferrer nofollow">
                     {data.id}. {title} [{data.type}]
                 </a>
             }
