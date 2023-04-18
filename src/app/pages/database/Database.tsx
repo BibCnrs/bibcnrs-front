@@ -5,8 +5,10 @@ import { DatabaseDataType, DatabaseEntryDataType } from '../../shared/types/data
 import { database } from '../../services/database/Database';
 import { DatabaseDisplayGroupProps } from '../../shared/types/props.types';
 import AnimatedPaper from '../../components/animatedpaper/AnimatedPaper';
+import { BibContext } from '../../components/utils/ContextProvider';
 import { useQuery } from '@tanstack/react-query';
 import Tooltip from '@mui/material/Tooltip';
+import { useContext } from 'react';
 
 const getName = (entry: DatabaseEntryDataType, language: string) => {
     if (language === 'en') {
@@ -73,12 +75,13 @@ const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupPr
 };
 
 const Database = () => {
+    const { login } = useContext(BibContext);
     const t = translator();
     const language = getLanguageKey();
 
     const { data } = useQuery<DatabaseDataType, any, DatabaseDataType, any>({
-        queryKey: ['database'],
-        queryFn: () => database(language),
+        queryKey: ['database', login],
+        queryFn: () => database(language, login),
         keepPreviousData: true,
         staleTime: 3600000, // 1 hour of cache
         cacheTime: 3600000, // 1000 * 60 * 60

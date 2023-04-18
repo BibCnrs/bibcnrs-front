@@ -1,7 +1,7 @@
 import { DatabaseDataType } from '../../shared/types/data.types';
 import { createQuery, environment } from '../Environment';
 
-export const database = async (language: string): Promise<DatabaseDataType> => {
+export const database = async (language: string, login: boolean): Promise<DatabaseDataType> => {
     const response: Response = await fetch(createQuery(environment.get.database));
     const data: DatabaseDataType = await response.json();
     data.sort((a, b) => {
@@ -15,5 +15,10 @@ export const database = async (language: string): Promise<DatabaseDataType> => {
         }
         return 0;
     });
-    return data;
+    return data.filter((value) => {
+        if (login) {
+            return true;
+        }
+        return value.oa;
+    });
 };
