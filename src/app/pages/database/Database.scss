@@ -32,7 +32,6 @@
             .database-entry-content {
                 position: relative;
                 width: 211px;
-                min-height: 54px;
                 padding: 2px 5px 2px 2px;
                 margin: 5px 5px 0;
                 line-height: 40px;
@@ -42,6 +41,7 @@
             .database-entry-content-inner {
                 display: flex;
                 flex-direction: column;
+                min-height: 54px;
                 background-repeat: no-repeat;
                 background-position: 5px 5px;
             }
