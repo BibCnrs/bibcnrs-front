@@ -1,4 +1,5 @@
 import { TFunction as TF, TypeOptions } from 'i18next';
+import { Dispatch, SetStateAction } from 'react';
 
 type Resources = TypeOptions['resources'];
 
@@ -12,3 +13,14 @@ export type SupportedLanguage = {
 };
 
 export type SupportedLanguages = SupportedLanguage[];
+
+export type ThemeType = 'light' | 'dark';
+
+export type BibContextType = {
+    globalQuery: string | null;
+    setGlobalQuery: Dispatch<SetStateAction<string | null>>;
+    login: boolean;
+    setLogin: Dispatch<SetStateAction<boolean>>;
+    theme: ThemeType;
+    setTheme: Dispatch<SetStateAction<ThemeType>>;
+};

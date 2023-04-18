@@ -60,11 +60,13 @@ const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupPr
                             aria-label={getName(entry, language)}
                             className="database-entry"
                         >
-                            <AnimatedPaper sx={getImage(entry)} className="database-entry-content">
-                                <span className="database-entry-text">{getName(entry, language)}</span>
-                                {entry.oa ? (
-                                    <img className="database-entry-oa" src="/icons/oa.png" alt="Open access icon" />
-                                ) : null}
+                            <AnimatedPaper className="database-entry-content">
+                                <div className="database-entry-content-inner" style={getImage(entry)}>
+                                    <span className="database-entry-text">{getName(entry, language)}</span>
+                                    {entry.oa ? (
+                                        <img className="database-entry-oa" src="/icons/oa.png" alt="Open access icon" />
+                                    ) : null}
+                                </div>
                             </AnimatedPaper>
                         </a>
                     </Tooltip>

@@ -1,15 +1,10 @@
 import './Table.scss';
 import { PaginationComponentProps, TableProps } from '../../shared/types/props.types';
 import { translator } from '../../shared/locales/I18N';
-import { getTheme } from '../../shared/Theme';
 import Pagination from '@mui/material/Pagination';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { FormControl } from '@mui/material';
-
-if (getTheme() === 'dark') {
-    import('./Table.dark.scss');
-}
 
 /**
  * Pagination component use by Table.

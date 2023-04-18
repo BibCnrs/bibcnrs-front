@@ -24,12 +24,22 @@
         }
 
         .nav-button:hover {
-            background-color: $cnrs-primary-dark;
+            background-color: $nav-button-hover;
         }
 
         #active-nav-button {
-            color: $text-light;
-            background-color: $white;
+            color: $text;
+            background-color: $nav-button-active;
+        }
+
+        #active-nav-button-dark {
+            color: $white;
+            background-color: $nav-button-hover;
+            border-color: $white;
+            border-style: solid;
+            border-top-width: 1px;
+            border-right-width: 1px;
+            border-left-width: 1px;
         }
     }
 }

@@ -1,7 +1,7 @@
-import { getTheme, setTheme } from '../../../shared/Theme';
+import { BibContext } from '../../utils/ContextProvider';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useContext } from 'react';
 
 // Style from https://mui.com/material-ui/react-switch/
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -52,14 +52,18 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const ThemeButton = () => {
+    const { theme, setTheme } = useContext(BibContext);
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setTheme(event.target.checked);
-        window.location.reload();
+        if (event.target.checked) {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
     };
 
     return (
         <div className="header-nav header-nav-spacer">
-            <MaterialUISwitch className="header-button-icon" checked={getTheme() === 'dark'} onChange={handleChange} />
+            <MaterialUISwitch className="header-button-icon" checked={theme === 'dark'} onChange={handleChange} />
         </div>
     );
 };

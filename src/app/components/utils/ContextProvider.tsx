@@ -1,11 +1,45 @@
 import { ContextProviderProps } from '../../shared/types/props.types';
-import { createContext, useState } from 'react';
+import { BibContextType, ThemeType } from '../../shared/types/types';
+import { createContext, useEffect, useState } from 'react';
 
-export const BibContext = createContext<any>(null);
+const createIfNotExist = () => {
+    if (window.localStorage.getItem('mode') === null) {
+        window.localStorage.setItem('mode', 'light');
+    }
+};
+
+const getStorageTheme = (): ThemeType => {
+    const mode = window.localStorage.getItem('mode');
+    if (mode === null) {
+        createIfNotExist();
+        return 'light';
+    }
+    return mode as ThemeType;
+};
+
+const setStorageTheme = (value: ThemeType) => {
+    window.localStorage.setItem('mode', value);
+};
+
+/* eslint-disable @typescript-eslint/no-empty-function */
+export const BibContext = createContext<BibContextType>({
+    globalQuery: null,
+    setGlobalQuery: () => {},
+    login: false,
+    setLogin: () => {},
+    theme: 'light',
+    setTheme: () => {},
+});
+/* eslint-enable @typescript-eslint/no-empty-function */
 
 const ContextProvider = ({ children }: ContextProviderProps) => {
     const [globalQuery, setGlobalQuery] = useState<string | null>(null);
     const [login, setLogin] = useState<boolean>(false);
+    const [theme, setTheme] = useState<ThemeType>(getStorageTheme());
+
+    useEffect(() => {
+        setStorageTheme(theme);
+    }, [theme]);
 
     return (
         <BibContext.Provider
@@ -14,6 +48,8 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
                 setGlobalQuery,
                 login,
                 setLogin,
+                theme,
+                setTheme,
             }}
         >
             {children}

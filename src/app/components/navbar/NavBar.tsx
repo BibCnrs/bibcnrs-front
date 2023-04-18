@@ -9,12 +9,9 @@ import {
     isMatching,
 } from '../../shared/Routes';
 import { translator } from '../../shared/locales/I18N';
-import { getTheme } from '../../shared/Theme';
+import { BibContext } from '../utils/ContextProvider';
 import Button from '@mui/material/Button';
-
-if (getTheme() === 'dark') {
-    import('./NavBar.dark.scss');
-}
+import { useContext } from 'react';
 
 /**
  * Nav bar component use to navigate between: [Article], [Journal, book], [Database] and [Research data]
@@ -22,6 +19,13 @@ if (getTheme() === 'dark') {
 const NavBar = () => {
     // Get translation function
     const t = translator();
+    const { theme } = useContext(BibContext);
+    const getActiveDarkButtonId = () => {
+        if (theme === 'dark') {
+            return 'active-nav-button-dark';
+        }
+        return 'active-nav-button';
+    };
 
     // Button action handler
     const article = buildLinkClickHandler(RouteArticle);
@@ -43,7 +47,7 @@ const NavBar = () => {
             <div id="nav-container">
                 <Button
                     className="nav-button"
-                    id={(articleMatch || noneMatch) && !disable ? 'active-nav-button' : ''}
+                    id={(articleMatch || noneMatch) && !disable ? getActiveDarkButtonId() : ''}
                     disabled={(articleMatch || noneMatch) && !disable}
                     onClick={article.handler}
                     href={article.href}
@@ -52,7 +56,7 @@ const NavBar = () => {
                 </Button>
                 <Button
                     className="nav-button"
-                    id={journalMatch ? 'active-nav-button' : ''}
+                    id={journalMatch ? getActiveDarkButtonId() : ''}
                     disabled={journalMatch}
                     onClick={journal.handler}
                     href={journal.href}
@@ -61,7 +65,7 @@ const NavBar = () => {
                 </Button>
                 <Button
                     className="nav-button"
-                    id={databaseMatch ? 'active-nav-button' : ''}
+                    id={databaseMatch ? getActiveDarkButtonId() : ''}
                     disabled={databaseMatch}
                     onClick={database.handler}
                     href={database.href}
@@ -70,7 +74,7 @@ const NavBar = () => {
                 </Button>
                 <Button
                     className="nav-button"
-                    id={researchDataMatch ? 'active-nav-button' : ''}
+                    id={researchDataMatch ? getActiveDarkButtonId() : ''}
                     disabled={researchDataMatch}
                     onClick={researchData.handler}
                     href={researchData.href}

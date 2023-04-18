@@ -1,5 +1,10 @@
-$text-dark: #cfcfe0 !default;
-$text-light: #000000DE !default;
+// Theme variable
+$text: var(--text) !default;
+$background: var(--background) !default;
+$background-nav: var(--background-nav) !default;
+$link: var(--link) !default;
+$nav-button-active: var(--nav-button-active) !default;
+$nav-button-hover: var(--nav-button-hover) !default;
 
 $lightest-white: #f5f5ff !default;
 $white: #fff !default;
@@ -12,9 +17,6 @@ $cnrs-secondary-light-blue: #c8e6e6 !default;
 $cnrs-secondary-blue: #2d7dc3 !default;
 $cnrs-secondary-dark-blue: #0050a0 !default;
 $cnrs-secondary-cyan: #2d9bb4 !default;
-
-$cnrs-background-dark: #151723 !default;
-$cnrs-background-light: #eee !default;
 
 $cnrs-insb: #eb004e !default;
 $cnrs-inc: #007faa !default;

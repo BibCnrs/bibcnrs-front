@@ -6,18 +6,18 @@
 }
 
 p {
-    color: $text-light;
+    color: $text;
 }
 
 .title, h1 {
     font-family: "Source Sans Pro", sans-serif;
-    color: $text-light;
+    color: $text;
 }
 
 body {
     min-height: 100vh;
     margin: 0;
-    background-color: $cnrs-background-light;
+    background-color: $background;
 }
 
 #root {
@@ -31,5 +31,5 @@ body {
 }
 
 .header-footer {
-    background-color: $cnrs-secondary-dark-blue;
+    background-color: $background-nav;
 }
