@@ -22,6 +22,10 @@
             margin: 1.33em 0;
         }
 
+        .openable-paper-button-small {
+            top: -5px;
+        }
+
         .openable-paper-button {
             font-size: 1.1rem;
             transition: transform 150ms ease-in-out;
@@ -35,4 +39,8 @@
     .openable-paper-body {
         padding: 0 20px;
     }
+}
+
+.openable-paper-small {
+    padding: 5px 0;
 }

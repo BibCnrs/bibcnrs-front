@@ -5,13 +5,13 @@ import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const OpenablePaper = ({ Title, SmallBody, FullBody }: OpenablePaperProps) => {
+const OpenablePaper = ({ Title, SmallBody, FullBody, small = false }: OpenablePaperProps) => {
     const [open, setOpen] = useState<boolean>(false);
     const [elevation, setElevation] = useState<number>(1);
 
     return (
         <Paper
-            className="openable-paper"
+            className={small ? 'openable-paper openable-paper-small' : 'openable-paper'}
             onMouseOver={() => setElevation(4)}
             onMouseOut={() => setElevation(1)}
             elevation={elevation}
@@ -31,7 +31,11 @@ const OpenablePaper = ({ Title, SmallBody, FullBody }: OpenablePaperProps) => {
                     onClick={() => setOpen(!open)}
                     size="small"
                     color="primary"
-                    className="openable-paper-button-position"
+                    className={
+                        small
+                            ? 'openable-paper-button-position openable-paper-button-small'
+                            : 'openable-paper-button-position'
+                    }
                 >
                     <ArrowForwardIosIcon
                         className={open ? 'openable-paper-button openable-paper-button-open' : 'openable-paper-button'}

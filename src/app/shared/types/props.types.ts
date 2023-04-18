@@ -68,4 +68,5 @@ export type OpenablePaperProps = {
     Title: ReactElement | null;
     SmallBody: ReactElement | null;
     FullBody: ReactElement | null;
+    small?: boolean;
 };

@@ -14,6 +14,7 @@ const FaqEntry = ({ data }: { data: CMSDataType }) => {
                 Title={<>{data.name_en}</>}
                 SmallBody={null}
                 FullBody={<div className="cms-content" dangerouslySetInnerHTML={{ __html: data.content_en }}></div>}
+                small
             />
         );
     }
@@ -22,6 +23,7 @@ const FaqEntry = ({ data }: { data: CMSDataType }) => {
             Title={<>{data.name_fr}</>}
             SmallBody={null}
             FullBody={<div className="cms-content" dangerouslySetInnerHTML={{ __html: data.content_fr }}></div>}
+            small
         />
     );
 };
