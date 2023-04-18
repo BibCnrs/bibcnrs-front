@@ -57,3 +57,21 @@ export type CMSDataType = {
 };
 
 export type CMSResultDataType = CMSDataType[];
+
+export type DatabaseEntryDataType = {
+    id: number;
+    name_fr: string;
+    name_en: string;
+    text_fr: string;
+    text_en: string;
+    url_fr: string;
+    url_en: string;
+    image: string; // Make a type for Base64 images
+    active: boolean;
+    oa: boolean;
+    use_proxy: boolean;
+    communities: number[]; // Make a type
+    domains: string[]; // Make a type
+};
+
+export type DatabaseDataType = DatabaseEntryDataType[];

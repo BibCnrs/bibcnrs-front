@@ -1,20 +1,16 @@
 import './OpenablePaper.scss';
 import { OpenablePaperProps } from '../../shared/types/props.types';
-import Paper from '@mui/material/Paper';
+import AnimatedPaper from '../animatedpaper/AnimatedPaper';
 import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const OpenablePaper = ({ Title, SmallBody, FullBody, small = false }: OpenablePaperProps) => {
     const [open, setOpen] = useState<boolean>(false);
-    const [elevation, setElevation] = useState<number>(1);
 
     return (
-        <Paper
+        <AnimatedPaper
             className={small ? 'openable-paper openable-paper-small' : 'openable-paper'}
-            onMouseOver={() => setElevation(4)}
-            onMouseOut={() => setElevation(1)}
-            elevation={elevation}
             onClick={() => {
                 if (!open) {
                     setOpen(true);
@@ -44,7 +40,7 @@ const OpenablePaper = ({ Title, SmallBody, FullBody, small = false }: OpenablePa
                 {Title}
             </h4>
             <div className="openable-paper-body">{open ? FullBody : SmallBody}</div>
-        </Paper>
+        </AnimatedPaper>
     );
 };
 

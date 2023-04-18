@@ -42,7 +42,7 @@ const Faq = () => {
         <div id="app">
             <h1>{t('pages.faq.title')}</h1>
             <PageTitle t={t} page="faq" />
-            {data ? data.map((value) => <FaqEntry data={value} />) : null}
+            {data ? data.map((value) => <FaqEntry key={value.id} data={value} />) : null}
         </div>
     );
 };

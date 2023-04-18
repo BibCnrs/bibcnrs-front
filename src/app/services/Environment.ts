@@ -3,10 +3,14 @@ export const environment = {
     get: {
         metadore: '/ebsco/metadore/search',
         cms: '/ebsco/cms',
+        database: '/ebsco/databases',
     },
 };
 
-export const createQuery = (uri: string, param: any): string => {
+export const createQuery = (uri: string, param?: any | undefined): string => {
+    if (param === undefined) {
+        return `${environment.host}${uri}`;
+    }
     const query = new URLSearchParams(param);
     return `${environment.host}${uri}?${query.toString()}`;
 };

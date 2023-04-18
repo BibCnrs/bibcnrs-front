@@ -1,6 +1,8 @@
 import { TFunction } from './types';
-import { CMSResultDataType, MetadoreResultType } from './data.types';
+import { CMSResultDataType, DatabaseDataType, MetadoreResultType } from './data.types';
 import { Dispatch, ElementType, Key, ReactElement, ReactNode, SetStateAction } from 'react';
+import { SxProps } from '@mui/system/styleFunctionSx/styleFunctionSx';
+import { Theme } from '@mui/material/styles/createTheme';
 
 type HaveReactChildren = {
     children: ReactNode;
@@ -70,3 +72,15 @@ export type OpenablePaperProps = {
     FullBody: ReactElement | null;
     small?: boolean;
 };
+
+export type DatabaseDisplayGroupProps = {
+    letter: string;
+    data: DatabaseDataType;
+    language: string;
+};
+
+export type AnimatedPaperProps = {
+    className?: string;
+    onClick?: () => void;
+    sx?: SxProps<Theme>;
+} & HaveReactChildren;
