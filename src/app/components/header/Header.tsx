@@ -1,5 +1,5 @@
-import BibCNRSLogo from '/logos/bibcnrs.png';
 import './Header.scss';
+import BibCNRSLogo from '/logos/bibcnrs.png';
 import LocalButton from './element/LocalButton';
 import SignInButton from './element/SignInButton';
 import { RouteRoot } from '../../shared/Routes';

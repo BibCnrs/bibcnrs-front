@@ -1,8 +1,8 @@
-import { translator } from '../../shared/locales/I18N';
 import './About.scss';
-import { CMSResultDataType } from '../../shared/types/data.types';
-import { about } from '../../services/cms/CMS';
-import RenderContent from '../../components/rendercontent/RenderContent';
+import { translator } from '../../../shared/locales/I18N';
+import { CMSResultDataType } from '../../../shared/types/data.types';
+import { about } from '../../../services/cms/CMS';
+import RenderContent from '../../../components/rendercontent/RenderContent';
 import { useQuery } from '@tanstack/react-query';
 
 const About = () => {

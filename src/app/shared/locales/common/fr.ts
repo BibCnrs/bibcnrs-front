@@ -17,7 +17,6 @@ const fr: Common = {
             user: {
                 history: 'Mon Historique',
                 bookmark: 'Mes Favoris',
-                resources: 'Mes Ressources',
                 notifications: 'Mes Alertes',
             },
         },

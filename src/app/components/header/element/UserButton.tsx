@@ -9,7 +9,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HistoryIcon from '@mui/icons-material/History';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const UserButton = () => {
@@ -73,12 +72,6 @@ const UserButton = () => {
                         <BookmarkIcon fontSize="small" />
                     </ListItemIcon>
                     {t('components.header.user.bookmark')}
-                </MenuItem>
-                <MenuItem>
-                    <ListItemIcon>
-                        <FolderSharedIcon fontSize="small" />
-                    </ListItemIcon>
-                    {t('components.header.user.resources')}
                 </MenuItem>
                 <MenuItem>
                     <ListItemIcon>

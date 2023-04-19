@@ -11,15 +11,15 @@ import {
     RouteRoot,
 } from './shared/Routes';
 import Root from './pages/Root';
-import Article from './pages/article/Article';
-import Journal from './pages/journal/Journal';
-import Database from './pages/database/Database';
-import ResearchData from './pages/researchdata/ResearchData';
-import About from './pages/about/About';
-import Legal from './pages/legal/Legal';
+import Article from './pages/search/article/Article';
+import Journal from './pages/search/journal/Journal';
+import Database from './pages/search/database/Database';
+import ResearchData from './pages/search/researchdata/ResearchData';
+import About from './pages/common/about/About';
+import Legal from './pages/common/legal/Legal';
 import Error404 from './pages/errors/Error404';
 import Footer from './components/footer/Footer';
-import Faq from './pages/faq/Faq';
+import Faq from './pages/common/faq/Faq';
 import { Route, Routes } from 'react-router-dom';
 
 const App = () => {

@@ -30,7 +30,6 @@ export type Common = {
             user: {
                 history: string;
                 bookmark: string;
-                resources: string;
                 notifications: string;
             };
         };

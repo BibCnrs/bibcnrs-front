@@ -17,7 +17,6 @@ const en: Common = {
             user: {
                 history: 'My History',
                 bookmark: 'My Bookmark',
-                resources: 'My Resources',
                 notifications: 'My Alerts',
             },
         },
