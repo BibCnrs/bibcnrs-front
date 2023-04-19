@@ -3,7 +3,7 @@ import { translator } from '../../../shared/locales/I18N';
 import PageTitle from '../../../components/utils/PageTitle';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import { RouteResearchData, getNumber, getString, updatePageQueryUrl, useSearchParams } from '../../../shared/Routes';
-import { search } from '../../../services/metadore/Metadore';
+import { search } from '../../../services/common/Metadore';
 import Loading from '../../../components/utils/loading/Loading';
 import Table from '../../../components/table/Table';
 import TableMetadore from '../../../components/table/displayelement/TableMetadore';

@@ -8,6 +8,7 @@ import {
     RouteJournal,
     RouteLegal,
     RouteResearchData,
+    RouteResources,
     RouteRoot,
 } from './shared/Routes';
 import Root from './pages/Root';
@@ -20,6 +21,7 @@ import Legal from './pages/common/legal/Legal';
 import Error404 from './pages/errors/Error404';
 import Footer from './components/footer/Footer';
 import Faq from './pages/common/faq/Faq';
+import Resources from './pages/common/resources/Resources';
 import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
@@ -39,6 +41,7 @@ const App = () => {
                     <Route path={RouteDatabase} element={<Database />} />
                     <Route path={RouteResearchData} element={<ResearchData />} />
                     <Route path={RouteFaq} element={<Faq />} />
+                    <Route path={RouteResources} element={<Resources />} />
                     {/* Footer route */}
                     <Route path={RouteAbout} element={<About />} />
                     <Route path={RouteLegal} element={<Legal />} />

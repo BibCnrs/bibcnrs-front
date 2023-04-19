@@ -94,6 +94,9 @@ export type Common = {
         faq: {
             title: string;
         };
+        resources: {
+            title: string;
+        };
         about: {
             title: string;
         };

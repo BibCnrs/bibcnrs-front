@@ -75,3 +75,14 @@ export type DatabaseEntryDataType = {
 };
 
 export type DatabaseDataType = DatabaseEntryDataType[];
+
+export type ResourceDataType = {
+    id: number;
+    name_fr: string;
+    name_en: string;
+    href: string;
+    community: string;
+    enable: boolean;
+};
+
+export type ResourcesDataType = ResourceDataType[];

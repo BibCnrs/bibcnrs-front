@@ -4,6 +4,7 @@ export const environment = {
         metadore: '/ebsco/metadore/search',
         cms: '/ebsco/cms',
         database: '/ebsco/databases',
+        resources: '/ebsco/resources',
     },
 };
 

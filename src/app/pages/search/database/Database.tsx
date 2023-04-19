@@ -2,7 +2,7 @@ import './Database.scss';
 import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import PageTitle from '../../../components/utils/PageTitle';
 import { DatabaseDataType, DatabaseEntryDataType } from '../../../shared/types/data.types';
-import { database } from '../../../services/database/Database';
+import { database } from '../../../services/common/Database';
 import { DatabaseDisplayGroupProps } from '../../../shared/types/props.types';
 import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
 import { BibContext } from '../../../components/utils/ContextProvider';

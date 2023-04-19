@@ -1,0 +1,66 @@
+@import "src/app/scss/colors";
+
+#resources {
+    width: fit-content;
+    padding: 10px;
+    margin-left: 5%;
+
+    .resource {
+        padding: 12px;
+        margin: 6px;
+        border-color: rgba(0,0,0,.5);
+        border-style: solid;
+        border-width: 1px;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    }
+
+    .resource-inshs {
+        border-color: rgba($cnrs-inshs, .5);
+        box-shadow: 0 3px 1px -2px rgba($cnrs-inshs, .2), 0 2px 2px 0 rgba($cnrs-inshs, .14), 0 1px 5px 0 rgba($cnrs-inshs, .12);
+    }
+
+    .resource-insb {
+        border-color: rgba($cnrs-insb, .5);
+        box-shadow: 0 3px 1px -2px rgba($cnrs-insb, .2), 0 2px 2px 0 rgba($cnrs-insb, .14), 0 1px 5px 0 rgba($cnrs-insb, .12);
+    }
+
+    .resource-in2p3 {
+        border-color: rgba($cnrs-in2p3, .5);
+        box-shadow: 0 3px 1px -2px rgba($cnrs-in2p3, .2), 0 2px 2px 0 rgba($cnrs-in2p3, .14), 0 1px 5px 0 rgba($cnrs-in2p3, .12);
+    }
+
+    .resource-inee {
+        border-color: rgba($cnrs-inee, .5);
+        box-shadow: 0 3px 1px -2px rgba($cnrs-inee, .2), 0 2px 2px 0 rgba($cnrs-inee, .14), 0 1px 5px 0 rgba($cnrs-inee, .12);
+    }
+
+    .resource-inp {
+        border-color: rgba($cnrs-inp, .5);
+        box-shadow: 0 3px 1px -2px rgba($cnrs-inp, .2), 0 2px 2px 0 rgba($cnrs-inp, .14), 0 1px 5px 0 rgba($cnrs-inp, .12);
+    }
+
+    .resource-insis {
+        border-color: rgba($cnrs-insis, .5);
+        box-shadow: 0 3px 1px -2px rgba($cnrs-insis, .2), 0 2px 2px 0 rgba($cnrs-insis, .14), 0 1px 5px 0 rgba($cnrs-insis, .12);
+    }
+
+    .resource-insu {
+        border-color: rgba($cnrs-insu, .5);
+        box-shadow: 0 3px 1px -2px rgba($cnrs-insu, .2), 0 2px 2px 0 rgba($cnrs-insu, .14), 0 1px 5px 0 rgba($cnrs-insu, .12);
+    }
+
+    .resource-inc {
+        border-color: rgba($cnrs-inc, .5);
+        box-shadow: 0 3px 1px -2px rgba($cnrs-inc, .2), 0 2px 2px 0 rgba($cnrs-inc, .14), 0 1px 5px 0 rgba($cnrs-inc, .12);
+    }
+
+    .resource-ins2i {
+        border-color: rgba($cnrs-ins2i, .5);
+        box-shadow: 0 3px 1px -2px rgba($cnrs-ins2i, .2), 0 2px 2px 0 rgba($cnrs-ins2i, .14), 0 1px 5px 0 rgba($cnrs-ins2i, .12);
+    }
+
+    .resource-insmi {
+        border-color: rgba($cnrs-insmi, .5);
+        box-shadow: 0 3px 1px -2px rgba($cnrs-insmi, .2), 0 2px 2px 0 rgba($cnrs-insmi, .14), 0 1px 5px 0 rgba($cnrs-insmi, .12);
+    }
+}

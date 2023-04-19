@@ -1,7 +1,7 @@
 import { translator } from '../shared/locales/I18N';
 import SearchBar from '../components/searchbar/SearchBar';
 import './Root.scss';
-import { alert, home } from '../services/cms/CMS';
+import { alert, home } from '../services/common/CMS';
 import { CMSResultDataType } from '../shared/types/data.types';
 import RenderContent from '../components/rendercontent/RenderContent';
 import AlertPaper from '../components/paper/alert/AlertPaper';

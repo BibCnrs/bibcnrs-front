@@ -14,6 +14,7 @@ const Routes = {
     researchData: '/research-data',
     faq: '/faq',
     about: '/about',
+    resources: '/resources',
     legal: '/legal',
 } as const;
 
@@ -91,6 +92,8 @@ export const RouteResearchData = Routes.researchData;
  * Export the faq route
  */
 export const RouteFaq = Routes.faq;
+
+export const RouteResources = Routes.resources;
 
 /**
  * Export the about route

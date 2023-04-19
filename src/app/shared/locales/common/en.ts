@@ -61,6 +61,9 @@ Sincerely`,
         root: {
             title: 'Home',
         },
+        resources: {
+            title: 'Resources',
+        },
         about: {
             title: 'About',
         },

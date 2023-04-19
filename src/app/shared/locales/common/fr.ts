@@ -61,6 +61,9 @@ Cordialement`,
         root: {
             title: 'Accueil',
         },
+        resources: {
+            title: 'Ressources',
+        },
         about: {
             title: 'A propos',
         },

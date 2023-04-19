@@ -1,6 +1,6 @@
 import './Faq.scss';
 import { CMSDataType, CMSResultDataType } from '../../../shared/types/data.types';
-import { faq } from '../../../services/cms/CMS';
+import { faq } from '../../../services/common/CMS';
 import PageTitle from '../../../components/utils/PageTitle';
 import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import OpenablePaper from '../../../components/paper/openable/OpenablePaper';
