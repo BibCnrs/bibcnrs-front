@@ -55,11 +55,12 @@ export type PaginationComponentProps = {
 
 export type RenderContentProps = {
     data: CMSResultDataType | undefined;
-    updateDocumentTitle: boolean;
-    displayTitle: boolean;
+    updateDocumentTitle?: boolean;
+    displayTitle?: boolean;
     page: string;
-    showDate: boolean;
+    showDate?: boolean;
     t: TFunction;
+    Container?: ElementType;
 };
 
 export type PageDateProps = {
@@ -84,3 +85,5 @@ export type AnimatedPaperProps = {
     onClick?: () => void;
     sx?: SxProps<Theme>;
 } & HaveReactChildren;
+
+export type AlertPaperProps = HaveReactChildren;

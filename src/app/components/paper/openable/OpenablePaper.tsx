@@ -1,6 +1,6 @@
 import './OpenablePaper.scss';
-import { OpenablePaperProps } from '../../shared/types/props.types';
-import AnimatedPaper from '../animatedpaper/AnimatedPaper';
+import { OpenablePaperProps } from '../../../shared/types/props.types';
+import AnimatedPaper from '../animated/AnimatedPaper';
 import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';

@@ -4,7 +4,7 @@ import PageTitle from '../../../components/utils/PageTitle';
 import { DatabaseDataType, DatabaseEntryDataType } from '../../../shared/types/data.types';
 import { database } from '../../../services/database/Database';
 import { DatabaseDisplayGroupProps } from '../../../shared/types/props.types';
-import AnimatedPaper from '../../../components/animatedpaper/AnimatedPaper';
+import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
 import { BibContext } from '../../../components/utils/ContextProvider';
 import { useQuery } from '@tanstack/react-query';
 import Tooltip from '@mui/material/Tooltip';

@@ -4,6 +4,7 @@ import './Root.scss';
 import { alert, home } from '../services/cms/CMS';
 import { CMSResultDataType } from '../shared/types/data.types';
 import RenderContent from '../components/rendercontent/RenderContent';
+import AlertPaper from '../components/paper/alert/AlertPaper';
 import { useQuery } from '@tanstack/react-query';
 
 const Root = () => {
@@ -37,22 +38,8 @@ const Root = () => {
                 />
             </div>
             <div id="app">
-                <RenderContent
-                    data={alertData}
-                    displayTitle={false}
-                    page="root"
-                    updateDocumentTitle={false}
-                    showDate={false}
-                    t={t}
-                />
-                <RenderContent
-                    data={homeData}
-                    displayTitle={false}
-                    page="root"
-                    updateDocumentTitle={false}
-                    showDate={false}
-                    t={t}
-                />
+                <RenderContent data={alertData} page="root" t={t} Container={AlertPaper} />
+                <RenderContent data={homeData} page="root" t={t} />
             </div>
         </div>
     );

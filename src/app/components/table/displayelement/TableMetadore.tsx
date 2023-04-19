@@ -2,7 +2,7 @@ import './TableMetadore.scss';
 import { TableDisplayElementProps } from '../../../shared/types/props.types';
 import { MetadoreResultDescriptionType, MetadoreResultTitleType } from '../../../shared/types/data.types';
 import { getLanguageKey, translator } from '../../../shared/locales/I18N';
-import OpenablePaper from '../../openablepaper/OpenablePaper';
+import OpenablePaper from '../../paper/openable/OpenablePaper';
 
 /**
  * Function use to get the translated title if available

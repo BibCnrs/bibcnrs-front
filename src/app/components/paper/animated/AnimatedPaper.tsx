@@ -1,4 +1,4 @@
-import { AnimatedPaperProps } from '../../shared/types/props.types';
+import { AnimatedPaperProps } from '../../../shared/types/props.types';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
 

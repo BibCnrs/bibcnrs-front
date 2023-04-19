@@ -12,17 +12,31 @@ import PageDate from '../utils/PageDate';
  * @param page
  * @param t
  * @param showDate
+ * @param Container
  */
-const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, showDate, t }: RenderContentProps) => {
+const RenderContent = ({
+    data,
+    updateDocumentTitle = false,
+    displayTitle = false,
+    page,
+    showDate = false,
+    t,
+    Container,
+}: RenderContentProps) => {
     // Return an empty page when data is empty,
     // this empty page contains only the page title.
     if (!data || data.length < 1) {
-        return (
+        const children = (
             <>
                 {updateDocumentTitle ? <PageTitle page={page} t={t} /> : <PageTitle />}
                 {displayTitle ? <h1>{t(`pages.${page}.title`)}</h1> : <></>}
             </>
         );
+        if (Container) {
+            return <Container>{children}</Container>;
+        }
+
+        return children;
     }
 
     // Get the page content in French
@@ -38,7 +52,7 @@ const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, showDate
         content.text = data[0].content_en;
     }
 
-    return (
+    const children = (
         <>
             {updateDocumentTitle ? <PageTitle customTitle={true} page={content.title} /> : <PageTitle />}
             {displayTitle ? <h1>{content.title}</h1> : <></>}
@@ -46,6 +60,12 @@ const RenderContent = ({ data, updateDocumentTitle, displayTitle, page, showDate
             {showDate ? <PageDate date={content.date} /> : <></>}
         </>
     );
+
+    if (Container) {
+        return <Container>{children}</Container>;
+    }
+
+    return children;
 };
 
 export default RenderContent;
