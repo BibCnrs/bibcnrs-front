@@ -2,12 +2,8 @@ version: "3.5"
 
 services:
   bibcnrs-front:
-    container_name: bibcnrs-front
     image: vxnexus-registry.intra.inist.fr:8083/bibcnrs/bibcnrs-front:${BIBFRONT_VERSION}
-    build:
-      context: .
-      args:
-        VITE_BIBAPI_HOST: ${BIBAPI_HOST}
+    container_name: bibcnrs-front
     ports:
       - "8080:8080"
     networks:

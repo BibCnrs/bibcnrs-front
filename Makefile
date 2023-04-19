@@ -11,25 +11,31 @@ endif
 install:
 	npm install
 
-run-dev:
+npm-run-dev:
 	npm run dev
 
-build:
+npm-build:
 	npm run build
 
 preview:
 	npm run preview
 
-docker-build:
-	docker compose -f docker-compose.yml build
+build:
+	docker compose -f docker-compose.yml build --no-cache --build-arg BIBFRONT_VERSION --build-arg BIBAPI_HOST
 
-docker-up:
+run-prod:
+	docker compose -f docker-compose-prod.yml up -d
+
+run-dev:
 	docker compose -f docker-compose.yml up -d
 
-docker-start: docker-build docker-up
+stop: ## stop all bibcnrs-front docker image
+	test -z "$$(docker ps | grep bibcnrs-front)" || \
+            docker stop $$(docker ps -a | grep bibcnrs-front | awk '{ print $$1 }')
 
-docker-stop:
-	docker compose -f docker-compose.yml down --rmi all
+cleanup-docker: ## remove all bibcnrs-front docker image
+	test -z "$$(docker ps -a | grep bibcnrs-front)" || \
+            docker rm --force $$(docker ps -a | grep bibcnrs-front | awk '{ print $$1 }')
 
 readme-tree:
 	tree -d -n src > tree.txt
