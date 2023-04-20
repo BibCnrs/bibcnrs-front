@@ -20,7 +20,7 @@ const DisplayResources = ({ data }: { data: ResourcesDataType | undefined }) => 
                     key={resource.id}
                     className={`resource resource-${resource.community.toLowerCase()}`}
                 >
-                    <a href={resource.href} rel="nofollow noreferrer noopener">
+                    <a className="link" href={resource.href} rel="nofollow noreferrer noopener">
                         {language === 'en' ? resource.name_en : resource.name_fr}
                     </a>
                 </Paper>
