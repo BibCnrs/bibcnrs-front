@@ -20,6 +20,23 @@ const en: Common = {
                 notifications: 'My Alerts',
             },
         },
+        authentication: {
+            title: 'Identify yourself',
+            info: 'This resource or service is reserved for CNRS rights holders. Please sign in.',
+            mode: 'Please select your signing-in mode:',
+            janus: {
+                button: 'Via Janus identity manager',
+                tooltip: 'Personal account for all CNRS services Agate, Simbad ...',
+                ask: 'request a janus account',
+            },
+            legacy: {
+                button: 'Via your old portal access code',
+                username: 'username',
+                password: 'password',
+                login: 'Connection',
+            },
+            contact: 'contact us',
+        },
         nav: {
             article: 'Article',
             database: 'Database',

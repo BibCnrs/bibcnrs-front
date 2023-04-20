@@ -29,6 +29,10 @@ const colors = {
             light: '#fff',
         },
     },
+    button: {
+        dark: '#00284b',
+        light: '#0050a0',
+    },
     cnrs: {
         primary: {
             dark: '#00284b',
@@ -54,6 +58,7 @@ const updateTheme = (theme: ThemeType) => {
     style.setProperty('--link', theme === 'light' ? colors.cnrs.secondary.blue : colors.cnrs.primary.light);
     style.setProperty('--nav-button-active', theme === 'light' ? colors.nav.active.light : colors.nav.active.dark);
     style.setProperty('--nav-button-hover', theme === 'light' ? colors.nav.hover.light : colors.nav.hover.dark);
+    style.setProperty('--button-background', theme === 'light' ? colors.button.light : colors.button.dark);
 };
 
 /**

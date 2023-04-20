@@ -3,6 +3,7 @@ import { CMSResultDataType, DatabaseDataType, MetadoreResultType } from './data.
 import { Dispatch, ElementType, Key, ReactElement, ReactNode, SetStateAction } from 'react';
 import { SxProps } from '@mui/system/styleFunctionSx/styleFunctionSx';
 import { Theme } from '@mui/material/styles/createTheme';
+import * as buffer from 'buffer';
 
 type HaveReactChildren = {
     children: ReactNode;
@@ -87,3 +88,8 @@ export type AnimatedPaperProps = {
 } & HaveReactChildren;
 
 export type AlertPaperProps = HaveReactChildren;
+
+export type AuthenticationProps = {
+    open: boolean;
+    onClose: () => void;
+};

@@ -10,7 +10,12 @@ import { Link, LinkProps } from 'react-router-dom';
  */
 const CustomLink = ({ children, to, ...props }: LinkProps) => {
     return (
-        <Link className="link" style={{ textDecoration: isMatching(to) ? 'underline' : 'none' }} to={to} {...props}>
+        <Link
+            className="custom-link"
+            style={{ textDecoration: isMatching(to) ? 'underline' : 'none' }}
+            to={to}
+            {...props}
+        >
             {children}
         </Link>
     );

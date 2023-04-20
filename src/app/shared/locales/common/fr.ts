@@ -20,6 +20,23 @@ const fr: Common = {
                 notifications: 'Mes Alertes',
             },
         },
+        authentication: {
+            title: 'Identifiez-vous',
+            info: "La ressource ou le service souhaité est réservé aux ayants droit du CNRS. Pour y accéder il est nécessaire de s'identifier.",
+            mode: 'Veuillez sélectionner votre mode de connexion :',
+            janus: {
+                button: "Via le gestionnaire d'identité janus",
+                tooltip: "Compte personnel pour l'ensemble des services du CNRS : Agate, Simbad...",
+                ask: 'demander un compte janus',
+            },
+            legacy: {
+                button: "Via votre ancien code d'accès portail",
+                username: 'indentifiant',
+                password: 'mot de passe',
+                login: 'Connexion',
+            },
+            contact: 'nous contacter',
+        },
         nav: {
             article: 'Article',
             database: 'Base de données',

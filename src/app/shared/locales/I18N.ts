@@ -33,6 +33,23 @@ export type Common = {
                 notifications: string;
             };
         };
+        authentication: {
+            title: string;
+            info: string;
+            mode: string;
+            janus: {
+                button: string;
+                tooltip: string;
+                ask: string;
+            };
+            legacy: {
+                button: string;
+                username: string;
+                password: string;
+                login: string;
+            };
+            contact: string;
+        };
         nav: {
             article: string;
             journal: string;
