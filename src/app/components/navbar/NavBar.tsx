@@ -9,7 +9,7 @@ import {
     isMatching,
 } from '../../shared/Routes';
 import { translator } from '../../shared/locales/I18N';
-import { BibContext } from '../utils/ContextProvider';
+import { BibContext } from '../provider/ContextProvider';
 import Button from '@mui/material/Button';
 import { useContext } from 'react';
 

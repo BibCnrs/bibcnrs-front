@@ -1,7 +1,7 @@
 import './index.scss';
 import I18N from './app/shared/locales/I18N';
-import LocalizedThemeProvider from './app/components/utils/LocalizedThemeProvider';
-import ContextProvider from './app/components/utils/ContextProvider';
+import LocalizedThemeProvider from './app/components/provider/LocalizedThemeProvider';
+import ContextProvider from './app/components/provider/ContextProvider';
 import App from './app/App';
 import ExceptedError from './app/pages/errors/ExceptedError';
 import { BrowserRouter } from 'react-router-dom';

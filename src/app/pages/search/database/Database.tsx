@@ -5,7 +5,7 @@ import { DatabaseDataType, DatabaseEntryDataType } from '../../../shared/types/d
 import { database } from '../../../services/common/Database';
 import { DatabaseDisplayGroupProps } from '../../../shared/types/props.types';
 import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
-import { BibContext } from '../../../components/utils/ContextProvider';
+import { BibContext } from '../../../components/provider/ContextProvider';
 import { useQuery } from '@tanstack/react-query';
 import Tooltip from '@mui/material/Tooltip';
 import { useContext } from 'react';

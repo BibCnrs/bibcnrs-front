@@ -8,7 +8,7 @@ import { translator } from '../../shared/locales/I18N';
 import ThemeButton from './element/ThemeButton';
 import UserButton from './element/UserButton';
 import { useContext } from 'react';
-import { BibContext } from '../utils/ContextProvider';
+import { BibContext } from '../provider/ContextProvider';
 import NewsButton from './element/NewsButton';
 import TestsButton from './element/TestsButton';
 import LicencesButton from './element/LicencesButton';

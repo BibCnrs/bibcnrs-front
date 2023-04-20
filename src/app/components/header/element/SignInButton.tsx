@@ -1,4 +1,4 @@
-import { BibContext } from '../../utils/ContextProvider';
+import { BibContext } from '../../provider/ContextProvider';
 import { translator } from '../../../shared/locales/I18N';
 import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
