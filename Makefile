@@ -11,6 +11,9 @@ endif
 install:
 	npm install
 
+git-pull:
+	git pull
+
 npm-run-dev:
 	npm run dev
 
@@ -36,6 +39,12 @@ stop: ## stop all bibcnrs-front docker image
 cleanup-docker: ## remove all bibcnrs-front docker image
 	test -z "$$(docker ps -a | grep bibcnrs-front)" || \
             docker rm --force $$(docker ps -a | grep bibcnrs-front | awk '{ print $$1 }')
+
+build-start-prod: build run-prod
+
+stop-build-start-prod: stop cleanup-docker build-start-prod
+
+update-stop-build-start-prod: git-pull stop-build-start-prod
 
 readme-tree:
 	tree -d -n src > tree.txt
