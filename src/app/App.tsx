@@ -22,9 +22,18 @@ import Error404 from './pages/errors/Error404';
 import Footer from './components/footer/Footer';
 import Faq from './pages/common/faq/Faq';
 import Resources from './pages/common/resources/Resources';
+import { initSession } from './services/user/session';
+import { BibContext } from './components/provider/ContextProvider';
 import { Route, Routes } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
 
 const App = () => {
+    const { setLogin } = useContext(BibContext);
+    useEffect(() => {
+        initSession().then((login) => {
+            setLogin(login);
+        });
+    }, []);
     return (
         <>
             <div className="header-footer">

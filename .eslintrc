@@ -32,7 +32,7 @@
                 "ignoreRestSiblings": true
             }
         ],
-        "no-console": "error",
+        "no-console": "warn",
         "linebreak-style": [
             "error",
             "unix"

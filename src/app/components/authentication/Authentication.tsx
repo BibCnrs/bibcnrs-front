@@ -1,6 +1,7 @@
 import './Authentication.scss';
 import { translator } from '../../shared/locales/I18N';
 import { AuthenticationProps } from '../../shared/types/props.types';
+import { loginToJanus } from '../../services/user/session';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -64,7 +65,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
                                 placement="top"
                                 arrow
                             >
-                                <Button className="authentication-button">
+                                <Button className="authentication-button" onClick={loginToJanus}>
                                     <LoginIcon className="authentication-button-icon" />
                                     {t('components.authentication.janus.button')}
                                 </Button>

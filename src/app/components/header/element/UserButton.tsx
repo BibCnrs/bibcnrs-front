@@ -1,5 +1,6 @@
 import { BibContext } from '../../provider/ContextProvider';
 import { translator } from '../../../shared/locales/I18N';
+import { getUsername, logout } from '../../../services/user/session';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -13,6 +14,10 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const UserButton = () => {
     const t = translator();
+    let username = getUsername();
+    if (username === null) {
+        username = 'null';
+    }
 
     // Anchor use to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -43,7 +48,7 @@ const UserButton = () => {
                 onClick={handleClick}
                 className="header-button-icon"
             >
-                <Avatar>P</Avatar>
+                <Avatar>{username.slice(0, 1)}</Avatar>
             </button>
             <Menu
                 id="basic-menu"
@@ -58,7 +63,7 @@ const UserButton = () => {
                     <ListItemIcon>
                         <Avatar sx={{ width: 24, height: 24 }} />
                     </ListItemIcon>
-                    Place Holder
+                    {username}
                 </MenuItem>
                 <Divider />
                 <MenuItem>
@@ -83,7 +88,9 @@ const UserButton = () => {
                 <MenuItem
                     onClick={() =>
                         handleClose(() => {
-                            setLogin(false);
+                            logout().then(() => {
+                                setLogin(false);
+                            });
                         })
                     }
                 >

@@ -5,6 +5,15 @@ export const environment = {
         cms: '/ebsco/cms',
         database: '/ebsco/databases',
         resources: '/ebsco/resources',
+        account: {
+            janus: '/ebsco/login_renater',
+        },
+    },
+    post: {
+        account: {
+            user: '/ebsco/getLogin',
+            logout: '/ebsco/logout',
+        },
     },
 };
 

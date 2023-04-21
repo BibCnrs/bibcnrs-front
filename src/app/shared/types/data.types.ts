@@ -86,3 +86,14 @@ export type ResourceDataType = {
 };
 
 export type ResourcesDataType = ResourceDataType[];
+
+export type SessionUserDataType = {
+    id: number;
+    username: string;
+    domains: any[]; // TODO add type
+    favorite_domain: string;
+    favouriteResources: any[]; // TODO add type
+    origin: string;
+    token: string;
+    fetch: false;
+};
