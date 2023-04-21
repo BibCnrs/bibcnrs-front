@@ -19,6 +19,7 @@
 .env.production.local
 .idea
 .vscode
+.stylelintcache
 
 npm-debug.log*
 yarn-debug.log*
