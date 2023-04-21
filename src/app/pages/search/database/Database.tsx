@@ -64,7 +64,11 @@ const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupPr
                                 <div className="database-entry-content-inner" style={getImage(entry)}>
                                     <span className="database-entry-text">{getName(entry, language)}</span>
                                     {entry.oa ? (
-                                        <img className="database-entry-oa" src="/icons/oa.png" alt="Open access icon" />
+                                        <img
+                                            className="database-entry-oa"
+                                            src="/icons/open_access.svg"
+                                            alt="Open access icon"
+                                        />
                                     ) : null}
                                 </div>
                             </AnimatedPaper>
