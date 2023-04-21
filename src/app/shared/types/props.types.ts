@@ -1,45 +1,42 @@
 import { TFunction } from './types';
 import { CMSResultDataType, DatabaseDataType, MetadoreResultType } from './data.types';
-import { Dispatch, ElementType, Key, ReactElement, ReactNode, SetStateAction } from 'react';
+import { Dispatch, ElementType, Key, PropsWithChildren, PropsWithoutRef, ReactElement, SetStateAction } from 'react';
 import { SxProps } from '@mui/system/styleFunctionSx/styleFunctionSx';
 import { Theme } from '@mui/material/styles/createTheme';
-import * as buffer from 'buffer';
 
-type HaveReactChildren = {
-    children: ReactNode;
-};
+type HaveReactChildren = PropsWithChildren;
 
-export type SearchBarProps = {
+export type SearchBarProps = PropsWithoutRef<{
     placeholder: string;
     value?: string | null;
     onSearch: (value: string) => void;
-};
+}>;
 
-export type PageTitleProps = {
+export type PageTitleProps = PropsWithoutRef<{
     customTitle?: boolean;
     page?: string;
     t?: TFunction;
-};
+}>;
 
-export type TableDisplayElementProps = {
+export type TableDisplayElementProps = PropsWithoutRef<{
     key: Key;
     data: MetadoreResultType;
-};
+}>;
 
-export type TableArgsProps = {
+export type TableArgsProps = PropsWithoutRef<{
     value?: string;
     page?: number;
     perPage?: number;
     field: string | null;
-};
+}>;
 
-export type TableProps = {
+export type TableProps = PropsWithoutRef<{
     DisplayElement: ElementType<TableDisplayElementProps>;
     results?: any[];
     total?: number;
     args: TableArgsProps;
     setArgs: Dispatch<SetStateAction<TableArgsProps>>;
-};
+}>;
 
 export type LocalizedThemeProviderProps = HaveReactChildren;
 
@@ -47,14 +44,14 @@ export type ExceptedErrorProps = HaveReactChildren;
 
 export type ContextProviderProps = HaveReactChildren;
 
-export type PaginationComponentProps = {
+export type PaginationComponentProps = PropsWithoutRef<{
     total: number;
     resultsPerPage?: number;
     currentPage?: number;
     onChange: (currentPage: number, resultParPage: number) => void;
-};
+}>;
 
-export type RenderContentProps = {
+export type RenderContentProps = PropsWithoutRef<{
     data: CMSResultDataType | undefined;
     updateDocumentTitle?: boolean;
     displayTitle?: boolean;
@@ -62,34 +59,34 @@ export type RenderContentProps = {
     showDate?: boolean;
     t: TFunction;
     Container?: ElementType;
-};
+}>;
 
-export type PageDateProps = {
+export type PageDateProps = PropsWithoutRef<{
     date: string;
-};
+}>;
 
-export type OpenablePaperProps = {
+export type OpenablePaperProps = PropsWithoutRef<{
     Title: ReactElement | null;
     SmallBody: ReactElement | null;
     FullBody: ReactElement | null;
     small?: boolean;
-};
+}>;
 
-export type DatabaseDisplayGroupProps = {
+export type DatabaseDisplayGroupProps = PropsWithoutRef<{
     letter: string;
     data: DatabaseDataType;
     language: string;
-};
+}>;
 
-export type AnimatedPaperProps = {
+export type AnimatedPaperProps = PropsWithChildren<{
     className?: string;
     onClick?: () => void;
     sx?: SxProps<Theme>;
-} & HaveReactChildren;
+}>;
 
 export type AlertPaperProps = HaveReactChildren;
 
-export type AuthenticationProps = {
+export type AuthenticationProps = PropsWithoutRef<{
     open: boolean;
     onClose: () => void;
-};
+}>;

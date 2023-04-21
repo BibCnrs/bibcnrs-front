@@ -20,5 +20,5 @@ export const search = async (
             currentPage: currentPage,
         }),
     );
-    return await response.json();
+    return response.json();
 };

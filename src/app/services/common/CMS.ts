@@ -13,7 +13,7 @@ const doQuery = async <Page extends Pages>(page: Page, first = true): Promise<CM
               page,
           });
     const response: Response = await fetch(query);
-    return await response.json();
+    return response.json();
 };
 
 export const alert = (): Promise<CMSResultDataType> => doQuery('alert');

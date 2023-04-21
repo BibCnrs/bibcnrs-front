@@ -1,10 +1,5 @@
 .loading {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     margin: 20px 50px;
-
-    div {
-        margin-right: auto;
-        margin-left: auto;
-    }
 }

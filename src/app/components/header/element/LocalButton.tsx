@@ -1,4 +1,5 @@
 import { getFullTranslator, supportedLanguages } from '../../../shared/locales/I18N';
+import { SupportedLanguageKeys } from '../../../shared/types/types';
 import TranslateIcon from '@mui/icons-material/Translate';
 import CheckIcon from '@mui/icons-material/Check';
 import Button from '@mui/material/Button';
@@ -24,8 +25,8 @@ const LocalButton = () => {
     };
 
     // Change lang if a language was chosen and close the drop-down menu
-    const handleClose = (key: 'fr' | 'en') => {
-        if (key === 'fr' || key === 'en') {
+    const handleClose = (key: SupportedLanguageKeys) => {
+        if (supportedLanguages.find((value) => value.key === key)) {
             i18n.changeLanguage(key).then();
         }
         setAnchorEl(null);

@@ -8,5 +8,5 @@ export const autoComplete = async (value: string): Promise<AutoCompleteDataType>
             q: value,
         }),
     );
-    return await response.json();
+    return response.json();
 };

@@ -32,6 +32,6 @@ export default class PageTitle extends Component<PageTitleProps> {
      * Render an empty component
      */
     render() {
-        return <></>;
+        return null;
     }
 }

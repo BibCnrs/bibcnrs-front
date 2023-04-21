@@ -2,7 +2,7 @@
 
 .pagination {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     margin-bottom: 25px;
 
     .current-page {

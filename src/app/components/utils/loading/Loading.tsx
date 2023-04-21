@@ -8,9 +8,7 @@ import Box from '@mui/material/Box';
 const Loading = () => {
     return (
         <Box className="loading">
-            <div></div>
             <CircularProgress />
-            <div></div>
         </Box>
     );
 };

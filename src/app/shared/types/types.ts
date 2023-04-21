@@ -7,8 +7,10 @@ type FallbackOrNS<F, T = keyof Resources> = [T] extends [never] ? F : T;
 
 export type TFunction = TF<FallbackOrNS<string>[]>;
 
+export type SupportedLanguageKeys = 'en' | 'fr';
+
 export type SupportedLanguage = {
-    key: 'en' | 'fr';
+    key: SupportedLanguageKeys;
     label: string;
 };
 

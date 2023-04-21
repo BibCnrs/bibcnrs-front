@@ -24,8 +24,8 @@ const Footer = () => {
                     <a
                         id="contact-mailto"
                         href={`mailto:assistance-portail@inist.fr?subject=${encodeURIComponent(
-                            t('components.footer.mail.subject') as string,
-                        )}&body=${encodeURIComponent(t('components.footer.mail.body') as string)}`}
+                            t('components.footer.mail.subject').toString(),
+                        )}&body=${encodeURIComponent(t('components.footer.mail.body').toString())}`}
                     >
                         {t('components.footer.contact')}
                     </a>

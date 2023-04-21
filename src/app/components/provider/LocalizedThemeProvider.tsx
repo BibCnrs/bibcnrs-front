@@ -7,7 +7,7 @@ import createTheme from '@mui/material/styles/createTheme';
 import { frFR } from '@mui/material/locale';
 import { enUS } from '@mui/material/locale';
 import createPalette from '@mui/material/styles/createPalette';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 
 const colors = {
     white: '#fff',
@@ -49,16 +49,16 @@ const colors = {
 
 const updateTheme = (theme: ThemeType) => {
     const style = document.documentElement.style;
-    style.setProperty('--text', theme === 'light' ? colors.text.light : colors.text.dark);
-    style.setProperty('--background', theme === 'light' ? colors.background.light : colors.background.dark);
+    style.setProperty('--text', colors.text[theme]);
+    style.setProperty('--background', colors.background[theme]);
     style.setProperty(
         '--background-nav',
         theme === 'light' ? colors.cnrs.secondary.darkBlue : colors.cnrs.primary.dark,
     );
     style.setProperty('--link', theme === 'light' ? colors.cnrs.secondary.blue : colors.cnrs.primary.light);
-    style.setProperty('--nav-button-active', theme === 'light' ? colors.nav.active.light : colors.nav.active.dark);
-    style.setProperty('--nav-button-hover', theme === 'light' ? colors.nav.hover.light : colors.nav.hover.dark);
-    style.setProperty('--button-background', theme === 'light' ? colors.button.light : colors.button.dark);
+    style.setProperty('--nav-button-active', colors.nav.active[theme]);
+    style.setProperty('--nav-button-hover', colors.nav.hover[theme]);
+    style.setProperty('--button-background', colors.button[theme]);
 };
 
 /**
@@ -70,7 +70,6 @@ const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
     // Get the language key and use it to get the material ui language pack
     const language = getLanguageKey();
     const { theme } = useContext(BibContext);
-    const [startup, setStartup] = useState(true);
     const getLocal = () => {
         if (language === 'en') {
             return enUS;
@@ -106,13 +105,6 @@ const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
         },
         getLocal(),
     );
-
-    useEffect(() => {
-        if (startup) {
-            setStartup(false);
-            updateTheme(theme);
-        }
-    });
 
     useEffect(() => {
         updateTheme(theme);

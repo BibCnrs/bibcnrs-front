@@ -12,9 +12,7 @@ import { FormControl } from '@mui/material';
  * @see PaginationComponentProps
  * @see Table
  */
-const PaginationComponent = (props: PaginationComponentProps) => {
-    const { total, resultsPerPage, currentPage, onChange } = props;
-
+const PaginationComponent = ({ total, resultsPerPage, currentPage, onChange }: PaginationComponentProps) => {
     // Set the default values if the current page and the number of results per page is not initialized
     const page = currentPage ? currentPage : 1;
     const perPage = resultsPerPage ? resultsPerPage : 25;
