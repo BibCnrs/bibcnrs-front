@@ -24,7 +24,7 @@ preview:
 	npm run preview
 
 build:
-	docker compose -f docker-compose.yml build --no-cache --build-arg BIBFRONT_VERSION --build-arg BIBAPI_HOST
+	docker compose -f docker-compose.yml build --build-arg BIBFRONT_VERSION --build-arg BIBAPI_HOST
 
 run-prod:
 	docker compose -f docker-compose-prod.yml up -d
