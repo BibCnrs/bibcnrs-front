@@ -120,6 +120,11 @@ Cordialement`,
         faq: {
             title: 'FAQ',
         },
+        licences: {
+            title: 'Licences',
+            empty: "Aucune licences n'a étais trouvé.",
+            pdf: 'Lien PDF :',
+        },
     },
     error: {
         '404': {

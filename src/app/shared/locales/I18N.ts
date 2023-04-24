@@ -110,6 +110,11 @@ export type Common = {
                 };
             };
         };
+        licences: {
+            title: string;
+            empty: string;
+            pdf: string;
+        };
         faq: {
             title: string;
         };

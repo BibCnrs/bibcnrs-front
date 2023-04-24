@@ -25,9 +25,10 @@ import Error404 from './pages/errors/Error404';
 import Footer from './components/footer/Footer';
 import Faq from './pages/common/faq/Faq';
 import Resources from './pages/common/resources/Resources';
-import { initSession } from './services/user/session';
+import { initSession } from './services/user/Session';
 import { BibContext } from './components/provider/ContextProvider';
 import ProtectedRoute from './components/protectedroute/ProtectedRoute';
+import Licences from './pages/user/licences/Licences';
 import { Route, Routes } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 
@@ -56,7 +57,14 @@ const App = () => {
                     <Route path={RouteFaq} element={<Faq />} />
                     <Route path={RouteResources} element={<Resources />} />
                     {/* Protected route */}
-                    <Route path={RouteLicences} element={<ProtectedRoute>Licences</ProtectedRoute>} />
+                    <Route
+                        path={RouteLicences}
+                        element={
+                            <ProtectedRoute>
+                                <Licences />
+                            </ProtectedRoute>
+                        }
+                    />
                     <Route path={RouteTests} element={<ProtectedRoute>Tests</ProtectedRoute>} />
                     <Route path={RouteNews} element={<ProtectedRoute>News</ProtectedRoute>} />
                     {/* Footer route */}

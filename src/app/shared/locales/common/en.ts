@@ -119,6 +119,11 @@ Sincerely`,
         faq: {
             title: 'Q&A',
         },
+        licences: {
+            title: 'Licences',
+            empty: 'No licences was founds.',
+            pdf: 'PDF link:',
+        },
     },
     error: {
         '404': {

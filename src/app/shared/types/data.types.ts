@@ -90,7 +90,7 @@ export type ResourcesDataType = ResourceDataType[];
 export type SessionUserDataType = {
     id?: number;
     username: string;
-    domains?: any[]; // TODO add type
+    domains: any[]; // TODO add type
     favorite_domain?: string;
     favouriteResources?: any[]; // TODO add type
     origin?: string;
@@ -98,3 +98,31 @@ export type SessionUserDataType = {
     fetch: false;
     legacy: boolean;
 };
+
+export type CommunityDataType = {
+    id: number;
+    name: string;
+};
+
+export type LicenceCommunityDataType = {
+    license: number;
+    community_id: number;
+    community: CommunityDataType[];
+};
+
+export type LicenceDataType = {
+    id: number;
+    name_fr: string;
+    name_en: string;
+    content_fr: string;
+    content_en: string;
+    pdf?: {
+        src: string;
+        title: string;
+    };
+    enable: boolean;
+    common: boolean;
+    license_community: LicenceCommunityDataType[];
+};
+
+export type LicencesDataType = LicenceDataType[];

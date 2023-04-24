@@ -1,6 +1,6 @@
 import { BibContext } from '../../provider/ContextProvider';
 import { translator } from '../../../shared/locales/I18N';
-import { getUsername, isLegacy, logout } from '../../../services/user/session';
+import { getUsername, isLegacy, logout } from '../../../services/user/Session';
 import { colors } from '../../provider/LocalizedThemeProvider';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';

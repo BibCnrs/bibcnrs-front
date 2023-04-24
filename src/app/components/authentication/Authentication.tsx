@@ -1,7 +1,7 @@
 import './Authentication.scss';
 import { translator } from '../../shared/locales/I18N';
 import { AuthenticationProps } from '../../shared/types/props.types';
-import { loginToJanus, loginToLegacy } from '../../services/user/session';
+import { loginToJanus, loginToLegacy } from '../../services/user/Session';
 import { BibContext } from '../provider/ContextProvider';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';

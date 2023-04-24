@@ -1,0 +1,38 @@
+@import "src/app/scss/colors";
+@import "src/app/scss/link";
+
+#licences {
+    display: flex;
+
+    #licences-nav {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        height: fit-content;
+        margin-right: 40px;
+        border-color: $background-nav;
+        border-style: solid;
+        border-width: 2px;
+
+        .licences-button {
+            padding: 20px 40px;
+            font-weight: 600;
+            color: $text;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .licences-button:hover,
+        #licences-button-active {
+            color: $white;
+            background-color: $background-nav;
+        }
+    }
+
+    #licences-content {
+        h1 {
+            margin-top: 0;
+            color: $link;
+        }
+    }
+}
