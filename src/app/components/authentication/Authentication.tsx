@@ -30,10 +30,16 @@ const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
 const Authentication = ({ open, onClose }: AuthenticationProps) => {
     const t = translator();
     const [legacy, setLegacy] = useState(false);
+    const [legacyError, setLegacyError] = useState(false);
     const { setLogin } = useContext(BibContext);
     const handleClose = () => {
         setLegacy(false);
+        setLegacyError(false);
         onClose();
+    };
+    const displayLegacy = () => {
+        setLegacy(!legacy);
+        setLegacyError(false);
     };
     const handleLegacy = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -45,8 +51,10 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
         loginToLegacy(data).then((login) => {
             if (login) {
                 setLogin(true);
+                setLegacyError(false);
                 return;
             }
+            setLegacyError(true);
         });
     };
     return (
@@ -99,7 +107,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
                             <Button
                                 id="authentication-legacy-button"
                                 className="authentication-button"
-                                onClick={() => setLegacy(!legacy)}
+                                onClick={displayLegacy}
                                 style={
                                     legacy
                                         ? {
@@ -118,6 +126,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
                                         <form id="authentication-legacy" onSubmit={handleLegacy}>
                                             <TextField
                                                 name="username"
+                                                error={legacyError}
                                                 className="authentication-legacy-form-input"
                                                 label={t('components.authentication.legacy.username')}
                                                 size="small"
@@ -125,9 +134,15 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
                                             <TextField
                                                 name="password"
                                                 type="password"
+                                                error={legacyError}
                                                 className="authentication-legacy-form-input"
                                                 label={t('components.authentication.legacy.password')}
                                                 size="small"
+                                                helperText={
+                                                    legacyError
+                                                        ? t('components.authentication.legacy.error')
+                                                        : undefined
+                                                }
                                             />
                                             <Button
                                                 type="submit"

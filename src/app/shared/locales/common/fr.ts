@@ -34,6 +34,7 @@ const fr: Common = {
                 username: 'indentifiant',
                 password: 'mot de passe',
                 login: 'Connexion',
+                error: "L'identifiant/mot de passe saisi n'a pas permis de vous connecter au portail.",
             },
             contact: 'nous contacter',
         },

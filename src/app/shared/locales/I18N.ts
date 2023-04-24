@@ -47,6 +47,7 @@ export type Common = {
                 username: string;
                 password: string;
                 login: string;
+                error: string;
             };
             contact: string;
         };

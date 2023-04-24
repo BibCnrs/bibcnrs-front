@@ -87,18 +87,22 @@ export const loginToLegacy = async (form: any): Promise<boolean> => {
         return false;
     }
 
-    const user = {
-        ...(await response.json()),
-        fetch: false,
-        legacy: true,
-    };
+    try {
+        const user = {
+            ...(await response.json()),
+            fetch: false,
+            legacy: true,
+        };
 
-    // If response return an error, abort login
-    if (user.error) {
+        // If response return an error, abort login
+        if (user.error) {
+            return false;
+        }
+
+        session.update(user);
+    } catch (e) {
         return false;
     }
-
-    session.update(user);
 
     return true;
 };
@@ -140,18 +144,22 @@ export const initSession = async (): Promise<boolean> => {
         return false;
     }
 
-    const user = {
-        ...(await response.json()),
-        fetch: false,
-        legacy: false,
-    };
+    try {
+        const user = {
+            ...(await response.json()),
+            fetch: false,
+            legacy: false,
+        };
 
-    // If response return an error, abort login
-    if (user.error) {
+        // If response return an error, abort login
+        if (user.error) {
+            return false;
+        }
+
+        session.update(user);
+    } catch (e) {
         return false;
     }
-
-    session.update(user);
 
     return true;
 };

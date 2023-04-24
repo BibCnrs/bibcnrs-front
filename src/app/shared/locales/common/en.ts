@@ -34,6 +34,7 @@ const en: Common = {
                 username: 'username',
                 password: 'password',
                 login: 'Connection',
+                error: 'The username/password entered did not allow you to connect to the portal.',
             },
             contact: 'contact us',
         },
