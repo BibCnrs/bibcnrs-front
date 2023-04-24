@@ -11,6 +11,7 @@ export const environment = {
     },
     post: {
         account: {
+            legacy: '/ebsco/login',
             user: '/ebsco/getLogin',
             logout: '/ebsco/logout',
         },

@@ -1,7 +1,8 @@
 import './Authentication.scss';
 import { translator } from '../../shared/locales/I18N';
 import { AuthenticationProps } from '../../shared/types/props.types';
-import { loginToJanus } from '../../services/user/session';
+import { loginToJanus, loginToLegacy } from '../../services/user/session';
+import { BibContext } from '../provider/ContextProvider';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -15,7 +16,7 @@ import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import styled from '@mui/material/styles/styled';
 import TextField from '@mui/material/TextField';
 import Collapse from '@mui/material/Collapse';
-import { useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -29,9 +30,24 @@ const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
 const Authentication = ({ open, onClose }: AuthenticationProps) => {
     const t = translator();
     const [legacy, setLegacy] = useState(false);
+    const { setLogin } = useContext(BibContext);
     const handleClose = () => {
         setLegacy(false);
         onClose();
+    };
+    const handleLegacy = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const form = new FormData(event.currentTarget);
+        const data: Record<string, FormDataEntryValue> = {};
+        form.forEach((value, key) => {
+            data[key] = value;
+        });
+        loginToLegacy(data).then((login) => {
+            if (login) {
+                setLogin(true);
+                return;
+            }
+        });
     };
     return (
         <Modal
@@ -99,21 +115,27 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
                             <TransitionGroup>
                                 {legacy ? (
                                     <Collapse>
-                                        <div id="authentication-legacy">
+                                        <form id="authentication-legacy" onSubmit={handleLegacy}>
                                             <TextField
+                                                name="username"
                                                 className="authentication-legacy-form-input"
                                                 label={t('components.authentication.legacy.username')}
                                                 size="small"
                                             />
                                             <TextField
+                                                name="password"
+                                                type="password"
                                                 className="authentication-legacy-form-input"
                                                 label={t('components.authentication.legacy.password')}
                                                 size="small"
                                             />
-                                            <Button className="authentication-button authentication-legacy-form-input">
+                                            <Button
+                                                type="submit"
+                                                className="authentication-button authentication-legacy-form-input"
+                                            >
                                                 {t('components.authentication.legacy.login')}
                                             </Button>
-                                        </div>
+                                        </form>
                                     </Collapse>
                                 ) : null}
                             </TransitionGroup>

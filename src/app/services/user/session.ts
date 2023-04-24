@@ -42,6 +42,14 @@ class Session {
         );
     };
 
+    isLegacy = (): boolean => {
+        const user = this.getUser();
+        if (user) {
+            return user.legacy;
+        }
+        return true;
+    };
+
     update = (data: SessionUserDataType): void => {
         this.session.setItem(this.key, JSON.stringify(data));
     };
@@ -55,7 +63,7 @@ const session = new Session();
 
 export const getUsername = session.getUsername;
 
-export const loginToJanus = () => {
+export const loginToJanus = (): void => {
     const janusUrl = createQuery(environment.get.account.janus, {
         origin: window.location.href,
     });
@@ -63,7 +71,39 @@ export const loginToJanus = () => {
     window.location.assign(janusUrl);
 };
 
-export const logout = async () => {
+export const loginToLegacy = async (form: any): Promise<boolean> => {
+    let response;
+    try {
+        response = await fetch(createQuery(environment.post.account.legacy), {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(form),
+        });
+    } catch (e) {
+        return false;
+    }
+
+    const user = {
+        ...(await response.json()),
+        fetch: false,
+        legacy: true,
+    };
+
+    // If response return an error, abort login
+    if (user.error) {
+        return false;
+    }
+
+    session.update(user);
+
+    return true;
+};
+
+export const logout = async (): Promise<void> => {
     await fetch(createQuery(environment.post.account.logout), {
         method: 'POST',
         credentials: 'include',
@@ -75,7 +115,7 @@ export const logout = async () => {
     session.remove();
 };
 
-export const initSession = async () => {
+export const initSession = async (): Promise<boolean> => {
     const status = session.getUser();
 
     if (status === null) {
@@ -103,7 +143,13 @@ export const initSession = async () => {
     const user = {
         ...(await response.json()),
         fetch: false,
+        legacy: false,
     };
+
+    // If response return an error, abort login
+    if (user.error) {
+        return false;
+    }
 
     session.update(user);
 
