@@ -16,6 +16,9 @@ const Routes = {
     about: '/about',
     resources: '/resources',
     legal: '/legal',
+    licences: '/licences',
+    tests: '/tests',
+    news: '/news',
 } as const;
 
 type RoutesType = typeof Routes;
@@ -104,3 +107,9 @@ export const RouteAbout = Routes.about;
  * Export the legal route
  */
 export const RouteLegal = Routes.legal;
+
+export const RouteLicences = Routes.licences;
+
+export const RouteTests = Routes.tests;
+
+export const RouteNews = Routes.news;

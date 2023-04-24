@@ -7,9 +7,12 @@ import {
     RouteFaq,
     RouteJournal,
     RouteLegal,
+    RouteLicences,
+    RouteNews,
     RouteResearchData,
     RouteResources,
     RouteRoot,
+    RouteTests,
 } from './shared/Routes';
 import Root from './pages/Root';
 import Article from './pages/search/article/Article';
@@ -24,6 +27,7 @@ import Faq from './pages/common/faq/Faq';
 import Resources from './pages/common/resources/Resources';
 import { initSession } from './services/user/session';
 import { BibContext } from './components/provider/ContextProvider';
+import ProtectedRoute from './components/protectedroute/ProtectedRoute';
 import { Route, Routes } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 
@@ -51,6 +55,10 @@ const App = () => {
                     <Route path={RouteResearchData} element={<ResearchData />} />
                     <Route path={RouteFaq} element={<Faq />} />
                     <Route path={RouteResources} element={<Resources />} />
+                    {/* Protected route */}
+                    <Route path={RouteLicences} element={<ProtectedRoute>Licences</ProtectedRoute>} />
+                    <Route path={RouteTests} element={<ProtectedRoute>Tests</ProtectedRoute>} />
+                    <Route path={RouteNews} element={<ProtectedRoute>News</ProtectedRoute>} />
                     {/* Footer route */}
                     <Route path={RouteAbout} element={<About />} />
                     <Route path={RouteLegal} element={<Legal />} />

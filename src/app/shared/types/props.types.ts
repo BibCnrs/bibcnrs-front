@@ -90,3 +90,5 @@ export type AuthenticationProps = PropsWithoutRef<{
     open: boolean;
     onClose: () => void;
 }>;
+
+export type ProtectedRouteProps = HaveReactChildren;
