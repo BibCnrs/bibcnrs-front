@@ -32,7 +32,7 @@ const RenderContent = ({
                 {displayTitle ? <h1>{t(`pages.${page}.title`)}</h1> : <></>}
             </>
         );
-        if (Container) {
+        if (Container && displayTitle) {
             return <Container>{children}</Container>;
         }
 
