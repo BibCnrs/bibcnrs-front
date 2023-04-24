@@ -18,6 +18,7 @@ const fr: Common = {
                 history: 'Mon Historique',
                 bookmark: 'Mes Favoris',
                 notifications: 'Mes Alertes',
+                legacy: "Vous n'êtes pas connecté au niveau individuel",
             },
         },
         authentication: {

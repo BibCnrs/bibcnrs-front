@@ -18,6 +18,7 @@ const en: Common = {
                 history: 'My History',
                 bookmark: 'My Bookmark',
                 notifications: 'My Alerts',
+                legacy: 'You are not logged on at the individual level',
             },
         },
         authentication: {

@@ -31,6 +31,7 @@ export type Common = {
                 history: string;
                 bookmark: string;
                 notifications: string;
+                legacy: string;
             };
         };
         authentication: {

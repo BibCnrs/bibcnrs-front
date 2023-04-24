@@ -63,6 +63,8 @@ const session = new Session();
 
 export const getUsername = session.getUsername;
 
+export const isLegacy = session.isLegacy;
+
 export const loginToJanus = (): void => {
     const janusUrl = createQuery(environment.get.account.janus, {
         origin: window.location.href,

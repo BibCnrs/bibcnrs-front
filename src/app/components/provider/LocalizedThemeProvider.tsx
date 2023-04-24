@@ -9,7 +9,7 @@ import { enUS } from '@mui/material/locale';
 import createPalette from '@mui/material/styles/createPalette';
 import { useContext, useEffect } from 'react';
 
-const colors = {
+export const colors = {
     white: '#fff',
     text: {
         dark: '#cfcfe0',
@@ -44,6 +44,9 @@ const colors = {
             darkBlue: '#0050a0',
             cyan: '#2d9bb4',
         },
+    },
+    other: {
+        legacy: '#f3ff33',
     },
 };
 

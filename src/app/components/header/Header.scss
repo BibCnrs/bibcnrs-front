@@ -50,18 +50,27 @@ header {
             }
 
             #user-button:hover {
-                background-color: shade-color($lightest-white, 35%);
-                border: shade-color($lightest-white, 35%) solid 4px;
+                background-color: shade-color($cnrs-secondary-light-blue, 35%);
+                border: shade-color($cnrs-secondary-light-blue, 35%) solid 4px;
             }
 
             #user-button-active {
                 padding: 0;
                 margin: 6px;
-                background-color: shade-color($lightest-white, 50%);
-                border: shade-color($lightest-white, 50%) solid 4px;
+                background-color: shade-color($cnrs-secondary-light-blue, 50%);
+                border: shade-color($cnrs-secondary-light-blue, 50%) solid 4px;
                 border-radius: 160px;
             }
 
+            .user-button-legacy:hover {
+                background-color: shade-color($legacy, 35%);
+                border: shade-color($legacy, 35%) solid 4px;
+            }
+
+            .user-button-active-legacy {
+                background-color: shade-color($legacy, 50%);
+                border: shade-color($legacy, 50%) solid 4px;
+            }
 
             .header-button {
                 padding: 4px;

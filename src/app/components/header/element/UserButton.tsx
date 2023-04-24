@@ -1,6 +1,7 @@
 import { BibContext } from '../../provider/ContextProvider';
 import { translator } from '../../../shared/locales/I18N';
-import { getUsername, logout } from '../../../services/user/session';
+import { getUsername, isLegacy, logout } from '../../../services/user/session';
+import { colors } from '../../provider/LocalizedThemeProvider';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -11,6 +12,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import HistoryIcon from '@mui/icons-material/History';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import ErrorIcon from '@mui/icons-material/Error';
 
 const UserButton = () => {
     const t = translator();
@@ -38,6 +40,10 @@ const UserButton = () => {
         setAnchorEl(null);
     };
 
+    const getAvatarButtonClass = () => {
+        return open ? ' user-button-active-legacy' : ' user-button-legacy';
+    };
+
     return (
         <div className="header-nav">
             <button
@@ -46,9 +52,16 @@ const UserButton = () => {
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
-                className="header-button-icon"
+                className={`header-button-icon${isLegacy() ? getAvatarButtonClass() : ''}`}
             >
-                <Avatar>{username.slice(0, 1)}</Avatar>
+                <Avatar
+                    sx={{
+                        bgcolor: isLegacy() ? colors.other.legacy : colors.cnrs.secondary.lightBlue,
+                        color: colors.text.light,
+                    }}
+                >
+                    {username.slice(0, 1)}
+                </Avatar>
             </button>
             <Menu
                 id="basic-menu"
@@ -66,24 +79,35 @@ const UserButton = () => {
                     {username}
                 </MenuItem>
                 <Divider />
-                <MenuItem>
-                    <ListItemIcon>
-                        <HistoryIcon fontSize="small" />
-                    </ListItemIcon>
-                    {t('components.header.user.history')}
-                </MenuItem>
-                <MenuItem>
-                    <ListItemIcon>
-                        <BookmarkIcon fontSize="small" />
-                    </ListItemIcon>
-                    {t('components.header.user.bookmark')}
-                </MenuItem>
-                <MenuItem>
-                    <ListItemIcon>
-                        <NotificationsIcon fontSize="small" />
-                    </ListItemIcon>
-                    {t('components.header.user.notifications')}
-                </MenuItem>
+                {isLegacy() ? (
+                    <MenuItem>
+                        <ListItemIcon>
+                            <ErrorIcon fontSize="small" />
+                        </ListItemIcon>
+                        {t('components.header.user.legacy')}
+                    </MenuItem>
+                ) : (
+                    <>
+                        <MenuItem>
+                            <ListItemIcon>
+                                <HistoryIcon fontSize="small" />
+                            </ListItemIcon>
+                            {t('components.header.user.history')}
+                        </MenuItem>
+                        <MenuItem>
+                            <ListItemIcon>
+                                <BookmarkIcon fontSize="small" />
+                            </ListItemIcon>
+                            {t('components.header.user.bookmark')}
+                        </MenuItem>
+                        <MenuItem>
+                            <ListItemIcon>
+                                <NotificationsIcon fontSize="small" />
+                            </ListItemIcon>
+                            {t('components.header.user.notifications')}
+                        </MenuItem>
+                    </>
+                )}
                 <Divider />
                 <MenuItem
                     onClick={() =>
