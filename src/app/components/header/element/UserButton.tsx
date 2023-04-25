@@ -5,7 +5,7 @@ import { colors } from '../../provider/LocalizedThemeProvider';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { MouseEvent, useContext, useState } from 'react';
+import { MouseEvent, ReactElement, useContext, useState } from 'react';
 import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -44,6 +44,66 @@ const UserButton = () => {
         return open ? ' user-button-active-legacy' : ' user-button-legacy';
     };
 
+    const options: ReactElement[] = [];
+    options.push(
+        <MenuItem key="username">
+            <ListItemIcon>
+                <Avatar sx={{ width: 24, height: 24 }} />
+            </ListItemIcon>
+            {username}
+        </MenuItem>,
+        <Divider key="divider-1" />,
+    );
+    if (isLegacy()) {
+        options.push(
+            <MenuItem key="legacy">
+                <ListItemIcon>
+                    <ErrorIcon fontSize="small" sx={{ color: '#a00' }} />
+                </ListItemIcon>
+                {t('components.header.user.legacy')}
+            </MenuItem>,
+        );
+    } else {
+        options.push(
+            <MenuItem key="history">
+                <ListItemIcon>
+                    <HistoryIcon fontSize="small" />
+                </ListItemIcon>
+                {t('components.header.user.history')}
+            </MenuItem>,
+            <MenuItem key="bookmark">
+                <ListItemIcon>
+                    <BookmarkIcon fontSize="small" />
+                </ListItemIcon>
+                {t('components.header.user.bookmark')}
+            </MenuItem>,
+            <MenuItem key="notfications">
+                <ListItemIcon>
+                    <NotificationsIcon fontSize="small" />
+                </ListItemIcon>
+                {t('components.header.user.notifications')}
+            </MenuItem>,
+        );
+    }
+    options.push(
+        <Divider key="divider-2" />,
+        <MenuItem
+            key="logout"
+            onClick={() =>
+                handleClose(() => {
+                    logout().then(() => {
+                        setLogin(false);
+                    });
+                })
+            }
+        >
+            <ListItemIcon>
+                <LogoutIcon fontSize="small" />
+            </ListItemIcon>
+            {t('components.header.logout')}
+        </MenuItem>,
+    );
+
     return (
         <div className="header-nav">
             <button
@@ -72,57 +132,7 @@ const UserButton = () => {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem>
-                    <ListItemIcon>
-                        <Avatar sx={{ width: 24, height: 24 }} />
-                    </ListItemIcon>
-                    {username}
-                </MenuItem>
-                <Divider />
-                {isLegacy() ? (
-                    <MenuItem>
-                        <ListItemIcon>
-                            <ErrorIcon fontSize="small" sx={{ color: '#a00' }} />
-                        </ListItemIcon>
-                        {t('components.header.user.legacy')}
-                    </MenuItem>
-                ) : (
-                    <>
-                        <MenuItem>
-                            <ListItemIcon>
-                                <HistoryIcon fontSize="small" />
-                            </ListItemIcon>
-                            {t('components.header.user.history')}
-                        </MenuItem>
-                        <MenuItem>
-                            <ListItemIcon>
-                                <BookmarkIcon fontSize="small" />
-                            </ListItemIcon>
-                            {t('components.header.user.bookmark')}
-                        </MenuItem>
-                        <MenuItem>
-                            <ListItemIcon>
-                                <NotificationsIcon fontSize="small" />
-                            </ListItemIcon>
-                            {t('components.header.user.notifications')}
-                        </MenuItem>
-                    </>
-                )}
-                <Divider />
-                <MenuItem
-                    onClick={() =>
-                        handleClose(() => {
-                            logout().then(() => {
-                                setLogin(false);
-                            });
-                        })
-                    }
-                >
-                    <ListItemIcon>
-                        <LogoutIcon fontSize="small" />
-                    </ListItemIcon>
-                    {t('components.header.logout')}
-                </MenuItem>
+                {options}
             </Menu>
         </div>
     );
