@@ -95,6 +95,7 @@ Sincerely`,
         },
         database: {
             title: 'Database',
+            oa: 'Open Access',
         },
         journal: {
             title: 'Journal, book',

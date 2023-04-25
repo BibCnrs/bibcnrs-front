@@ -96,6 +96,7 @@ Cordialement`,
         },
         database: {
             title: 'Base de données',
+            oa: 'Accès Ouvert',
         },
         journal: {
             title: 'Revue, ouvrage',

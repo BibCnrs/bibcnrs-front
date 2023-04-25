@@ -96,6 +96,7 @@ export type Common = {
         };
         database: {
             title: string;
+            oa: string;
         };
         researchData: {
             title: string;

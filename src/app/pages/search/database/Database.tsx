@@ -124,7 +124,7 @@ const Database = () => {
                 <FormControlLabel
                     id="database-oa"
                     control={<Switch value={oa} size="small" onClick={() => setOa(!oa)} />}
-                    label="Bottom"
+                    label={t('pages.database.oa')}
                     labelPlacement="end"
                 />
             ) : null}
