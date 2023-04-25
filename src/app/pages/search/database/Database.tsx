@@ -8,7 +8,9 @@ import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import { useQuery } from '@tanstack/react-query';
 import Tooltip from '@mui/material/Tooltip';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const getName = (entry: DatabaseEntryDataType, language: string) => {
     if (language === 'en') {
@@ -82,16 +84,21 @@ const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupPr
 
 const Database = () => {
     const { login } = useContext(BibContext);
+    const [oa, setOa] = useState(!login);
     const t = translator();
     const language = getLanguageKey();
 
     const { data } = useQuery<DatabaseDataType, any, DatabaseDataType, any>({
-        queryKey: ['database', login],
-        queryFn: () => database(language, login),
+        queryKey: ['database', oa],
+        queryFn: () => database(language, oa),
         keepPreviousData: true,
         staleTime: 3600000, // 1 hour of cache
         cacheTime: 3600000, // 1000 * 60 * 60
     });
+
+    useEffect(() => {
+        setOa(!login);
+    }, [login]);
 
     if (data === undefined) {
         return null;
@@ -113,6 +120,15 @@ const Database = () => {
     return (
         <div id="app">
             <PageTitle page={'database'} t={t} />
+            {login ? (
+                <FormControlLabel
+                    id="database-oa"
+                    control={<Switch value={oa} size="small" onClick={() => setOa(!oa)} />}
+                    label="Bottom"
+                    labelPlacement="end"
+                />
+            ) : null}
+
             <ul id="database">
                 {letters.map((letter) => (
                     <li key={letter} className="database-letter">

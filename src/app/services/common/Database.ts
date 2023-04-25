@@ -2,7 +2,7 @@ import { DatabaseDataType } from '../../shared/types/data.types';
 import { createQuery, environment } from '../Environment';
 import { getDomains } from '../user/Session';
 
-export const database = async (language: string, login: boolean): Promise<DatabaseDataType> => {
+export const database = async (language: string, oa: boolean): Promise<DatabaseDataType> => {
     const response: Response = await fetch(createQuery(environment.get.database));
     const data: DatabaseDataType = await response.json();
     data.sort((a, b) => {
@@ -18,8 +18,8 @@ export const database = async (language: string, login: boolean): Promise<Databa
     });
     const domains = getDomains();
     return data.filter((value) => {
-        if (login) {
-            return value.domains.filter((domain) => domains.includes(domain)).length > 0;
+        if (!oa) {
+            return value.domains.filter((domain) => domains.includes(domain)).length > 0 || value.oa;
         }
         return value.oa;
     });
