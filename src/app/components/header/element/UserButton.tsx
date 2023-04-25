@@ -82,7 +82,7 @@ const UserButton = () => {
                 {isLegacy() ? (
                     <MenuItem>
                         <ListItemIcon>
-                            <ErrorIcon fontSize="small" />
+                            <ErrorIcon fontSize="small" sx={{ color: '#a00' }} />
                         </ListItemIcon>
                         {t('components.header.user.legacy')}
                     </MenuItem>

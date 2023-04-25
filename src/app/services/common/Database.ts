@@ -1,5 +1,6 @@
 import { DatabaseDataType } from '../../shared/types/data.types';
 import { createQuery, environment } from '../Environment';
+import { getDomains } from '../user/Session';
 
 export const database = async (language: string, login: boolean): Promise<DatabaseDataType> => {
     const response: Response = await fetch(createQuery(environment.get.database));
@@ -15,9 +16,10 @@ export const database = async (language: string, login: boolean): Promise<Databa
         }
         return 0;
     });
+    const domains = getDomains();
     return data.filter((value) => {
         if (login) {
-            return true;
+            return value.domains.filter((domain) => domains.includes(domain)).length > 0;
         }
         return value.oa;
     });
