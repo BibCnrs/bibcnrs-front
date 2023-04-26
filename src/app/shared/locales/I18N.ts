@@ -69,6 +69,9 @@ export type Common = {
                 subjects: string;
             };
         };
+        testsnews: {
+            common: string;
+        };
         pageDate: {
             updateAt: string;
         };
@@ -118,7 +121,9 @@ export type Common = {
         };
         news: {
             title: string;
-            common: string;
+        };
+        tests: {
+            title: string;
         };
         faq: {
             title: string;

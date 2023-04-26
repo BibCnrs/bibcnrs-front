@@ -2,10 +2,10 @@
 @import "src/app/scss/link";
 @import "src/app/scss/app";
 
-#news {
+#tests-news {
     display: flex;
 
-    #news-nav {
+    #tests-news-nav {
         display: flex;
         flex-direction: column;
         width: fit-content;
@@ -13,7 +13,7 @@
         margin-right: 40px;
     }
 
-    #news-content {
+    #tests-news-content {
         width: 100%;
     }
 }

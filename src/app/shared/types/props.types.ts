@@ -1,5 +1,5 @@
 import { TFunction } from './types';
-import { CMSResultDataType, DatabaseDataType, MetadoreResultType } from './data.types';
+import { CMSResultDataType, DatabaseDataType, MetadoreResultType, TestsNewsDataType } from './data.types';
 import {
     Dispatch,
     ElementType,
@@ -114,4 +114,8 @@ export type ColoredPaperProps = PropsWithChildren<{
     onMouseOver?: MouseEventHandler<HTMLDivElement>;
     onMouseOut?: MouseEventHandler<HTMLDivElement>;
     elevation?: number;
+}>;
+
+export type TestsNewsProps = PropsWithoutRef<{
+    data: TestsNewsDataType | undefined;
 }>;

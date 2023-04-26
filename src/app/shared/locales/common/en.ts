@@ -56,6 +56,9 @@ const en: Common = {
                 subjects: 'Keys words',
             },
         },
+        testsnews: {
+            common: 'Common',
+        },
         pageDate: {
             updateAt: 'updated on',
         },
@@ -127,7 +130,9 @@ Sincerely`,
         },
         news: {
             title: 'News',
-            common: 'Common',
+        },
+        tests: {
+            title: 'Tests',
         },
     },
     error: {

@@ -56,6 +56,9 @@ const fr: Common = {
                 subjects: 'Mots clés',
             },
         },
+        testsnews: {
+            common: 'Commun',
+        },
         pageDate: {
             updateAt: 'mise à jour le',
         },
@@ -128,7 +131,9 @@ Cordialement`,
         },
         news: {
             title: 'Actualités',
-            common: 'Commun',
+        },
+        tests: {
+            title: 'Tests',
         },
     },
     error: {

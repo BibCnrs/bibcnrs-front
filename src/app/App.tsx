@@ -31,6 +31,7 @@ import { BibContext } from './components/provider/ContextProvider';
 import ProtectedRoute from './components/protectedroute/ProtectedRoute';
 import Licences from './pages/user/licences/Licences';
 import News from './pages/user/news/News';
+import Tests from './pages/user/tests/Tests';
 import { Route, Routes } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 
@@ -67,7 +68,14 @@ const App = () => {
                             </ProtectedRoute>
                         }
                     />
-                    <Route path={RouteTests} element={<ProtectedRoute>Tests</ProtectedRoute>} />
+                    <Route
+                        path={RouteTests}
+                        element={
+                            <ProtectedRoute>
+                                <Tests />
+                            </ProtectedRoute>
+                        }
+                    />
                     <Route
                         path={RouteNews}
                         element={
