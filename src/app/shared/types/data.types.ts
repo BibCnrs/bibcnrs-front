@@ -117,6 +117,7 @@ export type LicencesDataType = LicenceDataType[];
 
 export type TestNewUrlDataType = {
     url: string;
+    name: string;
     proxy: true;
 };
 

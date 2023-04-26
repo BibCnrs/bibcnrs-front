@@ -71,6 +71,8 @@ export type Common = {
         };
         testsnews: {
             common: string;
+            from: string;
+            to: string;
         };
         pageDate: {
             updateAt: string;

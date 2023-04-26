@@ -73,6 +73,25 @@ const TestsNews = ({ data }: TestsNewsProps) => {
         return value.domains?.join(', ');
     };
 
+    const TestsNewsFooter = ({ value }: { value: TestNewDataType }) => {
+        return (
+            <div>
+                <i>
+                    {value.to ? t('components.testsnews.from') : null}
+                    <PageDate date={value.from} />
+                    {value.to ? (
+                        <>
+                            {t('components.testsnews.to')}
+                            <PageDate date={value.to} />
+                        </>
+                    ) : null}
+                    {' • '}
+                    {getLabel(value)}
+                </i>
+            </div>
+        );
+    };
+
     return (
         <div id="tests-news">
             <div id="tests-news-nav">
@@ -100,13 +119,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                 {getData().map((value) => (
                     <OpenablePaper
                         Title={<>{language === 'en' ? value.name_en : value.name_fr}</>}
-                        SmallBody={
-                            <div>
-                                <PageDate date={value.from} />
-                                {' • '}
-                                <i>{getLabel(value)}</i>
-                            </div>
-                        }
+                        SmallBody={<TestsNewsFooter value={value} />}
                         FullBody={
                             <div>
                                 <div
@@ -115,11 +128,25 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                                         __html: language === 'en' ? value.content_en : value.content_fr,
                                     }}
                                 ></div>
-                                <div>
-                                    <PageDate date={value.from} />
-                                    {' • '}
-                                    <i>{getLabel(value)}</i>
-                                </div>
+                                {value.urls && value.urls.length > 0 ? (
+                                    <div>
+                                        <ul>
+                                            {value.urls.map((url) => (
+                                                <li>
+                                                    <a
+                                                        className="link"
+                                                        href={url.url}
+                                                        rel="noreferrer noopener nofollow"
+                                                    >
+                                                        {url.name}
+                                                    </a>
+                                                    {url.proxy ? <i> (URL PROXY)</i> : null}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ) : null}
+                                <TestsNewsFooter value={value} />
                             </div>
                         }
                         color={getColor(value)}

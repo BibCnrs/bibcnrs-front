@@ -58,6 +58,8 @@ const en: Common = {
         },
         testsnews: {
             common: 'Common',
+            from: 'From ',
+            to: ' to ',
         },
         pageDate: {
             updateAt: 'updated on',
