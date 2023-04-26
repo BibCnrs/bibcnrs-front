@@ -7,14 +7,13 @@ import { translator } from '../../shared/locales/I18N';
  * @param t
  * @param props Component parameters containing the date
  */
-const PageDate = ({ date }: PageDateProps) => {
+const PageDate = ({ date, updateAtLabel = false }: PageDateProps) => {
     const t = translator();
     const formattedDate = new Date(date).toLocaleDateString();
-    return (
-        <p>
-            <i>{`${t('components.pageDate.updateAt')} ${formattedDate}`}</i>
-        </p>
-    );
+    if (updateAtLabel) {
+        return <i>{`${t('components.pageDate.updateAt')} ${formattedDate}`}</i>;
+    }
+    return <i>{formattedDate}</i>;
 };
 
 export default PageDate;

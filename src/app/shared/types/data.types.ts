@@ -99,17 +99,6 @@ export type SessionUserDataType = {
     legacy: boolean;
 };
 
-export type CommunityDataType = {
-    id: number;
-    name: string;
-};
-
-export type LicenceCommunityDataType = {
-    license: number;
-    community_id: number;
-    community: CommunityDataType[];
-};
-
 export type LicenceDataType = {
     id: number;
     name_fr: string;
@@ -122,7 +111,27 @@ export type LicenceDataType = {
     };
     enable: boolean;
     common: boolean;
-    license_community: LicenceCommunityDataType[];
 };
 
 export type LicencesDataType = LicenceDataType[];
+
+export type TestNewUrlDataType = {
+    url: string;
+    proxy: true;
+};
+
+export type TestNewDataType = {
+    id: string;
+    name_fr: string;
+    name_en: string;
+    content_fr: string;
+    content_en: string;
+    page: string;
+    from: string;
+    to: string;
+    urls: TestNewUrlDataType[];
+    domains: string[];
+    enable: boolean;
+};
+
+export type TestsNewsDataType = TestNewDataType[];

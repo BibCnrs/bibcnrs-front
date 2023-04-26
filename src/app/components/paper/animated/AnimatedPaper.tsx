@@ -2,7 +2,7 @@ import { AnimatedPaperProps } from '../../../shared/types/props.types';
 import ColoredPaper from '../colored/ColoredPaper';
 import { useState } from 'react';
 
-const AnimatedPaper = ({ className, onClick, children, color }: AnimatedPaperProps) => {
+const AnimatedPaper = ({ className, onClick, children, color, border }: AnimatedPaperProps) => {
     const [elevation, setElevation] = useState<number>(1);
     return (
         <ColoredPaper
@@ -12,6 +12,7 @@ const AnimatedPaper = ({ className, onClick, children, color }: AnimatedPaperPro
             elevation={elevation}
             onClick={onClick}
             color={color}
+            border={border}
         >
             {children}
         </ColoredPaper>

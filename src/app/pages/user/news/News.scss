@@ -1,0 +1,19 @@
+@import "src/app/scss/colors";
+@import "src/app/scss/link";
+@import "src/app/scss/app";
+
+#news {
+    display: flex;
+
+    #news-nav {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        height: fit-content;
+        margin-right: 40px;
+    }
+
+    #news-content {
+        width: 100%;
+    }
+}

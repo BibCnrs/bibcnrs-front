@@ -126,6 +126,10 @@ Cordialement`,
             empty: "Aucune licences n'a étais trouvé.",
             pdf: 'Lien PDF :',
         },
+        news: {
+            title: 'Actualités',
+            common: 'Commun',
+        },
     },
     error: {
         '404': {

@@ -71,6 +71,7 @@ export type RenderContentProps = PropsWithoutRef<{
 
 export type PageDateProps = PropsWithoutRef<{
     date: string;
+    updateAtLabel?: boolean;
 }>;
 
 export type OpenablePaperProps = PropsWithoutRef<{
@@ -79,6 +80,7 @@ export type OpenablePaperProps = PropsWithoutRef<{
     FullBody: ReactElement | null;
     small?: boolean;
     color?: Property.Color;
+    border?: boolean;
 }>;
 
 export type DatabaseDisplayGroupProps = PropsWithoutRef<{
@@ -91,6 +93,7 @@ export type AnimatedPaperProps = PropsWithChildren<{
     className?: string;
     onClick?: () => void;
     color?: Property.Color;
+    border?: boolean;
 }>;
 
 export type AlertPaperProps = HaveReactChildren;

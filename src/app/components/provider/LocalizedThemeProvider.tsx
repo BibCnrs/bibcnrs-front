@@ -63,8 +63,8 @@ export const colors = {
     },
 };
 
-export const getInstituteColor = (institute: Institute): Property.Color => {
-    return colors.cnrs.institute[institute];
+export const getInstituteColor = (institute: Institute | string): Property.Color => {
+    return colors.cnrs.institute[institute.toLowerCase() as Institute];
 };
 
 const updateTheme = (theme: ThemeType) => {

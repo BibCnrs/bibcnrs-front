@@ -125,6 +125,10 @@ Sincerely`,
             empty: 'No licences was founds.',
             pdf: 'PDF link:',
         },
+        news: {
+            title: 'News',
+            common: 'Common',
+        },
     },
     error: {
         '404': {

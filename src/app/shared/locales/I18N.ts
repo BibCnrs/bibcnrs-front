@@ -116,6 +116,10 @@ export type Common = {
             empty: string;
             pdf: string;
         };
+        news: {
+            title: string;
+            common: string;
+        };
         faq: {
             title: string;
         };

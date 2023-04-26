@@ -33,6 +33,14 @@ class Session {
         return 'null';
     };
 
+    getFavoriteDomain = (): string | undefined => {
+        const user = this.getUser();
+        if (user) {
+            return user.favorite_domain;
+        }
+        return undefined;
+    };
+
     getDomains = (): string[] => {
         const user = this.getUser();
         if (user) {
@@ -72,6 +80,7 @@ const session = new Session();
 export const getUsername = session.getUsername;
 export const isLegacy = session.isLegacy;
 export const getDomains = session.getDomains;
+export const getFavoriteDomain = session.getFavoriteDomain;
 
 export const loginToJanus = (): void => {
     const janusUrl = createQuery(environment.get.account.janus, {
