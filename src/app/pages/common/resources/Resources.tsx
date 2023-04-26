@@ -3,8 +3,10 @@ import { ResourcesDataType } from '../../../shared/types/data.types';
 import { resources } from '../../../services/common/Resources';
 import PageTitle from '../../../components/utils/PageTitle';
 import { getLanguageKey, translator } from '../../../shared/locales/I18N';
+import ColoredPaper from '../../../components/paper/colored/ColoredPaper';
+import { getInstituteColor } from '../../../components/provider/LocalizedThemeProvider';
+import { Institute } from '../../../shared/types/types';
 import { useQuery } from '@tanstack/react-query';
-import Paper from '@mui/material/Paper';
 
 const DisplayResources = ({ data }: { data: ResourcesDataType | undefined }) => {
     if (!data || data.length === 0) {
@@ -15,15 +17,17 @@ const DisplayResources = ({ data }: { data: ResourcesDataType | undefined }) => 
     return (
         <div id="resources">
             {data.map((resource) => (
-                <Paper
+                <ColoredPaper
                     elevation={2}
                     key={resource.id}
-                    className={`resource resource-${resource.community.toLowerCase()}`}
+                    color={getInstituteColor(resource.community.toLowerCase() as Institute)}
+                    className="resource"
+                    border
                 >
                     <a className="link" href={resource.href} rel="nofollow noreferrer noopener">
                         {language === 'en' ? resource.name_en : resource.name_fr}
                     </a>
-                </Paper>
+                </ColoredPaper>
             ))}
         </div>
     );

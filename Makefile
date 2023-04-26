@@ -29,6 +29,7 @@ build:
 run-prod:
 	docker compose -f docker-compose-prod.yml up -d
 
+# To remove or to change with a docker who watch files
 run-dev:
 	docker compose -f docker-compose.yml up -d
 

@@ -26,3 +26,17 @@ export type BibContextType = {
     theme: ThemeType;
     setTheme: Dispatch<SetStateAction<ThemeType>>;
 };
+
+// eslint-disable-next-line no-shadow
+export enum Institute {
+    insb = 'insb',
+    inc = 'inc',
+    inee = 'inee',
+    inshs = 'inshs',
+    insis = 'insis',
+    insmi = 'insmi',
+    inp = 'inp',
+    ins2i = 'ins2i',
+    in2p3 = 'in2p3',
+    insu = 'insu',
+}

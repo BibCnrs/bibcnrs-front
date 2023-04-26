@@ -30,6 +30,7 @@ import { initSession } from './services/user/Session';
 import { BibContext } from './components/provider/ContextProvider';
 import ProtectedRoute from './components/protectedroute/ProtectedRoute';
 import Licences from './pages/user/licences/Licences';
+import News from './pages/user/news/News';
 import { Route, Routes } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 
@@ -67,7 +68,14 @@ const App = () => {
                         }
                     />
                     <Route path={RouteTests} element={<ProtectedRoute>Tests</ProtectedRoute>} />
-                    <Route path={RouteNews} element={<ProtectedRoute>News</ProtectedRoute>} />
+                    <Route
+                        path={RouteNews}
+                        element={
+                            <ProtectedRoute>
+                                <News />
+                            </ProtectedRoute>
+                        }
+                    />
                     {/* Footer route */}
                     <Route path={RouteAbout} element={<About />} />
                     <Route path={RouteLegal} element={<Legal />} />

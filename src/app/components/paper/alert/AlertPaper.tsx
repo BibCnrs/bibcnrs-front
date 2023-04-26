@@ -1,9 +1,13 @@
 import './AlertPaper.scss';
 import { AlertPaperProps } from '../../../shared/types/props.types';
-import Paper from '@mui/material/Paper';
+import ColoredPaper from '../colored/ColoredPaper';
 
 const AlertPaper = ({ children }: AlertPaperProps) => {
-    return <Paper id="alert">{children}</Paper>;
+    return (
+        <ColoredPaper id="alert" color="#f00" border>
+            {children}
+        </ColoredPaper>
+    );
 };
 
 export default AlertPaper;

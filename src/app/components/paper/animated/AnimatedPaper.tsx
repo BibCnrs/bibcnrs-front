@@ -1,20 +1,20 @@
 import { AnimatedPaperProps } from '../../../shared/types/props.types';
-import Paper from '@mui/material/Paper';
+import ColoredPaper from '../colored/ColoredPaper';
 import { useState } from 'react';
 
-const AnimatedPaper = ({ className, sx, onClick, children }: AnimatedPaperProps) => {
+const AnimatedPaper = ({ className, onClick, children, color }: AnimatedPaperProps) => {
     const [elevation, setElevation] = useState<number>(1);
     return (
-        <Paper
+        <ColoredPaper
             className={className}
-            sx={sx}
             onMouseOver={() => setElevation(4)}
             onMouseOut={() => setElevation(1)}
             elevation={elevation}
             onClick={onClick}
+            color={color}
         >
             {children}
-        </Paper>
+        </ColoredPaper>
     );
 };
 

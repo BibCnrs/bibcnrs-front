@@ -5,12 +5,13 @@ import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const OpenablePaper = ({ Title, SmallBody, FullBody, small = false }: OpenablePaperProps) => {
+const OpenablePaper = ({ Title, SmallBody, FullBody, small = false, color }: OpenablePaperProps) => {
     const [open, setOpen] = useState<boolean>(false);
 
     return (
         <AnimatedPaper
             className={small ? 'openable-paper openable-paper-small' : 'openable-paper'}
+            color={color}
             onClick={() => {
                 if (!open) {
                     setOpen(true);

@@ -1,13 +1,14 @@
 import { BibContext } from './ContextProvider';
 import { getLanguageKey } from '../../shared/locales/I18N';
 import { LocalizedThemeProviderProps } from '../../shared/types/props.types';
-import { ThemeType } from '../../shared/types/types';
+import { Institute, ThemeType } from '../../shared/types/types';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
 import { frFR } from '@mui/material/locale';
 import { enUS } from '@mui/material/locale';
 import createPalette from '@mui/material/styles/createPalette';
 import { useContext, useEffect } from 'react';
+import { Property } from 'csstype';
 
 export const colors = {
     white: '#fff',
@@ -44,10 +45,26 @@ export const colors = {
             darkBlue: '#0050a0',
             cyan: '#2d9bb4',
         },
+        institute: {
+            insb: '#eb004e',
+            inc: '#007faa',
+            inee: '#008000',
+            inshs: '#b2003c',
+            insis: '#f00000',
+            insmi: '#007a7c',
+            inp: '#0045e5',
+            ins2i: '#a800e5',
+            in2p3: '#db3a00',
+            insu: '#e0009d',
+        },
     },
     other: {
         legacy: '#f3ff33',
     },
+};
+
+export const getInstituteColor = (institute: Institute): Property.Color => {
+    return colors.cnrs.institute[institute];
 };
 
 const updateTheme = (theme: ThemeType) => {

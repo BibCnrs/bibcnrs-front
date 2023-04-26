@@ -1,8 +1,16 @@
 import { TFunction } from './types';
 import { CMSResultDataType, DatabaseDataType, MetadoreResultType } from './data.types';
-import { Dispatch, ElementType, Key, PropsWithChildren, PropsWithoutRef, ReactElement, SetStateAction } from 'react';
-import { SxProps } from '@mui/system/styleFunctionSx/styleFunctionSx';
-import { Theme } from '@mui/material/styles/createTheme';
+import {
+    Dispatch,
+    ElementType,
+    Key,
+    MouseEventHandler,
+    PropsWithChildren,
+    PropsWithoutRef,
+    ReactElement,
+    SetStateAction,
+} from 'react';
+import { Property } from 'csstype';
 
 type HaveReactChildren = PropsWithChildren;
 
@@ -70,6 +78,7 @@ export type OpenablePaperProps = PropsWithoutRef<{
     SmallBody: ReactElement | null;
     FullBody: ReactElement | null;
     small?: boolean;
+    color?: Property.Color;
 }>;
 
 export type DatabaseDisplayGroupProps = PropsWithoutRef<{
@@ -81,7 +90,7 @@ export type DatabaseDisplayGroupProps = PropsWithoutRef<{
 export type AnimatedPaperProps = PropsWithChildren<{
     className?: string;
     onClick?: () => void;
-    sx?: SxProps<Theme>;
+    color?: Property.Color;
 }>;
 
 export type AlertPaperProps = HaveReactChildren;
@@ -92,3 +101,14 @@ export type AuthenticationProps = PropsWithoutRef<{
 }>;
 
 export type ProtectedRouteProps = HaveReactChildren;
+
+export type ColoredPaperProps = PropsWithChildren<{
+    id?: string;
+    className?: string;
+    color?: Property.Color | undefined;
+    border?: boolean;
+    onClick?: () => void;
+    onMouseOver?: MouseEventHandler<HTMLDivElement>;
+    onMouseOut?: MouseEventHandler<HTMLDivElement>;
+    elevation?: number;
+}>;
