@@ -1,7 +1,7 @@
-import { useHref, useLinkClickHandler, useLocation, useMatch, useResolvedPath } from 'react-router-dom';
-import { To } from '@remix-run/router/history';
 import { useMemo } from 'react';
-import { NavigateFunction } from 'react-router/dist/lib/hooks';
+import { useHref, useLinkClickHandler, useLocation, useMatch, useResolvedPath } from 'react-router-dom';
+import type { To } from '@remix-run/router/history';
+import type { NavigateFunction } from 'react-router/dist/lib/hooks';
 
 /**
  * Export evey route use by the application

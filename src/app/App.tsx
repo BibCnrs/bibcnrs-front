@@ -1,6 +1,23 @@
 import './App.scss';
+import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import NavBar from './components/navbar/NavBar';
+import ProtectedRoute from './components/protectedroute/ProtectedRoute';
+import { BibContext } from './components/provider/ContextProvider';
+import About from './pages/common/about/About';
+import Faq from './pages/common/faq/Faq';
+import Legal from './pages/common/legal/Legal';
+import Resources from './pages/common/resources/Resources';
+import Error404 from './pages/errors/Error404';
+import Root from './pages/Root';
+import Article from './pages/search/article/Article';
+import Database from './pages/search/database/Database';
+import Journal from './pages/search/journal/Journal';
+import ResearchData from './pages/search/researchdata/ResearchData';
+import Licences from './pages/user/licences/Licences';
+import News from './pages/user/news/News';
+import Tests from './pages/user/tests/Tests';
+import { initSession } from './services/user/Session';
 import {
     RouteAbout,
     RouteArticle,
@@ -15,25 +32,8 @@ import {
     RouteRoot,
     RouteTests,
 } from './shared/Routes';
-import Root from './pages/Root';
-import Article from './pages/search/article/Article';
-import Journal from './pages/search/journal/Journal';
-import Database from './pages/search/database/Database';
-import ResearchData from './pages/search/researchdata/ResearchData';
-import About from './pages/common/about/About';
-import Legal from './pages/common/legal/Legal';
-import Error404 from './pages/errors/Error404';
-import Footer from './components/footer/Footer';
-import Faq from './pages/common/faq/Faq';
-import Resources from './pages/common/resources/Resources';
-import { initSession } from './services/user/Session';
-import { BibContext } from './components/provider/ContextProvider';
-import ProtectedRoute from './components/protectedroute/ProtectedRoute';
-import Licences from './pages/user/licences/Licences';
-import News from './pages/user/news/News';
-import Tests from './pages/user/tests/Tests';
-import { Route, Routes } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
     const { setLogin } = useContext(BibContext);

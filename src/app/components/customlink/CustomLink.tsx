@@ -1,6 +1,7 @@
 import './CustomLink.scss';
 import { isMatching } from '../../shared/Routes';
-import { Link, LinkProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import type { LinkProps } from 'react-router-dom';
 
 /**
  * Custom link component use make an element clickable and use React router link

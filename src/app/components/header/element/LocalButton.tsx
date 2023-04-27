@@ -1,12 +1,13 @@
 import { getFullTranslator, supportedLanguages } from '../../../shared/locales/I18N';
-import { SupportedLanguageKeys } from '../../../shared/types/types';
-import TranslateIcon from '@mui/icons-material/Translate';
 import CheckIcon from '@mui/icons-material/Check';
+import TranslateIcon from '@mui/icons-material/Translate';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
+import type { SupportedLanguageKeys } from '../../../shared/types/types';
+import type { MouseEvent } from 'react';
 
 /**
  * Local Button component used by the header.

@@ -1,5 +1,5 @@
-import { CMSResultDataType } from '../../shared/types/data.types';
 import { createQuery, environment } from '../Environment';
+import type { CMSResultDataType } from '../../shared/types/data.types';
 
 type Pages = 'home' | 'legal' | 'faq' | 'about' | 'alert';
 

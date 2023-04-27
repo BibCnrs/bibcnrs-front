@@ -1,20 +1,21 @@
 import './ResearchData.scss';
-import { translator } from '../../../shared/locales/I18N';
-import PageTitle from '../../../components/utils/PageTitle';
 import SearchBar from '../../../components/searchbar/SearchBar';
-import { RouteResearchData, getNumber, getString, updatePageQueryUrl, useSearchParams } from '../../../shared/Routes';
-import { search } from '../../../services/common/Metadore';
-import Loading from '../../../components/utils/loading/Loading';
-import Table from '../../../components/table/Table';
 import TableMetadore from '../../../components/table/displayelement/TableMetadore';
-import { TableArgsProps } from '../../../shared/types/props.types';
-import { MetadoreDataType } from '../../../shared/types/data.types';
-import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import { useState, MouseEvent, useEffect } from 'react';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import ToggleButton from '@mui/material/ToggleButton';
+import Table from '../../../components/table/Table';
+import Loading from '../../../components/utils/loading/Loading';
+import PageTitle from '../../../components/utils/PageTitle';
+import { search } from '../../../services/common/Metadore';
+import { translator } from '../../../shared/locales/I18N';
+import { RouteResearchData, getNumber, getString, updatePageQueryUrl, useSearchParams } from '../../../shared/Routes';
 import { styled } from '@mui/material/styles';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { useQuery } from '@tanstack/react-query';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import type { MetadoreDataType } from '../../../shared/types/data.types';
+import type { TableArgsProps } from '../../../shared/types/props.types';
+import type { MouseEvent } from 'react';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     '& .MuiToggleButtonGroup-grouped': {

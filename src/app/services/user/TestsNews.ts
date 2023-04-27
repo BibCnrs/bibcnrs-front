@@ -1,6 +1,6 @@
 import { getDomains } from './Session';
-import { TestsNewsDataType } from '../../shared/types/data.types';
 import { createQuery, environment } from '../Environment';
+import type { TestsNewsDataType } from '../../shared/types/data.types';
 
 type Pages = 'tests' | 'news';
 

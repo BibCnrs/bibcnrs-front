@@ -1,14 +1,14 @@
 import { BibContext } from './ContextProvider';
 import { getLanguageKey } from '../../shared/locales/I18N';
-import { LocalizedThemeProviderProps } from '../../shared/types/props.types';
-import { Institute, ThemeType } from '../../shared/types/types';
-import ThemeProvider from '@mui/material/styles/ThemeProvider';
-import createTheme from '@mui/material/styles/createTheme';
 import { frFR } from '@mui/material/locale';
 import { enUS } from '@mui/material/locale';
 import createPalette from '@mui/material/styles/createPalette';
+import createTheme from '@mui/material/styles/createTheme';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import { useContext, useEffect } from 'react';
-import { Property } from 'csstype';
+import type { LocalizedThemeProviderProps } from '../../shared/types/props.types';
+import type { Institute, ThemeType } from '../../shared/types/types';
+import type { Property } from 'csstype';
 
 export const colors = {
     white: '#fff',

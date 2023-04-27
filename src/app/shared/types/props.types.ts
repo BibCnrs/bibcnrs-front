@@ -1,6 +1,7 @@
-import { TFunction } from './types';
-import { CMSResultDataType, DatabaseDataType, MetadoreResultType, TestsNewsDataType } from './data.types';
-import {
+import type { CMSResultDataType, DatabaseDataType, MetadoreResultType, TestsNewsDataType } from './data.types';
+import type { TFunction } from './types';
+import type { Property } from 'csstype';
+import type {
     Dispatch,
     ElementType,
     Key,
@@ -10,7 +11,6 @@ import {
     ReactElement,
     SetStateAction,
 } from 'react';
-import { Property } from 'csstype';
 
 type HaveReactChildren = PropsWithChildren;
 

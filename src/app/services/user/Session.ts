@@ -1,5 +1,5 @@
 import { createQuery, environment } from '../Environment';
-import { SessionUserDataType } from '../../shared/types/data.types';
+import type { SessionUserDataType } from '../../shared/types/data.types';
 
 class Session {
     private session: Storage;

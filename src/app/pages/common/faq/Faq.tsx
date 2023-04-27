@@ -1,10 +1,10 @@
 import './Faq.scss';
-import { CMSDataType, CMSResultDataType } from '../../../shared/types/data.types';
-import { faq } from '../../../services/common/CMS';
-import PageTitle from '../../../components/utils/PageTitle';
-import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import OpenablePaper from '../../../components/paper/openable/OpenablePaper';
+import PageTitle from '../../../components/utils/PageTitle';
+import { faq } from '../../../services/common/CMS';
+import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
+import type { CMSDataType, CMSResultDataType } from '../../../shared/types/data.types';
 
 const FaqEntry = ({ data }: { data: CMSDataType }) => {
     const language = getLanguageKey();

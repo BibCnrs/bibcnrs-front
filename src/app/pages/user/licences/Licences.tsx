@@ -1,10 +1,10 @@
 import './Licences.scss';
-import { getLanguageKey, translator } from '../../../shared/locales/I18N';
-import { LicenceDataType, LicencesDataType } from '../../../shared/types/data.types';
-import { licences } from '../../../services/user/Licences';
 import PageTitle from '../../../components/utils/PageTitle';
+import { licences } from '../../../services/user/Licences';
+import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
+import type { LicenceDataType, LicencesDataType } from '../../../shared/types/data.types';
 
 const Licences = () => {
     const t = translator();

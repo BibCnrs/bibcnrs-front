@@ -1,5 +1,5 @@
 import { createQuery, environment } from '../Environment';
-import { MetadoreDataType } from '../../shared/types/data.types';
+import type { MetadoreDataType } from '../../shared/types/data.types';
 
 export const search = async (
     v: string,

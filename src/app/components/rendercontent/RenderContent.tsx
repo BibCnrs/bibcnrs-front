@@ -1,8 +1,8 @@
 import './RenderContent.scss';
-import PageTitle from '../utils/PageTitle';
 import { getLanguageKey } from '../../shared/locales/I18N';
-import { RenderContentProps } from '../../shared/types/props.types';
 import PageDate from '../utils/PageDate';
+import PageTitle from '../utils/PageTitle';
+import type { RenderContentProps } from '../../shared/types/props.types';
 
 /**
  * Component use to create CMS pages

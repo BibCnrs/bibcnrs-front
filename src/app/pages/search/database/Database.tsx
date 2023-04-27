@@ -1,16 +1,16 @@
 import './Database.scss';
-import { getLanguageKey, translator } from '../../../shared/locales/I18N';
-import PageTitle from '../../../components/utils/PageTitle';
-import { DatabaseDataType, DatabaseEntryDataType } from '../../../shared/types/data.types';
-import { database } from '../../../services/common/Database';
-import { DatabaseDisplayGroupProps } from '../../../shared/types/props.types';
 import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
 import { BibContext } from '../../../components/provider/ContextProvider';
-import { useQuery } from '@tanstack/react-query';
-import Tooltip from '@mui/material/Tooltip';
-import { useContext, useEffect, useState } from 'react';
-import Switch from '@mui/material/Switch';
+import PageTitle from '../../../components/utils/PageTitle';
+import { database } from '../../../services/common/Database';
+import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import Tooltip from '@mui/material/Tooltip';
+import { useQuery } from '@tanstack/react-query';
+import { useContext, useEffect, useState } from 'react';
+import type { DatabaseDataType, DatabaseEntryDataType } from '../../../shared/types/data.types';
+import type { DatabaseDisplayGroupProps } from '../../../shared/types/props.types';
 
 const getName = (entry: DatabaseEntryDataType, language: string) => {
     if (language === 'en') {

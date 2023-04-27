@@ -1,12 +1,13 @@
 import './SearchBar.scss';
-import { SearchBarProps } from '../../shared/types/props.types';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
-import { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
+import SearchIcon from '@mui/icons-material/Search';
 import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
+import Paper from '@mui/material/Paper';
+import { useRef, useState } from 'react';
+import type { SearchBarProps } from '../../shared/types/props.types';
+import type { ChangeEvent, KeyboardEvent } from 'react';
 
 /**
  * Search bar component use in: [Root], [Article], [Journal, book], [Database] and [Research data]

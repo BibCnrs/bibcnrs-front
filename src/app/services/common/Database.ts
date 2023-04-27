@@ -1,6 +1,6 @@
-import { DatabaseDataType } from '../../shared/types/data.types';
 import { createQuery, environment } from '../Environment';
 import { getDomains } from '../user/Session';
+import type { DatabaseDataType } from '../../shared/types/data.types';
 
 export const database = async (language: string, oa: boolean): Promise<DatabaseDataType> => {
     const response: Response = await fetch(createQuery(environment.get.database));

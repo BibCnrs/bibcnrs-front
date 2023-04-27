@@ -1,8 +1,9 @@
-import createSxProps from '../../../shared/createSxProps';
-import { ColoredPaperProps } from '../../../shared/types/props.types';
 import Paper from '@mui/material/Paper';
-import { Property } from 'csstype';
 import { hexToRgb, decomposeColor } from '@mui/system/colorManipulator';
+import type { ColoredPaperProps } from '../../../shared/types/props.types';
+import type { Theme } from '@mui/material/styles/createTheme';
+import type { SxProps } from '@mui/system/styleFunctionSx/styleFunctionSx';
+import type { Property } from 'csstype';
 
 const elevations = [
     ['0 2px 1px -1px', '0 1px 1px 0', '0 1px 3px 0'],
@@ -19,11 +20,11 @@ const getBoxShadow = (elevation: number, color: string): Property.BoxShadow => {
     if (!shadow) {
         return 'none';
     }
-    const processShadow = [];
-    processShadow.push(`${shadow[0]} rgba(${color},0.2)`);
-    processShadow.push(`${shadow[1]} rgba(${color},0.14)`);
-    processShadow.push(`${shadow[2]} rgba(${color},0.12)`);
-    return processShadow.join(',');
+    return [
+        `${shadow[0]} rgba(${color},0.2)`,
+        `${shadow[1]} rgba(${color},0.14)`,
+        `${shadow[2]} rgba(${color},0.12)`,
+    ].join(',');
 };
 
 const ColoredPaper = ({
@@ -37,25 +38,23 @@ const ColoredPaper = ({
     children,
 }: ColoredPaperProps) => {
     const convertedColor = decomposeColor(hexToRgb(color)).values.join(',');
-    let sx;
+    let sx: SxProps<Theme> = {};
     if (border) {
-        sx = createSxProps({
+        sx = {
             borderColor: `rgba(${convertedColor},0.5)`,
             borderStyle: 'solid',
             borderWidth: '1px',
-            boxShadow: getBoxShadow(elevation, convertedColor),
-        });
-    } else {
-        sx = createSxProps({
-            boxShadow: getBoxShadow(elevation, convertedColor),
-        });
+        };
     }
     return (
         <Paper
             id={id}
-            className={className ? `colored-paper ${className}` : 'colored-paper'}
+            className={`colored-paper ${className}`}
             elevation={elevation}
-            sx={sx}
+            sx={{
+                boxShadow: getBoxShadow(elevation, convertedColor),
+                ...sx,
+            }}
             onMouseOver={onMouseOver}
             onMouseOut={onMouseOut}
         >

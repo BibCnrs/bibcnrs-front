@@ -1,7 +1,7 @@
 import './Journal.scss';
-import { translator } from '../../../shared/locales/I18N';
-import PageTitle from '../../../components/utils/PageTitle';
 import SearchBar from '../../../components/searchbar/SearchBar';
+import PageTitle from '../../../components/utils/PageTitle';
+import { translator } from '../../../shared/locales/I18N';
 
 const Journal = () => {
     const t = translator();

@@ -20,10 +20,11 @@ export const environment = {
     },
 };
 
-export const createQuery = (uri: string, param?: any | undefined): string => {
-    if (param === undefined) {
-        return `${environment.host}${uri}`;
+export const createQuery = (uri: string, param?: any | undefined): URL => {
+    const url = new URL(uri, environment.host);
+    if (param !== undefined) {
+        const query = new URLSearchParams(param);
+        url.search = query.toString();
     }
-    const query = new URLSearchParams(param);
-    return `${environment.host}${uri}?${query.toString()}`;
+    return url;
 };

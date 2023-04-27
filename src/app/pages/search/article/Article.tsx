@@ -1,7 +1,7 @@
 import './Article.scss';
 import SearchBar from '../../../components/searchbar/SearchBar';
-import { translator } from '../../../shared/locales/I18N';
 import PageTitle from '../../../components/utils/PageTitle';
+import { translator } from '../../../shared/locales/I18N';
 
 const Article = () => {
     const t = translator();

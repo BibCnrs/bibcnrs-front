@@ -1,5 +1,5 @@
-import { TFunction as TF, TypeOptions } from 'i18next';
-import { Dispatch, SetStateAction } from 'react';
+import type { TFunction as TF, TypeOptions } from 'i18next';
+import type { Dispatch, SetStateAction } from 'react';
 
 type Resources = TypeOptions['resources'];
 

@@ -1,6 +1,6 @@
 import { getDomains } from './Session';
 import { createQuery, environment } from '../Environment';
-import { LicencesDataType } from '../../shared/types/data.types';
+import type { LicencesDataType } from '../../shared/types/data.types';
 
 export const licences = async (): Promise<LicencesDataType> => {
     const response = await fetch(

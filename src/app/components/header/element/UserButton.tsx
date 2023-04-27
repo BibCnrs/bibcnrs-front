@@ -1,18 +1,19 @@
-import { BibContext } from '../../provider/ContextProvider';
-import { translator } from '../../../shared/locales/I18N';
 import { getUsername, isLegacy, logout } from '../../../services/user/Session';
+import { translator } from '../../../shared/locales/I18N';
+import { BibContext } from '../../provider/ContextProvider';
 import { colors } from '../../provider/LocalizedThemeProvider';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import ErrorIcon from '@mui/icons-material/Error';
+import HistoryIcon from '@mui/icons-material/History';
+import LogoutIcon from '@mui/icons-material/Logout';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import Avatar from '@mui/material/Avatar';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import { MouseEvent, ReactElement, useContext, useState } from 'react';
 import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import LogoutIcon from '@mui/icons-material/Logout';
-import HistoryIcon from '@mui/icons-material/History';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import ErrorIcon from '@mui/icons-material/Error';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useContext, useState } from 'react';
+import type { MouseEvent, ReactElement } from 'react';
 
 const UserButton = () => {
     const t = translator();

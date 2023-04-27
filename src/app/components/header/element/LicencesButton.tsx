@@ -1,6 +1,6 @@
-import { headerButtonStyle } from '../Header';
 import { translator } from '../../../shared/locales/I18N';
 import { buildLinkClickHandler, RouteLicences } from '../../../shared/Routes';
+import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
 
 const LicencesButton = () => {

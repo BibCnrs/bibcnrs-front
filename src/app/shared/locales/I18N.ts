@@ -1,9 +1,9 @@
-import fr from './common/fr';
 import en from './common/en';
-import { SupportedLanguages, TFunction } from '../types/types';
+import fr from './common/fr';
 import i18next from 'i18next';
 import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next, useTranslation } from 'react-i18next';
+import type { SupportedLanguages, TFunction } from '../types/types';
 
 /**
  * Type use to a localized error message

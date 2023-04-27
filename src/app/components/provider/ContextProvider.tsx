@@ -1,6 +1,6 @@
-import { ContextProviderProps } from '../../shared/types/props.types';
-import { BibContextType, ThemeType } from '../../shared/types/types';
 import { createContext, useEffect, useState } from 'react';
+import type { ContextProviderProps } from '../../shared/types/props.types';
+import type { BibContextType, ThemeType } from '../../shared/types/types';
 
 const createIfNotExist = () => {
     if (window.localStorage.getItem('mode') === null) {

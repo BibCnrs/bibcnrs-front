@@ -1,6 +1,6 @@
 import { translator } from '../../../shared/locales/I18N';
-import { headerButtonStyle } from '../Header';
 import Authentication from '../../authentication/Authentication';
+import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 

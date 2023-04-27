@@ -1,5 +1,5 @@
 import { createQuery } from '../Environment';
-import { AutoCompleteDataType } from '../../shared/types/data.types';
+import type { AutoCompleteDataType } from '../../shared/types/data.types';
 
 export const autoComplete = async (value: string): Promise<AutoCompleteDataType> => {
     const response = await fetch(

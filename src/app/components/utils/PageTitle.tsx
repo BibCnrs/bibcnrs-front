@@ -1,5 +1,5 @@
-import { PageTitleProps } from '../../shared/types/props.types';
 import { Component } from 'react';
+import type { PageTitleProps } from '../../shared/types/props.types';
 
 /**
  * Utils component use to update the document title

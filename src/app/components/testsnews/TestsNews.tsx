@@ -1,14 +1,15 @@
 import './TestsNews.scss';
-import OpenablePaper from '../paper/openable/OpenablePaper';
-import PageDate from '../utils/PageDate';
-import { getLanguageKey, translator } from '../../shared/locales/I18N';
 import { getDomains, getFavoriteDomain } from '../../services/user/Session';
+import { getLanguageKey, translator } from '../../shared/locales/I18N';
+import OpenablePaper from '../paper/openable/OpenablePaper';
 import { getInstituteColor } from '../provider/LocalizedThemeProvider';
-import { TestNewDataType } from '../../shared/types/data.types';
-import { TestsNewsProps } from '../../shared/types/props.types';
-import { ChangeEvent, useState } from 'react';
-import Radio from '@mui/material/Radio';
+import PageDate from '../utils/PageDate';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import { useState } from 'react';
+import type { TestNewDataType } from '../../shared/types/data.types';
+import type { TestsNewsProps } from '../../shared/types/props.types';
+import type { ChangeEvent } from 'react';
 
 const TestsNews = ({ data }: TestsNewsProps) => {
     const t = translator();
@@ -40,34 +41,29 @@ const TestsNews = ({ data }: TestsNewsProps) => {
 
     const getData = () => {
         return data.filter((value) => {
-            if (!value.domains) {
+            if (!Array.isArray(value.domains)) {
                 return true;
             }
             if (value.domains.length === 0) {
                 return true;
             }
-            if (favoriteDomain && value.domains.includes(favoriteDomain)) {
+            const domainsSet = new Set(value.domains);
+            if (favoriteDomain && domainsSet.has(favoriteDomain)) {
                 return true;
             }
-            for (const domain of domains) {
-                const includes = value.domains.includes(domain);
-                if (includes) {
-                    return true;
-                }
-            }
-            return false;
+            return domains.some((d) => domainsSet.has(d));
         });
     };
 
     const getColor = (value: TestNewDataType) => {
-        if (!value.domains || value.domains.length === 0) {
+        if (!Array.isArray(value.domains) || value.domains.length === 0) {
             return undefined;
         }
         return getInstituteColor(value.domains[0]);
     };
 
     const getLabel = (value: TestNewDataType) => {
-        if (!value.domains || value.domains.length === 0) {
+        if (!Array.isArray(value.domains) || value.domains.length === 0) {
             return t('components.testsnews.common');
         }
         return value.domains?.join(', ');
@@ -128,7 +124,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                                         __html: language === 'en' ? value.content_en : value.content_fr,
                                     }}
                                 ></div>
-                                {value.urls && value.urls.length > 0 ? (
+                                {Array.isArray(value.urls) && value.urls.length > 0 ? (
                                     <div>
                                         <ul>
                                             {value.urls.map((url) => (

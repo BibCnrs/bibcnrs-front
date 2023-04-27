@@ -1,14 +1,14 @@
-import I18N from './app/shared/locales/I18N';
-import LocalizedThemeProvider from './app/components/provider/LocalizedThemeProvider';
-import ContextProvider from './app/components/provider/ContextProvider';
 import App from './app/App';
+import ContextProvider from './app/components/provider/ContextProvider';
+import LocalizedThemeProvider from './app/components/provider/LocalizedThemeProvider';
 import ExceptedError from './app/pages/errors/ExceptedError';
-import { BrowserRouter } from 'react-router-dom';
-import { I18nextProvider } from 'react-i18next';
-import ReactDOMClient from 'react-dom/client';
-import { StrictMode } from 'react';
+import I18N from './app/shared/locales/I18N';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { StrictMode } from 'react';
+import ReactDOMClient from 'react-dom/client';
+import { I18nextProvider } from 'react-i18next';
+import { BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOMClient.createRoot(container);

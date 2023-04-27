@@ -1,9 +1,9 @@
 import './Legal.scss';
-import { CMSResultDataType } from '../../../shared/types/data.types';
-import { legal } from '../../../services/common/CMS';
 import RenderContent from '../../../components/rendercontent/RenderContent';
+import { legal } from '../../../services/common/CMS';
 import { translator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
+import type { CMSResultDataType } from '../../../shared/types/data.types';
 
 const Legal = () => {
     const t = translator();

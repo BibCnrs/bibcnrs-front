@@ -1,6 +1,6 @@
 import './AlertPaper.scss';
-import { AlertPaperProps } from '../../../shared/types/props.types';
 import ColoredPaper from '../colored/ColoredPaper';
+import type { AlertPaperProps } from '../../../shared/types/props.types';
 
 const AlertPaper = ({ children }: AlertPaperProps) => {
     return (

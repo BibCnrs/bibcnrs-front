@@ -1,4 +1,4 @@
-import { Common } from '../I18N';
+import type { Common } from '../I18N';
 
 /**
  * French translation
@@ -28,16 +28,16 @@ const fr: Common = {
             janus: {
                 button: "Via le gestionnaire d'identité janus",
                 tooltip: "Compte personnel pour l'ensemble des services du CNRS : Agate, Simbad...",
-                ask: 'demander un compte janus',
+                ask: 'Demander un compte janus',
             },
             legacy: {
                 button: "Via votre ancien code d'accès portail",
-                username: 'indentifiant',
-                password: 'mot de passe',
+                username: 'Indentifiant',
+                password: 'Mot de passe',
                 login: 'Connexion',
                 error: "L'identifiant/mot de passe saisi n'a pas permis de vous connecter au portail.",
             },
-            contact: 'nous contacter',
+            contact: 'Nous contacter',
         },
         nav: {
             article: 'Article',

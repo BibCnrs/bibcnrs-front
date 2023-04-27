@@ -1,5 +1,5 @@
-import { PageDateProps } from '../../shared/types/props.types';
 import { translator } from '../../shared/locales/I18N';
+import type { PageDateProps } from '../../shared/types/props.types';
 
 /**
  * Utils component use to display a date from an ISO valid string

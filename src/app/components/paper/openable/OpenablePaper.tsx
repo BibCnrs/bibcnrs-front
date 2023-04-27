@@ -1,9 +1,9 @@
 import './OpenablePaper.scss';
-import { OpenablePaperProps } from '../../../shared/types/props.types';
 import AnimatedPaper from '../animated/AnimatedPaper';
-import { useState } from 'react';
-import IconButton from '@mui/material/IconButton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import IconButton from '@mui/material/IconButton';
+import { useState } from 'react';
+import type { OpenablePaperProps } from '../../../shared/types/props.types';
 
 const OpenablePaper = ({ Title, SmallBody, FullBody, small = false, color, border }: OpenablePaperProps) => {
     const [open, setOpen] = useState<boolean>(false);

@@ -1,4 +1,5 @@
 import './NavBar.scss';
+import { translator } from '../../shared/locales/I18N';
 import {
     RouteArticle,
     RouteDatabase,
@@ -8,7 +9,6 @@ import {
     buildLinkClickHandler,
     isMatching,
 } from '../../shared/Routes';
-import { translator } from '../../shared/locales/I18N';
 import { BibContext } from '../provider/ContextProvider';
 import Button from '@mui/material/Button';
 import { useContext } from 'react';

@@ -1,23 +1,24 @@
 import './Authentication.scss';
-import { translator } from '../../shared/locales/I18N';
-import { AuthenticationProps } from '../../shared/types/props.types';
 import { loginToJanus, loginToLegacy } from '../../services/user/Session';
+import { translator } from '../../shared/locales/I18N';
 import { BibContext } from '../provider/ContextProvider';
+import CloseIcon from '@mui/icons-material/Close';
+import LoginIcon from '@mui/icons-material/Login';
+import Button from '@mui/material/Button';
+import Collapse from '@mui/material/Collapse';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import Button from '@mui/material/Button';
-import LoginIcon from '@mui/icons-material/Login';
-import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton';
 import Slide from '@mui/material/Slide';
-import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import styled from '@mui/material/styles/styled';
 import TextField from '@mui/material/TextField';
-import Collapse from '@mui/material/Collapse';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 import { FormEvent, useContext, useState } from 'react';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
+import type { AuthenticationProps } from '../../shared/types/props.types';
+import type { TooltipProps } from '@mui/material/Tooltip';
 
 const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} children={props.children} />

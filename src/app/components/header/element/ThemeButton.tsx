@@ -1,7 +1,8 @@
 import { BibContext } from '../../provider/ContextProvider';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
-import { ChangeEvent, useContext } from 'react';
+import { useContext } from 'react';
+import type { ChangeEvent } from 'react';
 
 // Style from https://mui.com/material-ui/react-switch/
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({

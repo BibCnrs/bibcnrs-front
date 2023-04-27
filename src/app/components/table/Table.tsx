@@ -1,10 +1,11 @@
 import './Table.scss';
-import { PaginationComponentProps, TableProps } from '../../shared/types/props.types';
 import { translator } from '../../shared/locales/I18N';
-import Pagination from '@mui/material/Pagination';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 import { FormControl } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Pagination from '@mui/material/Pagination';
+import Select from '@mui/material/Select';
+import type { PaginationComponentProps, TableProps } from '../../shared/types/props.types';
+import type { SelectChangeEvent } from '@mui/material/Select';
 
 /**
  * Pagination component use by Table.

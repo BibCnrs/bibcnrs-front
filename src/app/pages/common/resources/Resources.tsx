@@ -1,12 +1,12 @@
 import './Resources.scss';
-import { ResourcesDataType } from '../../../shared/types/data.types';
-import { resources } from '../../../services/common/Resources';
-import PageTitle from '../../../components/utils/PageTitle';
-import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import ColoredPaper from '../../../components/paper/colored/ColoredPaper';
 import { getInstituteColor } from '../../../components/provider/LocalizedThemeProvider';
-import { Institute } from '../../../shared/types/types';
+import PageTitle from '../../../components/utils/PageTitle';
+import { resources } from '../../../services/common/Resources';
+import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
+import type { ResourcesDataType } from '../../../shared/types/data.types';
+import type { Institute } from '../../../shared/types/types';
 
 const DisplayResources = ({ data }: { data: ResourcesDataType | undefined }) => {
     if (!data || data.length === 0) {

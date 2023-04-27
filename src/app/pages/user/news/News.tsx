@@ -1,9 +1,9 @@
-import { translator } from '../../../shared/locales/I18N';
-import { TestsNewsDataType } from '../../../shared/types/data.types';
-import { news } from '../../../services/user/TestsNews';
-import PageTitle from '../../../components/utils/PageTitle';
 import TestsNews from '../../../components/testsnews/TestsNews';
+import PageTitle from '../../../components/utils/PageTitle';
+import { news } from '../../../services/user/TestsNews';
+import { translator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
+import type { TestsNewsDataType } from '../../../shared/types/data.types';
 
 const News = () => {
     const t = translator();
