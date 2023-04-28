@@ -1,5 +1,6 @@
 import { getUsername, isLegacy, logout } from '../../../services/user/Session';
 import { translator } from '../../../shared/locales/I18N';
+import { buildLinkClickHandler, RouteHistory } from '../../../shared/Routes';
 import { BibContext } from '../../provider/ContextProvider';
 import { colors } from '../../provider/LocalizedThemeProvider';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
@@ -17,16 +18,13 @@ import type { MouseEvent, ReactElement } from 'react';
 
 const UserButton = () => {
     const t = translator();
-    let username = getUsername();
-    if (username === null) {
-        username = 'null';
-    }
-
+    const { setLogin } = useContext(BibContext);
     // Anchor use to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+    const history = buildLinkClickHandler(RouteHistory);
 
-    const { setLogin } = useContext(BibContext);
+    let username = getUsername();
 
     // Handle drop-down menu action, like close or click
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -44,6 +42,10 @@ const UserButton = () => {
     const getAvatarButtonClass = () => {
         return open ? ' user-button-active-legacy' : ' user-button-legacy';
     };
+
+    if (username === null) {
+        username = 'null';
+    }
 
     const options: ReactElement[] = [];
     options.push(
@@ -66,7 +68,7 @@ const UserButton = () => {
         );
     } else {
         options.push(
-            <MenuItem key="history">
+            <MenuItem key="history" onClick={history.handler} href={history.href}>
                 <ListItemIcon>
                     <HistoryIcon fontSize="small" />
                 </ListItemIcon>

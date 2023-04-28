@@ -1,0 +1,54 @@
+@import "src/app/scss/colors";
+
+.table-history {
+  display: grid;
+  grid-template-columns: 20% 20% 20% auto;
+  grid-auto-flow: column;
+  padding: 2px;
+  background-color: $background;
+  background-image: linear-gradient(rgba(255, 255, 255, .05), rgba(255, 255, 255, .05));
+  border: $table-border solid 1px;
+  border-bottom-width: 0;
+
+  .table-history-box {
+    padding: 6px;
+    color: $text;
+  }
+}
+
+.table-history-first {
+  border-top-width: 1px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.table-history-last {
+  margin-bottom: 25px;
+  border-bottom-width: 1px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.table-history-grey {
+  background-image: linear-gradient(rgba(0, 0, 0, .075), rgba(0, 0, 0, .075));
+}
+
+.table-history-grey-dark {
+  background-image: linear-gradient(rgba(255, 255, 255, .1), rgba(255, 255, 255, .1));
+}
+
+.table-history:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, .025), rgba(0, 0, 0, .025));
+}
+
+.table-history-dark:hover {
+  background-image: linear-gradient(rgba(255, 255, 255, .075), rgba(255, 255, 255, .075));
+}
+
+.table-history-grey:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1));
+}
+
+.table-history-grey-dark:hover {
+  background-image: linear-gradient(rgba(255, 255, 255, .125), rgba(255, 255, 255, .125));
+}

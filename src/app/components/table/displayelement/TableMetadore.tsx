@@ -1,7 +1,11 @@
 import './TableMetadore.scss';
 import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import OpenablePaper from '../../paper/openable/OpenablePaper';
-import type { MetadoreResultDescriptionType, MetadoreResultTitleType } from '../../../shared/types/data.types';
+import type {
+    MetadoreResultDescriptionType,
+    MetadoreResultTitleType,
+    MetadoreResultType,
+} from '../../../shared/types/data.types';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 
 /**
@@ -47,7 +51,7 @@ const getDescription = (descriptions: MetadoreResultDescriptionType[], langKey: 
  * @param data Component parameter containing the data to display
  * @see TableDisplayElementProps
  */
-const TableMetadore = ({ data }: TableDisplayElementProps) => {
+const TableMetadore = ({ data }: TableDisplayElementProps<MetadoreResultType>) => {
     // Get translation function and language key
     const t = translator();
     const languageKey = getLanguageKey();

@@ -8,17 +8,22 @@ import type { NavigateFunction } from 'react-router/dist/lib/hooks';
  */
 const Routes = {
     root: '/',
+    /* Search engine route */
     article: '/article',
     journal: '/journal',
     database: '/database',
     researchData: '/research-data',
+    /* Information route */
     faq: '/faq',
     about: '/about',
-    resources: '/resources',
     legal: '/legal',
-    licences: '/licences',
+    resources: '/resources',
+    /* Domain route */
     tests: '/tests',
     news: '/news',
+    licences: '/licences',
+    /* Account specific route */
+    history: '/account/history',
 } as const;
 
 type RoutesType = typeof Routes;
@@ -66,50 +71,16 @@ export const getNumber = (query: URLSearchParams, key: string, fallback: number 
     return parseInt(value, 10);
 };
 
-/**
- * Export the root route
- */
 export const RouteRoot = Routes.root;
-
-/**
- * Export the article route
- */
 export const RouteArticle = Routes.article;
-
-/**
- * Export the journal route
- */
 export const RouteJournal = Routes.journal;
-
-/**
- * Export the database route
- */
 export const RouteDatabase = Routes.database;
-
-/**
- * Export the research data route
- */
 export const RouteResearchData = Routes.researchData;
-
-/**
- * Export the faq route
- */
 export const RouteFaq = Routes.faq;
-
 export const RouteResources = Routes.resources;
-
-/**
- * Export the about route
- */
 export const RouteAbout = Routes.about;
-
-/**
- * Export the legal route
- */
 export const RouteLegal = Routes.legal;
-
 export const RouteLicences = Routes.licences;
-
 export const RouteTests = Routes.tests;
-
 export const RouteNews = Routes.news;
+export const RouteHistory = Routes.history;

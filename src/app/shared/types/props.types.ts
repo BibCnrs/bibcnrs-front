@@ -1,4 +1,4 @@
-import type { CMSResultDataType, DatabaseDataType, MetadoreResultType, TestsNewsDataType } from './data.types';
+import type { CMSResultDataType, DatabaseDataType, TestsNewsDataType } from './data.types';
 import type { TFunction } from './types';
 import type { Property } from 'csstype';
 import type {
@@ -26,20 +26,23 @@ export type PageTitleProps = PropsWithoutRef<{
     t?: TFunction;
 }>;
 
-export type TableDisplayElementProps = PropsWithoutRef<{
+export type TableDisplayElementProps<T> = PropsWithoutRef<{
     key: Key;
-    data: MetadoreResultType;
+    first: boolean;
+    last: boolean;
+    index: number;
+    data: T;
 }>;
 
-export type TableArgsProps = PropsWithoutRef<{
-    value?: string;
-    page?: number;
-    perPage?: number;
-    field: string | null;
-}>;
+export type TableArgsProps = PropsWithoutRef<
+    {
+        page?: number;
+        perPage?: number;
+    } & any
+>;
 
 export type TableProps = PropsWithoutRef<{
-    DisplayElement: ElementType<TableDisplayElementProps>;
+    DisplayElement: ElementType<TableDisplayElementProps<any>>;
     results?: any[];
     total?: number;
     args: TableArgsProps;

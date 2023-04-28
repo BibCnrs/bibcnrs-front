@@ -14,6 +14,7 @@ import Article from './pages/search/article/Article';
 import Database from './pages/search/database/Database';
 import Journal from './pages/search/journal/Journal';
 import ResearchData from './pages/search/researchdata/ResearchData';
+import History from './pages/user/history/History';
 import Licences from './pages/user/licences/Licences';
 import News from './pages/user/news/News';
 import Tests from './pages/user/tests/Tests';
@@ -23,6 +24,7 @@ import {
     RouteArticle,
     RouteDatabase,
     RouteFaq,
+    RouteHistory,
     RouteJournal,
     RouteLegal,
     RouteLicences,
@@ -81,6 +83,14 @@ const App = () => {
                         element={
                             <ProtectedRoute>
                                 <News />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path={RouteHistory}
+                        element={
+                            <ProtectedRoute>
+                                <History />
                             </ProtectedRoute>
                         }
                     />

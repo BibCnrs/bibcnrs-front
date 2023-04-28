@@ -34,6 +34,10 @@ export const colors = {
         dark: '#00284b',
         light: '#0050a0',
     },
+    table: {
+        light: '#c0c0d0',
+        dark: '#151723',
+    },
     cnrs: {
         primary: {
             dark: '#00284b',
@@ -79,6 +83,7 @@ const updateTheme = (theme: ThemeType) => {
     style.setProperty('--nav-button-active', colors.nav.active[theme]);
     style.setProperty('--nav-button-hover', colors.nav.hover[theme]);
     style.setProperty('--button-background', colors.button[theme]);
+    style.setProperty('--table-border', colors.table[theme]);
 };
 
 /**

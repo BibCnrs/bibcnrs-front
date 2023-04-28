@@ -94,7 +94,15 @@ const Table = ({ results, DisplayElement, total, args, setArgs }: TableProps) =>
                     {/* Display the results with the React component given in parameter or display no data if the total is equals to 0 */}
                     <div>
                         {total !== 0 ? (
-                            results.map((result: any, index: number) => <DisplayElement key={index} data={result} />)
+                            results.map((result: any, index: number) => (
+                                <DisplayElement
+                                    key={index}
+                                    data={result}
+                                    index={index}
+                                    first={index === 0}
+                                    last={index === results.length - 1}
+                                />
+                            ))
                         ) : (
                             <p>{t('components.table.noData')}</p>
                         )}

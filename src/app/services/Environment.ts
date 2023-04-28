@@ -9,6 +9,7 @@ export const environment = {
             janus: '/ebsco/login_renater',
             licences: '/ebsco/licenses',
             testsNews: '/ebsco/news',
+            history: '/ebsco/history',
         },
     },
     post: {

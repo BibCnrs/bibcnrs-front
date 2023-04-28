@@ -1,3 +1,5 @@
+import type { Institute } from './types';
+
 export type MetadoreResultTitleType = {
     title: string;
     lang?: string;
@@ -136,3 +138,39 @@ export type TestNewDataType = {
 };
 
 export type TestsNewsDataType = TestNewDataType[];
+
+export type HistoryQueriesDataType = {
+    boolean: 'AND' | 'OR';
+    term: string;
+    suggestedTerms: any[];
+    field: any | number;
+    key: string;
+};
+
+export type HistoryEntryDataType = {
+    id: number;
+    totalCount: number;
+    hasAlert: false;
+    frequence: 'day' | 'week' | 'month';
+    active: boolean;
+    event: {
+        queries: HistoryQueriesDataType[];
+        limiters: {
+            fullText: boolean;
+            openAccess: boolean;
+            publicationData: {
+                from: string | null;
+                to: string | null;
+            };
+            peerReviewed: boolean;
+            poublicationId: number | null;
+        };
+        activeFacets: any;
+        sort: 'relevance';
+        resultPerPage: number;
+        domain: Institute;
+        totalHits: number;
+    };
+};
+
+export type HistoryDataType = HistoryEntryDataType[];

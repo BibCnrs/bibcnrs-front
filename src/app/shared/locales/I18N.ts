@@ -67,6 +67,10 @@ export type Common = {
                 publicationYear: string;
                 description: string;
                 subjects: string;
+                term: string;
+                domain: string;
+                limiters: string;
+                facets: string;
             };
         };
         testsnews: {
@@ -125,6 +129,9 @@ export type Common = {
             title: string;
         };
         tests: {
+            title: string;
+        };
+        history: {
             title: string;
         };
         faq: {

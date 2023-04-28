@@ -54,6 +54,10 @@ const fr: Common = {
                 publicationYear: 'Année de publication',
                 description: 'Description',
                 subjects: 'Mots clés',
+                term: 'Terme recherchés',
+                domain: 'Domaine',
+                limiters: 'Limites',
+                facets: 'Facettes',
             },
         },
         testsnews: {
@@ -136,6 +140,9 @@ Cordialement`,
         },
         tests: {
             title: 'Tests',
+        },
+        history: {
+            title: 'Historique',
         },
     },
     error: {

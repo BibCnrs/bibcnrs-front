@@ -54,6 +54,10 @@ const en: Common = {
                 publicationYear: 'Publication year',
                 description: 'Description',
                 subjects: 'Keys words',
+                term: 'Searched terms',
+                domain: 'Discipline',
+                limiters: 'Limits',
+                facets: 'Facets',
             },
         },
         testsnews: {
@@ -135,6 +139,9 @@ Sincerely`,
         },
         tests: {
             title: 'Tests',
+        },
+        history: {
+            title: 'History',
         },
     },
     error: {
