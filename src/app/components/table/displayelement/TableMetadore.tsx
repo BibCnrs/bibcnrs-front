@@ -1,4 +1,4 @@
-import './TableMetadore.scss';
+import './scss/TableMetadore.scss';
 import { getLanguageKey, translator } from '../../../shared/locales/I18N';
 import OpenablePaper from '../../paper/openable/OpenablePaper';
 import type {

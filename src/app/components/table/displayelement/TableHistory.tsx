@@ -1,4 +1,4 @@
-import './TableHistory.scss';
+import './scss/TableHistory.scss';
 import { translator } from '../../../shared/locales/I18N';
 import { BibContext } from '../../provider/ContextProvider';
 import { useContext } from 'react';
