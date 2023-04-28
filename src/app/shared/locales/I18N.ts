@@ -17,6 +17,24 @@ type Error = {
  * Type use to define the data use to localize the application
  */
 export type Common = {
+    ebsco: {
+        facets: {
+            SubjectEDS: string;
+            SourceType: string;
+            Journal: string;
+            Language: string;
+            RangeLexile: string;
+            CollectionLibrary: string;
+            Publisher: string;
+            ContentProvider: string;
+        };
+        limiters: {
+            fullText: string;
+            openAccess: string;
+            peerReviewedArticle: string;
+            publicationDate: string;
+        };
+    };
     components: {
         header: {
             title: string;

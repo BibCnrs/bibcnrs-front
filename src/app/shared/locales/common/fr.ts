@@ -4,6 +4,24 @@ import type { Common } from '../I18N';
  * French translation
  */
 const fr: Common = {
+    ebsco: {
+        facets: {
+            SubjectEDS: 'Mot clé',
+            SourceType: 'Type de ressource',
+            Journal: 'Titre de publication',
+            Language: 'Langue',
+            RangeLexile: 'Lexile Range',
+            CollectionLibrary: 'Collection',
+            Publisher: 'Editeur',
+            ContentProvider: 'Fournisseur de contenu',
+        },
+        limiters: {
+            fullText: 'Texte intégral',
+            openAccess: 'Accès ourvert',
+            publicationDate: 'Date de publication',
+            peerReviewedArticle: 'Relu par un comité',
+        },
+    },
     components: {
         header: {
             login: 'Connexion',

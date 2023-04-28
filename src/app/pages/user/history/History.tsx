@@ -28,7 +28,13 @@ const History = () => {
         <div id="app">
             <PageTitle page="history" t={t} />
             <h1>{t('pages.history.title')}</h1>
-            <Table DisplayElement={TableHistory} results={data} args={args} setArgs={setArgs} total={args.perPage} />
+            <Table
+                DisplayElement={TableHistory}
+                results={data}
+                args={args}
+                setArgs={setArgs}
+                total={data && data[0] ? data[0].totalCount : 0}
+            />
         </div>
     );
 };

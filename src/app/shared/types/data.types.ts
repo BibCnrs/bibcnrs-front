@@ -147,6 +147,30 @@ export type HistoryQueriesDataType = {
     key: string;
 };
 
+export type HistoryEntryFacetsKeyDataType =
+    | 'SubjectEDS'
+    | 'SourceType'
+    | 'Journal'
+    | 'Language'
+    | 'RangeLexile'
+    | 'CollectionLibrary'
+    | 'Publisher'
+    | 'ContentProvider';
+
+export type HistoryEntryFacetsDataType = Record<HistoryEntryFacetsKeyDataType, string[]>;
+
+export type HistoryEntryLimiterDataType = {
+    fullText: boolean;
+    openAccess: boolean;
+    publicationDate: {
+        from: string | null;
+        to: string | null;
+    };
+    peerReviewed: boolean;
+    peerReviewedArticle: boolean;
+    publicationId: number | null;
+};
+
 export type HistoryEntryDataType = {
     id: number;
     totalCount: number;
@@ -155,17 +179,8 @@ export type HistoryEntryDataType = {
     active: boolean;
     event: {
         queries: HistoryQueriesDataType[];
-        limiters: {
-            fullText: boolean;
-            openAccess: boolean;
-            publicationData: {
-                from: string | null;
-                to: string | null;
-            };
-            peerReviewed: boolean;
-            poublicationId: number | null;
-        };
-        activeFacets: any;
+        limiters: HistoryEntryLimiterDataType;
+        activeFacets: HistoryEntryFacetsDataType;
         sort: 'relevance';
         resultPerPage: number;
         domain: Institute;
