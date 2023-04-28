@@ -30,7 +30,7 @@
     },
     "devDependencies": {
         "@types/md5": "^2.3.2",
-        "@types/node": "^18.16.1",
+        "@types/node": "^18.16.2",
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.1",
         "@types/react-transition-group": "^4.4.5",
@@ -50,7 +50,7 @@
         "stylelint-config-twbs-bootstrap": "^8.0.0",
         "terser": "^5.17.1",
         "typescript": "^5.0.4",
-        "vite": "^4.3.2",
+        "vite": "^4.3.3",
         "vite-plugin-eslint": "^1.8.1",
         "vite-plugin-stylelint": "^4.3.0"
     }
