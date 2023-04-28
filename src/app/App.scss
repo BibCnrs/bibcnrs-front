@@ -1,35 +1,36 @@
 @import "src/app/scss/colors";
 
 * {
-    box-sizing: border-box;
-    font-family: "DM Sans", sans-serif;
+  box-sizing: border-box;
+  font-family: "DM Sans", sans-serif;
 }
 
 p {
-    color: $text;
+  color: $text;
 }
 
-.title, h1 {
-    font-family: "Source Sans Pro", sans-serif;
-    color: $text;
+.title,
+h1 {
+  font-family: "Source Sans Pro", sans-serif;
+  color: $text;
 }
 
 body {
-    min-height: 100vh;
-    margin: 0;
-    background-color: $background;
+  min-height: 100vh;
+  margin: 0;
+  background-color: $background;
 }
 
 #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 #app-container {
-    flex: 1;
+  flex: 1;
 }
 
 .header-footer {
-    background-color: $background-nav;
+  background-color: $background-nav;
 }

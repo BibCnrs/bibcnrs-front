@@ -10,6 +10,7 @@
         "preview": "vite preview",
         "lint": "eslint \"{src,apps,libs,test}/**/*.{tsx,ts}\" --fix",
         "lint:test": "eslint \"{src,apps,libs,test}/**/*.{tsx,ts}\"",
+        "stylelint": "stylelint \"{src,public}/**/*.scss\" --fix",
         "stylelint:test": "stylelint \"{src,public}/**/*.scss\""
     },
     "dependencies": {
@@ -46,8 +47,8 @@
         "prettier": "^2.8.8",
         "sass": "^1.62.1",
         "stylelint": "^15.6.0",
-        "stylelint-config-standard-scss": "^8.0.0",
-        "stylelint-config-twbs-bootstrap": "^8.0.0",
+        "stylelint-config-standard-scss": "^9.0.0",
+        "stylelint-config-twbs-bootstrap": "^9.0.1",
         "terser": "^5.17.1",
         "typescript": "^5.0.4",
         "vite": "^4.3.3",

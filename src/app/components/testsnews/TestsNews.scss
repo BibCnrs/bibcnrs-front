@@ -3,17 +3,17 @@
 @import "src/app/scss/app";
 
 #tests-news {
+  display: flex;
+
+  #tests-news-nav {
     display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    margin-right: 40px;
+  }
 
-    #tests-news-nav {
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
-        height: fit-content;
-        margin-right: 40px;
-    }
-
-    #tests-news-content {
-        width: 100%;
-    }
+  #tests-news-content {
+    width: 100%;
+  }
 }

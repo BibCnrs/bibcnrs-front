@@ -1,46 +1,46 @@
 @import "src/app/scss/colors";
 
 .openable-paper {
-    position: relative;
-    padding: 5px 0 25px;
-    margin: 0 15px 20px;
-    line-height: 1em;
-    border-radius: 10px;
+  position: relative;
+  padding: 5px 0 25px;
+  margin: 0 15px 20px;
+  line-height: 1em;
+  border-radius: 10px;
 
-    .openable-paper-title {
-        display: flex;
-        max-width: 100%;
-        padding: 1.33rem 20px;
-        margin: 0;
-        font-size: 16px;
+  .openable-paper-title {
+    display: flex;
+    max-width: 100%;
+    padding: 1.33rem 20px;
+    margin: 0;
+    font-size: 16px;
 
-        .openable-paper-button-position {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            padding: 6px 12px;
-            margin: 1.33em 0;
-        }
-
-        .openable-paper-button-small {
-            top: -5px;
-        }
-
-        .openable-paper-button {
-            font-size: 1.1rem;
-            transition: transform 150ms ease-in-out;
-        }
-
-        .openable-paper-button-open {
-            transform: rotate(90deg);
-        }
+    .openable-paper-button-position {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      padding: 6px 12px;
+      margin: 1.33em 0;
     }
 
-    .openable-paper-body {
-        padding: 0 20px;
+    .openable-paper-button-small {
+      top: -5px;
     }
+
+    .openable-paper-button {
+      font-size: 1.1rem;
+      transition: transform 150ms ease-in-out;
+    }
+
+    .openable-paper-button-open {
+      transform: rotate(90deg);
+    }
+  }
+
+  .openable-paper-body {
+    padding: 0 20px;
+  }
 }
 
 .openable-paper-small {
-    padding: 5px 0;
+  padding: 5px 0;
 }

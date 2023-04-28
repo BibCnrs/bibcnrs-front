@@ -2,34 +2,35 @@
 @import "src/app/scss/link";
 
 .table-metadore-title {
-    color: $cnrs-secondary-blue;
-    text-decoration: none;
+  color: $cnrs-secondary-blue;
+  text-decoration: none;
 }
 
 .table-metadore-title:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .table-metadore-body {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+
+  span {
     display: flex;
-    flex-direction: column;
-    font-size: 13px;
 
-    span {
-        display: flex;
-
-        dt, dd {
-            line-height: 1.42857143;
-        }
-
-        dt {
-            flex: 0 1 15%;
-            font-weight: 700;
-            text-align: right;
-        }
-
-        dd {
-            flex: 9;
-        }
+    dt,
+    dd {
+      line-height: 1.42857143;
     }
+
+    dt {
+      flex: 0 1 15%;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    dd {
+      flex: 9;
+    }
+  }
 }
