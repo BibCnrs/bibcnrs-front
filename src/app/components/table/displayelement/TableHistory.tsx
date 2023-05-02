@@ -107,6 +107,9 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
                     <div className="table-history-box">
                         <b>{t('components.table.content.facets')}</b>
                     </div>
+                    <div className="table-history-box">
+                        <b>{t('components.table.content.actions')}</b>
+                    </div>
                 </div>
             ) : null}
             <div className={getClassName()}>
@@ -122,6 +125,7 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
                 <div className="table-history-box">
                     <Facets data={data.event.activeFacets} />
                 </div>
+                <div className="table-history-box">{'TODO'}</div>
             </div>
         </>
     );

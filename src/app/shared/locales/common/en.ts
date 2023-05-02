@@ -76,6 +76,7 @@ const en: Common = {
                 domain: 'Discipline',
                 limiters: 'Limits',
                 facets: 'Facets',
+                actions: 'Actions',
             },
         },
         testsnews: {

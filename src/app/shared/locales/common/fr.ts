@@ -17,7 +17,7 @@ const fr: Common = {
         },
         limiters: {
             fullText: 'Texte intégral',
-            openAccess: 'Accès ourvert',
+            openAccess: 'Accès ouvert',
             publicationDate: 'Date de publication',
             peerReviewedArticle: 'Relu par un comité',
         },
@@ -76,6 +76,7 @@ const fr: Common = {
                 domain: 'Domaine',
                 limiters: 'Limites',
                 facets: 'Facettes',
+                actions: 'Actions',
             },
         },
         testsnews: {

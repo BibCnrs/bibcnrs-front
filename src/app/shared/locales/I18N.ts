@@ -89,6 +89,7 @@ export type Common = {
                 domain: string;
                 limiters: string;
                 facets: string;
+                actions: string;
             };
         };
         testsnews: {

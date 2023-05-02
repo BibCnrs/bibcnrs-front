@@ -1,33 +1,41 @@
 @import "src/app/scss/colors";
 
+$border-width: 2px !default;
+$border-radius: 8px !default;
+
 .table-history {
   display: grid;
-  grid-template-columns: 20% 20% 20% auto;
+  grid-template-columns: 22.5% 14% 22.5% 22.5% 12%;
   grid-auto-flow: column;
   padding: 2px;
   background-color: $background;
   background-image: linear-gradient(rgba(255, 255, 255, .05), rgba(255, 255, 255, .05));
-  border: $table-border solid 1px;
+  border: $table-border solid $border-width;
   border-bottom-width: 0;
 
   .table-history-box {
     padding: 6px;
     color: $text;
+    border-right: $table-border solid $border-width;
+  }
+
+  .table-history-box:last-child {
+    border-right-width: 0;
   }
 }
 
 .table-history-first {
   font-size: 1.25em;
-  border-top-width: 1px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-width: $border-width;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
 }
 
 .table-history-last {
   margin-bottom: 25px;
-  border-bottom-width: 1px;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-bottom-width: $border-width;
+  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
 }
 
 .table-history-grey {
