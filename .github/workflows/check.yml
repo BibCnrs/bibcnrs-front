@@ -1,4 +1,4 @@
-name: Check code quality and compilation CI
+name: BibCI
 
 on:
   push:
@@ -7,12 +7,12 @@ on:
     branches: [ "master" ]
 
 jobs:
-  check-code-eslint:
+  eslint:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     strategy:
       matrix:
-        node-version: [ 16.x, 18.x ]
+        node-version: [ 18.x, 20.x ]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -23,12 +23,12 @@ jobs:
       - run: npm install
       - run: npm run lint:test
 
-  check-code-stylelint:
+  stylelint:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     strategy:
       matrix:
-        node-version: [ 16.x, 18.x ]
+        node-version: [ 18.x, 20.x ]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -39,13 +39,13 @@ jobs:
       - run: npm install
       - run: npm run stylelint:test
 
-  check-build:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: [ 'check-code-eslint', 'check-code-stylelint' ]
     strategy:
       matrix:
-        node-version: [ 16.x, 18.x ]
+        node-version: [ 18.x, 20.x ]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
