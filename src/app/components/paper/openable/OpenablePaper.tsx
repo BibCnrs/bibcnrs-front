@@ -26,7 +26,9 @@ const OpenablePaper = ({ Title, SmallBody, FullBody, small = false, color, borde
                 }}
             >
                 <IconButton
-                    onClick={() => setOpen(!open)}
+                    onClick={() => {
+                        setOpen(!open);
+                    }}
                     size="small"
                     color="primary"
                     className={

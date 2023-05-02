@@ -74,8 +74,9 @@ const Table = ({ results, DisplayElement, total, args, setArgs }: TableProps) =>
     const t = translator();
 
     // Update args parameters when we change page or results per page
-    const onChange = (currentPage: number, resultsPerPage: number) =>
+    const onChange = (currentPage: number, resultsPerPage: number) => {
         setArgs({ ...args, perPage: resultsPerPage, page: currentPage });
+    };
 
     return (
         <div>

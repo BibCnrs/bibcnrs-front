@@ -17,7 +17,7 @@ import type { ChangeEvent, KeyboardEvent } from 'react';
  */
 const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
     // Search bar input reference
-    const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>();
+    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>();
 
     // Get the search bar default value
     let defaultValue = '';
@@ -28,12 +28,12 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
     // Search bar states
     const [value, setValue] = useState<string>(defaultValue);
 
-    const inputOnChange = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const inputOnChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setValue(event.target.value);
     };
 
     // Perform search when the user type 'Enters'
-    const inputKeyDown = (event: KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const inputKeyDown = (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (event.key === 'Enter') {
             onSearch(value);
         }
