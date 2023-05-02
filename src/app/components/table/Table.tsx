@@ -13,7 +13,13 @@ import type { SelectChangeEvent } from '@mui/material/Select';
  * @see PaginationComponentProps
  * @see Table
  */
-const PaginationComponent = ({ total, resultsPerPage, currentPage, onChange }: PaginationComponentProps) => {
+const PaginationComponent = ({
+    total,
+    resultsPerPage,
+    currentPage,
+    onChange,
+    extend = null,
+}: PaginationComponentProps) => {
     // Set the default values if the current page and the number of results per page is not initialized
     const page = currentPage ? currentPage : 1;
     const perPage = resultsPerPage ? resultsPerPage : 25;
@@ -54,6 +60,7 @@ const PaginationComponent = ({ total, resultsPerPage, currentPage, onChange }: P
                     <MenuItem value={100}>100</MenuItem>
                 </Select>
             </FormControl>
+            {extend}
         </div>
     );
 };
@@ -70,7 +77,7 @@ const PaginationComponent = ({ total, resultsPerPage, currentPage, onChange }: P
  * the React element uses to display those results and display options.
  * @see TableProps
  */
-const Table = ({ results, DisplayElement, total, args, setArgs }: TableProps) => {
+const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableProps) => {
     const t = translator();
 
     // Update args parameters when we change page or results per page
@@ -91,6 +98,7 @@ const Table = ({ results, DisplayElement, total, args, setArgs }: TableProps) =>
                         onChange={onChange}
                         resultsPerPage={args.perPage}
                         total={total}
+                        extend={header}
                     />
                     {/* Display the results with the React component given in parameter or display no data if the total is equals to 0 */}
                     <div>

@@ -3,7 +3,7 @@ import BibCNRSLogo from '/logos/bibcnrs.png';
 import LocalButton from './element/LocalButton';
 import SignInButton from './element/SignInButton';
 import { RouteRoot } from '../../shared/Routes';
-import CustomLink from '../customlink/CustomLink';
+import CustomLink from '../custom/link/CustomLink';
 import { translator } from '../../shared/locales/I18N';
 import ThemeButton from './element/ThemeButton';
 import UserButton from './element/UserButton';

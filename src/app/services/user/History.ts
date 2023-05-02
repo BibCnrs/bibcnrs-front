@@ -12,3 +12,12 @@ export const history = async (limit: number, offset: number): Promise<HistoryDat
     throwIfNotOk(response);
     return json<HistoryDataType>(response);
 };
+
+export const deleteHistory = async (): Promise<void> => {
+    const query = createQuery(environment.delete.account.history);
+    const response: Response = await fetch(query, {
+        method: 'DELETE',
+        credentials: 'include',
+    });
+    throwIfNotOk(response);
+};

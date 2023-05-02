@@ -20,19 +20,17 @@ export const colors = {
         dark: '#151723',
         light: '#eee',
     },
-    nav: {
+    button: {
+        dark: '#00284b',
+        light: '#0050a0',
         hover: {
             dark: '#0f3556',
             light: '#00284b',
         },
-        active: {
+        navActive: {
             dark: '#0f3556',
             light: '#fff',
         },
-    },
-    button: {
-        dark: '#00284b',
-        light: '#0050a0',
     },
     table: {
         light: '#c0c0d0',
@@ -80,9 +78,10 @@ const updateTheme = (theme: ThemeType) => {
         theme === 'light' ? colors.cnrs.secondary.darkBlue : colors.cnrs.primary.dark,
     );
     style.setProperty('--link', theme === 'light' ? colors.cnrs.secondary.blue : colors.cnrs.primary.light);
-    style.setProperty('--nav-button-active', colors.nav.active[theme]);
-    style.setProperty('--nav-button-hover', colors.nav.hover[theme]);
+    style.setProperty('--nav-button-active', colors.button.navActive[theme]);
+    style.setProperty('--nav-button-hover', colors.button.hover[theme]);
     style.setProperty('--button-background', colors.button[theme]);
+    style.setProperty('--button-background-hover', colors.button.hover[theme]);
     style.setProperty('--table-border', colors.table[theme]);
 };
 

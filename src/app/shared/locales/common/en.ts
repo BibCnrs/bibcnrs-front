@@ -161,6 +161,12 @@ Sincerely`,
         },
         history: {
             title: 'History',
+            buttons: {
+                delete: 'Delete history',
+            },
+            confirm: {
+                delete: 'Do you really want to delete all the history (excluding alerts)?',
+            },
         },
     },
     error: {

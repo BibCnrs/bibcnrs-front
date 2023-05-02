@@ -1,0 +1,13 @@
+@import "src/app/scss/colors";
+
+.custom-button-container {
+  button {
+    color: $white;
+    text-transform: none;
+    background-color: $button-background;
+  }
+  button:hover {
+    background-color: $button-background-hover;
+  }
+}
+

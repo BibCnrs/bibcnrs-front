@@ -1,6 +1,7 @@
 import type { CMSResultDataType, DatabaseDataType, TestsNewsDataType } from './data.types';
 import type { TFunction } from './types';
 import type { Property } from 'csstype';
+import type { ReactNode } from 'react';
 import type {
     Dispatch,
     ElementType,
@@ -38,11 +39,13 @@ export type TableArgsProps = PropsWithoutRef<
     any & {
         page?: number;
         perPage?: number;
+        stateIndex: number; // use for specific action, like in history when the user the delete button
     }
 >;
 
 export type TableProps = PropsWithoutRef<{
     DisplayElement: ElementType<TableDisplayElementProps<any>>;
+    header?: ReactNode;
     results?: any[];
     total?: number;
     args: TableArgsProps;
@@ -56,6 +59,7 @@ export type ExceptedErrorProps = HaveReactChildren;
 export type ContextProviderProps = HaveReactChildren;
 
 export type PaginationComponentProps = PropsWithoutRef<{
+    extend?: ReactNode;
     total: number;
     resultsPerPage?: number;
     currentPage?: number;

@@ -162,6 +162,12 @@ Cordialement`,
         },
         history: {
             title: 'Historique',
+            buttons: {
+                delete: "Supprimer l'historique",
+            },
+            confirm: {
+                delete: "Voulez vous vraiment supprimer tout l'historique (hors alertes) ?",
+            },
         },
     },
     error: {

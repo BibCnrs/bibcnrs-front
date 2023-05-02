@@ -152,6 +152,12 @@ export type Common = {
         };
         history: {
             title: string;
+            buttons: {
+                delete: string;
+            };
+            confirm: {
+                delete: string;
+            };
         };
         faq: {
             title: string;

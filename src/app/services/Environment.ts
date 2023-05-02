@@ -19,6 +19,11 @@ export const environment = {
             logout: '/ebsco/logout',
         },
     },
+    delete: {
+        account: {
+            history: '/ebsco/histories',
+        },
+    },
 };
 
 export const createQuery = (uri: string, param?: any | undefined): URL => {

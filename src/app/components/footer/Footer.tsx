@@ -2,7 +2,7 @@ import './Footer.scss';
 import { translator } from '../../shared/locales/I18N';
 import CNRSLogo from '/logos/cnrs.png';
 import { RouteAbout, RouteLegal } from '../../shared/Routes';
-import CustomLink from '../customlink/CustomLink';
+import CustomLink from '../custom/link/CustomLink';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
 /**

@@ -1,5 +1,5 @@
 import './CustomLink.scss';
-import { isMatching } from '../../shared/Routes';
+import { isMatching } from '../../../shared/Routes';
 import { Link } from 'react-router-dom';
 import type { LinkProps } from 'react-router-dom';
 
