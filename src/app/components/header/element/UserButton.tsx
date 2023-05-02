@@ -20,7 +20,7 @@ const UserButton = () => {
     const t = translator();
     const { setLogin } = useContext(BibContext);
     // Anchor use to display or not the drop-down menu
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const open = Boolean(anchorEl);
     const history = buildLinkClickHandler(RouteHistory);
 
@@ -92,13 +92,13 @@ const UserButton = () => {
         <Divider key="divider-2" />,
         <MenuItem
             key="logout"
-            onClick={() =>
+            onClick={() => {
                 handleClose(() => {
                     logout().then(() => {
                         setLogin(false);
                     });
-                })
-            }
+                });
+            }}
         >
             <ListItemIcon>
                 <LogoutIcon fontSize="small" />

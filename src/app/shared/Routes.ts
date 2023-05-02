@@ -55,7 +55,7 @@ export const useSearchParams = (): URLSearchParams => {
     return useMemo<URLSearchParams>(() => new URLSearchParams(search), [search]);
 };
 
-export const getString = <Extend>(query: URLSearchParams, key: string, fallback: string | Extend): string | Extend => {
+export const getString = <Extend>(query: URLSearchParams, key: string, fallback: Extend | string): Extend | string => {
     const value = query.get(key);
     if (value === null) {
         return fallback;

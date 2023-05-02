@@ -10,7 +10,7 @@ class Session {
     }
 
     getUser = (): SessionUserDataType | null => {
-        const status = this.session.getItem(this.key) as string | null;
+        const status = this.session.getItem(this.key);
         if (status === null) {
             return null;
         }
@@ -44,7 +44,7 @@ class Session {
     getDomains = (): string[] => {
         const user = this.getUser();
         if (user) {
-            return user.domains;
+            return user.domains as string[];
         }
         return [];
     };

@@ -52,7 +52,7 @@ export type CMSDataType = {
     name_en: string;
     content_fr: string;
     content_en: string;
-    page: 'home' | 'faq' | 'legal';
+    page: 'faq' | 'home' | 'legal';
     from: string;
     to: string | null;
     enable: boolean;
@@ -148,14 +148,14 @@ export type HistoryQueriesDataType = {
 };
 
 export type HistoryEntryFacetsKeyDataType =
-    | 'SubjectEDS'
-    | 'SourceType'
+    | 'CollectionLibrary'
+    | 'ContentProvider'
     | 'Journal'
     | 'Language'
-    | 'RangeLexile'
-    | 'CollectionLibrary'
     | 'Publisher'
-    | 'ContentProvider';
+    | 'RangeLexile'
+    | 'SourceType'
+    | 'SubjectEDS';
 
 export type HistoryEntryFacetsDataType = Record<HistoryEntryFacetsKeyDataType, string[]>;
 
@@ -175,7 +175,7 @@ export type HistoryEntryDataType = {
     id: number;
     totalCount: number;
     hasAlert: false;
-    frequence: 'day' | 'week' | 'month';
+    frequence: 'day' | 'month' | 'week';
     active: boolean;
     event: {
         queries: HistoryQueriesDataType[];

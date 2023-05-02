@@ -17,7 +17,7 @@ const LocalButton = () => {
     const { i18n } = getFullTranslator();
 
     // Anchor use to display or not the drop-down menu
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const open = Boolean(anchorEl);
 
     // Handle drop-down menu action, like close or click
@@ -55,7 +55,12 @@ const LocalButton = () => {
                 }}
             >
                 {supportedLanguages.map((lang, index) => (
-                    <MenuItem key={index} onClick={() => handleClose(lang.key)}>
+                    <MenuItem
+                        key={index}
+                        onClick={() => {
+                            handleClose(lang.key);
+                        }}
+                    >
                         {i18n.language === lang.key ? (
                             <ListItemIcon>
                                 <CheckIcon />

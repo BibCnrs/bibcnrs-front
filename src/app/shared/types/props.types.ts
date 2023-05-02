@@ -35,10 +35,10 @@ export type TableDisplayElementProps<T> = PropsWithoutRef<{
 }>;
 
 export type TableArgsProps = PropsWithoutRef<
-    {
+    any & {
         page?: number;
         perPage?: number;
-    } & any
+    }
 >;
 
 export type TableProps = PropsWithoutRef<{

@@ -11,7 +11,12 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
     return (
         <>
-            <Authentication open={!login} onClose={() => navigate(RouteRoot)} />
+            <Authentication
+                open={!login}
+                onClose={() => {
+                    navigate(RouteRoot);
+                }}
+            />
             {login ? children : null}
         </>
     );

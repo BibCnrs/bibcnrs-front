@@ -12,7 +12,6 @@ const Article = () => {
                 <SearchBar
                     placeholder={t('pages.article.searchBar')}
                     onSearch={(v) => {
-                        // eslint-disable-next-line no-console
                         console.log(v);
                     }}
                 />

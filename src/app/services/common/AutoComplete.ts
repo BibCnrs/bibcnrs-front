@@ -1,4 +1,4 @@
-import { createQuery } from '../Environment';
+import { createQuery, json } from '../Environment';
 import type { AutoCompleteDataType } from '../../shared/types/data.types';
 
 export const autoComplete = async (value: string): Promise<AutoCompleteDataType> => {
@@ -8,5 +8,5 @@ export const autoComplete = async (value: string): Promise<AutoCompleteDataType>
             q: value,
         }),
     );
-    return response.json();
+    return json<AutoCompleteDataType>(response);
 };

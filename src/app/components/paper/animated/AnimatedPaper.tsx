@@ -7,8 +7,12 @@ const AnimatedPaper = ({ children, ...props }: AnimatedPaperProps) => {
     return (
         <ColoredPaper
             {...props}
-            onMouseOver={() => setElevation(4)}
-            onMouseOut={() => setElevation(1)}
+            onMouseOver={() => {
+                setElevation(4);
+            }}
+            onMouseOut={() => {
+                setElevation(1);
+            }}
             elevation={elevation}
         >
             {children}

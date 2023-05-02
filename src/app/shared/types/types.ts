@@ -5,7 +5,7 @@ type Resources = TypeOptions['resources'];
 
 type FallbackOrNS<F, T = keyof Resources> = [T] extends [never] ? F : T;
 
-export type TFunction = TF<FallbackOrNS<string>[]>;
+export type TFunction = TF<Array<FallbackOrNS<string>>>;
 
 export type SupportedLanguageKeys = 'en' | 'fr';
 
@@ -16,7 +16,7 @@ export type SupportedLanguage = {
 
 export type SupportedLanguages = SupportedLanguage[];
 
-export type ThemeType = 'light' | 'dark';
+export type ThemeType = 'dark' | 'light';
 
 export type BibContextType = {
     globalQuery: string | null;

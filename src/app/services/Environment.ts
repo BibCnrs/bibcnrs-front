@@ -29,3 +29,7 @@ export const createQuery = (uri: string, param?: any | undefined): URL => {
     }
     return url;
 };
+
+export const json = <T>(response: Response): Promise<T> => {
+    return response.json() as Promise<T>;
+};

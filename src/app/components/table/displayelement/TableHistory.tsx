@@ -1,8 +1,8 @@
 import './scss/TableHistory.scss';
 import { translator } from '../../../shared/locales/I18N';
-import { HistoryEntryFacetsKeyDataType } from '../../../shared/types/data.types';
 import { BibContext } from '../../provider/ContextProvider';
 import { useContext } from 'react';
+import type { HistoryEntryFacetsKeyDataType } from '../../../shared/types/data.types';
 import type {
     HistoryEntryDataType,
     HistoryEntryLimiterDataType,

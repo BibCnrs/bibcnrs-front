@@ -123,7 +123,15 @@ const Database = () => {
             {login ? (
                 <FormControlLabel
                     id="database-oa"
-                    control={<Switch value={oa} size="small" onClick={() => setOa(!oa)} />}
+                    control={
+                        <Switch
+                            value={oa}
+                            size="small"
+                            onClick={() => {
+                                setOa(!oa);
+                            }}
+                        />
+                    }
                     label={t('pages.database.oa')}
                     labelPlacement="end"
                 />

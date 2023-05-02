@@ -112,8 +112,9 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                 ))}
             </div>
             <div id="tests-news-content">
-                {getData().map((value) => (
+                {getData().map((value, index) => (
                     <OpenablePaper
+                        key={index}
                         Title={<>{language === 'en' ? value.name_en : value.name_fr}</>}
                         SmallBody={<TestsNewsFooter value={value} />}
                         FullBody={
@@ -127,8 +128,8 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                                 {Array.isArray(value.urls) && value.urls.length > 0 ? (
                                     <div>
                                         <ul>
-                                            {value.urls.map((url) => (
-                                                <li>
+                                            {value.urls.map((url, indexUrl) => (
+                                                <li key={indexUrl}>
                                                     <a
                                                         className="link"
                                                         href={url.url}

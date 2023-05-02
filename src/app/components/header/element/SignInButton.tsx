@@ -11,8 +11,12 @@ import { useState } from 'react';
 const SignInButton = () => {
     const t = translator();
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div className="header-nav">
