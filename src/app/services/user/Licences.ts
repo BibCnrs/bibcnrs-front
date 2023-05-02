@@ -1,5 +1,5 @@
 import { getDomains } from './Session';
-import { createQuery, environment, json } from '../Environment';
+import { createQuery, environment, json, throwIfNotOk } from '../Environment';
 import type { LicencesDataType } from '../../shared/types/data.types';
 
 export const licences = async (): Promise<LicencesDataType> => {
@@ -15,5 +15,6 @@ export const licences = async (): Promise<LicencesDataType> => {
             },
         },
     );
+    throwIfNotOk(response);
     return json<LicencesDataType>(response);
 };

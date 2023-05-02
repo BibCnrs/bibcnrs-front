@@ -30,6 +30,40 @@ export const createQuery = (uri: string, param?: any | undefined): URL => {
     return url;
 };
 
+export const throwIfNotOk = (response: Response) => {
+    if (response.ok) {
+        return;
+    }
+    // User input error
+    if (response.status === 400) {
+        throw new Error('400');
+    }
+    if (response.status === 401) {
+        throw new Error('401');
+    }
+    if (response.status === 403) {
+        throw new Error('403');
+    }
+    if (response.status === 404) {
+        throw new Error('404');
+    }
+
+    // Server error
+    if (response.status === 500) {
+        throw new Error('500');
+    }
+
+    // Reverse proxy error
+    if (response.status === 502) {
+        throw new Error('500');
+    }
+    if (response.status === 503) {
+        throw new Error('500');
+    }
+
+    throw new Error(`${response.status} - The server return an expected error`);
+};
+
 export const json = <T>(response: Response): Promise<T> => {
     return response.json() as Promise<T>;
 };

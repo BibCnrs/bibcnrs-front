@@ -1,4 +1,4 @@
-import { createQuery, environment, json } from '../Environment';
+import { createQuery, environment, json, throwIfNotOk } from '../Environment';
 import type { MetadoreDataType } from '../../shared/types/data.types';
 
 export const search = async (
@@ -20,5 +20,6 @@ export const search = async (
             currentPage: currentPage,
         }),
     );
+    throwIfNotOk(response);
     return json<MetadoreDataType>(response);
 };

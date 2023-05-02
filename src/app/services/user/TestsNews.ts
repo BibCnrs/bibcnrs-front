@@ -1,5 +1,5 @@
 import { getDomains } from './Session';
-import { createQuery, environment, json } from '../Environment';
+import { createQuery, environment, json, throwIfNotOk } from '../Environment';
 import type { TestsNewsDataType } from '../../shared/types/data.types';
 
 type Pages = 'news' | 'tests';
@@ -12,6 +12,7 @@ const doQuery = async <Page extends Pages>(page: Page): Promise<TestsNewsDataTyp
     const response: Response = await fetch(query, {
         credentials: 'include',
     });
+    throwIfNotOk(response);
     return json<TestsNewsDataType>(response);
 };
 
