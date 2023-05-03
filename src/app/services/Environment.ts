@@ -27,7 +27,7 @@ export const environment = {
 };
 
 export const createQuery = (uri: string, param?: any | undefined): URL => {
-    const url = new URL(uri, environment.host);
+    const url = new URL(environment.host + uri);
     if (param !== undefined) {
         const query = new URLSearchParams(param);
         url.search = query.toString();
