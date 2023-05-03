@@ -1,6 +1,9 @@
 import './scss/TableHistory.scss';
 import { translator } from '../../../shared/locales/I18N';
+import CustomButton from '../../custom/button/CustomButton';
 import { BibContext } from '../../provider/ContextProvider';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useContext } from 'react';
 import type { HistoryEntryFacetsKeyDataType } from '../../../shared/types/data.types';
 import type {
@@ -125,7 +128,22 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
                 <div className="table-history-box">
                     <Facets data={data.event.activeFacets} />
                 </div>
-                <div className="table-history-box">{'TODO'}</div>
+                <div className="table-history-box">
+                    <ul>
+                        <li>
+                            <b>{t('components.table.content.nbResult')}</b>
+                            {` ${data.event.totalHits}`}
+                        </li>
+                    </ul>
+                    <div className="table-history-box-actions-buttons">
+                        <CustomButton className="table-history-box-actions-button" size="small">
+                            <DeleteOutlineIcon />
+                        </CustomButton>
+                        <CustomButton className="table-history-box-actions-button" size="small">
+                            <OpenInNewIcon />
+                        </CustomButton>
+                    </div>
+                </div>
             </div>
         </>
     );

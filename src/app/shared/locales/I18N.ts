@@ -90,6 +90,7 @@ export type Common = {
                 limiters: string;
                 facets: string;
                 actions: string;
+                nbResult: string;
             };
         };
         testsnews: {

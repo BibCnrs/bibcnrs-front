@@ -5,7 +5,7 @@ $border-radius: 8px !default;
 
 .table-history {
   display: grid;
-  grid-template-columns: 22.5% 14% 22.5% 22.5% 12%;
+  grid-template-columns: 22.5% 10% 22.5% 22.5% auto;
   grid-auto-flow: column;
   padding: 2px;
   background-color: $background;
@@ -17,6 +17,17 @@ $border-radius: 8px !default;
     padding: 6px;
     color: $text;
     border-right: $table-border solid $border-width;
+
+    .table-history-box-actions-buttons {
+      display: flex;
+      padding-bottom: 2px;
+      padding-left: 12px;
+    }
+
+    .table-history-box-actions-button {
+      min-width: 24px;
+      margin-right: 4px;
+    }
   }
 
   .table-history-box:last-child {

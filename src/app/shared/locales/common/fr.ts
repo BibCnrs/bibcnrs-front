@@ -77,6 +77,7 @@ const fr: Common = {
                 limiters: 'Limites',
                 facets: 'Facettes',
                 actions: 'Actions',
+                nbResult: 'Nombre de résultats : ',
             },
         },
         testsnews: {
