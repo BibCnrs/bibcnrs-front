@@ -6,7 +6,7 @@ export const environment = {
         database: '/ebsco/databases',
         resources: '/ebsco/resources',
         account: {
-            janus: '/ebsco/login_renater',
+            janus: '/ebsco/login_renater/',
             licences: '/ebsco/licenses',
             testsNews: '/ebsco/news',
             history: '/ebsco/history',
