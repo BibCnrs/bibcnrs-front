@@ -3,6 +3,9 @@ import { buildLinkClickHandler, RouteNews } from '../../../shared/Routes';
 import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
 
+/**
+ * Button use to go to News page
+ */
 const NewsButton = () => {
     const t = translator();
     const action = buildLinkClickHandler(RouteNews);

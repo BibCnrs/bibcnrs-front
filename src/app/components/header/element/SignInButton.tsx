@@ -10,6 +10,7 @@ import { useState } from 'react';
  */
 const SignInButton = () => {
     const t = translator();
+    // State use to display the authentication modal
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setOpen(true);

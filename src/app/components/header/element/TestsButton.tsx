@@ -3,6 +3,9 @@ import { buildLinkClickHandler, RouteTests } from '../../../shared/Routes';
 import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
 
+/**
+ * Button use to go to Tests page
+ */
 const TestsButton = () => {
     const t = translator();
     const action = buildLinkClickHandler(RouteTests);

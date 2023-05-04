@@ -16,8 +16,12 @@ import MenuItem from '@mui/material/MenuItem';
 import { useContext, useState } from 'react';
 import type { MouseEvent, ReactElement } from 'react';
 
+/**
+ * Button use to display the user menu
+ */
 const UserButton = () => {
     const t = translator();
+    // Context use to log off the user when the logout action is finished
     const { setLogin } = useContext(BibContext);
     // Anchor use to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -39,6 +43,7 @@ const UserButton = () => {
         setAnchorEl(null);
     };
 
+    // Change the color of the avatar if the user is using a legacy account
     const getAvatarButtonClass = () => {
         return open ? ' user-button-active-legacy' : ' user-button-legacy';
     };
@@ -47,7 +52,9 @@ const UserButton = () => {
         username = 'null';
     }
 
+    // Create menu options
     const options: ReactElement[] = [];
+    // Add username button
     options.push(
         <MenuItem key="username">
             <ListItemIcon>
@@ -57,6 +64,7 @@ const UserButton = () => {
         </MenuItem>,
         <Divider key="divider-1" />,
     );
+    // Add a warning message when using a legacy account
     if (isLegacy()) {
         options.push(
             <MenuItem key="legacy">
@@ -66,6 +74,7 @@ const UserButton = () => {
                 {t('components.header.user.legacy')}
             </MenuItem>,
         );
+        // Add user navigation if other case
     } else {
         options.push(
             <MenuItem key="history" onClick={history.handler} href={history.href}>
@@ -88,6 +97,7 @@ const UserButton = () => {
             </MenuItem>,
         );
     }
+    // Add logout button at the end
     options.push(
         <Divider key="divider-2" />,
         <MenuItem

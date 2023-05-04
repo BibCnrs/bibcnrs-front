@@ -3,9 +3,9 @@ import type { PageDateProps } from '../../shared/types/props.types';
 
 /**
  * Utils component use to display a date from an ISO valid string
- * @param date
- * @param t
- * @param props Component parameters containing the date
+ * @param date          - Date object who need to be display
+ * @param updateAtLabel - Boolean who add an `update at` label
+ *                        - Default: false
  */
 const PageDate = ({ date, updateAtLabel = false }: PageDateProps) => {
     const t = translator();

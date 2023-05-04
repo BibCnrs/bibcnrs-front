@@ -9,8 +9,13 @@ import Radio from '@mui/material/Radio';
 import { useState } from 'react';
 import type { TestNewDataType } from '../../shared/types/data.types';
 import type { TestsNewsProps } from '../../shared/types/props.types';
+import type { RadioProps } from '@mui/material/Radio/Radio';
 import type { ChangeEvent } from 'react';
 
+/**
+ * Component use to display news and tests article
+ * @param data - Array of Articles
+ */
 const TestsNews = ({ data }: TestsNewsProps) => {
     const t = translator();
     const language = getLanguageKey();
@@ -18,11 +23,20 @@ const TestsNews = ({ data }: TestsNewsProps) => {
     const domains = getDomains().filter((domain) => domain !== favoriteDomain);
     const [selectedDomain, setSelectedDomain] = useState(favoriteDomain || domains[0]);
 
+    /**
+     * Function use to handle domain change
+     * @param event - Radio button event
+     */
     const handleDomainChange = (event: ChangeEvent<HTMLInputElement>) => {
         setSelectedDomain(event.target.value);
     };
 
-    const navigationControlProps = (domain: string) => ({
+    /**
+     * Function use to create navigation controls properties
+     * @param domain - Domain of the article
+     * @returns - Returns a radio button props who match domain colors
+     */
+    const navigationControlProps = (domain: string): Partial<RadioProps> => ({
         checked: selectedDomain === domain,
         value: domain,
         onChange: handleDomainChange,
@@ -35,10 +49,17 @@ const TestsNews = ({ data }: TestsNewsProps) => {
         },
     });
 
+    /**
+     * Display nothing if data is null or undefined
+     */
     if (!data) {
         return null;
     }
 
+    /**
+     * Function use to filter the data by domain
+     * @returns filtered data associated to the selected domain
+     */
     const getData = () => {
         return data.filter((value) => {
             if (!Array.isArray(value.domains)) {
@@ -55,6 +76,11 @@ const TestsNews = ({ data }: TestsNewsProps) => {
         });
     };
 
+    /**
+     * Function use to get paper color
+     * @param value - Article use to get the color
+     * @returns - HTML color use by the paper
+     */
     const getColor = (value: TestNewDataType) => {
         if (!Array.isArray(value.domains) || value.domains.length === 0) {
             return undefined;
@@ -62,6 +88,11 @@ const TestsNews = ({ data }: TestsNewsProps) => {
         return getInstituteColor(value.domains[0]);
     };
 
+    /**
+     * Function use to get the article domain label
+     * @param value - Article
+     * @returns - Join labels
+     */
     const getLabel = (value: TestNewDataType) => {
         if (!Array.isArray(value.domains) || value.domains.length === 0) {
             return t('components.testsnews.common');
@@ -69,6 +100,10 @@ const TestsNews = ({ data }: TestsNewsProps) => {
         return value.domains?.join(', ');
     };
 
+    /**
+     * Function use to create article footer
+     * @param value - Article
+     */
     const TestsNewsFooter = ({ value }: { value: TestNewDataType }) => {
         return (
             <div>
@@ -90,6 +125,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
 
     return (
         <div id="tests-news">
+            {/* Domain nav bar, use to select a domain */}
             <div id="tests-news-nav">
                 {favoriteDomain ? (
                     <FormControlLabel
@@ -111,6 +147,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                     />
                 ))}
             </div>
+            {/* list of articles associated to the selected domain */}
             <div id="tests-news-content">
                 {getData().map((value, index) => (
                     <OpenablePaper

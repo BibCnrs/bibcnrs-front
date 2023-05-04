@@ -21,6 +21,9 @@ import type { AuthenticationProps } from '../../shared/types/props.types';
 import type { TooltipProps } from '@mui/material/Tooltip';
 import type { FormEvent } from 'react';
 
+/**
+ * Styled tooltips with no max width
+ */
 const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} children={props.children} />
 ))({
@@ -29,20 +32,43 @@ const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
     },
 });
 
+/**
+ * Authentication components use
+ * to display the authentication box when clicking on login or when use access an unauthorized rout
+ * @param open    - Boolean use to display the modal
+ * @param onClose - Component close callback
+ */
 const Authentication = ({ open, onClose }: AuthenticationProps) => {
     const t = translator();
+
+    // State use to handle the legacy login form
     const [legacy, setLegacy] = useState(false);
     const [legacyError, setLegacyError] = useState(false);
+
+    // setLogin Context function use to update interface
     const { setLogin } = useContext(BibContext);
+
+    /**
+     * Function use to handle close
+     */
     const handleClose = () => {
         setLegacy(false);
         setLegacyError(false);
         onClose();
     };
+
+    /**
+     * Function use to display the legacy login form
+     */
     const displayLegacy = () => {
         setLegacy(!legacy);
         setLegacyError(false);
     };
+
+    /**
+     * Function use to handle the legacy login form action
+     * @param event - Form event containing the username and password
+     */
     const handleLegacy = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = new FormData(event.currentTarget);
@@ -59,6 +85,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
             setLegacyError(true);
         });
     };
+
     return (
         <Modal
             open={open}
@@ -68,8 +95,10 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
             aria-describedby="authentication-body"
             closeAfterTransition
         >
+            {/* Add a sliding animation from the top */}
             <Slide direction="down" in={open} timeout={400}>
                 <Paper elevation={15}>
+                    {/*------------ Modal header ------------*/}
                     <div id="authentication-header">
                         <Typography>{t('components.authentication.title')}</Typography>
                         <IconButton id="authentication-close" size="small" onClick={handleClose}>
@@ -77,6 +106,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
                         </IconButton>
                     </div>
                     <Divider />
+                    {/*------------ Modal body ------------*/}
                     <div id="authentication-body">
                         <div>
                             <p>
@@ -84,7 +114,9 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
                             </p>
                             <p>{t('components.authentication.mode')}</p>
                         </div>
+                        {/* Authentication form */}
                         <div>
+                            {/* Authentication janus login form */}
                             <NoMaxWidthTooltip
                                 id="authentication-tooltip"
                                 title={t('components.authentication.janus.tooltip')}
@@ -106,6 +138,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
                                     {t('components.authentication.janus.ask')}
                                 </a>
                             </p>
+                            {/* Authentication legacy login display button */}
                             <Button
                                 id="authentication-legacy-button"
                                 className="authentication-button"
@@ -122,6 +155,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
                                 <LoginIcon className="authentication-button-icon" />
                                 {t('components.authentication.legacy.button')}
                             </Button>
+                            {/* Authentication legacy login form */}
                             <TransitionGroup>
                                 {legacy ? (
                                     <Collapse>
@@ -159,6 +193,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
                         </div>
                     </div>
                     <Divider />
+                    {/*------------ Modal footer ------------*/}
                     <div id="authentication-footer">
                         <a className="link" href="mailto:assistance-portail@inist.fr">
                             {t('components.authentication.contact')}

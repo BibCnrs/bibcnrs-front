@@ -9,9 +9,11 @@ import type { SelectChangeEvent } from '@mui/material/Select';
 
 /**
  * Pagination component use by Table.
- * @param props Component parameters containing the action function and the stats of the Table component.
- * @see PaginationComponentProps
- * @see Table
+ * @param total          - Total number of element
+ * @param resultsPerPage - Number of elements per page
+ * @param currentPage    - Current page
+ * @param onChange       - Event call went the page or number of elements per page is updated
+ * @param extend         - Variable containing elements to display at the end of the pagination
  */
 const PaginationComponent = ({
     total,
@@ -66,16 +68,13 @@ const PaginationComponent = ({
 };
 
 /**
- * Table component use to display search results.
- * @param results
- * @param DisplayElement
- * @param total
- * @param args
- * @param setArgs
- * @param t
- * @param props Component parameters containing the results to display,
- * the React element uses to display those results and display options.
- * @see TableProps
+ * Table component use to display search results and any other results who need a table format.
+ * @param results        - Array of objects who need to be display in a table component
+ * @param DisplayElement - React component who display the actual result
+ * @param total          - Total number of element
+ * @param args           - Table args
+ * @param setArgs        - Function use to update table args
+ * @param header         - Pagination extension use by the top pagination
  */
 const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableProps) => {
     const t = translator();

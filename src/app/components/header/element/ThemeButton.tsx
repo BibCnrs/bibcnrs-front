@@ -52,8 +52,15 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     },
 }));
 
+/**
+ * Button use handle theme change
+ */
 const ThemeButton = () => {
     const { theme, setTheme } = useContext(BibContext);
+    /**
+     * Function use to handle switch action
+     * @param event - Button event use to access the state of the button
+     */
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
             setTheme('dark');

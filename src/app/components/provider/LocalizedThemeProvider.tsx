@@ -10,6 +10,9 @@ import type { LocalizedThemeProviderProps } from '../../shared/types/props.types
 import type { Institute, ThemeType } from '../../shared/types/types';
 import type { Property } from 'csstype';
 
+/**
+ * Application colors
+ */
 export const colors = {
     white: '#fff',
     text: {
@@ -65,10 +68,19 @@ export const colors = {
     },
 };
 
+/**
+ * Function use to get color associated to an Institute
+ * @param institute - The name of the institute
+ * @returns - The color of the institute
+ */
 export const getInstituteColor = (institute: Institute | string): Property.Color => {
     return colors.cnrs.institute[institute.toLowerCase() as Institute];
 };
 
+/**
+ * Function use to update css variable on startup or when the user change the application theme
+ * @param theme - Name of the theme to load
+ */
 const updateTheme = (theme: ThemeType) => {
     const style = document.documentElement.style;
     style.setProperty('--text', colors.text[theme]);
@@ -87,13 +99,18 @@ const updateTheme = (theme: ThemeType) => {
 
 /**
  * Utils component use to set up the material ui theme.
- * @param children component parameters containing react children.
- * @see LocalizedThemeProviderProps
+ * @param children - component parameters containing react children.
  */
 const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
     // Get the language key and use it to get the material ui language pack
     const language = getLanguageKey();
     const { theme } = useContext(BibContext);
+
+    /**
+     * Function use to return a Material UI language object
+     * @returns - Material UI language
+     *            - Default: French
+     */
     const getLocal = () => {
         if (language === 'en') {
             return enUS;
@@ -101,6 +118,7 @@ const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
         return frFR;
     };
 
+    // Material UI light theme color palette
     const lightPalette = createPalette({
         mode: 'light',
         primary: {
@@ -108,6 +126,7 @@ const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
         },
     });
 
+    // Material UI dark theme color palette
     const darkPalette = createPalette({
         mode: 'dark',
         primary: {
@@ -130,6 +149,7 @@ const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
         getLocal(),
     );
 
+    // Add a hook to 'theme' use to update css variable went theme change
     useEffect(() => {
         updateTheme(theme);
     }, [theme]);

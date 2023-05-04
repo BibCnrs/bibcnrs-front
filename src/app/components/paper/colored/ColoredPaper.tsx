@@ -5,6 +5,9 @@ import type { Theme } from '@mui/material/styles/createTheme';
 import type { SxProps } from '@mui/system/styleFunctionSx/styleFunctionSx';
 import type { Property } from 'csstype';
 
+/**
+ * Array of box-shadow size use to create a colored elevation
+ */
 const elevations = [
     ['0 2px 1px -1px', '0 1px 1px 0', '0 1px 3px 0'],
     ['0 3px 1px -2px', '0 2px 2px 0', '0 1px 5px 0'],
@@ -12,6 +15,11 @@ const elevations = [
     ['0 2px 4px -1px', '0 4px 5px 0', '0 1px 10px 0'],
 ];
 
+/**
+ * Function use to create the box color
+ * @param elevation - Paper elevation value
+ * @param color     - Paper box shadow color
+ */
 const getBoxShadow = (elevation: number, color: string): Property.BoxShadow => {
     if (elevation === 0) {
         return 'none';
@@ -27,6 +35,20 @@ const getBoxShadow = (elevation: number, color: string): Property.BoxShadow => {
     ].join(',');
 };
 
+/**
+ * Extension of the Paper from Material UI, who serv as a generic component to any other paper component
+ * @param elevation   - Paper elevation
+ *                      - Default: 1
+ * @param color       - Paper box shadow and border color if applicable
+ *                      - Default: #000 (black)
+ * @param border      - Add colored border
+ *                      - Default: false
+ * @param id          - HTML ID of the Paper component
+ * @param className   - HTML Class of the paper component
+ * @param onMouseOver - Event call when the cursor is hover the paper component
+ * @param onMouseOut  - Event call when the cursor is going out of the paper component
+ * @param children    - Paper content
+ */
 const ColoredPaper = ({
     elevation = 1,
     color = '#000',

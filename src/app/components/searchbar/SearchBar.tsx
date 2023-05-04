@@ -11,9 +11,9 @@ import type { ChangeEvent, KeyboardEvent } from 'react';
 
 /**
  * Search bar component use in: [Root], [Article], [Journal, book], [Database] and [Research data]
- * @param placeholder
- * @param onSearch
- * @param props Components parameter who contains action function and options
+ * @param placeholder - Search bar placeholder
+ * @param onSearch    - Event call when the user press 'Enter' or click on the search icon
+ * @param props       - Reste of the search bar props
  */
 const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
     // Search bar input reference

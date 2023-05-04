@@ -3,6 +3,9 @@ import { buildLinkClickHandler, RouteLicences } from '../../../shared/Routes';
 import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
 
+/**
+ * Button use to go to Licences page
+ */
 const LicencesButton = () => {
     const t = translator();
     const action = buildLinkClickHandler(RouteLicences);

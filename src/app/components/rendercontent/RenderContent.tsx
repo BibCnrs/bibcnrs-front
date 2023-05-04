@@ -6,13 +6,15 @@ import type { RenderContentProps } from '../../shared/types/props.types';
 
 /**
  * Component use to create CMS pages
- * @param data
- * @param updateDocumentTitle
- * @param displayTitle
- * @param page
- * @param t
- * @param showDate
- * @param Container
+ * @param data                - CMS Content
+ * @param updateDocumentTitle - Boolean use to enable document title update
+ *                              - Default: false
+ * @param displayTitle        - Boolean use to enable addition of a h1 element containing the page title
+ *                              - Default: false
+ * @param page                - Page name key
+ * @param t                   - Translation function
+ * @param showDate            - Boolean use to add the data of creation at the end of the page
+ * @param Container           - Component container only use if the data element have something to display
  */
 const RenderContent = ({
     data,

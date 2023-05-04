@@ -5,6 +5,17 @@ import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 import type { OpenablePaperProps } from '../../../shared/types/props.types';
 
+/**
+ * Paper who content a hidden content who need a click to display it
+ * @param Title     - Openable paper title
+ * @param SmallBody - Openable paper body when not opened
+ * @param FullBody  - Openable paper body when opened
+ * @param small     - Remove padding to make in smaller
+ *                    - Default: false
+ * @param color     - Paper border and shadow color
+ * @param border    - Add colored border
+ * @constructor
+ */
 const OpenablePaper = ({ Title, SmallBody, FullBody, small = false, color, border }: OpenablePaperProps) => {
     const [open, setOpen] = useState<boolean>(false);
 
