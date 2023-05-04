@@ -91,7 +91,7 @@ const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableP
                 <></>
             ) : (
                 <>
-                    {/* Add pagination on top of the results */}
+                    {/* Add pagination on top of the results with header */}
                     <PaginationComponent
                         currentPage={args.page}
                         onChange={onChange}
@@ -99,7 +99,8 @@ const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableP
                         total={total}
                         extend={header}
                     />
-                    {/* Display the results with the React component given in parameter or display no data if the total is equals to 0 */}
+                    {/* Display the results with the React component given in parameter,
+                        or display no data if the total is equals to 0 */}
                     <div>
                         {total !== 0 ? (
                             results.map((result: any, index: number) => (

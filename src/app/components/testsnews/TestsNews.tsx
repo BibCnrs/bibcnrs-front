@@ -125,7 +125,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
 
     return (
         <div id="tests-news">
-            {/* Domain nav bar, use to select a domain */}
+            {/*------------ Domain nav bar, use to select a domain ------------*/}
             <div id="tests-news-nav">
                 {favoriteDomain ? (
                     <FormControlLabel
@@ -147,7 +147,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                     />
                 ))}
             </div>
-            {/* list of articles associated to the selected domain */}
+            {/*------------ list of articles associated to the selected domain ------------*/}
             <div id="tests-news-content">
                 {getData().map((value, index) => (
                     <OpenablePaper
