@@ -4,7 +4,7 @@ import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
 
 /**
- * Button use to go to Faq page
+ * Button used to go to Faq page
  */
 const FaqButton = () => {
     const t = translator();

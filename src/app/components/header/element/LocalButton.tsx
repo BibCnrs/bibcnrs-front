@@ -16,7 +16,7 @@ import type { MouseEvent } from 'react';
 const LocalButton = () => {
     const { i18n } = getFullTranslator();
 
-    // Anchor use to display or not the drop-down menu
+    // Anchor used to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const open = Boolean(anchorEl);
 
@@ -25,7 +25,7 @@ const LocalButton = () => {
         setAnchorEl(event.currentTarget);
     };
 
-    // Change lang if a language was chosen and close the drop-down menu
+    // Change lang if a language was chosen, and close the drop-down menu
     const handleClose = (key: SupportedLanguageKeys) => {
         if (supportedLanguages.find((value) => value.key === key)) {
             i18n.changeLanguage(key).then();

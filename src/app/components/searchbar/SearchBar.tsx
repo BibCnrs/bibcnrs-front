@@ -10,10 +10,10 @@ import type { SearchBarProps } from '../../shared/types/props.types';
 import type { ChangeEvent, KeyboardEvent } from 'react';
 
 /**
- * Search bar component use in: [Root], [Article], [Journal, book], [Database] and [Research data]
+ * Search bar component used in: "Root", "Article", "Journal, book", "Database" and "Research data"
  * @param placeholder - Search bar placeholder
  * @param onSearch    - Event call when the user press 'Enter' or click on the search icon
- * @param props       - Reste of the search bar props
+ * @param props       - Rest of the search bar props
  */
 const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
     // Search bar input reference
@@ -32,14 +32,14 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
         setValue(event.target.value);
     };
 
-    // Perform search when the user type 'Enters'
+    // Perform search when the user press 'Enters'
     const inputKeyDown = (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (event.key === 'Enter') {
             onSearch(value);
         }
     };
 
-    // Clear the input when the user clicks on clear
+    // Clear the input when the user clicks on the clear button
     const clearOnClick = () => {
         if (inputRef.current) {
             inputRef.current.value = '';
@@ -47,7 +47,7 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
         }
     };
 
-    // Perform search when the user clicks on search
+    // Perform search when the user clicks on the search button
     const searchOnClick = () => {
         onSearch(value);
     };
@@ -70,9 +70,7 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
                         </IconButton>
                         <Divider orientation="vertical" id="search-box-divider" />
                     </>
-                ) : (
-                    <></>
-                )}
+                ) : null}
                 <IconButton onClick={searchOnClick}>
                     <SearchIcon />
                 </IconButton>

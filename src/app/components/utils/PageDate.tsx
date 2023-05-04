@@ -2,8 +2,8 @@ import { translator } from '../../shared/locales/I18N';
 import type { PageDateProps } from '../../shared/types/props.types';
 
 /**
- * Utils component use to display a date from an ISO valid string
- * @param date          - Date object who need to be display
+ * Utils component used to display a date from an ISO valid string
+ * @param date          - Date object which needs to be displayed
  * @param updateAtLabel - Boolean who add an `update at` label
  *                        - Default: false
  */

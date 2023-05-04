@@ -5,15 +5,15 @@ import PageTitle from '../utils/PageTitle';
 import type { RenderContentProps } from '../../shared/types/props.types';
 
 /**
- * Component use to create CMS pages
+ * Component used to create CMS pages
  * @param data                - CMS Content
- * @param updateDocumentTitle - Boolean use to enable document title update
+ * @param updateDocumentTitle - Boolean used to enable document title update
  *                              - Default: false
- * @param displayTitle        - Boolean use to enable addition of a h1 element containing the page title
+ * @param displayTitle        - Boolean used to enable addition of a h1 element containing the page title
  *                              - Default: false
  * @param page                - Page name key
  * @param t                   - Translation function
- * @param showDate            - Boolean use to add the data of creation at the end of the page
+ * @param showDate            - Boolean used to add the data of creation at the end of the page
  * @param Container           - Component container only use if the data element have something to display
  */
 const RenderContent = ({
@@ -25,7 +25,7 @@ const RenderContent = ({
     t,
     Container,
 }: RenderContentProps) => {
-    // Return an empty page when data is empty,
+    // Returns an empty page when data is empty,
     // this empty page contains only the page title.
     if (!data || data.length < 1) {
         const children = (

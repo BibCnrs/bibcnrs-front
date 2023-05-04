@@ -8,11 +8,11 @@ import type { PaginationComponentProps, TableProps } from '../../shared/types/pr
 import type { SelectChangeEvent } from '@mui/material/Select';
 
 /**
- * Pagination component use by Table.
- * @param total          - Total number of element
+ * Pagination component used by Table.
+ * @param total          - Total number of elements
  * @param resultsPerPage - Number of elements per page
  * @param currentPage    - Current page
- * @param onChange       - Event call went the page or number of elements per page is updated
+ * @param onChange       - Event called when the page or number of elements per page is updated
  * @param extend         - Variable containing elements to display at the end of the pagination
  */
 const PaginationComponent = ({
@@ -35,7 +35,7 @@ const PaginationComponent = ({
                     {1 + (page - 1) * perPage}-{Math.min(1 + page * perPage, total)} / {total}
                 </span>
             )}
-            {/* Pagination component use to show and change the current page */}
+            {/* Pagination component used to show and change the current page */}
             <Pagination
                 onChange={(event, newPage) => {
                     onChange(newPage, perPage);
@@ -68,13 +68,13 @@ const PaginationComponent = ({
 };
 
 /**
- * Table component use to display search results and any other results who need a table format.
- * @param results        - Array of objects who need to be display in a table component
- * @param DisplayElement - React component who display the actual result
- * @param total          - Total number of element
+ * Table component used to display search results and any other results which needs a table format.
+ * @param results        - Array of objects which needs to be displayed in a table component
+ * @param DisplayElement - React component which displays the actual result
+ * @param total          - Total number of elements
  * @param args           - Table args
- * @param setArgs        - Function use to update table args
- * @param header         - Pagination extension use by the top pagination
+ * @param setArgs        - Function used to update table args
+ * @param header         - Pagination extension used by the top pagination
  */
 const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableProps) => {
     const t = translator();
@@ -87,9 +87,7 @@ const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableP
     return (
         <div>
             {/* Display an empty page if results and total are not initialized */}
-            {results === undefined || total === undefined ? (
-                <></>
-            ) : (
+            {results === undefined || total === undefined ? null : (
                 <>
                     {/* Add pagination on top of the results with header */}
                     <PaginationComponent
@@ -100,7 +98,7 @@ const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableP
                         extend={header}
                     />
                     {/* Display the results with the React component given in parameter,
-                        or display no data if the total is equals to 0 */}
+                        or display "no data" if the total is equals to 0 */}
                     <div>
                         {total !== 0 ? (
                             results.map((result: any, index: number) => (

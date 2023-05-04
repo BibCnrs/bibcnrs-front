@@ -33,9 +33,9 @@ const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
 });
 
 /**
- * Authentication components use
- * to display the authentication box when clicking on login or when use access an unauthorized rout
- * @param open    - Boolean use to display the modal
+ * Authentication components used
+ * to display the authentication box when clicking on login or when use access an unauthorized route
+ * @param open    - Boolean used to display the modal
  * @param onClose - Component close callback
  */
 const Authentication = ({ open, onClose }: AuthenticationProps) => {
@@ -45,11 +45,11 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
     const [legacy, setLegacy] = useState(false);
     const [legacyError, setLegacyError] = useState(false);
 
-    // setLogin Context function use to update interface
+    // setLogin Context function used to update interface
     const { setLogin } = useContext(BibContext);
 
     /**
-     * Function use to handle close
+     * Function used to handle close
      */
     const handleClose = () => {
         setLegacy(false);
@@ -58,7 +58,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
     };
 
     /**
-     * Function use to display the legacy login form
+     * Function used to display the legacy login form
      */
     const displayLegacy = () => {
         setLegacy(!legacy);
@@ -66,7 +66,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
     };
 
     /**
-     * Function use to handle the legacy login form action
+     * Function used to handle the legacy login form action
      * @param event - Form event containing the username and password
      */
     const handleLegacy = (event: FormEvent<HTMLFormElement>) => {

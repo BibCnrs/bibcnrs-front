@@ -4,7 +4,7 @@ import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
 
 /**
- * Button use to go to Licences page
+ * Button used to go to Licences page
  */
 const LicencesButton = () => {
     const t = translator();

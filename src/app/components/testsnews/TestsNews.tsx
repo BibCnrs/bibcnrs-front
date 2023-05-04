@@ -13,7 +13,7 @@ import type { RadioProps } from '@mui/material/Radio/Radio';
 import type { ChangeEvent } from 'react';
 
 /**
- * Component use to display news and tests article
+ * Component used to display news and tests article
  * @param data - Array of Articles
  */
 const TestsNews = ({ data }: TestsNewsProps) => {
@@ -24,7 +24,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
     const [selectedDomain, setSelectedDomain] = useState(favoriteDomain || domains[0]);
 
     /**
-     * Function use to handle domain change
+     * Function used to handle domain change
      * @param event - Radio button event
      */
     const handleDomainChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
     };
 
     /**
-     * Function use to create navigation controls properties
+     * Function used to create navigation controls properties
      * @param domain - Domain of the article
      * @returns - Returns a radio button props who match domain colors
      */
@@ -57,7 +57,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
     }
 
     /**
-     * Function use to filter the data by domain
+     * Function used to filter the data by domain
      * @returns filtered data associated to the selected domain
      */
     const getData = () => {
@@ -77,9 +77,9 @@ const TestsNews = ({ data }: TestsNewsProps) => {
     };
 
     /**
-     * Function use to get paper color
-     * @param value - Article use to get the color
-     * @returns - HTML color use by the paper
+     * Function used to get paper color
+     * @param value - Article used to get the color
+     * @returns - HTML color used by the paper
      */
     const getColor = (value: TestNewDataType) => {
         if (!Array.isArray(value.domains) || value.domains.length === 0) {
@@ -89,7 +89,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
     };
 
     /**
-     * Function use to get the article domain label
+     * Function used to get the article domain label
      * @param value - Article
      * @returns - Join labels
      */
@@ -101,7 +101,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
     };
 
     /**
-     * Function use to create article footer
+     * Function used to create article footer
      * @param value - Article
      */
     const TestsNewsFooter = ({ value }: { value: TestNewDataType }) => {
@@ -125,7 +125,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
 
     return (
         <div id="tests-news">
-            {/*------------ Domain nav bar, use to select a domain ------------*/}
+            {/*------------ Domain nav bar, used to select a domain ------------*/}
             <div id="tests-news-nav">
                 {favoriteDomain ? (
                     <FormControlLabel

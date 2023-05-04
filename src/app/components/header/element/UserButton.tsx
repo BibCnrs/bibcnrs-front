@@ -17,13 +17,13 @@ import { useContext, useState } from 'react';
 import type { MouseEvent, ReactElement } from 'react';
 
 /**
- * Button use to display the user menu
+ * Button used to display the user menu
  */
 const UserButton = () => {
     const t = translator();
-    // Context use to log off the user when the logout action is finished
+    // Context used to log off the user when the logout action is finished
     const { setLogin } = useContext(BibContext);
-    // Anchor use to display or not the drop-down menu
+    // Anchor used to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const open = Boolean(anchorEl);
     const history = buildLinkClickHandler(RouteHistory);
@@ -133,7 +133,7 @@ const UserButton = () => {
                         color: colors.text.light,
                     }}
                 >
-                    {username.slice(0, 1)}
+                    {username[0]}
                 </Avatar>
             </button>
             <Menu

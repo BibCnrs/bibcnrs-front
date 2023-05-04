@@ -9,7 +9,7 @@ import type {
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 
 /**
- * Function use to get the translated title if available
+ * Function used to get the translated title if available
  * @param titles Array of titles
  * @param langKey Language key
  * @return Translated title if found, or first if not found
@@ -24,7 +24,7 @@ const getTitle = (titles: MetadoreResultTitleType[], langKey: string): string =>
 };
 
 /**
- * Function use to get the translated description if available
+ * Function used to get the translated description if available
  * @param descriptions Array of descriptions
  * @param langKey Language key
  * @return Translated description if found, first if not found, or undefined as fallback if descriptions are empty
@@ -98,18 +98,14 @@ const TableMetadore = ({ data }: TableDisplayElementProps<MetadoreResultType>) =
                             <dt>{t('components.table.content.description')}</dt>
                             <dd>{description}</dd>
                         </span>
-                    ) : (
-                        <></>
-                    )}
+                    ) : null}
                     {/* Show subjects if available */}
                     {data.subjects.length !== 0 ? (
                         <span>
                             <dt>{t('components.table.content.subjects')}</dt>
                             <dd>{data.subjects.join(', ')}</dd>
                         </span>
-                    ) : (
-                        <></>
-                    )}
+                    ) : null}
                 </dl>
             }
         />

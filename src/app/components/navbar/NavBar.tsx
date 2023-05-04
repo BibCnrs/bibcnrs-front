@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import { useContext } from 'react';
 
 /**
- * Nav bar component use to navigate between: [Article], [Journal, book], [Database] and [Research data]
+ * Nav bar component used to navigate between: "Article", "Journal, book", "Database" and "Research data"
  */
 const NavBar = () => {
     // Get translation function

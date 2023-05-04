@@ -25,7 +25,7 @@ export const headerButtonStyle = createSxProps({
 });
 
 /**
- * Header component use in every page.
+ * Header component used in every page.
  * This component also handles language selection and account navigation.
  */
 const Header = () => {

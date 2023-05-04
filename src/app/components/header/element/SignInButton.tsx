@@ -5,12 +5,11 @@ import Button from '@mui/material/Button';
 import { useState } from 'react';
 
 /**
- * Button component use to sign in to the application
- * This button is actually a placeholder
+ * Button component used to sign-in into the application
  */
 const SignInButton = () => {
     const t = translator();
-    // State use to display the authentication modal
+    // State used to display the authentication modal
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setOpen(true);

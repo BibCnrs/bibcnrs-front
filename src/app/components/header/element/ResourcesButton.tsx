@@ -4,7 +4,7 @@ import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
 
 /**
- * Button use to go to Ressources page
+ * Button used to go to Ressources page
  */
 const ResourcesButton = () => {
     const resources = 't';

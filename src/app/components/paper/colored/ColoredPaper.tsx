@@ -6,7 +6,7 @@ import type { SxProps } from '@mui/system/styleFunctionSx/styleFunctionSx';
 import type { Property } from 'csstype';
 
 /**
- * Array of box-shadow size use to create a colored elevation
+ * Array of box-shadow sizes used to create a colored elevation
  */
 const elevations = [
     ['0 2px 1px -1px', '0 1px 1px 0', '0 1px 3px 0'],
@@ -16,7 +16,7 @@ const elevations = [
 ];
 
 /**
- * Function use to create the box color
+ * Function used to create the box color
  * @param elevation - Paper elevation value
  * @param color     - Paper box shadow color
  */
@@ -36,7 +36,7 @@ const getBoxShadow = (elevation: number, color: string): Property.BoxShadow => {
 };
 
 /**
- * Extension of the Paper from Material UI, who serv as a generic component to any other paper component
+ * Extension of the Paper from Material UI, which serves as a generic component to any other paper component
  * @param elevation   - Paper elevation
  *                      - Default: 1
  * @param color       - Paper box shadow and border color if applicable

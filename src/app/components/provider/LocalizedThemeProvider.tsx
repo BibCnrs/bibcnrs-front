@@ -69,7 +69,7 @@ export const colors = {
 };
 
 /**
- * Function use to get color associated to an Institute
+ * Function used to get color associated to an Institute
  * @param institute - The name of the institute
  * @returns - The color of the institute
  */
@@ -78,7 +78,7 @@ export const getInstituteColor = (institute: Institute | string): Property.Color
 };
 
 /**
- * Function use to update css variable on startup or when the user change the application theme
+ * Function used to update css variables on startup or when the user changes the application theme
  * @param theme - Name of the theme to load
  */
 const updateTheme = (theme: ThemeType) => {
@@ -98,7 +98,7 @@ const updateTheme = (theme: ThemeType) => {
 };
 
 /**
- * Utils component use to set up the material ui theme.
+ * Utils component used to set up the Material UI theme.
  * @param children - component parameters containing react children.
  */
 const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
@@ -107,7 +107,7 @@ const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
     const { theme } = useContext(BibContext);
 
     /**
-     * Function use to return a Material UI language object
+     * Function used to return a Material UI language object
      * @returns - Material UI language
      *            - Default: French
      */
@@ -138,7 +138,7 @@ const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
         },
     });
 
-    // Create material ui theme
+    // Create Material UI theme
     const muiTheme = createTheme(
         {
             typography: {
@@ -149,7 +149,7 @@ const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
         getLocal(),
     );
 
-    // Add a hook to 'theme' use to update css variable went theme change
+    // Add a hook to 'theme' used to update css variable on theme change
     useEffect(() => {
         updateTheme(theme);
     }, [theme]);

@@ -3,33 +3,24 @@ import type { ContextProviderProps } from '../../shared/types/props.types';
 import type { BibContextType, ThemeType } from '../../shared/types/types';
 
 /**
- * Add value in local storage if none was present
- */
-const createIfNotExist = () => {
-    if (window.localStorage.getItem('mode') === null) {
-        window.localStorage.setItem('mode', 'light');
-    }
-};
-
-/**
- * Function use to get theme from local storage
- * @returns - Return the value from local storage if present or 'light' as fallback
- */
-const getStorageTheme = (): ThemeType => {
-    const mode = window.localStorage.getItem('mode');
-    if (mode === null) {
-        createIfNotExist();
-        return 'light';
-    }
-    return mode as ThemeType;
-};
-
-/**
- * Function use to store the theme use by the user
+ * Function used to store the theme use by the user
  * @param value - Theme name
  */
 const setStorageTheme = (value: ThemeType) => {
     window.localStorage.setItem('mode', value);
+};
+
+/**
+ * Function used to get theme from local storage
+ * @returns - Returns the value from local storage if present or 'light' as fallback
+ */
+const getStorageTheme = (): ThemeType => {
+    const mode = window.localStorage.getItem('mode');
+    if (mode === null) {
+        setStorageTheme('light');
+        return 'light';
+    }
+    return mode as ThemeType;
 };
 
 /* eslint-disable @typescript-eslint/no-empty-function */
@@ -47,7 +38,7 @@ export const BibContext = createContext<BibContextType>({
 /* eslint-enable @typescript-eslint/no-empty-function */
 
 /**
- * Provider component who creates application context
+ * Provider component which creates application context
  * @param children - Application content
  */
 const ContextProvider = ({ children }: ContextProviderProps) => {

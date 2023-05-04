@@ -3,9 +3,9 @@ import { useState } from 'react';
 import type { AnimatedPaperProps } from '../../../shared/types/props.types';
 
 /**
- * Paper component who change is elevation when the cursor is overing it
+ * Paper component which changes its elevation when the cursor is hovering it
  * @param children - Paper content
- * @param props - Other paper props pass to the generic paper component
+ * @param props - Other paper props passed to the generic paper component
  */
 const AnimatedPaper = ({ children, ...props }: AnimatedPaperProps) => {
     const [elevation, setElevation] = useState<number>(1);
