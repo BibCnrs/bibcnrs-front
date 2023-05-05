@@ -9,7 +9,6 @@ COPY ./tsconfig*.json ./vite.config.ts ./index.html ./
 COPY ./public ./public
 COPY ./src ./src
 RUN npm run build
-COPY ./nginx.conf ./nginx.conf
 
 FROM nginx:mainline-alpine AS ngi
 RUN rm -rf /usr/share/nginx/html/*
