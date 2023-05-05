@@ -6,8 +6,12 @@ import md5 from 'md5';
 
 const regex = /(.*node_modules\/)([^\/]+)(.*)/;
 
+const linter = process.env.ENV === 'prod' ? [] : [
+    eslint(), stylelint()
+];
+
 export default defineConfig({
-    plugins: [react(), eslint(), stylelint()],
+    plugins: [react(), ...linter],
     build: {
         rollupOptions: {
             output: {
