@@ -1,14 +1,14 @@
 import './Licences.scss';
 import PageTitle from '../../../components/utils/PageTitle';
 import { licences } from '../../../services/user/Licences';
-import { getLanguageKey, translator } from '../../../shared/locales/I18N';
+import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import type { LicenceDataType, LicencesDataType } from '../../../shared/types/data.types';
 
 const Licences = () => {
-    const t = translator();
-    const language = getLanguageKey();
+    const t = useTranslator();
+    const language = useLanguageKey();
     const [activeLicences, setActiveLicences] = useState<LicenceDataType | undefined>(undefined);
 
     const { data, isFetching, isLoading } = useQuery<LicencesDataType, any, LicencesDataType, any>({
@@ -34,9 +34,9 @@ const Licences = () => {
             <PageTitle page="licences" t={t} />
             <div id="licences">
                 <div id="licences-nav">
-                    {data.map((value, index) => (
+                    {data.map((value) => (
                         <div
-                            key={index}
+                            key={value.id}
                             id={activeLicences?.id === value.id ? 'licences-button-active' : ''}
                             className="licences-button"
                             onClick={() => {

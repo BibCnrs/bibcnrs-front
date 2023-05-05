@@ -4,7 +4,7 @@ import LocalButton from './element/LocalButton';
 import SignInButton from './element/SignInButton';
 import { RouteRoot } from '../../shared/Routes';
 import CustomLink from '../custom/link/CustomLink';
-import { translator } from '../../shared/locales/I18N';
+import { useTranslator } from '../../shared/locales/I18N';
 import ThemeButton from './element/ThemeButton';
 import UserButton from './element/UserButton';
 import { useContext } from 'react';
@@ -29,7 +29,7 @@ export const headerButtonStyle = createSxProps({
  * This component also handles language selection and account navigation.
  */
 const Header = () => {
-    const t = translator();
+    const t = useTranslator();
     const { login } = useContext(BibContext);
     return (
         <header>

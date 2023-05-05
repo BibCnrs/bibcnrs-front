@@ -1,5 +1,5 @@
 import './scss/TableHistory.scss';
-import { translator } from '../../../shared/locales/I18N';
+import { useTranslator } from '../../../shared/locales/I18N';
 import CustomButton from '../../custom/button/CustomButton';
 import { BibContext } from '../../provider/ContextProvider';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -14,7 +14,7 @@ import type {
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 
 const Limiters = ({ data }: { data: HistoryEntryLimiterDataType }) => {
-    const t = translator();
+    const t = useTranslator();
     return (
         <ul>
             {data.fullText ? (
@@ -50,9 +50,9 @@ const Limiters = ({ data }: { data: HistoryEntryLimiterDataType }) => {
     );
 };
 const Facets = ({ data }: { data: HistoryEntryFacetsDataType }) => {
-    const t = translator();
+    const t = useTranslator();
     if (!data) {
-        return <></>;
+        return null;
     }
     const keys = Object.keys(data) as HistoryEntryFacetsKeyDataType[];
     return (
@@ -74,7 +74,7 @@ const Facets = ({ data }: { data: HistoryEntryFacetsDataType }) => {
 };
 
 const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<HistoryEntryDataType>) => {
-    const t = translator();
+    const t = useTranslator();
     const { theme } = useContext(BibContext);
     const getClassName = () => {
         let className = 'table-history';

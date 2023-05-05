@@ -1,5 +1,5 @@
 import { BibContext } from './ContextProvider';
-import { getLanguageKey } from '../../shared/locales/I18N';
+import { useLanguageKey } from '../../shared/locales/I18N';
 import { frFR } from '@mui/material/locale';
 import { enUS } from '@mui/material/locale';
 import createPalette from '@mui/material/styles/createPalette';
@@ -103,7 +103,7 @@ const updateTheme = (theme: ThemeType) => {
  */
 const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
     // Get the language key and use it to get the material ui language pack
-    const language = getLanguageKey();
+    const language = useLanguageKey();
     const { theme } = useContext(BibContext);
 
     /**

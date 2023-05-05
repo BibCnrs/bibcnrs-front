@@ -205,7 +205,7 @@ i18next
 /**
  * export the translation function
  */
-export const translator = (): TFunction => {
+export const useTranslator = (): TFunction => {
     const { t } = useTranslation('common');
     return t;
 };
@@ -213,12 +213,12 @@ export const translator = (): TFunction => {
 /**
  * export the translation function and the i18n system
  */
-export const getFullTranslator = () => {
+export const useFullTranslator = () => {
     return useTranslation('common');
 };
 
-export const getLanguageKey = () => {
-    const { i18n } = getFullTranslator();
+export const useLanguageKey = () => {
+    const { i18n } = useFullTranslator();
     return i18n.language;
 };
 

@@ -5,7 +5,7 @@ import Table from '../../../components/table/Table';
 import Loading from '../../../components/utils/loading/Loading';
 import PageTitle from '../../../components/utils/PageTitle';
 import { search } from '../../../services/common/Metadore';
-import { translator } from '../../../shared/locales/I18N';
+import { useTranslator } from '../../../shared/locales/I18N';
 import { RouteResearchData, getNumber, getString, updatePageQueryUrl, useSearchParams } from '../../../shared/Routes';
 import { styled } from '@mui/material/styles';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -48,7 +48,7 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
 const ResearchData = () => {
     const navigate = useNavigate();
     const query = useSearchParams();
-    const t = translator();
+    const t = useTranslator();
 
     const [first, setFirst] = useState<boolean>(true);
     const [args, setArgs] = useState<TableArgsProps>({

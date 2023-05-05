@@ -1,6 +1,6 @@
 import './TestsNews.scss';
 import { getDomains, getFavoriteDomain } from '../../services/user/Session';
-import { getLanguageKey, translator } from '../../shared/locales/I18N';
+import { useLanguageKey, useTranslator } from '../../shared/locales/I18N';
 import OpenablePaper from '../paper/openable/OpenablePaper';
 import { getInstituteColor } from '../provider/LocalizedThemeProvider';
 import PageDate from '../utils/PageDate';
@@ -17,8 +17,8 @@ import type { ChangeEvent } from 'react';
  * @param data - Array of Articles
  */
 const TestsNews = ({ data }: TestsNewsProps) => {
-    const t = translator();
-    const language = getLanguageKey();
+    const t = useTranslator();
+    const language = useLanguageKey();
     const favoriteDomain = getFavoriteDomain();
     const domains = getDomains().filter((domain) => domain !== favoriteDomain);
     const [selectedDomain, setSelectedDomain] = useState(favoriteDomain || domains[0]);
@@ -149,10 +149,10 @@ const TestsNews = ({ data }: TestsNewsProps) => {
             </div>
             {/*------------ list of articles associated to the selected domain ------------*/}
             <div id="tests-news-content">
-                {getData().map((value, index) => (
+                {getData().map((value) => (
                     <OpenablePaper
-                        key={index}
-                        Title={<>{language === 'en' ? value.name_en : value.name_fr}</>}
+                        key={value.id}
+                        Title={language === 'en' ? value.name_en : value.name_fr}
                         SmallBody={<TestsNewsFooter value={value} />}
                         FullBody={
                             <div>
@@ -165,8 +165,8 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                                 {Array.isArray(value.urls) && value.urls.length > 0 ? (
                                     <div>
                                         <ul>
-                                            {value.urls.map((url, indexUrl) => (
-                                                <li key={indexUrl}>
+                                            {value.urls.map((url) => (
+                                                <li key={url.name}>
                                                     <a
                                                         className="link"
                                                         href={url.url}

@@ -1,4 +1,4 @@
-import { translator } from '../../shared/locales/I18N';
+import { useTranslator } from '../../shared/locales/I18N';
 import type { PageDateProps } from '../../shared/types/props.types';
 
 /**
@@ -8,7 +8,7 @@ import type { PageDateProps } from '../../shared/types/props.types';
  *                        - Default: false
  */
 const PageDate = ({ date, updateAtLabel = false }: PageDateProps) => {
-    const t = translator();
+    const t = useTranslator();
     const formattedDate = new Date(date).toLocaleDateString();
     if (updateAtLabel) {
         return <i>{`${t('components.pageDate.updateAt')} ${formattedDate}`}</i>;

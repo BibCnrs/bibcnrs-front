@@ -1,5 +1,5 @@
-import { translator } from '../../../shared/locales/I18N';
-import { buildLinkClickHandler, RouteResources } from '../../../shared/Routes';
+import { useTranslator } from '../../../shared/locales/I18N';
+import { useClickHandler, RouteResources } from '../../../shared/Routes';
 import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
 
@@ -8,8 +8,8 @@ import Button from '@mui/material/Button';
  */
 const ResourcesButton = () => {
     const resources = 't';
-    const t = translator();
-    const action = buildLinkClickHandler(RouteResources);
+    const t = useTranslator();
+    const action = useClickHandler(RouteResources);
     return (
         <div className="header-nav">
             <Button className="header-button" sx={headerButtonStyle} onClick={action.handler} href={action.href}>

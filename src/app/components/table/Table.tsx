@@ -1,5 +1,5 @@
 import './Table.scss';
-import { translator } from '../../shared/locales/I18N';
+import { useTranslator } from '../../shared/locales/I18N';
 import { FormControl } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Pagination from '@mui/material/Pagination';
@@ -77,7 +77,7 @@ const PaginationComponent = ({
  * @param header         - Pagination extension used by the top pagination
  */
 const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableProps) => {
-    const t = translator();
+    const t = useTranslator();
 
     // Update args parameters when we change page or results per page
     const onChange = (currentPage: number, resultsPerPage: number) => {

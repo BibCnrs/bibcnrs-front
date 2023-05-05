@@ -1,10 +1,10 @@
 import './Article.scss';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import PageTitle from '../../../components/utils/PageTitle';
-import { translator } from '../../../shared/locales/I18N';
+import { useTranslator } from '../../../shared/locales/I18N';
 
 const Article = () => {
-    const t = translator();
+    const t = useTranslator();
     return (
         <div>
             <PageTitle page={'article'} t={t} />

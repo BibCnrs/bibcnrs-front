@@ -1,4 +1,4 @@
-import { translator } from '../../../shared/locales/I18N';
+import { useTranslator } from '../../../shared/locales/I18N';
 import Authentication from '../../authentication/Authentication';
 import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
@@ -8,7 +8,7 @@ import { useState } from 'react';
  * Button component used to sign-in into the application
  */
 const SignInButton = () => {
-    const t = translator();
+    const t = useTranslator();
     // State used to display the authentication modal
     const [open, setOpen] = useState(false);
     const handleOpen = () => {

@@ -1,6 +1,6 @@
 import './Authentication.scss';
 import { loginToJanus, loginToLegacy } from '../../services/user/Session';
-import { translator } from '../../shared/locales/I18N';
+import { useTranslator } from '../../shared/locales/I18N';
 import { BibContext } from '../provider/ContextProvider';
 import CloseIcon from '@mui/icons-material/Close';
 import LoginIcon from '@mui/icons-material/Login';
@@ -25,7 +25,9 @@ import type { FormEvent } from 'react';
  * Styled tooltips with no max width
  */
 const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
-    <Tooltip {...props} classes={{ popper: className }} children={props.children} />
+    <Tooltip {...props} classes={{ popper: className }}>
+        {props.children}
+    </Tooltip>
 ))({
     [`& .${tooltipClasses.tooltip}`]: {
         maxWidth: 'none',
@@ -39,7 +41,7 @@ const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
  * @param onClose - Component close callback
  */
 const Authentication = ({ open, onClose }: AuthenticationProps) => {
-    const t = translator();
+    const t = useTranslator();
 
     // State use to handle the legacy login form
     const [legacy, setLegacy] = useState(false);

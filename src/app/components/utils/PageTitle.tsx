@@ -17,6 +17,7 @@ export default class PageTitle extends Component<PageTitleProps> {
      * Update the document title when the component is mounted
      */
     componentDidMount() {
+        /* eslint-disable react/destructuring-assignment */
         if (this.props.customTitle && this.props.page) {
             document.title = `BibCNRS - ${this.props.page}`;
             return;
@@ -25,6 +26,7 @@ export default class PageTitle extends Component<PageTitleProps> {
             document.title = `BibCNRS - ${this.props.t(`pages.${this.props.page}.title`)}`;
             return;
         }
+        /* eslint-enable react/destructuring-assignment */
         document.title = 'BibCNRS';
     }
 

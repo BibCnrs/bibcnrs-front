@@ -1,12 +1,12 @@
 import TestsNews from '../../../components/testsnews/TestsNews';
 import PageTitle from '../../../components/utils/PageTitle';
 import { news } from '../../../services/user/TestsNews';
-import { translator } from '../../../shared/locales/I18N';
+import { useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
 import type { TestsNewsDataType } from '../../../shared/types/data.types';
 
 const News = () => {
-    const t = translator();
+    const t = useTranslator();
 
     const { data } = useQuery<TestsNewsDataType, any, TestsNewsDataType, any>({
         queryKey: ['news'],

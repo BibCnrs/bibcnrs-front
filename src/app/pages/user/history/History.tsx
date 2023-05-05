@@ -4,14 +4,14 @@ import TableHistory from '../../../components/table/displayelement/TableHistory'
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { deleteHistory, history } from '../../../services/user/History';
-import { translator } from '../../../shared/locales/I18N';
+import { useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import type { HistoryDataType } from '../../../shared/types/data.types';
 import type { TableArgsProps } from '../../../shared/types/props.types';
 
 const History = () => {
-    const t = translator();
+    const t = useTranslator();
 
     const [args, setArgs] = useState<TableArgsProps>({
         page: 1,

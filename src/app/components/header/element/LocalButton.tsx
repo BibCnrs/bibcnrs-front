@@ -1,4 +1,4 @@
-import { getFullTranslator, supportedLanguages } from '../../../shared/locales/I18N';
+import { useFullTranslator, supportedLanguages } from '../../../shared/locales/I18N';
 import CheckIcon from '@mui/icons-material/Check';
 import TranslateIcon from '@mui/icons-material/Translate';
 import Button from '@mui/material/Button';
@@ -14,7 +14,7 @@ import type { MouseEvent } from 'react';
  * This element is used to change the application language
  */
 const LocalButton = () => {
-    const { i18n } = getFullTranslator();
+    const { i18n } = useFullTranslator();
 
     // Anchor used to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -54,9 +54,9 @@ const LocalButton = () => {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                {supportedLanguages.map((lang, index) => (
+                {supportedLanguages.map((lang) => (
                     <MenuItem
-                        key={index}
+                        key={lang.key}
                         onClick={() => {
                             handleClose(lang.key);
                         }}

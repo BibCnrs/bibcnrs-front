@@ -1,6 +1,6 @@
 import { getUsername, isLegacy, logout } from '../../../services/user/Session';
-import { translator } from '../../../shared/locales/I18N';
-import { buildLinkClickHandler, RouteHistory } from '../../../shared/Routes';
+import { useTranslator } from '../../../shared/locales/I18N';
+import { useClickHandler, RouteHistory } from '../../../shared/Routes';
 import { BibContext } from '../../provider/ContextProvider';
 import { colors } from '../../provider/LocalizedThemeProvider';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
@@ -20,13 +20,13 @@ import type { MouseEvent, ReactElement } from 'react';
  * Button used to display the user menu
  */
 const UserButton = () => {
-    const t = translator();
+    const t = useTranslator();
     // Context used to log off the user when the logout action is finished
     const { setLogin } = useContext(BibContext);
     // Anchor used to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const open = Boolean(anchorEl);
-    const history = buildLinkClickHandler(RouteHistory);
+    const history = useClickHandler(RouteHistory);
 
     let username = getUsername();
 

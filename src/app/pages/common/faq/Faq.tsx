@@ -2,16 +2,16 @@ import './Faq.scss';
 import OpenablePaper from '../../../components/paper/openable/OpenablePaper';
 import PageTitle from '../../../components/utils/PageTitle';
 import { faq } from '../../../services/common/CMS';
-import { getLanguageKey, translator } from '../../../shared/locales/I18N';
+import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
 import type { CMSDataType, CMSResultDataType } from '../../../shared/types/data.types';
 
 const FaqEntry = ({ data }: { data: CMSDataType }) => {
-    const language = getLanguageKey();
+    const language = useLanguageKey();
     if (language === 'en') {
         return (
             <OpenablePaper
-                Title={<>{data.name_en}</>}
+                Title={data.name_en}
                 SmallBody={null}
                 FullBody={<div className="cms-content" dangerouslySetInnerHTML={{ __html: data.content_en }}></div>}
                 small
@@ -20,7 +20,7 @@ const FaqEntry = ({ data }: { data: CMSDataType }) => {
     }
     return (
         <OpenablePaper
-            Title={<>{data.name_fr}</>}
+            Title={data.name_fr}
             SmallBody={null}
             FullBody={<div className="cms-content" dangerouslySetInnerHTML={{ __html: data.content_fr }}></div>}
             small
@@ -29,7 +29,7 @@ const FaqEntry = ({ data }: { data: CMSDataType }) => {
 };
 
 const Faq = () => {
-    const t = translator();
+    const t = useTranslator();
     const { data } = useQuery<CMSResultDataType, any, CMSResultDataType, any>({
         queryKey: ['faq'],
         queryFn: faq,

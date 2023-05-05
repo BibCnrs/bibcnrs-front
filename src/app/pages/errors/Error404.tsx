@@ -1,4 +1,4 @@
-import { translator } from '../../shared/locales/I18N';
+import { useTranslator } from '../../shared/locales/I18N';
 import { Link } from 'react-router-dom';
 
 /**
@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
  * @constructor
  */
 const Error404 = () => {
-    const t = translator();
+    const t = useTranslator();
     return (
         <div id="app">
             <h1>{t('error.404.title')}</h1>

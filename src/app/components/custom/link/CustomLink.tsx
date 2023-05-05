@@ -1,5 +1,5 @@
 import './CustomLink.scss';
-import { isMatching } from '../../../shared/Routes';
+import { useIsMatching } from '../../../shared/Routes';
 import { Link } from 'react-router-dom';
 import type { LinkProps } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const CustomLink = ({ children, to, ...props }: LinkProps) => {
     return (
         <Link
             className="custom-link"
-            style={{ textDecoration: isMatching(to) ? 'underline' : 'none' }}
+            style={{ textDecoration: useIsMatching(to) ? 'underline' : 'none' }}
             to={to}
             {...props}
         >

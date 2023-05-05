@@ -28,7 +28,7 @@ const Routes = {
 
 type RoutesType = typeof Routes;
 
-export const buildLinkClickHandler = <Route extends RoutesType[keyof RoutesType]>(to: Route) => {
+export const useClickHandler = <Route extends RoutesType[keyof RoutesType]>(to: Route) => {
     const href = useHref(to);
     const handler = useLinkClickHandler(to);
     return { href, handler };
@@ -45,7 +45,7 @@ export const updatePageQueryUrl = (route: string, navigate: NavigateFunction, pa
     navigate(`${route}?${query.toString()}`);
 };
 
-export const isMatching = (to: To) => {
+export const useIsMatching = (to: To) => {
     const resolved = useResolvedPath(to);
     return useMatch({ path: resolved.pathname, end: true });
 };

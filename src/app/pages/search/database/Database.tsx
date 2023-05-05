@@ -3,7 +3,7 @@ import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import PageTitle from '../../../components/utils/PageTitle';
 import { database } from '../../../services/common/Database';
-import { getLanguageKey, translator } from '../../../shared/locales/I18N';
+import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import Tooltip from '@mui/material/Tooltip';
@@ -52,8 +52,8 @@ const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupPr
 
     return (
         <ul>
-            {filteredData.map((entry, index) => (
-                <li key={index}>
+            {filteredData.map((entry) => (
+                <li key={entry.id}>
                     <Tooltip title={getText(entry, language)} arrow>
                         <a
                             href={getUrl(entry, language)}
@@ -85,8 +85,8 @@ const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupPr
 const Database = () => {
     const { login } = useContext(BibContext);
     const [oa, setOa] = useState(!login);
-    const t = translator();
-    const language = getLanguageKey();
+    const t = useTranslator();
+    const language = useLanguageKey();
 
     const { data } = useQuery<DatabaseDataType, any, DatabaseDataType, any>({
         queryKey: ['database', oa],

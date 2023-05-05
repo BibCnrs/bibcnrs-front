@@ -1,13 +1,13 @@
 import './NavBar.scss';
-import { translator } from '../../shared/locales/I18N';
+import { useTranslator } from '../../shared/locales/I18N';
 import {
     RouteArticle,
     RouteDatabase,
     RouteJournal,
     RouteResearchData,
     RouteRoot,
-    buildLinkClickHandler,
-    isMatching,
+    useClickHandler,
+    useIsMatching,
 } from '../../shared/Routes';
 import { BibContext } from '../provider/ContextProvider';
 import Button from '@mui/material/Button';
@@ -18,7 +18,7 @@ import { useContext } from 'react';
  */
 const NavBar = () => {
     // Get translation function
-    const t = translator();
+    const t = useTranslator();
     const { theme } = useContext(BibContext);
     const getActiveDarkButtonId = () => {
         if (theme === 'dark') {
@@ -28,17 +28,17 @@ const NavBar = () => {
     };
 
     // Button action handler
-    const article = buildLinkClickHandler(RouteArticle);
-    const journal = buildLinkClickHandler(RouteJournal);
-    const database = buildLinkClickHandler(RouteDatabase);
-    const researchData = buildLinkClickHandler(RouteResearchData);
+    const article = useClickHandler(RouteArticle);
+    const journal = useClickHandler(RouteJournal);
+    const database = useClickHandler(RouteDatabase);
+    const researchData = useClickHandler(RouteResearchData);
 
     // Current route
-    const articleMatch = !!isMatching(RouteArticle);
-    const journalMatch = !!isMatching(RouteJournal);
-    const databaseMatch = !!isMatching(RouteDatabase);
-    const researchDataMatch = !!isMatching(RouteResearchData);
-    const rootMatch = !!isMatching(RouteRoot);
+    const articleMatch = !!useIsMatching(RouteArticle);
+    const journalMatch = !!useIsMatching(RouteJournal);
+    const databaseMatch = !!useIsMatching(RouteDatabase);
+    const researchDataMatch = !!useIsMatching(RouteResearchData);
+    const rootMatch = !!useIsMatching(RouteRoot);
     const noneMatch = !articleMatch && !journalMatch && !databaseMatch && !researchDataMatch;
     const disable = noneMatch && !rootMatch;
 
@@ -48,7 +48,7 @@ const NavBar = () => {
                 <Button
                     className="nav-button"
                     id={(articleMatch || noneMatch) && !disable ? getActiveDarkButtonId() : ''}
-                    disabled={(articleMatch || noneMatch) && !disable}
+                    disabled={articleMatch || noneMatch ? !disable : false}
                     onClick={article.handler}
                     href={article.href}
                 >

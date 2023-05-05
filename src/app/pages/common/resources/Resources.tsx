@@ -3,7 +3,7 @@ import ColoredPaper from '../../../components/paper/colored/ColoredPaper';
 import { getInstituteColor } from '../../../components/provider/LocalizedThemeProvider';
 import PageTitle from '../../../components/utils/PageTitle';
 import { resources } from '../../../services/common/Resources';
-import { getLanguageKey, translator } from '../../../shared/locales/I18N';
+import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
 import type { ResourcesDataType } from '../../../shared/types/data.types';
 import type { Institute } from '../../../shared/types/types';
@@ -12,7 +12,7 @@ const DisplayResources = ({ data }: { data: ResourcesDataType | undefined }) => 
     if (!data || data.length === 0) {
         return null;
     }
-    const language = getLanguageKey();
+    const language = useLanguageKey();
 
     return (
         <div id="resources">
@@ -34,7 +34,7 @@ const DisplayResources = ({ data }: { data: ResourcesDataType | undefined }) => 
 };
 
 const Resources = () => {
-    const t = translator();
+    const t = useTranslator();
     const { data } = useQuery<ResourcesDataType, any, ResourcesDataType, any>({
         queryKey: ['resources'],
         queryFn: resources,

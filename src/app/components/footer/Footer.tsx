@@ -1,5 +1,5 @@
 import './Footer.scss';
-import { translator } from '../../shared/locales/I18N';
+import { useTranslator } from '../../shared/locales/I18N';
 import CNRSLogo from '/logos/cnrs.png';
 import { RouteAbout, RouteLegal } from '../../shared/Routes';
 import CustomLink from '../custom/link/CustomLink';
@@ -9,11 +9,11 @@ import TwitterIcon from '@mui/icons-material/Twitter';
  * Footer component used in every page
  */
 const Footer = () => {
-    const t = translator();
+    const t = useTranslator();
 
     return (
         <footer>
-            <a href="https://www.cnrs.fr" target="_blank">
+            <a href="https://www.cnrs.fr" target="_blank" rel="noreferrer noopener nofollow">
                 <img src={CNRSLogo} alt="CNRS logo" />
             </a>
             <ul>
@@ -35,7 +35,7 @@ const Footer = () => {
                 </li>
             </ul>
             <div id={'social-media'}>
-                <a href="https://twitter.com/BibCnrs" target="_blank">
+                <a href="https://twitter.com/BibCnrs" target="_blank" rel="noreferrer noopener nofollow">
                     <TwitterIcon />
                 </a>
             </div>

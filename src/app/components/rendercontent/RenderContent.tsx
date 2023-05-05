@@ -1,5 +1,5 @@
 import './RenderContent.scss';
-import { getLanguageKey } from '../../shared/locales/I18N';
+import { useLanguageKey } from '../../shared/locales/I18N';
 import PageDate from '../utils/PageDate';
 import PageTitle from '../utils/PageTitle';
 import type { RenderContentProps } from '../../shared/types/props.types';
@@ -31,7 +31,7 @@ const RenderContent = ({
         const children = (
             <>
                 {updateDocumentTitle ? <PageTitle page={page} t={t} /> : <PageTitle />}
-                {displayTitle ? <h1>{t(`pages.${page}.title`)}</h1> : <></>}
+                {displayTitle ? <h1>{t(`pages.${page}.title`)}</h1> : null}
             </>
         );
         if (Container && displayTitle) {
@@ -49,17 +49,17 @@ const RenderContent = ({
     };
 
     // Change the page content if the page is set to English
-    if (getLanguageKey() === 'en') {
+    if (useLanguageKey() === 'en') {
         content.title = data[0].name_en;
         content.text = data[0].content_en;
     }
 
     const children = (
         <>
-            {updateDocumentTitle ? <PageTitle customTitle={true} page={content.title} /> : <PageTitle />}
-            {displayTitle ? <h1>{content.title}</h1> : <></>}
+            {updateDocumentTitle ? <PageTitle customTitle page={content.title} /> : <PageTitle />}
+            {displayTitle ? <h1>{content.title}</h1> : null}
             <div className="cms-content" dangerouslySetInnerHTML={{ __html: content.text }}></div>
-            {showDate ? <PageDate date={content.date} /> : <></>}
+            {showDate ? <PageDate date={content.date} /> : null}
         </>
     );
 

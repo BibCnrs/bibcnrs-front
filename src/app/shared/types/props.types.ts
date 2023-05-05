@@ -82,7 +82,7 @@ export type PageDateProps = PropsWithoutRef<{
 }>;
 
 export type OpenablePaperProps = PropsWithoutRef<{
-    Title: ReactElement | null;
+    Title: ReactElement | string | null;
     SmallBody: ReactElement | null;
     FullBody: ReactElement | null;
     small?: boolean;

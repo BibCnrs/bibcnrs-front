@@ -1,5 +1,5 @@
-import { translator } from '../../../shared/locales/I18N';
-import { buildLinkClickHandler, RouteLicences } from '../../../shared/Routes';
+import { useTranslator } from '../../../shared/locales/I18N';
+import { useClickHandler, RouteLicences } from '../../../shared/Routes';
 import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
 
@@ -7,8 +7,8 @@ import Button from '@mui/material/Button';
  * Button used to go to Licences page
  */
 const LicencesButton = () => {
-    const t = translator();
-    const action = buildLinkClickHandler(RouteLicences);
+    const t = useTranslator();
+    const action = useClickHandler(RouteLicences);
     return (
         <div className="header-nav">
             <Button className="header-button" sx={headerButtonStyle} onClick={action.handler} href={action.href}>
