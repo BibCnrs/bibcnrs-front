@@ -56,6 +56,7 @@ const Licences = () => {
                                 {language === 'en' ? activeLicences.name_en : activeLicences.name_fr}
                             </h1>
                             <div
+                                className="cms-content"
                                 dangerouslySetInnerHTML={{
                                     __html: language === 'en' ? activeLicences.content_en : activeLicences.content_fr,
                                 }}

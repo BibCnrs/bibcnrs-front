@@ -123,6 +123,7 @@ const Database = () => {
             {login ? (
                 <FormControlLabel
                     id="database-oa"
+                    className="text"
                     control={
                         <Switch
                             value={oa}

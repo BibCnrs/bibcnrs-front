@@ -157,7 +157,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                         FullBody={
                             <div>
                                 <div
-                                    className="tests-news-content"
+                                    className="tests-news-content cms-content"
                                     dangerouslySetInnerHTML={{
                                         __html: language === 'en' ? value.content_en : value.content_fr,
                                     }}
