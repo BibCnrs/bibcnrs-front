@@ -7,7 +7,7 @@ import PageTitle from '../../../components/utils/PageTitle';
 import { search } from '../../../services/common/Metadore';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { RouteResearchData, getNumber, getString, updatePageQueryUrl, useSearchParams } from '../../../shared/Routes';
-import { styled } from '@mui/material/styles';
+import styled from '@mui/material/styles/styled';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useQuery } from '@tanstack/react-query';

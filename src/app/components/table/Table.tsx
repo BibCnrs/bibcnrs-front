@@ -1,6 +1,6 @@
 import './Table.scss';
 import { useTranslator } from '../../shared/locales/I18N';
-import { FormControl } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Pagination from '@mui/material/Pagination';
 import Select from '@mui/material/Select';
