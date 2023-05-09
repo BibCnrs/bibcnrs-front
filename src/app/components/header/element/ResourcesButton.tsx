@@ -7,14 +7,12 @@ import Button from '@mui/material/Button';
  * Button used to go to Ressources page
  */
 const ResourcesButton = () => {
-    const resources = 't';
     const t = useTranslator();
     const action = useClickHandler(RouteResources);
     return (
         <div className="header-nav">
             <Button className="header-button" sx={headerButtonStyle} onClick={action.handler} href={action.href}>
                 {t('components.header.resources')}
-                {resources}
             </Button>
         </div>
     );

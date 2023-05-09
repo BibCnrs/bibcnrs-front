@@ -4,6 +4,7 @@ import { FormControl } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Pagination from '@mui/material/Pagination';
 import Select from '@mui/material/Select';
+import md5 from 'md5';
 import type { PaginationComponentProps, TableProps } from '../../shared/types/props.types';
 import type { SelectChangeEvent } from '@mui/material/Select';
 
@@ -84,6 +85,13 @@ const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableP
         setArgs({ ...args, perPage: resultsPerPage, page: currentPage });
     };
 
+    const getDisplayElementKey = (result: any): number | string => {
+        if (result.id) {
+            return result.id as number | string;
+        }
+        return md5(JSON.stringify(result));
+    };
+
     return (
         <div>
             {/* Display an empty page if results and total are not initialized */}
@@ -103,7 +111,7 @@ const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableP
                         {total !== 0 ? (
                             results.map((result: any, index: number) => (
                                 <DisplayElement
-                                    key={index}
+                                    key={getDisplayElementKey(result)}
                                     data={result}
                                     index={index}
                                     first={index === 0}

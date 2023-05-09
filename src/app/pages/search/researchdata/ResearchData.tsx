@@ -87,7 +87,7 @@ const ResearchData = () => {
         } else {
             setFirst(false);
         }
-    }, [args]);
+    }, [args, first, navigate]);
 
     const handleField = (event: MouseEvent<HTMLElement>, field: string | null): void => {
         setArgs({

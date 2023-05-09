@@ -43,7 +43,7 @@ const App = () => {
         initSession().then((login) => {
             setLogin(login);
         });
-    }, []);
+    }, [setLogin]);
     return (
         <>
             <div className="header-footer">

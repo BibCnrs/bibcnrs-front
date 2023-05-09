@@ -29,6 +29,9 @@ const OpenablePaper = ({ Title, SmallBody, FullBody, small = false, color, borde
                 }
             }}
         >
+            {/* ESLint rule note: A button is available inside this element,
+                this action is to enchant the navigation */}
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
             <h4
                 className="openable-paper-title"
                 onClick={() => {

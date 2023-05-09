@@ -35,7 +35,7 @@ const Licences = () => {
             <div id="licences">
                 <div id="licences-nav">
                     {data.map((value) => (
-                        <div
+                        <button
                             key={value.id}
                             id={activeLicences?.id === value.id ? 'licences-button-active' : ''}
                             className="licences-button"
@@ -46,7 +46,7 @@ const Licences = () => {
                             }}
                         >
                             {language === 'en' ? value.name_en : value.name_fr}
-                        </div>
+                        </button>
                     ))}
                 </div>
                 <div id="licences-content">

@@ -25,6 +25,8 @@ const RenderContent = ({
     t,
     Container,
 }: RenderContentProps) => {
+    const language = useLanguageKey();
+
     // Returns an empty page when data is empty,
     // this empty page contains only the page title.
     if (!data || data.length < 1) {
@@ -49,7 +51,7 @@ const RenderContent = ({
     };
 
     // Change the page content if the page is set to English
-    if (useLanguageKey() === 'en') {
+    if (language === 'en') {
         content.title = data[0].name_en;
         content.text = data[0].content_en;
     }

@@ -9,10 +9,11 @@ import type { ResourcesDataType } from '../../../shared/types/data.types';
 import type { Institute } from '../../../shared/types/types';
 
 const DisplayResources = ({ data }: { data: ResourcesDataType | undefined }) => {
+    const language = useLanguageKey();
+
     if (!data || data.length === 0) {
         return null;
     }
-    const language = useLanguageKey();
 
     return (
         <div id="resources">
