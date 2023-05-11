@@ -55,7 +55,13 @@ const ResearchData = () => {
     const [first, setFirst] = useState<boolean>(true);
 
     const { data, isFetching, isLoading } = useQuery<MetadoreDataType, any, MetadoreDataType, any>({
-        queryKey: ['metadore', search],
+        queryKey: [
+            'metadore',
+            search.query,
+            search.metadore.field,
+            search.metadore.table.page,
+            search.metadore.table.perPage,
+        ],
         queryFn: async () => {
             if (!search.query || !search.metadore.table.perPage || !search.metadore.table.page) {
                 return {
@@ -79,13 +85,14 @@ const ResearchData = () => {
 
     useEffect(() => {
         if (first) {
-            if (search.query) {
+            const queryValue = getString<undefined>(query, 'q', undefined);
+            if (search.query && !queryValue) {
                 setFirst(false);
                 return;
             }
             setSearch({
                 ...search,
-                query: getString<undefined>(query, 'q', undefined),
+                query: queryValue,
                 metadore: {
                     field: getString<null>(query, 'field', null),
                     table: {
@@ -96,12 +103,25 @@ const ResearchData = () => {
             });
             setFirst(false);
         } else {
-            updatePageQueryUrl(RouteResearchData, navigate, {
-                q: search.query,
-                page: search.metadore.table.page,
-                perPage: search.metadore.table.perPage,
-                field: search.metadore.field,
-            });
+            const param: any = {};
+
+            if (search.query) {
+                param.q = search.query;
+            }
+
+            if (search.metadore.table.page) {
+                param.page = search.metadore.table.page;
+            }
+
+            if (search.metadore.table.perPage) {
+                param.perPage = search.metadore.table.perPage;
+            }
+
+            if (search.metadore.field) {
+                param.field = search.metadore.field;
+            }
+
+            updatePageQueryUrl(RouteResearchData, navigate, param);
         }
     }, [first, navigate, query, search, setSearch]);
 
