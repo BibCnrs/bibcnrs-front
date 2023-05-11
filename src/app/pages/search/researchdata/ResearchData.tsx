@@ -1,9 +1,9 @@
 import './ResearchData.scss';
+import { ResearchDataSkeleton } from './skeleton/ResearchDataSkeleton';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import TableMetadore from '../../../components/table/displayelement/TableMetadore';
 import Table from '../../../components/table/Table';
-import Loading from '../../../components/utils/loading/Loading';
 import PageTitle from '../../../components/utils/PageTitle';
 import { metadore } from '../../../services/search/Metadore';
 import { useTranslator } from '../../../shared/locales/I18N';
@@ -63,7 +63,11 @@ const ResearchData = () => {
             search.metadore.table.perPage,
         ],
         queryFn: async () => {
-            if (!search.query || !search.metadore.table.perPage || !search.metadore.table.page) {
+            if (
+                (!search.query && search.query !== '') ||
+                !search.metadore.table.perPage ||
+                !search.metadore.table.page
+            ) {
                 return {
                     results: undefined,
                     totalHits: undefined,
@@ -193,7 +197,7 @@ const ResearchData = () => {
             </div>
             <div id="app">
                 {isLoading || isFetching ? (
-                    <Loading />
+                    <ResearchDataSkeleton />
                 ) : (
                     <Table
                         DisplayElement={TableMetadore}
