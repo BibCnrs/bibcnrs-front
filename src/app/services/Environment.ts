@@ -1,10 +1,13 @@
 export const environment = {
     host: import.meta.env.VITE_BIBAPI_HOST,
     get: {
-        metadore: '/ebsco/metadore/search',
         cms: '/ebsco/cms',
-        database: '/ebsco/databases',
         resources: '/ebsco/resources',
+        search: {
+            article: '/ebsco/{domain}/article/search',
+            database: '/ebsco/databases',
+            metadore: '/ebsco/metadore/search',
+        },
         account: {
             janus: '/ebsco/login_renater/',
             licences: '/ebsco/licenses',
@@ -24,7 +27,7 @@ export const environment = {
             history: '/ebsco/histories',
         },
     },
-};
+} as const;
 
 export const createQuery = (uri: string, param?: any | undefined): URL => {
     const url = new URL(environment.host + uri);

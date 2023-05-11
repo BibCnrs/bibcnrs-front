@@ -1,3 +1,5 @@
+import type { TableArgsProps } from './props.types';
+import type { ArticlePayLoad } from '../../services/search/Article';
 import type { TFunction as TF, TypeOptions } from 'i18next';
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -18,13 +20,25 @@ export type SupportedLanguages = SupportedLanguage[];
 
 export type ThemeType = 'dark' | 'light';
 
+export type SearchContextType = {
+    query: string | undefined;
+    article: {
+        payload: ArticlePayLoad | null;
+        table: TableArgsProps;
+    };
+    metadore: {
+        field: string | null;
+        table: TableArgsProps;
+    };
+};
+
 export type BibContextType = {
-    globalQuery: string | null;
-    setGlobalQuery: Dispatch<SetStateAction<string | null>>;
     login: boolean;
     setLogin: Dispatch<SetStateAction<boolean>>;
     theme: ThemeType;
     setTheme: Dispatch<SetStateAction<ThemeType>>;
+    search: SearchContextType;
+    setSearch: Dispatch<SetStateAction<SearchContextType>>;
 };
 
 // eslint-disable-next-line no-shadow

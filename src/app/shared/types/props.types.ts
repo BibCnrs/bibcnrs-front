@@ -2,16 +2,7 @@ import type { CMSResultDataType, DatabaseDataType, TestsNewsDataType } from './d
 import type { TFunction } from './types';
 import type { Property } from 'csstype';
 import type { ReactNode } from 'react';
-import type {
-    Dispatch,
-    ElementType,
-    Key,
-    MouseEventHandler,
-    PropsWithChildren,
-    PropsWithoutRef,
-    ReactElement,
-    SetStateAction,
-} from 'react';
+import type { ElementType, Key, MouseEventHandler, PropsWithChildren, PropsWithoutRef, ReactElement } from 'react';
 
 type HaveReactChildren = PropsWithChildren;
 
@@ -35,13 +26,11 @@ export type TableDisplayElementProps<T> = PropsWithoutRef<{
     data: T;
 }>;
 
-export type TableArgsProps = PropsWithoutRef<
-    any & {
-        page?: number;
-        perPage?: number;
-        stateIndex: number; // use for specific action, like in history when the user the delete button
-    }
->;
+export type TableArgsProps = PropsWithoutRef<{
+    page?: number;
+    perPage?: number;
+    stateIndex?: number; // use for specific action, like in history when the user uses the deleted button
+}>;
 
 export type TableProps = PropsWithoutRef<{
     DisplayElement: ElementType<TableDisplayElementProps<any>>;
@@ -49,7 +38,7 @@ export type TableProps = PropsWithoutRef<{
     results?: any[];
     total?: number;
     args: TableArgsProps;
-    setArgs: Dispatch<SetStateAction<TableArgsProps>>;
+    onArgsChange: (tableArgs: TableArgsProps) => void;
 }>;
 
 export type LocalizedThemeProviderProps = HaveReactChildren;

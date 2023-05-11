@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import type { ContextProviderProps } from '../../shared/types/props.types';
+import type { SearchContextType } from '../../shared/types/types';
 import type { BibContextType, ThemeType } from '../../shared/types/types';
 
 /**
@@ -23,28 +24,35 @@ const getStorageTheme = (): ThemeType => {
     return mode as ThemeType;
 };
 
-/* eslint-disable @typescript-eslint/no-empty-function */
 /**
  * Application context
  */
-export const BibContext = createContext<BibContextType>({
-    globalQuery: null,
-    setGlobalQuery: () => {},
-    login: false,
-    setLogin: () => {},
-    theme: 'light',
-    setTheme: () => {},
-});
-/* eslint-enable @typescript-eslint/no-empty-function */
+export const BibContext = createContext<BibContextType>(null as any);
 
 /**
  * Provider component which creates application context
  * @param children - Application content
  */
 const ContextProvider = ({ children }: ContextProviderProps) => {
-    const [globalQuery, setGlobalQuery] = useState<string | null>(null);
     const [login, setLogin] = useState<boolean>(false);
     const [theme, setTheme] = useState<ThemeType>(getStorageTheme());
+    const [search, setSearch] = useState<SearchContextType>({
+        query: undefined,
+        article: {
+            payload: null,
+            table: {
+                page: 1,
+                perPage: 25,
+            },
+        },
+        metadore: {
+            field: null,
+            table: {
+                page: 1,
+                perPage: 25,
+            },
+        },
+    });
 
     useEffect(() => {
         setStorageTheme(theme);
@@ -53,12 +61,12 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
     return (
         <BibContext.Provider
             value={{
-                globalQuery,
-                setGlobalQuery,
                 login,
                 setLogin,
                 theme,
                 setTheme,
+                search,
+                setSearch,
             }}
         >
             {children}

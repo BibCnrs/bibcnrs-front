@@ -77,12 +77,12 @@ const PaginationComponent = ({
  * @param setArgs        - Function used to update table args
  * @param header         - Pagination extension used by the top pagination
  */
-const Table = ({ results, DisplayElement, total, args, setArgs, header }: TableProps) => {
+const Table = ({ results, DisplayElement, total, args, onArgsChange, header }: TableProps) => {
     const t = useTranslator();
 
     // Update args parameters when we change page or results per page
     const onChange = (currentPage: number, resultsPerPage: number) => {
-        setArgs({ ...args, perPage: resultsPerPage, page: currentPage });
+        onArgsChange({ ...args, perPage: resultsPerPage, page: currentPage });
     };
 
     const getDisplayElementKey = (result: any): number | string => {

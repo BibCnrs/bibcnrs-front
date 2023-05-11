@@ -2,7 +2,7 @@ import './Database.scss';
 import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import PageTitle from '../../../components/utils/PageTitle';
-import { database } from '../../../services/common/Database';
+import { database } from '../../../services/search/Database';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';

@@ -16,12 +16,12 @@ const History = () => {
     const [args, setArgs] = useState<TableArgsProps>({
         page: 1,
         perPage: 5,
-        stateIndex: 1,
+        stateIndex: 0,
     });
 
     const { data } = useQuery<HistoryDataType, any, HistoryDataType, any>({
         queryKey: ['history', args],
-        queryFn: () => history(args.perPage, (args.page - 1) * args.perPage),
+        queryFn: () => history(args.perPage ?? 5, ((args.page ?? 1) - 1) * (args.perPage ?? 1)),
         keepPreviousData: true,
         staleTime: 3600000, // 1 hour of cache
         cacheTime: 3600000, // 1000 * 60 * 60
@@ -33,7 +33,7 @@ const History = () => {
                 setArgs({
                     page: 1,
                     perPage: 5,
-                    stateIndex: args.stateIndex + 1,
+                    stateIndex: (args.stateIndex ?? 0) + 1,
                 });
             });
         }
@@ -47,7 +47,7 @@ const History = () => {
                 DisplayElement={TableHistory}
                 results={data}
                 args={args}
-                setArgs={setArgs}
+                onArgsChange={setArgs}
                 total={data && data[0] ? data[0].totalCount : 0}
                 header={
                     <div className="history-header">

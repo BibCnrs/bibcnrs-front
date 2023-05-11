@@ -1,17 +1,18 @@
 import './ResearchData.scss';
+import { BibContext } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import TableMetadore from '../../../components/table/displayelement/TableMetadore';
 import Table from '../../../components/table/Table';
 import Loading from '../../../components/utils/loading/Loading';
 import PageTitle from '../../../components/utils/PageTitle';
-import { search } from '../../../services/common/Metadore';
+import { metadore } from '../../../services/search/Metadore';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { RouteResearchData, getNumber, getString, updatePageQueryUrl, useSearchParams } from '../../../shared/Routes';
 import styled from '@mui/material/styles/styled';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useQuery } from '@tanstack/react-query';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { MetadoreDataType } from '../../../shared/types/data.types';
 import type { TableArgsProps } from '../../../shared/types/props.types';
@@ -49,19 +50,14 @@ const ResearchData = () => {
     const navigate = useNavigate();
     const query = useSearchParams();
     const t = useTranslator();
+    const { search, setSearch } = useContext(BibContext);
 
     const [first, setFirst] = useState<boolean>(true);
-    const [args, setArgs] = useState<TableArgsProps>({
-        value: getString<undefined>(query, 'q', undefined),
-        page: getNumber(query, 'page', 1),
-        perPage: getNumber(query, 'perPage', 25),
-        field: getString<null>(query, 'field', null),
-    });
 
     const { data, isFetching, isLoading } = useQuery<MetadoreDataType, any, MetadoreDataType, any>({
-        queryKey: ['metadore', args],
+        queryKey: ['metadore', search],
         queryFn: async () => {
-            if (!args.value || !args.perPage || !args.page) {
+            if (!search.query || !search.metadore.table.perPage || !search.metadore.table.page) {
                 return {
                     results: undefined,
                     totalHits: undefined,
@@ -69,7 +65,12 @@ const ResearchData = () => {
                     currentPage: 1,
                 } as MetadoreDataType;
             }
-            return await search(args.value, args.perPage, args.page, args.field);
+            return await metadore(
+                search.query,
+                search.metadore.table.perPage,
+                search.metadore.table.page,
+                search.metadore.field,
+            );
         },
         keepPreviousData: true,
         staleTime: 3600000, // 1 hour of cache
@@ -77,30 +78,64 @@ const ResearchData = () => {
     });
 
     useEffect(() => {
-        if (!first) {
-            updatePageQueryUrl(RouteResearchData, navigate, {
-                q: args.value,
-                page: args.page,
-                perPage: args.perPage,
-                field: args.field,
+        if (first) {
+            if (search.query) {
+                setFirst(false);
+                return;
+            }
+            setSearch({
+                ...search,
+                query: getString<undefined>(query, 'q', undefined),
+                metadore: {
+                    field: getString<null>(query, 'field', null),
+                    table: {
+                        page: getNumber(query, 'page', 1),
+                        perPage: getNumber(query, 'perPage', 25),
+                    },
+                },
             });
-        } else {
             setFirst(false);
+        } else {
+            updatePageQueryUrl(RouteResearchData, navigate, {
+                q: search.query,
+                page: search.metadore.table.page,
+                perPage: search.metadore.table.perPage,
+                field: search.metadore.field,
+            });
         }
-    }, [args, first, navigate]);
+    }, [first, navigate, query, search, setSearch]);
 
     const handleField = (event: MouseEvent<HTMLElement>, field: string | null): void => {
-        setArgs({
-            ...args,
-            field,
+        setSearch({
+            ...search,
+            metadore: {
+                field,
+                table: search.metadore.table,
+            },
         });
     };
 
     const handleSearch = (value: string): void => {
-        setArgs({
-            ...args,
-            page: 1,
-            value,
+        setSearch({
+            ...search,
+            query: value,
+            metadore: {
+                field: search.metadore.field,
+                table: {
+                    page: 1,
+                    perPage: search.metadore.table.perPage,
+                },
+            },
+        });
+    };
+
+    const handleTable = (tableArgs: TableArgsProps) => {
+        setSearch({
+            ...search,
+            metadore: {
+                field: search.metadore.field,
+                table: tableArgs,
+            },
         });
     };
 
@@ -115,7 +150,12 @@ const ResearchData = () => {
                 />
                 <div id="research-data-chips">
                     <span id="research-data-by">{t('pages.researchData.search.chips.by')}</span>
-                    <StyledToggleButtonGroup size="small" value={args.field} exclusive onChange={handleField}>
+                    <StyledToggleButtonGroup
+                        size="small"
+                        value={search.metadore.field}
+                        exclusive
+                        onChange={handleField}
+                    >
                         <StyledToggleButton value="attributes.titles.title">
                             {t('pages.researchData.search.chips.title')}
                         </StyledToggleButton>
@@ -138,8 +178,8 @@ const ResearchData = () => {
                     <Table
                         DisplayElement={TableMetadore}
                         results={data?.results}
-                        args={args}
-                        setArgs={setArgs}
+                        args={search.metadore.table}
+                        onArgsChange={handleTable}
                         total={data?.totalHits}
                     />
                 )}
