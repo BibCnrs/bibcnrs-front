@@ -93,6 +93,22 @@ export type Common = {
                 nbResult: string;
             };
         };
+        facet: {
+            title: string;
+            text: string;
+            reviewed: string;
+            fullText: string;
+            openAccess: string;
+            date: string;
+            source: string;
+            subject: string;
+            journal: string;
+            language: string;
+            lexile: string;
+            collection: string;
+            publisher: string;
+            provider: string;
+        };
         testsnews: {
             common: string;
             from: string;

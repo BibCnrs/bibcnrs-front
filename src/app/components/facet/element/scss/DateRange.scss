@@ -1,0 +1,12 @@
+#facet-date-range {
+  display: grid;
+  grid-template-columns: 56px auto 56px;
+  grid-auto-flow: column;
+  // width: 100%;
+
+  #facet-date-range-slider {
+    width: calc(100% - 15px);
+    margin-right: 7.5px;
+    margin-left: 7.5px;
+  }
+}

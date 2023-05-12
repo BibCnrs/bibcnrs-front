@@ -49,6 +49,14 @@ class Session {
         return [];
     };
 
+    getToken = (): string | undefined => {
+        const user = this.getUser();
+        if (user) {
+            return user.token;
+        }
+        return undefined;
+    };
+
     setNeedFetch = (): void => {
         this.session.setItem(
             this.key,
@@ -81,6 +89,7 @@ export const getUsername = session.getUsername;
 export const isLegacy = session.isLegacy;
 export const getDomains = session.getDomains;
 export const getFavoriteDomain = session.getFavoriteDomain;
+export const getToken = session.getToken;
 
 export const loginToJanus = (): void => {
     const janusUrl = createQuery(environment.get.account.janus, {

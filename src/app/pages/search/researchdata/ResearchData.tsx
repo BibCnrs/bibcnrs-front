@@ -1,7 +1,7 @@
 import './ResearchData.scss';
-import { ResearchDataSkeleton } from './skeleton/ResearchDataSkeleton';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
+import { ResearchDataSkeleton } from '../../../components/skeleton/ResearchDataSkeleton';
 import TableMetadore from '../../../components/table/displayelement/TableMetadore';
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
@@ -169,7 +169,7 @@ const ResearchData = () => {
             <div className="header-footer">
                 <SearchBar
                     placeholder={t('pages.researchData.search.bar')}
-                    value={query.get('q')}
+                    value={query.get('q') || search.query}
                     onSearch={handleSearch}
                 />
                 <div id="research-data-chips">

@@ -1,5 +1,5 @@
 import type { TableArgsProps } from './props.types';
-import type { ArticlePayLoad } from '../../services/search/Article';
+import type { ArticleParam } from '../../services/search/Article';
 import type { TFunction as TF, TypeOptions } from 'i18next';
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -20,10 +20,24 @@ export type SupportedLanguages = SupportedLanguage[];
 
 export type ThemeType = 'dark' | 'light';
 
+// eslint-disable-next-line no-shadow
+export enum Institute {
+    insb = 'insb',
+    inc = 'inc',
+    inee = 'inee',
+    inshs = 'inshs',
+    insis = 'insis',
+    insmi = 'insmi',
+    inp = 'inp',
+    ins2i = 'ins2i',
+    in2p3 = 'in2p3',
+    insu = 'insu',
+}
+
 export type SearchContextType = {
     query: string | undefined;
-    article: {
-        payload: ArticlePayLoad | null;
+    article: ArticleParam & {
+        domain: Institute | undefined;
         table: TableArgsProps;
     };
     metadore: {
@@ -41,16 +55,12 @@ export type BibContextType = {
     setSearch: Dispatch<SetStateAction<SearchContextType>>;
 };
 
-// eslint-disable-next-line no-shadow
-export enum Institute {
-    insb = 'insb',
-    inc = 'inc',
-    inee = 'inee',
-    inshs = 'inshs',
-    insis = 'insis',
-    insmi = 'insmi',
-    inp = 'inp',
-    ins2i = 'ins2i',
-    in2p3 = 'in2p3',
-    insu = 'insu',
-}
+export type Urls = {
+    name: string;
+    url: string;
+};
+
+export type FacetEntry = {
+    name: string;
+    count: number;
+};

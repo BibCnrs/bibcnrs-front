@@ -1,3 +1,4 @@
+import type { Urls } from './types';
 import type { Institute } from './types';
 
 export type MetadoreResultTitleType = {
@@ -117,9 +118,7 @@ export type LicenceDataType = {
 
 export type LicencesDataType = LicenceDataType[];
 
-export type TestNewUrlDataType = {
-    url: string;
-    name: string;
+export type TestNewUrlDataType = Urls & {
     proxy: true;
 };
 
@@ -147,7 +146,7 @@ export type HistoryQueriesDataType = {
     key: string;
 };
 
-export type HistoryEntryFacetsKeyDataType =
+export type FacetsKeyDataType =
     | 'CollectionLibrary'
     | 'ContentProvider'
     | 'Journal'
@@ -157,7 +156,7 @@ export type HistoryEntryFacetsKeyDataType =
     | 'SourceType'
     | 'SubjectEDS';
 
-export type HistoryEntryFacetsDataType = Record<HistoryEntryFacetsKeyDataType, string[]>;
+export type HistoryEntryFacetsDataType = Record<FacetsKeyDataType, string[]>;
 
 export type HistoryEntryLimiterDataType = {
     fullText: boolean;
@@ -189,3 +188,55 @@ export type HistoryEntryDataType = {
 };
 
 export type HistoryDataType = HistoryEntryDataType[];
+
+export type ArticleResultDataType = {
+    id: number;
+    an: string;
+    dbId: string;
+    articleLinks: {
+        fullTextLinks: Urls[];
+        pdfLinks: Urls[];
+        html: Urls[] | null;
+        urls: Urls[];
+    };
+    exportLinks: {
+        ris: string;
+        bibtex: string;
+    };
+    doi: string | null;
+    title: string;
+    source: string;
+    authors: string[];
+    publicationDate: string;
+    languages: string[];
+    database: string;
+    subjects: string[];
+    publicationType: string;
+    abstract: string | null;
+};
+
+export type ArticleFacetValueDataType = {
+    Value: string;
+    Count: number;
+    AddAction: string;
+};
+
+export type ArticleFacetDataType = {
+    Id: FacetsKeyDataType;
+    Label: string;
+    AvailableFacetValues: ArticleFacetValueDataType[];
+};
+
+export type ArticleDataType = {
+    results: ArticleResultDataType[];
+    totalHits: number;
+    currentPage: 1;
+    maxPage: number;
+    facets: ArticleFacetDataType[];
+    activeFacets: any;
+    dateRange: {
+        min: number;
+        max: number;
+    };
+    unparsed: any;
+};

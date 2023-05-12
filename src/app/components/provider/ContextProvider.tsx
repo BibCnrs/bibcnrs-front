@@ -39,7 +39,8 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
     const [search, setSearch] = useState<SearchContextType>({
         query: undefined,
         article: {
-            payload: null,
+            orderBy: 'relevance',
+            domain: undefined,
             table: {
                 page: 1,
                 perPage: 25,

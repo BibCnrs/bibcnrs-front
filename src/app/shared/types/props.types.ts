@@ -1,5 +1,6 @@
 import type { CMSResultDataType, DatabaseDataType, TestsNewsDataType } from './data.types';
-import type { TFunction } from './types';
+import type { FacetEntry, TFunction } from './types';
+import type { ArticleParam } from '../../services/search/Article';
 import type { Property } from 'csstype';
 import type { ReactNode } from 'react';
 import type { ElementType, Key, MouseEventHandler, PropsWithChildren, PropsWithoutRef, ReactElement } from 'react';
@@ -115,3 +116,47 @@ export type ColoredPaperProps = PropsWithChildren<{
 export type TestsNewsProps = PropsWithoutRef<{
     data: TestsNewsDataType | undefined;
 }>;
+
+export type FacetProps = PropsWithoutRef<{
+    available: Omit<ArticleParam, 'orderBy'>;
+    active: Omit<ArticleParam, 'orderBy'>;
+    onChange: (values: Omit<ArticleParam, 'orderBy'>) => void;
+}>;
+
+export type FacetLimiterProps = PropsWithoutRef<{
+    available: FacetProps['available']['limiters'];
+    active?: FacetProps['active']['limiters'];
+    onChange: (value: FacetProps['active']['limiters']) => void;
+}>;
+
+export type FacetFacetsProps = PropsWithoutRef<{
+    available: FacetProps['available']['facets'];
+    active?: FacetProps['active']['facets'];
+    onChange: (value: FacetProps['active']['facets']) => void;
+}>;
+
+export type FacetFieldProps<T> = {
+    initial?: T;
+    onChange: (value: T) => void;
+};
+
+export type FacetTextTypeProps = PropsWithoutRef<
+    FacetFieldProps<string[]> & {
+        texts: string[];
+    }
+>;
+
+export type FacetDateRangeProps = PropsWithoutRef<
+    FacetFieldProps<number[]> & {
+        min: number;
+        max: number;
+        minDistance?: number;
+    }
+>;
+
+export type FacetSearchListProps = PropsWithoutRef<
+    FacetFieldProps<FacetEntry[]> & {
+        name: string;
+        facets: FacetEntry[];
+    }
+>;

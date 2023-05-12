@@ -55,7 +55,14 @@ const App = () => {
                     {/* Header route */}
                     <Route path={RouteRoot} element={<Root />} />
                     {/* Navigation route */}
-                    <Route path={RouteArticle} element={<Article />} />
+                    <Route
+                        path={RouteArticle}
+                        element={
+                            <ProtectedRoute>
+                                <Article />
+                            </ProtectedRoute>
+                        }
+                    />
                     <Route path={RouteJournal} element={<Journal />} />
                     <Route path={RouteDatabase} element={<Database />} />
                     <Route path={RouteResearchData} element={<ResearchData />} />

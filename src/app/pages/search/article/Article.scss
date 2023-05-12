@@ -1,1 +1,14 @@
 @import "src/app/scss/app";
+
+#articles-container {
+  display: flex;
+
+  #articles-facet {
+    min-width: 300px;
+    margin-right: 20px;
+  }
+
+  #articles-content {
+    width: 100%;
+  }
+}
