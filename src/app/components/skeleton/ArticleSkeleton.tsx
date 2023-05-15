@@ -2,7 +2,7 @@ import { ResearchDataSkeleton } from './ResearchDataSkeleton';
 
 const ArticleSkeleton = () => {
     return (
-        <div style={{ width: '100%' }}>
+        <div id="articles-content" style={{ width: '100%' }}>
             <ResearchDataSkeleton />
         </div>
     );

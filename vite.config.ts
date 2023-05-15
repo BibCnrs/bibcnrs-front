@@ -6,7 +6,7 @@ import md5 from 'md5';
 
 const regex = /(.*node_modules\/)([^\/]+)(.*)/;
 
-const linter = process.env.ENV === 'prod' ? [] : [
+const linter = process.env.VITE_ENV === 'prod' ? [] : [
     eslint(), stylelint()
 ];
 

@@ -20,7 +20,7 @@ export type PageTitleProps = PropsWithoutRef<{
 }>;
 
 export type TableDisplayElementProps<T> = PropsWithoutRef<{
-    key: Key;
+    debugKey: number | string;
     first: boolean;
     last: boolean;
     index: number;
@@ -34,6 +34,8 @@ export type TableArgsProps = PropsWithoutRef<{
 }>;
 
 export type TableProps = PropsWithoutRef<{
+    id?: string;
+    className?: string;
     DisplayElement: ElementType<TableDisplayElementProps<any>>;
     header?: ReactNode;
     results?: any[];

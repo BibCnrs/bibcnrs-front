@@ -7,6 +7,7 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
+        "build:env": "VITE_ENV=prod npm run build",
         "preview": "vite preview",
         "lint": "eslint \"{src,apps,libs,test}/**/*.{tsx,ts}\" --fix",
         "lint:test": "eslint \"{src,apps,libs,test}/**/*.{tsx,ts}\"",

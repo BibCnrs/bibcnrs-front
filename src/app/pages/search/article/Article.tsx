@@ -3,6 +3,8 @@ import Facet from '../../../components/facet/Facet';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import ArticleSkeleton from '../../../components/skeleton/ArticleSkeleton';
+import TableDebug from '../../../components/table/displayelement/TableDebug';
+import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { article } from '../../../services/search/Article';
 import { getDomains, getFavoriteDomain } from '../../../services/user/Session';
@@ -14,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import type { ArticleParam } from '../../../services/search/Article';
 import type { ArticleDataType } from '../../../shared/types/data.types';
 import type { FacetProps } from '../../../shared/types/props.types';
+import type { TableArgsProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
 import type { Institute } from '../../../shared/types/types';
 
@@ -84,6 +87,16 @@ const Article = () => {
                 ...search.article,
                 facets: values.facets,
                 limiters: values.limiters,
+            },
+        });
+    };
+
+    const handleTable = (tableArgs: TableArgsProps) => {
+        setSearch({
+            ...search,
+            article: {
+                ...search.article,
+                table: tableArgs,
             },
         });
     };
@@ -216,7 +229,14 @@ const Article = () => {
                         {isLoading || isFetching ? (
                             <ArticleSkeleton />
                         ) : (
-                            <div id="articles-content">{JSON.stringify(data)}</div>
+                            <Table
+                                id="articles-content"
+                                DisplayElement={TableDebug}
+                                results={data?.results}
+                                args={search.article.table}
+                                onArgsChange={handleTable}
+                                total={data?.totalHits}
+                            />
                         )}
                     </div>
                 ) : null}

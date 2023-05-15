@@ -77,7 +77,7 @@ const PaginationComponent = ({
  * @param setArgs        - Function used to update table args
  * @param header         - Pagination extension used by the top pagination
  */
-const Table = ({ results, DisplayElement, total, args, onArgsChange, header }: TableProps) => {
+const Table = ({ id, className, results, DisplayElement, total, args, onArgsChange, header }: TableProps) => {
     const t = useTranslator();
 
     // Update args parameters when we change page or results per page
@@ -93,7 +93,7 @@ const Table = ({ results, DisplayElement, total, args, onArgsChange, header }: T
     };
 
     return (
-        <div>
+        <div id={id} className={className}>
             {/* Display an empty page if results and total are not initialized */}
             {results === undefined || total === undefined ? null : (
                 <>
@@ -112,6 +112,7 @@ const Table = ({ results, DisplayElement, total, args, onArgsChange, header }: T
                             results.map((result: any, index: number) => (
                                 <DisplayElement
                                     key={getDisplayElementKey(result)}
+                                    debugKey={getDisplayElementKey(result)}
                                     data={result}
                                     index={index}
                                     first={index === 0}

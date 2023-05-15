@@ -4,7 +4,7 @@ COPY ./package*.json .
 RUN npm ci
 ARG VITE_BIBAPI_HOST
 ENV VITE_BIBAPI_HOST=$VITE_BIBAPI_HOST \
-    ENV="prod"
+    VITE_ENV="prod"
 COPY ./tsconfig*.json ./vite.config.ts ./index.html ./
 COPY ./public ./public
 COPY ./src ./src
