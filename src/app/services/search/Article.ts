@@ -36,7 +36,7 @@ export type ArticleParam = {
             to: number;
         };
     };
-    facets?: {
+    facets?: Record<string, FacetEntry[]> & {
         source?: FacetEntry[];
         subject?: FacetEntry[];
         journal?: FacetEntry[];

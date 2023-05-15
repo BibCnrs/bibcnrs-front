@@ -11,6 +11,7 @@ import { getNumber, getString, RouteArticle, updatePageQueryUrl, useSearchParams
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import type { ArticleParam } from '../../../services/search/Article';
 import type { ArticleDataType } from '../../../shared/types/data.types';
 import type { FacetProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
@@ -61,13 +62,35 @@ const Article = () => {
         cacheTime: 3600000, // 1000 * 60 * 60
     });
 
+    const handleSearch = (value: string): void => {
+        setSearch({
+            ...search,
+            query: value,
+            article: {
+                domain: search.article.domain,
+                orderBy: search.article.orderBy,
+                table: {
+                    page: 1,
+                    perPage: search.article.table.perPage,
+                },
+            },
+        });
+    };
+
+    const handleFacets = (values: Omit<ArticleParam, 'orderBy'>) => {
+        setSearch({
+            ...search,
+            article: {
+                ...search.article,
+                facets: values.facets,
+                limiters: values.limiters,
+            },
+        });
+    };
+
     useEffect(() => {
         if (first) {
-            const queryValue = getString<undefined>(query, 'q', undefined);
-            if (search.query && !queryValue) {
-                setFirst(false);
-                return;
-            }
+            const queryValue = getString<undefined>(query, 'q', search.query);
             let domain: string | undefined = getFavoriteDomain();
             if (domain === undefined) {
                 const domains = getDomains();
@@ -107,21 +130,6 @@ const Article = () => {
             updatePageQueryUrl(RouteArticle, navigate, param);
         }
     }, [first, navigate, query, search, setSearch]);
-
-    const handleSearch = (value: string): void => {
-        setSearch({
-            ...search,
-            query: value,
-            article: {
-                domain: search.article.domain,
-                orderBy: search.article.orderBy,
-                table: {
-                    page: 1,
-                    perPage: search.article.table.perPage,
-                },
-            },
-        });
-    };
 
     const getAvailable = (result: ArticleDataType | undefined) => {
         const available: Partial<FacetProps['available']> = {};
@@ -173,8 +181,20 @@ const Article = () => {
                 }
             });
         }
-        console.log(available);
         return available;
+    };
+
+    const getActive = () => {
+        const active: Partial<FacetProps['active']> = {
+            limiters: search.article.limiters,
+            facets: search.article.facets,
+        };
+        if (!active.limiters) {
+            active.limiters = {
+                fullText: true,
+            };
+        }
+        return active;
     };
 
     return (
@@ -188,22 +208,18 @@ const Article = () => {
                 />
             </div>
             <div id="app">
-                {isLoading || isFetching ? (
-                    <ArticleSkeleton />
-                ) : (
+                {data ? (
                     <div id="articles-container">
                         <div id="articles-facet">
-                            <Facet
-                                available={getAvailable(data)}
-                                active={{}}
-                                onChange={(v) => {
-                                    console.log(v);
-                                }}
-                            />
+                            <Facet available={getAvailable(data)} active={getActive()} onChange={handleFacets} />
                         </div>
-                        <div id="articles-content">{JSON.stringify(data)}</div>
+                        {isLoading || isFetching ? (
+                            <ArticleSkeleton />
+                        ) : (
+                            <div id="articles-content">{JSON.stringify(data)}</div>
+                        )}
                     </div>
-                )}
+                ) : null}
             </div>
         </div>
     );

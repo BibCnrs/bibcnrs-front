@@ -41,6 +41,9 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
         article: {
             orderBy: 'relevance',
             domain: undefined,
+            limiters: {
+                fullText: true,
+            },
             table: {
                 page: 1,
                 perPage: 25,

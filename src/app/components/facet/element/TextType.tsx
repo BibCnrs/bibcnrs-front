@@ -15,7 +15,7 @@ import type { SelectChangeEvent } from '@mui/material/Select';
 
 const TextType = ({ texts, initial, onChange }: FacetTextTypeProps) => {
     const t = useTranslator();
-    const [selectedText, setSelectedText] = useState<string[]>(initial ?? ['fullText']);
+    const [selectedText, setSelectedText] = useState<string[]>(initial ?? []);
 
     const handleChange = (event: SelectChangeEvent<typeof selectedText>) => {
         if (typeof event.target.value === 'string') {

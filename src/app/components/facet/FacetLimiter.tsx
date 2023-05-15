@@ -3,7 +3,7 @@ import TextType from './element/TextType';
 import Divider from '@mui/material/Divider';
 import type { FacetLimiterProps } from '../../shared/types/props.types';
 
-const FacetLimiter = ({ available, active }: FacetLimiterProps) => {
+const FacetLimiter = ({ available, active, onChange }: FacetLimiterProps) => {
     if (!available) {
         return null;
     }
@@ -36,15 +36,25 @@ const FacetLimiter = ({ available, active }: FacetLimiterProps) => {
                 initial.push('openAccess');
             }
         }
-        textType = (
-            <TextType
-                texts={texts}
-                initial={initial}
-                onChange={(value) => {
-                    console.log(value);
-                }}
-            />
-        );
+
+        const handleTextType = (values: string[]) => {
+            if (active) {
+                onChange({
+                    dateRange: active.dateRange,
+                    fullText: values.includes('fullText'),
+                    openAccess: values.includes('openAccess'),
+                    reviewed: values.includes('reviewed'),
+                });
+                return;
+            }
+            onChange({
+                fullText: values.includes('fullText'),
+                openAccess: values.includes('openAccess'),
+                reviewed: values.includes('reviewed'),
+            });
+        };
+
+        textType = <TextType texts={texts} initial={initial} onChange={handleTextType} />;
         divider = true;
     }
 
@@ -54,6 +64,26 @@ const FacetLimiter = ({ available, active }: FacetLimiterProps) => {
         if (active && active.dateRange) {
             initial = [active.dateRange.from, active.dateRange.to];
         }
+
+        const handleDateRange = (value: number[]) => {
+            if (active) {
+                onChange({
+                    ...active,
+                    dateRange: {
+                        from: value[0],
+                        to: value[1],
+                    },
+                });
+                return;
+            }
+            onChange({
+                dateRange: {
+                    from: value[0],
+                    to: value[1],
+                },
+            });
+        };
+
         dateRage = (
             <>
                 {divider ? <Divider className="facet-divider" /> : null}
@@ -61,9 +91,7 @@ const FacetLimiter = ({ available, active }: FacetLimiterProps) => {
                     min={available.dateRange.from}
                     max={available.dateRange.to}
                     initial={initial}
-                    onChange={(value) => {
-                        console.log(value);
-                    }}
+                    onChange={handleDateRange}
                 />
             </>
         );

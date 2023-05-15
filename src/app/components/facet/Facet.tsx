@@ -6,8 +6,23 @@ import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import type { FacetProps } from '../../shared/types/props.types';
 
-const Facet = ({ available }: FacetProps) => {
+const Facet = ({ available, active, onChange }: FacetProps) => {
     const t = useTranslator();
+
+    const handleLimiter = (limiters: FacetProps['active']['limiters']) => {
+        onChange({
+            facets: active.facets,
+            limiters,
+        });
+    };
+
+    const handleFacet = (facets: FacetProps['active']['facets']) => {
+        onChange({
+            limiters: active.limiters,
+            facets,
+        });
+    };
+
     return (
         <Paper id="facet">
             <h3 id="facet-title" className="title">
@@ -15,20 +30,10 @@ const Facet = ({ available }: FacetProps) => {
             </h3>
             <Divider className="facet-divider" />
             {/* Limiter */}
-            <FacetLimiter
-                available={available.limiters}
-                onChange={(value) => {
-                    console.log(value);
-                }}
-            />
+            <FacetLimiter available={available.limiters} active={active.limiters} onChange={handleLimiter} />
             <Divider className="facet-divider" />
             {/* Facet */}
-            <FacetFacets
-                available={available.facets}
-                onChange={(value) => {
-                    console.log(value);
-                }}
-            />
+            <FacetFacets available={available.facets} active={active.facets} onChange={handleFacet} />
         </Paper>
     );
 };
