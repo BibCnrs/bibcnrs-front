@@ -1,11 +1,20 @@
 import OpenablePaper from '../../paper/openable/OpenablePaper';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 
-if (import.meta.env.VITE_ENV === 'prod') {
-    console.warn('TableDebug have been imported, please create a element to replace it!');
-}
+let init = false;
+const onCall = () => {
+    if (!init) {
+        init = true;
+        if (import.meta.env.VITE_ENV === 'prod') {
+            // eslint-disable-next-line no-console
+            console.trace('TableDebug have been imported, please create a element to replace it!');
+        }
+    }
+};
 
 const TableDebug = ({ data, debugKey, last, first, index }: TableDisplayElementProps<any>) => {
+    onCall();
+
     return (
         <OpenablePaper
             Title={
