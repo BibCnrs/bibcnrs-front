@@ -200,7 +200,7 @@ export type ArticleLinksDataType = {
 export type ArticleRetrieveItemValueObjectDataType = {
     term: string;
     field: string;
-    value: string;
+    value: ArticleRetrieveItemValueObjectDataType[][] | string;
 };
 
 export type ArticleRetrieveItemValueDataType = Array<ArticleRetrieveItemValueObjectDataType | string>;
@@ -296,7 +296,7 @@ export type ArticleRetrieveItemDataType = ArticleRetrieveItemValuesDataType<
     | {
           name: 'URL';
           label: 'Access URL';
-          value: Url2[];
+          value: Url2[][];
       }
 >;
 
@@ -329,6 +329,7 @@ export type ArticleResultDataType = {
     copyright: string;
     affiliationAuthor: string[];
     issn: string[];
+    raw: ArticleRetrieveDataType;
 };
 
 export type ArticleFacetValueDataType = {

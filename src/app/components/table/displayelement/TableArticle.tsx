@@ -5,7 +5,8 @@ import OpenablePaper from '../../paper/openable/OpenablePaper';
 import { BibContext } from '../../provider/ContextProvider';
 import SkeletonEntry from '../../skeleton/SkeletonEntry';
 import { useQuery } from '@tanstack/react-query';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { Fragment, useContext, useEffect, useMemo, useState } from 'react';
+import type { ArticleRetrieveItemDataType } from '../../../shared/types/data.types';
 import type { ArticleResultDataType } from '../../../shared/types/data.types';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 
@@ -21,44 +22,56 @@ const NoAccessArticle = ({ data }: { data: ArticleResultDataType }) => {
             }
             SmallBody={null}
             FullBody={
-                <dl className="table-list-body">
-                    {urls.length > 0 ? (
+                <>
+                    <dl className="table-list-body">
+                        {urls.length > 0 ? (
+                            <span>
+                                <dt>{t('components.table.content.publisherUrl')}</dt>
+                                <dd>
+                                    {urls.map((urlEntry) => (
+                                        <a
+                                            className="link"
+                                            key={urlEntry.name}
+                                            href={urlEntry.url}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            {urlEntry.url}
+                                        </a>
+                                    ))}
+                                </dd>
+                            </span>
+                        ) : null}
+                        {data.languages ? (
+                            <span>
+                                <dt>{t('components.table.content.languages')}</dt>
+                                <dd>
+                                    {data.languages.map((lang) => (
+                                        <div key={lang}>{lang}</div>
+                                    ))}
+                                </dd>
+                            </span>
+                        ) : null}
                         <span>
-                            <dt>{t('components.table.content.publisherUrl')}</dt>
-                            <dd>
-                                {urls.map((urlEntry) => (
-                                    <a
-                                        className="link"
-                                        key={urlEntry.name}
-                                        href={urlEntry.url}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        {urlEntry.url}
-                                    </a>
-                                ))}
-                            </dd>
+                            <dt>{t('components.table.content.accessNumber')}</dt>
+                            <dd>{data.an}</dd>
                         </span>
-                    ) : null}
-                    {data.languages ? (
                         <span>
-                            <dt>{t('components.table.content.languages')}</dt>
-                            <dd>
-                                {data.languages.map((lang) => (
-                                    <div key={lang}>{lang}</div>
-                                ))}
-                            </dd>
+                            <dt>{t('components.table.content.dbId')}</dt>
+                            <dd>{data.dbId}</dd>
                         </span>
-                    ) : null}
-                    <span>
-                        <dt>{t('components.table.content.accessNumber')}</dt>
-                        <dd>{data.an}</dd>
-                    </span>
-                    <span>
-                        <dt>{t('components.table.content.dbId')}</dt>
-                        <dd>{data.dbId}</dd>
-                    </span>
-                </dl>
+                    </dl>
+                    {data.raw ? (
+                        <dl className="table-list-body">
+                            {data.raw.items.map((value) => (
+                                <span key={value.name + value.label}>
+                                    <dt>{value.label}</dt>
+                                    <dd>{JSON.stringify(value.value)}</dd>
+                                </span>
+                            ))}
+                        </dl>
+                    ) : null}{' '}
+                </>
             }
             small
         />
@@ -66,7 +79,49 @@ const NoAccessArticle = ({ data }: { data: ArticleResultDataType }) => {
 };
 
 const Article = ({ data }: { data: ArticleResultDataType }) => {
+    /* eslint-disable @typescript-eslint/ban-ts-comment */
     const t = useTranslator();
+    const getContent = (value: ArticleRetrieveItemDataType, index: number) => {
+        if (Array.isArray(value.value)) {
+            const v1 = value.value[0];
+            if (typeof v1 === 'string') {
+                return <Fragment key={value.label}>{value.value.join(', ')}</Fragment>;
+            }
+            if (Array.isArray(v1)) {
+                const v2 = v1[0];
+                if (typeof v2 === 'string') {
+                    return <Fragment key={`${value.label}-${index}`}>{v1.join(', ')}</Fragment>;
+                }
+                // @ts-expect-error
+                if (v2.url) {
+                    return (
+                        <Fragment key={`${value.label}-${index}`}>
+                            {v1.map((url: any) => (
+                                <a className="link" key={url.value} href={url.url} target="_blank" rel="noreferrer">
+                                    {url.value}
+                                </a>
+                            ))}
+                        </Fragment>
+                    );
+                }
+                // @ts-expect-error
+                if (v2.term) {
+                    return (
+                        <Fragment key={`${value.label}-${index}`}>
+                            {v1.map((author: any) => {
+                                if (typeof author === 'string') {
+                                    return <Fragment key={`${author}-${index}`}>{author}</Fragment>;
+                                }
+                                return <Fragment key={`${author.term}-${index}`}>{author.term}</Fragment>;
+                            })}
+                        </Fragment>
+                    );
+                }
+            }
+        }
+        return <Fragment key={`${value.label}-${index}`}>{JSON.stringify(value)}</Fragment>;
+        /* eslint-enable @typescript-eslint/ban-ts-comment */
+    };
     return (
         <OpenablePaper
             Title={
@@ -84,7 +139,18 @@ const Article = ({ data }: { data: ArticleResultDataType }) => {
                     </div>
                 </div>
             }
-            FullBody={<div>{JSON.stringify(data)}</div>}
+            FullBody={
+                data.raw ? (
+                    <dl className="table-list-body">
+                        {data.raw.items.map((value, index) => (
+                            <span key={`${value.name}-${value.label}`}>
+                                <dt>{value.label}</dt>
+                                <dd>{getContent(value, index)}</dd>
+                            </span>
+                        ))}
+                    </dl>
+                ) : null
+            }
         />
     );
 };
@@ -116,17 +182,17 @@ const TableArticle = ({ data: dataIn }: TableDisplayElementProps<ArticleResultDa
     });
 
     const data = useMemo(() => {
-        if (retrieve && !missing) {
+        if (retrieve) {
             return {
                 ...dataIn,
                 ...dataRetrieve,
             } as ArticleResultDataType;
         }
         return dataIn;
-    }, [dataIn, dataRetrieve, missing, retrieve]);
+    }, [dataIn, dataRetrieve, retrieve]);
 
     useEffect(() => {
-        if (!data.authors || !data.doi || !data.source) {
+        if (!data.authors || !data.doi || !data.source || !data.raw) {
             setMissing(true);
         }
         setFirst(false);

@@ -265,5 +265,6 @@ export const retrieve = async (
             }
         }
     });
+    formattedRetrieve.raw = rawRetrieve;
     return formattedRetrieve;
 };
