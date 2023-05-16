@@ -71,35 +71,40 @@ const TableArticle = ({ data: dataIn }: TableDisplayElementProps<ArticleResultDa
                 SmallBody={null}
                 FullBody={
                     <dl className="table-list-body">
-                        <span>
-                            <dt>{t('components.table.content.publisherUrl')}</dt>
-                            <dd>
-                                {data.articleLinks.urls.map((urlEntry) => {
-                                    if (urlEntry.name === 'Publisher URL') {
-                                        return (
-                                            <a
-                                                className="link"
-                                                key={urlEntry.name}
-                                                href={urlEntry.url}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                            >
-                                                {urlEntry.url}
-                                            </a>
-                                        );
-                                    }
-                                    return null;
-                                })}
-                            </dd>
-                        </span>
-                        <span>
-                            <dt>{t('components.table.content.languages')}</dt>
-                            <dd>
-                                {data.languages.map((lang) => (
-                                    <div key={lang}>{lang}</div>
-                                ))}
-                            </dd>
-                        </span>
+                        {data.articleLinks.urls.length > 0 &&
+                        data.articleLinks.urls.filter((entry) => entry.name === 'Publisher URL').length > 0 ? (
+                            <span>
+                                <dt>{t('components.table.content.publisherUrl')}</dt>
+                                <dd>
+                                    {data.articleLinks.urls.map((urlEntry) => {
+                                        if (urlEntry.name === 'Publisher URL') {
+                                            return (
+                                                <a
+                                                    className="link"
+                                                    key={urlEntry.name}
+                                                    href={urlEntry.url}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                >
+                                                    {urlEntry.url}
+                                                </a>
+                                            );
+                                        }
+                                        return null;
+                                    })}
+                                </dd>
+                            </span>
+                        ) : null}
+                        {data.languages ? (
+                            <span>
+                                <dt>{t('components.table.content.languages')}</dt>
+                                <dd>
+                                    {data.languages.map((lang) => (
+                                        <div key={lang}>{lang}</div>
+                                    ))}
+                                </dd>
+                            </span>
+                        ) : null}
                         <span>
                             <dt>{t('components.table.content.accessNumber')}</dt>
                             <dd>{data.an}</dd>
