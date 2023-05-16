@@ -1,9 +1,9 @@
-import { ResearchDataSkeleton } from './ResearchDataSkeleton';
+import TableSkeleton from './TableSkeleton';
 
 const ArticleSkeleton = () => {
     return (
         <div id="articles-content" style={{ width: '100%' }}>
-            <ResearchDataSkeleton />
+            <TableSkeleton />
         </div>
     );
 };

@@ -3,7 +3,7 @@ import Facet from '../../../components/facet/Facet';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import ArticleSkeleton from '../../../components/skeleton/ArticleSkeleton';
-import TableDebug from '../../../components/table/displayelement/TableDebug';
+import TableArticle from '../../../components/table/displayelement/TableArticle';
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { article } from '../../../services/search/Article';
@@ -116,11 +116,13 @@ const Article = () => {
                 ...search,
                 query: queryValue,
                 article: {
-                    domain: domain as Institute,
-                    orderBy: 'relevance',
+                    ...search.article,
+                    // TODO Add limiters and facets
+                    domain: domain as Institute, // TODO add this to url param
+                    orderBy: 'relevance', // TODO add this to url param
                     table: {
-                        page: getNumber(query, 'page', 1),
-                        perPage: getNumber(query, 'perPage', 25),
+                        page: getNumber(query, 'page', search.article.table.page),
+                        perPage: getNumber(query, 'perPage', search.article.table.perPage),
                     },
                 },
             });
@@ -221,25 +223,23 @@ const Article = () => {
                 />
             </div>
             <div id="app">
-                {data ? (
-                    <div id="articles-container">
-                        <div id="articles-facet">
-                            <Facet available={getAvailable(data)} active={getActive()} onChange={handleFacets} />
-                        </div>
-                        {isLoading || isFetching ? (
-                            <ArticleSkeleton />
-                        ) : (
-                            <Table
-                                id="articles-content"
-                                DisplayElement={TableDebug}
-                                results={data?.results}
-                                args={search.article.table}
-                                onArgsChange={handleTable}
-                                total={data?.totalHits}
-                            />
-                        )}
+                <div id="articles-container">
+                    <div id="articles-facet">
+                        <Facet available={getAvailable(data)} active={getActive()} onChange={handleFacets} />
                     </div>
-                ) : null}
+                    {isLoading || isFetching ? (
+                        <ArticleSkeleton />
+                    ) : (
+                        <Table
+                            id="articles-content"
+                            DisplayElement={TableArticle}
+                            results={data?.results}
+                            args={search.article.table}
+                            onArgsChange={handleTable}
+                            total={data?.totalHits}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );

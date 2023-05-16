@@ -8,6 +8,9 @@ export const environment = {
             database: '/ebsco/databases',
             metadore: '/ebsco/metadore/search',
         },
+        retrieve: {
+            article: '/ebsco/{domain}/article/retrieve',
+        },
         account: {
             janus: '/ebsco/login_renater/',
             licences: '/ebsco/licenses',

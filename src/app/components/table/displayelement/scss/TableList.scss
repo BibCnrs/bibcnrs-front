@@ -1,16 +1,11 @@
 @import "src/app/scss/colors";
 @import "src/app/scss/link";
 
-.table-metadore-title {
+.table-list-title {
   color: $cnrs-secondary-blue;
-  text-decoration: none;
 }
 
-.table-metadore-title:hover {
-  text-decoration: underline;
-}
-
-.table-metadore-body {
+.table-list-body {
   display: flex;
   flex-direction: column;
   font-size: 13px;

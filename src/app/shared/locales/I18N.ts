@@ -91,6 +91,11 @@ export type Common = {
                 facets: string;
                 actions: string;
                 nbResult: string;
+                noAccess: string;
+                publisherUrl: string;
+                languages: string;
+                accessNumber: string;
+                dbId: string;
             };
         };
         facet: {

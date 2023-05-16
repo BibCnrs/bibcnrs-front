@@ -1,4 +1,5 @@
-import type { Urls } from './types';
+import type { Url2 } from './types';
+import type { Url } from './types';
 import type { Institute } from './types';
 
 export type MetadoreResultTitleType = {
@@ -118,7 +119,7 @@ export type LicenceDataType = {
 
 export type LicencesDataType = LicenceDataType[];
 
-export type TestNewUrlDataType = Urls & {
+export type TestNewUrlDataType = Url & {
     proxy: true;
 };
 
@@ -189,16 +190,128 @@ export type HistoryEntryDataType = {
 
 export type HistoryDataType = HistoryEntryDataType[];
 
+export type ArticleLinksDataType = {
+    fullTextLinks: Url[];
+    pdfLinks: Url[];
+    html: Url[] | null;
+    urls: Url[];
+};
+
+export type ArticleRetrieveItemValueObjectDataType = {
+    term: string;
+    field: string;
+    value: string;
+};
+
+export type ArticleRetrieveItemValueDataType = Array<ArticleRetrieveItemValueObjectDataType | string>;
+
+export type ArticleRetrieveItemValuesDataType<T extends { name: string; label: string; value: any[] }> = T;
+
+export type ArticleRetrieveItemDataType = ArticleRetrieveItemValuesDataType<
+    | {
+          name: 'Abstract';
+          label: 'Description';
+          value: string[];
+      }
+    | {
+          name: 'AffiliationAuthor';
+          label: 'Author Affiliations';
+          value: string[];
+      }
+    | {
+          name: 'AN';
+          label: 'Accession Number' | 'Original Identifier';
+          value: string[];
+      }
+    | {
+          name: 'Author';
+          label: 'Authors';
+          value: ArticleRetrieveItemValueDataType[];
+      }
+    | {
+          name: 'Author';
+          label: 'Contributors';
+          value: string[];
+      }
+    | {
+          name: 'Copyright';
+          label: 'Rights';
+          value: string[];
+      }
+    | {
+          name: 'DOI';
+          label: 'DOI';
+          value: string[];
+      }
+    | {
+          name: 'ISSN';
+          label: 'ISSN';
+          value: string[];
+      }
+    | {
+          name: 'Language';
+          label: 'Language';
+          value: string[];
+      }
+    | {
+          name: 'NoteTitleSource';
+          label: 'Relation';
+          value: string[];
+      }
+    | {
+          name: 'Publication Year';
+          label: 'Publication Year';
+          value: string[];
+      }
+    | {
+          name: 'Publisher';
+          label: 'Source';
+          value: string[];
+      }
+    | {
+          name: 'Subject';
+          label: 'Subject Geographic' | 'Subject Terms';
+          value: ArticleRetrieveItemValueDataType[];
+      }
+    | {
+          name: 'Subset';
+          label: 'Collection';
+          value: string[];
+      }
+    | {
+          name: 'Title';
+          label: 'Title';
+          value: string[];
+      }
+    | {
+          name: 'TitleSource';
+          label: 'Source';
+          value: string[][];
+      }
+    | {
+          name: 'TypeDocument';
+          label: 'Document Type';
+          value: string[];
+      }
+    | {
+          name: 'URL';
+          label: 'Access URL';
+          value: Url2[];
+      }
+>;
+
+export type ArticleRetrieveDataType = {
+    items: ArticleRetrieveItemDataType[];
+    dbLabel: string;
+    dbId: string;
+    articleLinks: ArticleLinksDataType;
+};
+
 export type ArticleResultDataType = {
     id: number;
     an: string;
     dbId: string;
-    articleLinks: {
-        fullTextLinks: Urls[];
-        pdfLinks: Urls[];
-        html: Urls[] | null;
-        urls: Urls[];
-    };
+    articleLinks: ArticleLinksDataType;
     exportLinks: {
         ris: string;
         bibtex: string;
@@ -213,6 +326,9 @@ export type ArticleResultDataType = {
     subjects: string[];
     publicationType: string;
     abstract: string | null;
+    copyright: string;
+    affiliationAuthor: string[];
+    issn: string[];
 };
 
 export type ArticleFacetValueDataType = {

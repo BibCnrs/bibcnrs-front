@@ -1,4 +1,4 @@
-import './scss/TableMetadore.scss';
+import './scss/TableList.scss';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import OpenablePaper from '../../paper/openable/OpenablePaper';
 import type {
@@ -63,23 +63,18 @@ const TableMetadore = ({ data }: TableDisplayElementProps<MetadoreResultType>) =
     return (
         <OpenablePaper
             Title={
-                <a
-                    className="table-metadore-title link"
-                    href={data.url}
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                >
+                <a className="table-list-title link" href={data.url} target="_blank" rel="noopener noreferrer nofollow">
                     {data.id}. {title} [{data.type}]
                 </a>
             }
             SmallBody={
-                <div className="table-metadore-body">
+                <div className="table-list-body">
                     {t('components.table.content.doiColon')}
                     {data.doi}
                 </div>
             }
             FullBody={
-                <dl className="table-metadore-body">
+                <dl className="table-list-body">
                     <span>
                         <dt>{t('components.table.content.doi')}</dt>
                         <dd>{data.doi}</dd>

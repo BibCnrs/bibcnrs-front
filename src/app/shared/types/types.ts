@@ -55,8 +55,13 @@ export type BibContextType = {
     setSearch: Dispatch<SetStateAction<SearchContextType>>;
 };
 
-export type Urls = {
+export type Url = {
     name: string;
+    url: string;
+};
+
+export type Url2 = {
+    value: string;
     url: string;
 };
 

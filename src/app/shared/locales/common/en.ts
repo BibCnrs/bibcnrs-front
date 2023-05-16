@@ -78,6 +78,11 @@ const en: Common = {
                 facets: 'Facets',
                 actions: 'Actions',
                 nbResult: 'Results count:',
+                accessNumber: 'Accession number',
+                dbId: 'D&B Key Business Ratios',
+                languages: 'Language',
+                publisherUrl: 'Publisher URL',
+                noAccess: 'No access for this article',
             },
         },
         facet: {
