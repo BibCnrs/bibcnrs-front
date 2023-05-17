@@ -281,35 +281,38 @@ export class ArticleContentGetter {
         });
     };
 
+    private readValue = (value: any) => {
+        let tmp = '';
+        if (typeof value === 'string') {
+            return value;
+        }
+        value.forEach((entry: any) => {
+            if (typeof entry === 'string') {
+                tmp += entry;
+            }
+            if (typeof entry === 'object') {
+                if (entry.value) {
+                    tmp += entry.value;
+                }
+                if (entry.indice) {
+                    tmp += entry.indice;
+                }
+            }
+        });
+        return tmp;
+    };
+
     private get = (values: any): string[] | string | undefined => {
         if (typeof values === 'string') {
             return values;
         }
-        if (Array.isArray(values) && typeof values[0] === 'string') {
-            return values as string[];
+        if (Array.isArray(values) && !Array.isArray(values[0])) {
+            return values.map(this.readValue);
         }
         if (Array.isArray(values) && Array.isArray(values[0])) {
             const formatted: string[] = [];
             values.forEach((value: any) => {
-                let tmp = '';
-                if (typeof value === 'string') {
-                    formatted.push(value);
-                    return;
-                }
-                value.forEach((entry: any) => {
-                    if (typeof entry === 'string') {
-                        tmp += entry;
-                    }
-                    if (typeof entry === 'object') {
-                        if (entry.value) {
-                            tmp += entry.value;
-                        }
-                        if (entry.indice) {
-                            tmp += entry.indice;
-                        }
-                    }
-                });
-                formatted.push(tmp);
+                formatted.push(this.readValue(value));
             });
             return formatted;
         }
