@@ -292,6 +292,10 @@ export class ArticleContentGetter {
             const formatted: string[] = [];
             values.forEach((value: any) => {
                 let tmp = '';
+                if (typeof value === 'string') {
+                    formatted.push(value);
+                    return;
+                }
                 value.forEach((entry: any) => {
                     if (typeof entry === 'string') {
                         tmp += entry;
