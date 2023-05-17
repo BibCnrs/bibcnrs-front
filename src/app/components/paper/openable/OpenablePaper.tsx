@@ -2,7 +2,7 @@ import './OpenablePaper.scss';
 import AnimatedPaper from '../animated/AnimatedPaper';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import IconButton from '@mui/material/IconButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { OpenablePaperProps } from '../../../shared/types/props.types';
 
 /**
@@ -14,9 +14,26 @@ import type { OpenablePaperProps } from '../../../shared/types/props.types';
  *                    - Default: false
  * @param color     - Paper border and shadow color
  * @param border    - Add colored border
+ * @param isOpen
+ * @param onChange  - Event call when the paper is opened
  */
-const OpenablePaper = ({ Title, SmallBody, FullBody, small = false, color, border }: OpenablePaperProps) => {
-    const [open, setOpen] = useState<boolean>(false);
+const OpenablePaper = ({
+    Title,
+    SmallBody,
+    FullBody,
+    small = false,
+    color,
+    border,
+    defaultOpenState = false,
+    onChange,
+}: OpenablePaperProps) => {
+    const [open, setOpen] = useState<boolean>(defaultOpenState);
+
+    useEffect(() => {
+        if (onChange) {
+            onChange(open);
+        }
+    }, [onChange, open]);
 
     return (
         <AnimatedPaper
