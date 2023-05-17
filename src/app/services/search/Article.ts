@@ -1,5 +1,6 @@
 import { createQuery, environment, json, throwIfNotOk } from '../Environment';
 import { getToken } from '../user/Session';
+import type { ArticleRetrieveItemDataType } from '../../shared/types/data.types';
 import type { ArticleResultDataType } from '../../shared/types/data.types';
 import type { ArticleRetrieveDataType } from '../../shared/types/data.types';
 import type { ArticleDataType } from '../../shared/types/data.types';
@@ -158,32 +159,80 @@ export const article = async (
 
 export class ArticleContentGetter {
     private readonly initial: ArticleResultDataType;
-    private readonly retrieve: ArticleRetrieveDataType;
-    constructor(initial: ArticleResultDataType, retrieve: ArticleRetrieveDataType) {
+    private readonly retrieve: ArticleRetrieveDataType | null;
+    constructor(initial: ArticleResultDataType, retrieve: ArticleRetrieveDataType | null) {
         this.initial = initial;
         this.retrieve = retrieve;
     }
 
-    public getTitle = (): string | null | undefined => {
+    public getTitle = (): string | null => {
         const retrieveObj = this.getEntry('Title');
-        if (retrieveObj.length > 0) {
-            const retrieve = this.getFirst(retrieveObj[0].value);
-            if (retrieve) {
-                return retrieve;
-            }
+        const retrieve = this.getString(retrieveObj);
+        if (retrieve) {
+            return retrieve;
         }
-        return this.initial.title;
+        if (this.initial.title) {
+            return this.initial.title;
+        }
+        return null;
     };
 
-    public getDOI = (): string | null | undefined => {
+    public getDOI = (): string | null => {
         const retrieveObj = this.getEntry('DOI');
-        if (retrieveObj.length > 0) {
-            const retrieve = this.getFirst(retrieveObj[0].value);
-            if (retrieve) {
-                return retrieve;
+        const retrieve = this.getString(retrieveObj);
+        if (retrieve) {
+            return retrieve;
+        }
+        if (this.initial.doi) {
+            return this.initial.doi;
+        }
+        return null;
+    };
+
+    public getSource = (): string | null => {
+        const retrieveObj = this.getEntry('TitleSource');
+        const retrieve = this.getString(retrieveObj);
+        if (retrieve) {
+            return retrieve;
+        }
+        if (this.initial.source) {
+            return this.initial.source;
+        }
+        return null;
+    };
+
+    public getAuthors = (): string[] | null => {
+        const retrieveObj = this.getEntry('Author', 'Authors');
+        const retrieve = this.getStringArray(retrieveObj);
+        if (retrieve) {
+            return retrieve;
+        }
+        if (this.initial.authors) {
+            return this.initial.authors;
+        }
+        return null;
+    };
+
+    public getLanguages = (): string[] | null => {
+        const retrieveObj = this.getEntry('Language');
+        const retrieve = this.getStringArray(retrieveObj);
+        if (retrieve) {
+            return retrieve;
+        }
+        if (this.initial.languages) {
+            return this.initial.languages;
+        }
+        return null;
+    };
+
+    public getPublisherURL = (): string[] | null => {
+        if (this.retrieve) {
+            const urls = this.retrieve.articleLinks.urls.filter((value) => value.name === 'Publisher URL');
+            if (urls.length > 0) {
+                return urls.map((url) => url.url);
             }
         }
-        return this.initial.doi;
+        return null;
     };
 
     public getAN = (): string => {
@@ -194,26 +243,103 @@ export class ArticleContentGetter {
         return this.initial.dbId;
     };
 
-    private getEntry = (name: string) => {
-        return this.retrieve.items.filter((value) => value.name === name);
+    public getDatabase = (): string => {
+        return this.initial.database;
     };
 
-    private getFirst = (values: any): string | undefined => {
+    public getType = (): string => {
+        return this.initial.publicationType;
+    };
+
+    public getAllItems = (): Array<{ label: string; content: string[] }> => {
+        if (this.retrieve) {
+            const toReturn: Array<{ label: string; content: string[] }> = [];
+            this.retrieve.items.forEach((value) => {
+                const content = this.getStringArray(this.getEntry(value.name, value.label));
+                if (content) {
+                    toReturn.push({
+                        label: value.label,
+                        content,
+                    });
+                }
+            });
+            return toReturn;
+        }
+        return [];
+    };
+
+    private getEntry = (name: string, label?: string): ArticleRetrieveItemDataType[] | null => {
+        if (!this.retrieve) {
+            return null;
+        }
+        return this.retrieve.items.filter((value) => {
+            const keep = value.name === name;
+            if (label) {
+                return keep && value.label === label;
+            }
+            return keep;
+        });
+    };
+
+    private get = (values: any): string[] | string | undefined => {
         if (typeof values === 'string') {
             return values;
         }
         if (Array.isArray(values) && typeof values[0] === 'string') {
-            return values[0];
+            return values as string[];
+        }
+        if (Array.isArray(values) && Array.isArray(values[0])) {
+            const formatted: string[] = [];
+            values.forEach((value: any) => {
+                let tmp = '';
+                value.forEach((entry: any) => {
+                    if (typeof entry === 'string') {
+                        tmp += entry;
+                    }
+                    if (typeof entry === 'object') {
+                        if (entry.value) {
+                            tmp += entry.value;
+                        }
+                        if (entry.indice) {
+                            tmp += entry.indice;
+                        }
+                    }
+                });
+                formatted.push(tmp);
+            });
+            return formatted;
+        }
+        return undefined;
+    };
+
+    private getString = (retrieveObj: ArticleRetrieveItemDataType[] | null): string | undefined => {
+        if (retrieveObj && retrieveObj.length > 0) {
+            const retrieve = this.get(retrieveObj[0].value);
+            if (retrieve) {
+                if (typeof retrieve === 'string') {
+                    return retrieve;
+                }
+                return retrieve[0];
+            }
+        }
+        return undefined;
+    };
+
+    private getStringArray = (retrieveObj: ArticleRetrieveItemDataType[] | null): string[] | undefined => {
+        if (retrieveObj && retrieveObj.length > 0) {
+            const retrieve = this.get(retrieveObj[0].value);
+            if (retrieve) {
+                if (typeof retrieve === 'string') {
+                    return [retrieve];
+                }
+                return retrieve;
+            }
         }
         return undefined;
     };
 }
 
-export const retrieve = async (
-    domain: Institute,
-    dbid: string,
-    an: string,
-): Promise<(initial: ArticleResultDataType) => ArticleContentGetter> => {
+export const retrieve = async (domain: Institute, dbid: string, an: string): Promise<ArticleRetrieveDataType> => {
     const response: Response = await fetch(
         createQuery(environment.get.retrieve.article.replace('{domain}', domain), {
             dbid,
@@ -227,8 +353,5 @@ export const retrieve = async (
         },
     );
     throwIfNotOk(response);
-    const retrieveValue = await json<ArticleRetrieveDataType>(response);
-    return (initial: ArticleResultDataType) => {
-        return new ArticleContentGetter(initial, retrieveValue);
-    };
+    return json<ArticleRetrieveDataType>(response);
 };

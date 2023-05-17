@@ -3,7 +3,7 @@ import type { FacetEntry, TFunction } from './types';
 import type { ArticleParam } from '../../services/search/Article';
 import type { Property } from 'csstype';
 import type { ReactNode } from 'react';
-import type { ElementType, Key, MouseEventHandler, PropsWithChildren, PropsWithoutRef, ReactElement } from 'react';
+import type { ElementType, MouseEventHandler, PropsWithChildren, PropsWithoutRef, ReactElement } from 'react';
 
 type HaveReactChildren = PropsWithChildren;
 
@@ -80,6 +80,7 @@ export type OpenablePaperProps = PropsWithoutRef<{
     small?: boolean;
     color?: Property.Color;
     border?: boolean;
+    defaultOpenState?: boolean;
     onChange?: (isOpen: boolean) => void;
 }>;
 

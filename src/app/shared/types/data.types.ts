@@ -1,4 +1,3 @@
-import type { Url2 } from './types';
 import type { Url } from './types';
 import type { Institute } from './types';
 
@@ -224,24 +223,24 @@ export type ArticleResultDataType = {
     id: number;
     an: string;
     dbId: string;
-    articleLinks: ArticleLinksDataType;
-    exportLinks: {
+    articleLinks?: ArticleLinksDataType | null;
+    exportLinks?: {
         ris: string;
         bibtex: string;
-    };
-    doi: string | null;
-    title: string;
-    source: string;
-    authors: string[];
-    publicationDate: string;
-    languages: string[];
+    } | null;
+    doi?: string | null;
+    title?: string | null;
+    source?: string | null;
+    authors?: string[] | null;
+    publicationDate?: string | null;
+    languages?: string[] | null;
     database: string;
-    subjects: string[];
+    subjects?: string[] | null;
     publicationType: string;
-    abstract: string | null;
-    copyright: string;
-    affiliationAuthor: string[];
-    issn: string[];
+    abstract?: string | null;
+    copyright?: string | null;
+    affiliationAuthor?: string[] | null;
+    issn?: string[] | null;
 };
 
 export type ArticleFacetValueDataType = {
