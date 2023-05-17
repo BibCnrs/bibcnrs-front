@@ -200,105 +200,18 @@ export type ArticleLinksDataType = {
 export type ArticleRetrieveItemValueObjectDataType = {
     term: string;
     field: string;
-    value: string;
+    value: ArticleRetrieveItemValueObjectDataType[] | string[] | string;
 };
 
-export type ArticleRetrieveItemValueDataType = Array<ArticleRetrieveItemValueObjectDataType | string>;
-
-export type ArticleRetrieveItemValuesDataType<T extends { name: string; label: string; value: any[] }> = T;
-
-export type ArticleRetrieveItemDataType = ArticleRetrieveItemValuesDataType<
-    | {
-          name: 'Abstract';
-          label: 'Description';
-          value: string[];
-      }
-    | {
-          name: 'AffiliationAuthor';
-          label: 'Author Affiliations';
-          value: string[];
-      }
-    | {
-          name: 'AN';
-          label: 'Accession Number' | 'Original Identifier';
-          value: string[];
-      }
-    | {
-          name: 'Author';
-          label: 'Authors';
-          value: ArticleRetrieveItemValueDataType[];
-      }
-    | {
-          name: 'Author';
-          label: 'Contributors';
-          value: string[];
-      }
-    | {
-          name: 'Copyright';
-          label: 'Rights';
-          value: string[];
-      }
-    | {
-          name: 'DOI';
-          label: 'DOI';
-          value: string[];
-      }
-    | {
-          name: 'ISSN';
-          label: 'ISSN';
-          value: string[];
-      }
-    | {
-          name: 'Language';
-          label: 'Language';
-          value: string[];
-      }
-    | {
-          name: 'NoteTitleSource';
-          label: 'Relation';
-          value: string[];
-      }
-    | {
-          name: 'Publication Year';
-          label: 'Publication Year';
-          value: string[];
-      }
-    | {
-          name: 'Publisher';
-          label: 'Source';
-          value: string[];
-      }
-    | {
-          name: 'Subject';
-          label: 'Subject Geographic' | 'Subject Terms';
-          value: ArticleRetrieveItemValueDataType[];
-      }
-    | {
-          name: 'Subset';
-          label: 'Collection';
-          value: string[];
-      }
-    | {
-          name: 'Title';
-          label: 'Title';
-          value: string[];
-      }
-    | {
-          name: 'TitleSource';
-          label: 'Source';
-          value: string[][];
-      }
-    | {
-          name: 'TypeDocument';
-          label: 'Document Type';
-          value: string[];
-      }
-    | {
-          name: 'URL';
-          label: 'Access URL';
-          value: Url2[];
-      }
+export type ArticleRetrieveItemValueDataType = Array<
+    ArticleRetrieveItemValueObjectDataType | ArticleRetrieveItemValueObjectDataType[] | string[] | string
 >;
+
+export type ArticleRetrieveItemDataType = {
+    name: string;
+    label: string;
+    value: ArticleRetrieveItemValueDataType[];
+};
 
 export type ArticleRetrieveDataType = {
     items: ArticleRetrieveItemDataType[];

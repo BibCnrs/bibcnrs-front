@@ -1,8 +1,7 @@
 import { createQuery, environment, json, throwIfNotOk } from '../Environment';
 import { getToken } from '../user/Session';
-import type { ArticleRetrieveItemValueObjectDataType } from '../../shared/types/data.types';
-import type { ArticleRetrieveDataType } from '../../shared/types/data.types';
 import type { ArticleResultDataType } from '../../shared/types/data.types';
+import type { ArticleRetrieveDataType } from '../../shared/types/data.types';
 import type { ArticleDataType } from '../../shared/types/data.types';
 import type { FacetEntry } from '../../shared/types/types';
 import type { Institute } from '../../shared/types/types';
@@ -157,11 +156,64 @@ export const article = async (
     return json<ArticleDataType>(response);
 };
 
+export class ArticleContentGetter {
+    private readonly initial: ArticleResultDataType;
+    private readonly retrieve: ArticleRetrieveDataType;
+    constructor(initial: ArticleResultDataType, retrieve: ArticleRetrieveDataType) {
+        this.initial = initial;
+        this.retrieve = retrieve;
+    }
+
+    public getTitle = (): string | null | undefined => {
+        const retrieveObj = this.getEntry('Title');
+        if (retrieveObj.length > 0) {
+            const retrieve = this.getFirst(retrieveObj[0].value);
+            if (retrieve) {
+                return retrieve;
+            }
+        }
+        return this.initial.title;
+    };
+
+    public getDOI = (): string | null | undefined => {
+        const retrieveObj = this.getEntry('DOI');
+        if (retrieveObj.length > 0) {
+            const retrieve = this.getFirst(retrieveObj[0].value);
+            if (retrieve) {
+                return retrieve;
+            }
+        }
+        return this.initial.doi;
+    };
+
+    public getAN = (): string => {
+        return this.initial.an;
+    };
+
+    public getDBID = (): string => {
+        return this.initial.dbId;
+    };
+
+    private getEntry = (name: string) => {
+        return this.retrieve.items.filter((value) => value.name === name);
+    };
+
+    private getFirst = (values: any): string | undefined => {
+        if (typeof values === 'string') {
+            return values;
+        }
+        if (Array.isArray(values) && typeof values[0] === 'string') {
+            return values[0];
+        }
+        return undefined;
+    };
+}
+
 export const retrieve = async (
     domain: Institute,
     dbid: string,
     an: string,
-): Promise<Partial<ArticleResultDataType>> => {
+): Promise<(initial: ArticleResultDataType) => ArticleContentGetter> => {
     const response: Response = await fetch(
         createQuery(environment.get.retrieve.article.replace('{domain}', domain), {
             dbid,
@@ -175,95 +227,8 @@ export const retrieve = async (
         },
     );
     throwIfNotOk(response);
-    const rawRetrieve = await json<ArticleRetrieveDataType>(response);
-    const formattedRetrieve: Partial<ArticleResultDataType> = {};
-
-    formattedRetrieve.articleLinks = rawRetrieve.articleLinks;
-    formattedRetrieve.dbId = rawRetrieve.dbId;
-    formattedRetrieve.source = rawRetrieve.dbLabel;
-
-    // Element mark as "to-do" are case who need more inspection to know how to use it
-    rawRetrieve.items.forEach((item) => {
-        switch (item.name) {
-            case 'Abstract': {
-                formattedRetrieve.abstract = item.value[0];
-                break;
-            }
-            case 'AffiliationAuthor': {
-                formattedRetrieve.affiliationAuthor = item.value;
-                break;
-            }
-            case 'AN': {
-                break; // TODO
-            }
-            case 'Author': {
-                switch (item.label) {
-                    case 'Authors': {
-                        const authors: string[] = [];
-                        item.value.forEach((value) => {
-                            if (value.length === 1) {
-                                authors.push((value[0] as ArticleRetrieveItemValueObjectDataType).value);
-                            }
-                            if (value.length === 2) {
-                                authors.push(
-                                    (value[0] as ArticleRetrieveItemValueObjectDataType).value + (value[1] as string),
-                                );
-                            }
-                        });
-                        formattedRetrieve.authors = authors;
-                        break;
-                    }
-                    case 'Contributors': {
-                        formattedRetrieve.authors = item.value;
-                        break;
-                    }
-                }
-                break;
-            }
-            case 'Copyright': {
-                formattedRetrieve.copyright = item.value[0];
-                break;
-            }
-            case 'DOI': {
-                formattedRetrieve.doi = item.value[0];
-                break;
-            }
-            case 'ISSN': {
-                formattedRetrieve.issn = item.value;
-                break;
-            }
-            case 'Language': {
-                formattedRetrieve.languages = item.value;
-                break;
-            }
-            case 'NoteTitleSource': {
-                break; // TODO
-            }
-            case 'Publication Year': {
-                break; // TODO
-            }
-            case 'Publisher': {
-                break; // TODO
-            }
-            case 'Subject': {
-                break; // TODO
-            }
-            case 'Subset': {
-                break; // TODO
-            }
-            case 'Title': {
-                break; // TODO
-            }
-            case 'TitleSource': {
-                break; // TODO
-            }
-            case 'TypeDocument': {
-                break; // TODO
-            }
-            case 'URL': {
-                break; // TODO
-            }
-        }
-    });
-    return formattedRetrieve;
+    const retrieveValue = await json<ArticleRetrieveDataType>(response);
+    return (initial: ArticleResultDataType) => {
+        return new ArticleContentGetter(initial, retrieveValue);
+    };
 };

@@ -80,6 +80,7 @@ export type OpenablePaperProps = PropsWithoutRef<{
     small?: boolean;
     color?: Property.Color;
     border?: boolean;
+    onChange?: (isOpen: boolean) => void;
 }>;
 
 export type DatabaseDisplayGroupProps = PropsWithoutRef<{
