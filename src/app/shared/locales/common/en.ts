@@ -100,6 +100,7 @@ const en: Common = {
             collection: 'Collection',
             publisher: 'Publisher',
             provider: 'Content Provider',
+            reset: 'Reset your filters',
         },
         testsnews: {
             common: 'Common',

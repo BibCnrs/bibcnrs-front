@@ -113,6 +113,7 @@ export type Common = {
             collection: string;
             publisher: string;
             provider: string;
+            reset: string;
         };
         testsnews: {
             common: string;
