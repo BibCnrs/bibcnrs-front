@@ -10,11 +10,25 @@ const FacetFacets = ({ available, active, onChange }: FacetFacetsProps) => {
         return null;
     }
 
+    const keys = new Set<string>();
+    Object.keys(available).forEach((key) => {
+        if (!keys.has(key)) {
+            keys.add(key);
+        }
+    });
+    if (active) {
+        Object.keys(active).forEach((key) => {
+            if (!keys.has(key)) {
+                keys.add(key);
+            }
+        });
+    }
+
     let divider = false;
     const facets: ReactNode[] = [];
-    Object.keys(available).forEach((key) => {
+    keys.forEach((key) => {
         let component = null;
-        const facet: FacetEntry[] | undefined = available[key];
+        const facet: FacetEntry[] | undefined = available[key] ?? [];
         if (facet) {
             const handleFacet = (values: FacetEntry[]) => {
                 if (active) {

@@ -87,12 +87,7 @@ const FacetLimiter = ({ available, active, onChange }: FacetLimiterProps) => {
         dateRage = (
             <>
                 {divider ? <Divider className="facet-divider" /> : null}
-                <DateRange
-                    min={available.dateRange.from}
-                    max={available.dateRange.to}
-                    initial={initial}
-                    onChange={handleDateRange}
-                />
+                <DateRange min={1000} max={new Date().getFullYear() + 1} initial={initial} onChange={handleDateRange} />
             </>
         );
     }

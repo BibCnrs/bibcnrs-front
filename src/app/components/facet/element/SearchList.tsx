@@ -12,14 +12,29 @@ const SearchList = ({ facets, name, onChange, initial = undefined }: FacetSearch
         onChange(value);
     };
 
+    const handleGroupBy = (option: FacetEntry): string => {
+        if (option.name.toUpperCase() === 'HAL') {
+            return 'HAL';
+        }
+        const firstLetter = option.name[0].toUpperCase();
+        return /[0-9]/.test(firstLetter) ? '0-9' : firstLetter;
+    };
+
+    const handleIsOptionEqualToValue = (option: FacetEntry, value: FacetEntry) => {
+        return option.name === value.name;
+    };
+
+    // TODO use a controlled Autocomplete
     return (
         <div>
             <Autocomplete
                 size="small"
                 multiple
                 options={facets}
+                groupBy={handleGroupBy}
                 getOptionLabel={(option) => `${option.name} (${option.count})`}
                 defaultValue={initial}
+                isOptionEqualToValue={handleIsOptionEqualToValue}
                 filterSelectedOptions
                 renderInput={(params) => (
                     <TextField {...params} label={t(`components.facet.${name}`) + ' - ' + facets.length} />

@@ -1,6 +1,6 @@
 import './Article.scss';
 import Facet from '../../../components/facet/Facet';
-import { BibContext } from '../../../components/provider/ContextProvider';
+import { BibContext, BibContextArticleDefault } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import ArticleSkeleton from '../../../components/skeleton/ArticleSkeleton';
 import TableArticle from '../../../components/table/displayelement/TableArticle';
@@ -9,11 +9,18 @@ import PageTitle from '../../../components/utils/PageTitle';
 import { article } from '../../../services/search/Article';
 import { getDomains, getFavoriteDomain } from '../../../services/user/Session';
 import { useTranslator } from '../../../shared/locales/I18N';
-import { getNumber, getString, RouteArticle, updatePageQueryUrl, useSearchParams } from '../../../shared/Routes';
+import {
+    getJSON,
+    getNumber,
+    getString,
+    RouteArticle,
+    updatePageQueryUrl,
+    useSearchParams,
+} from '../../../shared/Routes';
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { ArticleParam } from '../../../services/search/Article';
+import type { ArticleParam, OrderByType } from '../../../services/search/Article';
 import type { ArticleDataType } from '../../../shared/types/data.types';
 import type { FacetProps } from '../../../shared/types/props.types';
 import type { TableArgsProps } from '../../../shared/types/props.types';
@@ -81,12 +88,43 @@ const Article = () => {
     };
 
     const handleFacets = (values: Omit<ArticleParam, 'orderBy'>) => {
+        if (values.limiters) {
+            for (const key of Object.keys(values.limiters)) {
+                if (values.limiters[key] === undefined || values.limiters[key] === false) {
+                    delete values.limiters[key];
+                }
+            }
+            if (Object.keys(values.limiters).length === 0) {
+                delete values.limiters;
+            }
+        }
+        if (values.facets) {
+            for (const key of Object.keys(values.facets)) {
+                if (values.facets[key] === undefined || values.facets[key].length === 0) {
+                    delete values.facets[key];
+                }
+            }
+            if (Object.keys(values.facets).length === 0) {
+                delete values.facets;
+            }
+        }
         setSearch({
             ...search,
             article: {
                 ...search.article,
                 facets: values.facets,
                 limiters: values.limiters,
+            },
+        });
+    };
+
+    const handleReset = () => {
+        setSearch({
+            ...search,
+            article: {
+                ...BibContextArticleDefault,
+                domain: search.article.domain,
+                orderBy: search.article.orderBy,
             },
         });
     };
@@ -117,9 +155,10 @@ const Article = () => {
                 query: queryValue,
                 article: {
                     ...search.article,
-                    // TODO Add limiters and facets
-                    domain: domain as Institute, // TODO add this to url param
-                    orderBy: 'relevance', // TODO add this to url param
+                    limiters: getJSON(query, 'limiters', search.article.limiters),
+                    facets: getJSON(query, 'facets', search.article.facets),
+                    domain: domain as Institute,
+                    orderBy: getString(query, 'orderBy', search.article.orderBy) as OrderByType,
                     table: {
                         page: getNumber(query, 'page', search.article.table.page),
                         perPage: getNumber(query, 'perPage', search.article.table.perPage),
@@ -134,14 +173,21 @@ const Article = () => {
                 param.q = search.query;
             }
 
-            if (search.metadore.table.page) {
+            if (search.article.table.page) {
                 param.page = search.article.table.page;
             }
 
-            if (search.metadore.table.perPage) {
+            if (search.article.table.perPage) {
                 param.perPage = search.article.table.perPage;
             }
 
+            if (search.article.limiters) {
+                param.limiters = JSON.stringify(search.article.limiters);
+            }
+
+            if (search.article.facets) {
+                param.facets = JSON.stringify(search.article.facets);
+            }
             updatePageQueryUrl(RouteArticle, navigate, param);
         }
     }, [first, navigate, query, search, setSearch]);
@@ -225,7 +271,12 @@ const Article = () => {
             <div id="app">
                 <div id="articles-container">
                     <div id="articles-facet">
-                        <Facet available={getAvailable(data)} active={getActive()} onChange={handleFacets} />
+                        <Facet
+                            available={getAvailable(data)}
+                            active={getActive()}
+                            onChange={handleFacets}
+                            onReset={handleReset}
+                        />
                     </div>
                     {isLoading || isFetching ? (
                         <ArticleSkeleton />

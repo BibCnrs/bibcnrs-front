@@ -125,6 +125,7 @@ export type FacetProps = PropsWithoutRef<{
     available: Omit<ArticleParam, 'orderBy'>;
     active: Omit<ArticleParam, 'orderBy'>;
     onChange: (values: Omit<ArticleParam, 'orderBy'>) => void;
+    onReset: () => void;
 }>;
 
 export type FacetLimiterProps = PropsWithoutRef<{

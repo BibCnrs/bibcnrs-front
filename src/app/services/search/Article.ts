@@ -28,9 +28,11 @@ export type ArticlePayLoad = {
     currentPage: number;
 };
 
+export type OrderByType = 'date_asc' | 'date_desc' | 'relevance';
+
 export type ArticleParam = {
-    orderBy: 'date_asc' | 'date_desc' | 'relevance';
-    limiters?: {
+    orderBy: OrderByType;
+    limiters?: Record<string, any> & {
         fullText?: boolean;
         openAccess?: boolean;
         reviewed?: boolean;
@@ -283,6 +285,9 @@ export class ArticleContentGetter {
 
     private readValue = (value: any) => {
         let tmp = '';
+        if (value === null) {
+            return tmp;
+        }
         if (typeof value === 'string') {
             return value;
         }

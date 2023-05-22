@@ -71,6 +71,14 @@ export const getNumber = (query: URLSearchParams, key: string, fallback: number 
     return parseInt(value, 10);
 };
 
+export const getJSON = (query: URLSearchParams, key: string, fallback: any | undefined): any | undefined => {
+    const value = query.get(key);
+    if (value === null) {
+        return fallback;
+    }
+    return JSON.parse(value);
+};
+
 export const RouteRoot = Routes.root;
 export const RouteArticle = Routes.article;
 export const RouteJournal = Routes.journal;

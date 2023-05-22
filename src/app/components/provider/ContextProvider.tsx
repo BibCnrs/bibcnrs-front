@@ -29,6 +29,18 @@ const getStorageTheme = (): ThemeType => {
  */
 export const BibContext = createContext<BibContextType>(null as any);
 
+export const BibContextArticleDefault: SearchContextType['article'] = {
+    orderBy: 'relevance',
+    domain: undefined,
+    limiters: {
+        fullText: true,
+    },
+    table: {
+        page: 1,
+        perPage: 25,
+    },
+};
+
 /**
  * Provider component which creates application context
  * @param children - Application content
@@ -38,17 +50,7 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
     const [theme, setTheme] = useState<ThemeType>(getStorageTheme());
     const [search, setSearch] = useState<SearchContextType>({
         query: undefined,
-        article: {
-            orderBy: 'relevance',
-            domain: undefined,
-            limiters: {
-                fullText: true,
-            },
-            table: {
-                page: 1,
-                perPage: 25,
-            },
-        },
+        article: BibContextArticleDefault,
         metadore: {
             field: null,
             table: {
