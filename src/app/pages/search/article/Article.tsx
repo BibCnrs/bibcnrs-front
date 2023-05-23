@@ -34,6 +34,7 @@ const Article = () => {
     const { search, setSearch } = useContext(BibContext);
 
     const [first, setFirst] = useState<boolean>(true);
+    const [seed, setSeed] = useState<number>(0);
 
     const { data, isFetching, isLoading } = useQuery<ArticleDataType, any, ArticleDataType, any>({
         queryKey: [
@@ -116,6 +117,7 @@ const Article = () => {
                 limiters: values.limiters,
             },
         });
+        setSeed(seed + 1);
     };
 
     const handleReset = () => {
@@ -127,6 +129,7 @@ const Article = () => {
                 orderBy: search.article.orderBy,
             },
         });
+        setSeed(seed + 1);
     };
 
     const handleTable = (tableArgs: TableArgsProps) => {
@@ -272,6 +275,7 @@ const Article = () => {
                 <div id="articles-container">
                     <div id="articles-facet">
                         <Facet
+                            key={seed}
                             available={getAvailable(data)}
                             active={getActive()}
                             onChange={handleFacets}

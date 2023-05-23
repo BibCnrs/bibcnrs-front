@@ -24,7 +24,6 @@ const SearchList = ({ facets, name, onChange, initial = undefined }: FacetSearch
         return option.name === value.name;
     };
 
-    // TODO use a controlled Autocomplete
     return (
         <div>
             <Autocomplete
