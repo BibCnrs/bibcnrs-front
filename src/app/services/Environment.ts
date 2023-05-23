@@ -47,32 +47,32 @@ export const throwIfNotOk = (response: Response) => {
     }
     // User input error
     if (response.status === 400) {
-        throw new Error('400');
+        throw new Error('400', { cause: '400' });
     }
     if (response.status === 401) {
-        throw new Error('401');
+        throw new Error('401', { cause: '401' });
     }
     if (response.status === 403) {
-        throw new Error('403');
+        throw new Error('403', { cause: '403' });
     }
     if (response.status === 404) {
-        throw new Error('404');
+        throw new Error('404', { cause: '404' });
     }
 
     // Server error
     if (response.status === 500) {
-        throw new Error('500');
+        throw new Error('500', { cause: '500' });
     }
 
     // Reverse proxy error
     if (response.status === 502) {
-        throw new Error('500');
+        throw new Error('502', { cause: '502' });
     }
     if (response.status === 503) {
-        throw new Error('500');
+        throw new Error('503', { cause: '503' });
     }
 
-    throw new Error(`${response.status} - The server return an expected error`);
+    throw new Error(`${response.status} - The server return an expected error`, { cause: null });
 };
 
 export const json = <T>(response: Response): Promise<T> => {

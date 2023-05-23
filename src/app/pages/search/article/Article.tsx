@@ -8,6 +8,7 @@ import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { article } from '../../../services/search/Article';
 import { getDomains, getFavoriteDomain } from '../../../services/user/Session';
+import { useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import {
     getJSON,
@@ -31,12 +32,13 @@ const Article = () => {
     const navigate = useNavigate();
     const query = useSearchParams();
     const t = useTranslator();
+    const serviceCatch = useServicesCatch();
     const { search, setSearch } = useContext(BibContext);
 
     const [first, setFirst] = useState<boolean>(true);
     const [seed, setSeed] = useState<number>(0);
 
-    const { data, isFetching, isLoading } = useQuery<ArticleDataType, any, ArticleDataType, any>({
+    const { data, isFetching, isLoading, isError, error } = useQuery<ArticleDataType, any, ArticleDataType, any>({
         queryKey: [
             'article',
             search.query,
@@ -194,6 +196,12 @@ const Article = () => {
             updatePageQueryUrl(RouteArticle, navigate, param);
         }
     }, [first, navigate, query, search, setSearch]);
+
+    useEffect(() => {
+        if (isError) {
+            serviceCatch(error);
+        }
+    }, [error, isError, serviceCatch]);
 
     const getAvailable = (result: ArticleDataType | undefined) => {
         const available: Partial<FacetProps['available']> = {};
