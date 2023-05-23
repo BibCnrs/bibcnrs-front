@@ -130,7 +130,7 @@ const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
     const darkPalette = createPalette({
         mode: 'dark',
         primary: {
-            main: colors.cnrs.secondary.darkBlue,
+            main: colors.cnrs.secondary.blue,
         },
         background: {
             default: colors.background.dark,

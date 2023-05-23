@@ -163,7 +163,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                                     }}
                                 ></div>
                                 {Array.isArray(value.urls) && value.urls.length > 0 ? (
-                                    <div>
+                                    <div key={`${value.id}-urls`}>
                                         <ul>
                                             {value.urls.map((url) => (
                                                 <li key={url.name}>

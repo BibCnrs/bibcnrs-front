@@ -18,7 +18,7 @@ const NoAccessArticle = ({ getter }: { getter: ArticleContentGetter }) => {
     return (
         <OpenablePaper
             Title={
-                <div className="table-list-title">
+                <div className="table-list-title link">
                     {getter.getTitle()} [{getter.getType()}] <i>({t('components.table.content.noAccess')})</i>
                 </div>
             }
