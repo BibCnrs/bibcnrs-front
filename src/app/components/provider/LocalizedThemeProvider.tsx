@@ -24,7 +24,7 @@ export const colors = {
         light: '#eee',
     },
     button: {
-        dark: '#00284b',
+        dark: '#0050a0',
         light: '#0050a0',
         hover: {
             dark: '#0f3556',
