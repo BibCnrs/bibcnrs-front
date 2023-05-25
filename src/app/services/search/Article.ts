@@ -11,9 +11,9 @@ import type { Institute } from '../../shared/types/types';
 
 export type ArticlePayLoad = {
     queries: any[];
-    FT?: 'Y' | undefined;
-    OA?: 'Y' | undefined;
-    RV?: 'Y' | undefined;
+    FT?: 'Y';
+    OA?: 'Y';
+    RV?: 'Y';
     DT1?: string;
     activeFacets?: {
         SourceType?: string[];
@@ -43,16 +43,10 @@ export type ArticleParam = {
             to: number;
         };
     };
-    facets?: Record<string, FacetEntry[]> & {
-        source?: FacetEntry[];
-        subject?: FacetEntry[];
-        journal?: FacetEntry[];
-        language?: FacetEntry[];
-        lexile?: FacetEntry[];
-        collection?: FacetEntry[];
-        publisher?: FacetEntry[];
-        provider?: FacetEntry[];
-    };
+    facets?: Record<
+        string | 'collection' | 'journal' | 'language' | 'lexile' | 'provider' | 'publisher' | 'source' | 'subject',
+        FacetEntry[]
+    >;
 };
 
 export const article = async (
@@ -139,7 +133,7 @@ export const article = async (
         }
     }
 
-    // Convert payload to a valide format
+    // Convert payload to a valid format
     const queryPayLoad: any = {
         ...payload,
         queries: JSON.stringify(payload.queries),
@@ -160,11 +154,10 @@ export const article = async (
     throwIfNotOk(response);
     return json<ArticleDataType>(response);
 };
-
+const HAL_REGEX = /https?:\/\/(?:www\.)?(hal|tel)(shs)?(-.*)?\.(.*)\.(.*)/;
 export class ArticleContentGetter {
     private readonly initial: ArticleResultDataType;
     private readonly retrieve: ArticleRetrieveDataType | null;
-    private readonly HAL_REGEX = /https?:\/\/(?:www\.)?(hal|tel)(shs)?(-.*)?\.(.*)\.(.*)/;
     constructor(initial: ArticleResultDataType, retrieve: ArticleRetrieveDataType | null) {
         this.initial = initial;
         this.retrieve = retrieve;
@@ -248,38 +241,36 @@ export class ArticleContentGetter {
         };
         if (this.initial.articleLinks) {
             if (Array.isArray(this.initial.articleLinks.fullTextLinks)) {
-                this.initial.articleLinks.fullTextLinks.forEach((url) => articleLinks.fullTextLinks.push(url));
+                articleLinks.fullTextLinks.push(...this.initial.articleLinks.fullTextLinks);
             }
             if (Array.isArray(this.initial.articleLinks.pdfLinks)) {
-                this.initial.articleLinks.pdfLinks.forEach((url) => articleLinks.pdfLinks.push(url));
+                articleLinks.pdfLinks.push(...this.initial.articleLinks.pdfLinks);
             }
             if (Array.isArray(this.initial.articleLinks.html)) {
                 if (!Array.isArray(articleLinks.html)) {
                     articleLinks.html = [];
                 }
-                this.initial.articleLinks.html.forEach((url) => articleLinks.html?.push(url));
+                articleLinks.html.push(...this.initial.articleLinks.html);
             }
             if (Array.isArray(this.initial.articleLinks.urls)) {
-                this.initial.articleLinks.urls.forEach((url) => articleLinks.urls.push(url));
+                articleLinks.urls.push(...this.initial.articleLinks.urls);
             }
         }
         if (this.retrieve) {
-            if (this.retrieve.articleLinks) {
-                if (Array.isArray(this.retrieve.articleLinks.fullTextLinks)) {
-                    this.retrieve.articleLinks.fullTextLinks.forEach((url) => articleLinks.fullTextLinks.push(url));
+            if (Array.isArray(this.retrieve.articleLinks.fullTextLinks)) {
+                articleLinks.fullTextLinks.push(...this.retrieve.articleLinks.fullTextLinks);
+            }
+            if (Array.isArray(this.retrieve.articleLinks.pdfLinks)) {
+                articleLinks.pdfLinks.push(...this.retrieve.articleLinks.pdfLinks);
+            }
+            if (Array.isArray(this.retrieve.articleLinks.html)) {
+                if (!Array.isArray(articleLinks.html)) {
+                    articleLinks.html = [];
                 }
-                if (Array.isArray(this.retrieve.articleLinks.pdfLinks)) {
-                    this.retrieve.articleLinks.pdfLinks.forEach((url) => articleLinks.pdfLinks.push(url));
-                }
-                if (Array.isArray(this.retrieve.articleLinks.html)) {
-                    if (!Array.isArray(articleLinks.html)) {
-                        articleLinks.html = [];
-                    }
-                    this.retrieve.articleLinks.html.forEach((url) => articleLinks.html?.push(url));
-                }
-                if (Array.isArray(this.retrieve.articleLinks.urls)) {
-                    this.retrieve.articleLinks.urls.forEach((url) => articleLinks.urls.push(url));
-                }
+                articleLinks.html.push(...this.retrieve.articleLinks.html);
+            }
+            if (Array.isArray(this.retrieve.articleLinks.urls)) {
+                articleLinks.urls.push(...this.retrieve.articleLinks.urls);
             }
         }
         return articleLinks;
@@ -302,15 +293,15 @@ export class ArticleContentGetter {
     };
 
     public guessSid(url: string) {
-        if (url.startsWith('http://arxiv.org')) {
+        if (url.startsWith('http://arxiv.org/')) {
             return 'arxiv';
         }
 
-        if (url.startsWith('https://doaj.org')) {
+        if (url.startsWith('https://doaj.org/')) {
             return 'doaj';
         }
 
-        if (this.HAL_REGEX.test(url)) {
+        if (HAL_REGEX.test(url)) {
             return 'hal';
         }
 
@@ -368,24 +359,16 @@ export class ArticleContentGetter {
                 }
             }
         }
-        return this.isOpenAccess2();
+        return this.isOpenAccessUnpaywall();
     };
 
-    public getAN = (): string => {
-        return this.initial.an;
-    };
+    public getAN = (): string => this.initial.an;
 
-    public getDBID = (): string => {
-        return this.initial.dbId;
-    };
+    public getDBID = (): string => this.initial.dbId;
 
-    public getDatabase = (): string => {
-        return this.initial.database;
-    };
+    public getDatabase = (): string => this.initial.database;
 
-    public getType = (): string => {
-        return this.initial.publicationType;
-    };
+    public getType = (): string => this.initial.publicationType;
 
     public getAllItems = (): Array<{ label: string; content: string[] }> => {
         if (this.retrieve) {
@@ -404,7 +387,7 @@ export class ArticleContentGetter {
         return [];
     };
 
-    private isOpenAccess2 = (): boolean => {
+    private isOpenAccessUnpaywall = (): boolean => {
         const href = this.getHref();
         if (!href) {
             return false;
@@ -416,7 +399,7 @@ export class ArticleContentGetter {
             openAccess = articleLinks.fullTextLinks.find((d) => /accès en ligne en open access/i.test(d.name));
         }
         const hrefWithIcon = [openAccess, unpaywall].filter(Boolean);
-        return hrefWithIcon.includes(href) || this.HAL_REGEX.test(href.url);
+        return hrefWithIcon.includes(href) || HAL_REGEX.test(href.url);
     };
 
     private getEntry = (name: string, label?: string): ArticleRetrieveItemDataType[] | null => {

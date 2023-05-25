@@ -1,4 +1,5 @@
 import TableSkeleton from './TableSkeleton';
+import { memo } from 'react';
 
 const ResearchDataSkeleton = () => {
     return (
@@ -8,4 +9,4 @@ const ResearchDataSkeleton = () => {
     );
 };
 
-export default ResearchDataSkeleton;
+export default memo(ResearchDataSkeleton);

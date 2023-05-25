@@ -10,46 +10,41 @@ const FacetFacets = ({ available, active, onChange }: FacetFacetsProps) => {
         return null;
     }
 
-    const keys = new Set<string>();
-    Object.keys(available).forEach((key) => {
-        if (!keys.has(key)) {
-            keys.add(key);
-        }
-    });
+    const keys = new Set<string>(Object.keys(available));
     if (active) {
         Object.keys(active).forEach((key) => {
-            if (!keys.has(key)) {
-                keys.add(key);
-            }
+            keys.add(key);
         });
     }
+
+    const handleFacet = (values: FacetEntry[], key: string) => {
+        if (active) {
+            onChange({
+                ...active,
+                [key]: values,
+            });
+            return;
+        }
+        onChange({
+            [key]: values,
+        });
+    };
 
     let divider = false;
     const facets: ReactNode[] = [];
     keys.forEach((key) => {
-        let component = null;
         const facet: FacetEntry[] | undefined = available[key] ?? [];
         if (facet) {
-            const handleFacet = (values: FacetEntry[]) => {
-                if (active) {
-                    onChange({
-                        ...active,
-                        [key]: values,
-                    });
-                    return;
-                }
-                onChange({
-                    [key]: values,
-                });
-            };
-            component = (
+            const component = (
                 <Fragment key={key}>
                     {divider ? <Divider className="facet-divider" /> : null}
                     <SearchList
                         name={key}
                         facets={facet}
                         initial={active ? active[key] : undefined}
-                        onChange={handleFacet}
+                        onChange={(values) => {
+                            handleFacet(values, key);
+                        }}
                     />
                 </Fragment>
             );

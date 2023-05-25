@@ -38,19 +38,20 @@ const FacetLimiter = ({ available, active, onChange }: FacetLimiterProps) => {
         }
 
         const handleTextType = (values: string[]) => {
+            const set = new Set(values);
             if (active) {
                 onChange({
                     dateRange: active.dateRange,
-                    fullText: values.includes('fullText'),
-                    openAccess: values.includes('openAccess'),
-                    reviewed: values.includes('reviewed'),
+                    fullText: set.has('fullText'),
+                    openAccess: set.has('openAccess'),
+                    reviewed: set.has('reviewed'),
                 });
                 return;
             }
             onChange({
-                fullText: values.includes('fullText'),
-                openAccess: values.includes('openAccess'),
-                reviewed: values.includes('reviewed'),
+                fullText: set.has('fullText'),
+                openAccess: set.has('openAccess'),
+                reviewed: set.has('reviewed'),
             });
         };
 

@@ -58,7 +58,7 @@ const Article = () => {
             ) {
                 return null;
             }
-            return await article(
+            return article(
                 search.article.domain,
                 search.query,
                 search.article.table.page,
@@ -171,30 +171,30 @@ const Article = () => {
                 },
             });
             setFirst(false);
-        } else {
-            const param: any = {};
-
-            if (search.query) {
-                param.q = search.query;
-            }
-
-            if (search.article.table.page) {
-                param.page = search.article.table.page;
-            }
-
-            if (search.article.table.perPage) {
-                param.perPage = search.article.table.perPage;
-            }
-
-            if (search.article.limiters) {
-                param.limiters = JSON.stringify(search.article.limiters);
-            }
-
-            if (search.article.facets) {
-                param.facets = JSON.stringify(search.article.facets);
-            }
-            updatePageQueryUrl(RouteArticle, navigate, param);
+            return;
         }
+        const param: any = {};
+
+        if (search.query) {
+            param.q = search.query;
+        }
+
+        if (search.article.table.page) {
+            param.page = search.article.table.page;
+        }
+
+        if (search.article.table.perPage) {
+            param.perPage = search.article.table.perPage;
+        }
+
+        if (search.article.limiters) {
+            param.limiters = JSON.stringify(search.article.limiters);
+        }
+
+        if (search.article.facets) {
+            param.facets = JSON.stringify(search.article.facets);
+        }
+        updatePageQueryUrl(RouteArticle, navigate, param);
     }, [first, navigate, query, search, setSearch]);
 
     useEffect(() => {
@@ -271,7 +271,7 @@ const Article = () => {
 
     return (
         <div>
-            <PageTitle page={'article'} t={t} />
+            <PageTitle page="article" t={t} />
             <div className="header-footer">
                 <SearchBar
                     placeholder={t('pages.article.searchBar')}

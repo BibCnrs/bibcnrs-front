@@ -1,4 +1,5 @@
 import TableSkeleton from './TableSkeleton';
+import { memo } from 'react';
 
 const ArticleSkeleton = () => {
     return (
@@ -8,4 +9,4 @@ const ArticleSkeleton = () => {
     );
 };
 
-export default ArticleSkeleton;
+export default memo(ArticleSkeleton);

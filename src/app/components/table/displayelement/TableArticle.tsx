@@ -175,10 +175,8 @@ const TableArticle = ({ data: dataIn }: TableDisplayElementProps<ArticleResultDa
     } = useQuery<ArticleRetrieveDataType, any, ArticleRetrieveDataType, any>({
         queryKey: ['article_retrieve', missing, search.article.domain, dataIn.dbId, dataIn.an],
         queryFn: async () => {
-            if (missing) {
-                if (search.article.domain) {
-                    return await retrieveFn(search.article.domain, dataIn.dbId, dataIn.an);
-                }
+            if (missing && search.article.domain) {
+                return retrieveFn(search.article.domain, dataIn.dbId, dataIn.an);
             }
             return null;
         },
