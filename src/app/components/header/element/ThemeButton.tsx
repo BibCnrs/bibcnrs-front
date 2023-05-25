@@ -1,5 +1,5 @@
 import { BibContext } from '../../provider/ContextProvider';
-import { styled } from '@mui/material/styles';
+import styled from '@mui/material/styles/styled';
 import Switch from '@mui/material/Switch';
 import { useContext } from 'react';
 import type { ChangeEvent } from 'react';

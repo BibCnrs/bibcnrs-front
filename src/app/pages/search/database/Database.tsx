@@ -1,4 +1,5 @@
 import './Database.scss';
+import OpenAccess from '../../../components/icon/OpenAccess';
 import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import PageTitle from '../../../components/utils/PageTitle';
@@ -65,13 +66,7 @@ const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupPr
                             <AnimatedPaper className="database-entry-content">
                                 <div className="database-entry-content-inner" style={getImage(entry)}>
                                     <span className="database-entry-text">{getName(entry, language)}</span>
-                                    {entry.oa ? (
-                                        <img
-                                            className="database-entry-oa"
-                                            src="/icons/open_access.svg"
-                                            alt="Open access icon"
-                                        />
-                                    ) : null}
+                                    {entry.oa ? <OpenAccess className="database-entry-oa" /> : null}
                                 </div>
                             </AnimatedPaper>
                         </a>

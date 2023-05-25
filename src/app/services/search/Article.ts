@@ -1,9 +1,11 @@
 import { createQuery, environment, json, throwIfNotOk } from '../Environment';
 import { getToken } from '../user/Session';
+import type { ArticleLinksDataType } from '../../shared/types/data.types';
 import type { ArticleRetrieveItemDataType } from '../../shared/types/data.types';
 import type { ArticleResultDataType } from '../../shared/types/data.types';
 import type { ArticleRetrieveDataType } from '../../shared/types/data.types';
 import type { ArticleDataType } from '../../shared/types/data.types';
+import type { Url } from '../../shared/types/types';
 import type { FacetEntry } from '../../shared/types/types';
 import type { Institute } from '../../shared/types/types';
 
@@ -162,6 +164,7 @@ export const article = async (
 export class ArticleContentGetter {
     private readonly initial: ArticleResultDataType;
     private readonly retrieve: ArticleRetrieveDataType | null;
+    private readonly HAL_REGEX = /https?:\/\/(?:www\.)?(hal|tel)(shs)?(-.*)?\.(.*)\.(.*)/;
     constructor(initial: ArticleResultDataType, retrieve: ArticleRetrieveDataType | null) {
         this.initial = initial;
         this.retrieve = retrieve;
@@ -237,6 +240,137 @@ export class ArticleContentGetter {
         return null;
     };
 
+    public getArticleLinks = (): ArticleLinksDataType => {
+        const articleLinks: ArticleLinksDataType = {
+            fullTextLinks: [],
+            pdfLinks: [],
+            urls: [],
+        };
+        if (this.initial.articleLinks) {
+            if (this.initial.articleLinks.fullTextLinks) {
+                this.initial.articleLinks.fullTextLinks.forEach((url) => articleLinks.fullTextLinks.push(url));
+            }
+            if (this.initial.articleLinks.pdfLinks) {
+                this.initial.articleLinks.pdfLinks.forEach((url) => articleLinks.pdfLinks.push(url));
+            }
+            if (this.initial.articleLinks.html) {
+                if (!articleLinks.html) {
+                    articleLinks.html = [];
+                }
+                this.initial.articleLinks.html.forEach((url) => articleLinks.html?.push(url));
+            }
+            if (this.initial.articleLinks.urls) {
+                this.initial.articleLinks.urls.forEach((url) => articleLinks.urls.push(url));
+            }
+        }
+        if (this.retrieve) {
+            if (this.retrieve.articleLinks) {
+                if (this.retrieve.articleLinks.fullTextLinks) {
+                    this.retrieve.articleLinks.fullTextLinks.forEach((url) => articleLinks.fullTextLinks.push(url));
+                }
+                if (this.retrieve.articleLinks.pdfLinks) {
+                    this.retrieve.articleLinks.pdfLinks.forEach((url) => articleLinks.pdfLinks.push(url));
+                }
+                if (this.retrieve.articleLinks.html) {
+                    if (!articleLinks.html) {
+                        articleLinks.html = [];
+                    }
+                    this.retrieve.articleLinks.html.forEach((url) => articleLinks.html?.push(url));
+                }
+                if (this.retrieve.articleLinks.urls) {
+                    this.retrieve.articleLinks.urls.forEach((url) => articleLinks.urls.push(url));
+                }
+            }
+        }
+        return articleLinks;
+    };
+
+    public getHref = (): Url | null => {
+        const articleLinks = this.getArticleLinks();
+        let openAccess = null;
+        const fullText = articleLinks.fullTextLinks.find((d) => /lien\(s\) texte intégral/i.test(d.name));
+        const unpaywall = articleLinks.urls.find((d) => /unpaywalleds/i.test(d.name));
+        if (!unpaywall) {
+            openAccess = articleLinks.fullTextLinks.find((d) => /accès en ligne en open access/i.test(d.name));
+        }
+        const accessUrl = articleLinks.urls.find((d) => /access url|online access/i.test(d.name));
+        const availability = articleLinks.urls.find((d) => /availability/i.test(d.name));
+        const pdf = articleLinks.pdfLinks.find((d) => !!d.url);
+        const html = articleLinks.html ? ({ url: `data:${articleLinks.html}` } as Url) : null;
+
+        return openAccess || unpaywall || fullText || pdf || accessUrl || availability || html;
+    };
+
+    public guessSid(url: string) {
+        if (url.startsWith('http://arxiv.org')) {
+            return 'arxiv';
+        }
+
+        if (url.startsWith('https://doaj.org')) {
+            return 'doaj';
+        }
+
+        if (this.HAL_REGEX.test(url)) {
+            return 'hal';
+        }
+
+        return null;
+    }
+
+    public proxify = (urlObj: Url | null, domain?: string, database = false, isLogged = false) => {
+        if (!urlObj) {
+            return null;
+        }
+        let { url } = urlObj;
+        const { name } = urlObj;
+        let sid = this.guessSid(url);
+
+        if (database) {
+            sid = 'bdd';
+        }
+
+        if (!sid) {
+            if (/open access/i.test(name)) {
+                sid = 'oa';
+            } else {
+                return url;
+            }
+        }
+
+        let path = 'oa';
+        if (database && !isLogged) {
+            path = 'oa_database';
+        }
+
+        url = encodeURI(url);
+        if (url.includes('ebsco/oa')) {
+            return url;
+        }
+        return `${environment.host}/${path}?url=${url}&sid=${sid}&domaine=${domain}&doi=${this.getDOI()}`;
+    };
+
+    public isOpenAccess = (): boolean => {
+        if (this.initial.articleLinks) {
+            if (this.initial.articleLinks.urls && this.initial.articleLinks.urls.length > 0) {
+                const openAccess = !this.initial.articleLinks.urls[0].url.includes('bib.cnrs.fr');
+                if (openAccess) {
+                    return true;
+                }
+            }
+        }
+        if (this.retrieve) {
+            if (this.retrieve.articleLinks) {
+                if (this.retrieve.articleLinks.urls && this.retrieve.articleLinks.urls.length > 0) {
+                    const openAccess = !this.retrieve.articleLinks.urls[0].url.includes('bib.cnrs.fr');
+                    if (openAccess) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return this.isOpenAccess2();
+    };
+
     public getAN = (): string => {
         return this.initial.an;
     };
@@ -268,6 +402,21 @@ export class ArticleContentGetter {
             return toReturn;
         }
         return [];
+    };
+
+    private isOpenAccess2 = (): boolean => {
+        const href = this.getHref();
+        if (!href) {
+            return false;
+        }
+        const articleLinks = this.getArticleLinks();
+        let openAccess = null;
+        const unpaywall = articleLinks.urls.find((d) => /unpaywalleds/i.test(d.name));
+        if (!unpaywall) {
+            openAccess = articleLinks.fullTextLinks.find((d) => /accès en ligne en open access/i.test(d.name));
+        }
+        const hrefWithIcon = [openAccess, unpaywall].filter(Boolean);
+        return hrefWithIcon.includes(href) || this.HAL_REGEX.test(href.url);
     };
 
     private getEntry = (name: string, label?: string): ArticleRetrieveItemDataType[] | null => {

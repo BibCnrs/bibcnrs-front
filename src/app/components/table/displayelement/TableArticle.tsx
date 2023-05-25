@@ -1,7 +1,9 @@
 import './scss/TableList.scss';
+import './scss/TableArticle.scss';
 import { retrieve as retrieveFn } from '../../../services/search/Article';
 import { ArticleContentGetter } from '../../../services/search/Article';
 import { useTranslator } from '../../../shared/locales/I18N';
+import OpenAccess from '../../icon/OpenAccess';
 import OpenablePaper from '../../paper/openable/OpenablePaper';
 import { BibContext } from '../../provider/ContextProvider';
 import SkeletonEntry from '../../skeleton/SkeletonEntry';
@@ -74,19 +76,28 @@ const Article = ({
     onChange: (isOpen: boolean) => void;
 }) => {
     const t = useTranslator();
-
+    const { search } = useContext(BibContext);
     const authors = getter.getAuthors();
     const doi = getter.getDOI();
     const source = getter.getSource();
+    const href = getter.proxify(getter.getHref(), search.article.domain);
+    const openAccess = getter.isOpenAccess();
     return (
         <OpenablePaper
             onChange={onChange}
             defaultOpenState={open}
             Title={
-                // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                <a className="table-list-title link" href={'#'} target="_blank" rel="noreferrer noopener nofollow">
-                    {getter.getTitle()} [{getter.getType()}]
-                </a>
+                <>
+                    <a
+                        className="table-list-title link"
+                        href={href ? href : '#'}
+                        target="_blank"
+                        rel="noreferrer noopener nofollow"
+                    >
+                        {getter.getTitle()} [{getter.getType()}]
+                    </a>
+                    {openAccess ? <OpenAccess className="table-article-oa" /> : null}
+                </>
             }
             SmallBody={
                 <div className="table-list-body">
@@ -104,16 +115,43 @@ const Article = ({
                     <SkeletonEntry animation="pulse" height={450} />
                 ) : (
                     <dl className="table-list-body">
-                        {getter.getAllItems().map((entry) => (
-                            <span key={entry.label}>
-                                <dt>{entry.label}</dt>
-                                <dd>
-                                    {entry.content.map((value) => (
-                                        <div key={value}>{value}</div>
-                                    ))}
-                                </dd>
-                            </span>
-                        ))}
+                        {getter.getAllItems().map((entry) => {
+                            if (entry.label === 'Access URL') {
+                                return (
+                                    <span key={entry.label}>
+                                        <dt>{entry.label}</dt>
+                                        <dd>
+                                            {entry.content.map((value) => {
+                                                const link = getter.proxify(
+                                                    { url: value, name: value },
+                                                    search.article.domain,
+                                                );
+                                                if (!link) {
+                                                    return null;
+                                                }
+                                                return (
+                                                    <div key={value}>
+                                                        <a className="link" href={link}>
+                                                            {value}
+                                                        </a>
+                                                    </div>
+                                                );
+                                            })}
+                                        </dd>
+                                    </span>
+                                );
+                            }
+                            return (
+                                <span key={entry.label}>
+                                    <dt>{entry.label}</dt>
+                                    <dd>
+                                        {entry.content.map((value) => (
+                                            <div key={value}>{value}</div>
+                                        ))}
+                                    </dd>
+                                </span>
+                            );
+                        })}
                     </dl>
                 )
             }
