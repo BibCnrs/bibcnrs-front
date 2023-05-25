@@ -247,37 +247,37 @@ export class ArticleContentGetter {
             urls: [],
         };
         if (this.initial.articleLinks) {
-            if (this.initial.articleLinks.fullTextLinks) {
+            if (Array.isArray(this.initial.articleLinks.fullTextLinks)) {
                 this.initial.articleLinks.fullTextLinks.forEach((url) => articleLinks.fullTextLinks.push(url));
             }
-            if (this.initial.articleLinks.pdfLinks) {
+            if (Array.isArray(this.initial.articleLinks.pdfLinks)) {
                 this.initial.articleLinks.pdfLinks.forEach((url) => articleLinks.pdfLinks.push(url));
             }
-            if (this.initial.articleLinks.html) {
-                if (!articleLinks.html) {
+            if (Array.isArray(this.initial.articleLinks.html)) {
+                if (!Array.isArray(articleLinks.html)) {
                     articleLinks.html = [];
                 }
                 this.initial.articleLinks.html.forEach((url) => articleLinks.html?.push(url));
             }
-            if (this.initial.articleLinks.urls) {
+            if (Array.isArray(this.initial.articleLinks.urls)) {
                 this.initial.articleLinks.urls.forEach((url) => articleLinks.urls.push(url));
             }
         }
         if (this.retrieve) {
             if (this.retrieve.articleLinks) {
-                if (this.retrieve.articleLinks.fullTextLinks) {
+                if (Array.isArray(this.retrieve.articleLinks.fullTextLinks)) {
                     this.retrieve.articleLinks.fullTextLinks.forEach((url) => articleLinks.fullTextLinks.push(url));
                 }
-                if (this.retrieve.articleLinks.pdfLinks) {
+                if (Array.isArray(this.retrieve.articleLinks.pdfLinks)) {
                     this.retrieve.articleLinks.pdfLinks.forEach((url) => articleLinks.pdfLinks.push(url));
                 }
-                if (this.retrieve.articleLinks.html) {
-                    if (!articleLinks.html) {
+                if (Array.isArray(this.retrieve.articleLinks.html)) {
+                    if (!Array.isArray(articleLinks.html)) {
                         articleLinks.html = [];
                     }
                     this.retrieve.articleLinks.html.forEach((url) => articleLinks.html?.push(url));
                 }
-                if (this.retrieve.articleLinks.urls) {
+                if (Array.isArray(this.retrieve.articleLinks.urls)) {
                     this.retrieve.articleLinks.urls.forEach((url) => articleLinks.urls.push(url));
                 }
             }
