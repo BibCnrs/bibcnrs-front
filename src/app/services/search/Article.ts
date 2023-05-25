@@ -346,7 +346,7 @@ export class ArticleContentGetter {
         if (url.includes('ebsco/oa')) {
             return url;
         }
-        return `${environment.host}/${path}?url=${url}&sid=${sid}&domaine=${domain}&doi=${this.getDOI()}`;
+        return `${environment.host}/ebsco/${path}?url=${url}&sid=${sid}&domaine=${domain}&doi=${this.getDOI()}`;
     };
 
     public isOpenAccess = (): boolean => {
