@@ -93,8 +93,8 @@ export type ResourcesDataType = ResourceDataType[];
 export type SessionUserDataType = {
     id?: number;
     username: string;
-    domains: any[]; // TODO add type
-    favorite_domain?: string;
+    domains: Institute[];
+    favorite_domain?: Institute;
     favouriteResources?: any[]; // TODO add type
     origin?: string;
     token: string;
@@ -196,24 +196,24 @@ export type ArticleLinksDataType = {
     urls: Url[];
 };
 
-export type ArticleRetrieveItemValueObjectDataType = {
+export type RetrieveItemValueObjectDataType = {
     term: string;
     field: string;
-    value: ArticleRetrieveItemValueObjectDataType[] | string[] | string;
+    value: RetrieveItemValueObjectDataType[] | string[] | string;
 };
 
-export type ArticleRetrieveItemValueDataType = Array<
-    ArticleRetrieveItemValueObjectDataType | ArticleRetrieveItemValueObjectDataType[] | string[] | string
+export type RetrieveItemValueDataType = Array<
+    RetrieveItemValueObjectDataType | RetrieveItemValueObjectDataType[] | string[] | string
 >;
 
-export type ArticleRetrieveItemDataType = {
+export type RetrieveItemDataType = {
     name: string;
     label: string;
-    value: ArticleRetrieveItemValueDataType[];
+    value: RetrieveItemValueDataType[];
 };
 
 export type ArticleRetrieveDataType = {
-    items: ArticleRetrieveItemDataType[];
+    items: RetrieveItemDataType[];
     dbLabel: string;
     dbId: string;
     articleLinks: ArticleLinksDataType;
@@ -243,16 +243,16 @@ export type ArticleResultDataType = {
     issn?: string[] | null;
 };
 
-export type ArticleFacetValueDataType = {
+export type FacetValueDataType = {
     Value: string;
     Count: number;
     AddAction: string;
 };
 
-export type ArticleFacetDataType = {
+export type FacetDataType = {
     Id: FacetsKeyDataType;
     Label: string;
-    AvailableFacetValues: ArticleFacetValueDataType[];
+    AvailableFacetValues: FacetValueDataType[];
 };
 
 export type ArticleDataType = {
@@ -260,11 +260,58 @@ export type ArticleDataType = {
     totalHits: number;
     currentPage: 1;
     maxPage: number;
-    facets: ArticleFacetDataType[];
+    facets: FacetDataType[];
     activeFacets: any;
     dateRange: {
         min: number;
         max: number;
     };
     unparsed: any;
+};
+
+export type PublicationResultDataType = {
+    id: number;
+    publicationId: string;
+    issnOnline: string[];
+    issnPrint: string[];
+    isbnOnline: string[];
+    isbnPrint: string[];
+    type: string;
+    title: string;
+    isDiamond: boolean;
+    fullTextHoldings: Array<
+        Url & {
+            isCurrent: boolean;
+            coverage: Array<{
+                start: {
+                    month: string;
+                    day: string;
+                    year: string;
+                };
+                end: {
+                    month: string;
+                    day: string;
+                    year: string;
+                };
+            }>;
+        }
+    >;
+};
+
+export type PublicationDataType = {
+    results: PublicationResultDataType[];
+    totalHits: number;
+    currentPage: number;
+    maxPage: number;
+    facets: FacetDataType[];
+    activeFacets: any;
+    dateRange: {
+        min: number;
+        max: number;
+    };
+    unparsed: any;
+};
+
+export type PublicationRetrieveDataType = {
+    items: RetrieveItemDataType[];
 };

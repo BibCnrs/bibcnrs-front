@@ -72,7 +72,7 @@ export type Common = {
         };
         nav: {
             article: string;
-            journal: string;
+            publication: string;
             database: string;
             researchData: string;
         };
@@ -141,7 +141,7 @@ export type Common = {
             title: string;
             searchBar: string;
         };
-        journal: {
+        publication: {
             title: string;
             searchBar: string;
         };

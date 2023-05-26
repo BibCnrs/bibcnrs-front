@@ -5,11 +5,13 @@ export const environment = {
         resources: '/ebsco/resources',
         search: {
             article: '/ebsco/{domain}/article/search',
+            publication: '/ebsco/{domain}/publication/search',
             database: '/ebsco/databases',
             metadore: '/ebsco/metadore/search',
         },
         retrieve: {
             article: '/ebsco/{domain}/article/retrieve',
+            publication: '/ebsco/{domain}/publication/retrieve',
         },
         account: {
             janus: '/ebsco/login_renater/',

@@ -7,7 +7,6 @@ import TableArticle from '../../../components/table/displayelement/TableArticle'
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { article } from '../../../services/search/Article';
-import { getDomains, getFavoriteDomain } from '../../../services/user/Session';
 import { useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import {
@@ -26,7 +25,6 @@ import type { ArticleDataType } from '../../../shared/types/data.types';
 import type { FacetProps } from '../../../shared/types/props.types';
 import type { TableArgsProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
-import type { Institute } from '../../../shared/types/types';
 
 const Article = () => {
     const navigate = useNavigate();
@@ -42,7 +40,7 @@ const Article = () => {
         queryKey: [
             'article',
             search.query,
-            search.article.domain,
+            search.domain,
             search.article.orderBy,
             search.article.limiters,
             search.article.facets,
@@ -52,23 +50,17 @@ const Article = () => {
         queryFn: async () => {
             if (
                 (!search.query && search.query !== '') ||
-                !search.article.domain ||
+                !search.domain ||
                 !search.article.table.perPage ||
                 !search.article.table.page
             ) {
                 return null;
             }
-            return article(
-                search.article.domain,
-                search.query,
-                search.article.table.page,
-                search.article.table.perPage,
-                {
-                    orderBy: search.article.orderBy,
-                    limiters: search.article.limiters,
-                    facets: search.article.facets,
-                },
-            );
+            return article(search.domain, search.query, search.article.table.page, search.article.table.perPage, {
+                orderBy: search.article.orderBy,
+                limiters: search.article.limiters,
+                facets: search.article.facets,
+            });
         },
         keepPreviousData: true,
         staleTime: 3600000, // 1 hour of cache
@@ -80,7 +72,6 @@ const Article = () => {
             ...search,
             query: value,
             article: {
-                domain: search.article.domain,
                 orderBy: search.article.orderBy,
                 table: {
                     page: 1,
@@ -127,7 +118,6 @@ const Article = () => {
             ...search,
             article: {
                 ...BibContextArticleDefault,
-                domain: search.article.domain,
                 orderBy: search.article.orderBy,
             },
         });
@@ -147,14 +137,6 @@ const Article = () => {
     useEffect(() => {
         if (first) {
             const queryValue = getString<undefined>(query, 'q', search.query);
-            let domain: string | undefined = getFavoriteDomain();
-            if (domain === undefined) {
-                const domains = getDomains();
-                if (domains === undefined || domains.length === 0) {
-                    throw new Error(`No domain found for this user: ${getFavoriteDomain()}, ${domains}`);
-                }
-                domain = domains[0];
-            }
             setSearch({
                 ...search,
                 query: queryValue,
@@ -162,7 +144,6 @@ const Article = () => {
                     ...search.article,
                     limiters: getJSON(query, 'limiters', search.article.limiters),
                     facets: getJSON(query, 'facets', search.article.facets),
-                    domain: domain as Institute,
                     orderBy: getString(query, 'orderBy', search.article.orderBy) as OrderByType,
                     table: {
                         page: getNumber(query, 'page', search.article.table.page),

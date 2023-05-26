@@ -60,7 +60,7 @@ const fr: Common = {
         nav: {
             article: 'Article',
             database: 'Base de données',
-            journal: 'Revue, ouvrage',
+            publication: 'Revue, ouvrage',
             researchData: 'Données de recherche',
         },
         table: {
@@ -149,7 +149,7 @@ Cordialement`,
             title: 'Base de données',
             oa: 'Accès Ouvert',
         },
-        journal: {
+        publication: {
             title: 'Revue, ouvrage',
             searchBar: 'Rechercher des titres de revues, de livres...',
         },

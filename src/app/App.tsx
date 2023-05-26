@@ -12,7 +12,7 @@ import Error404 from './pages/errors/Error404';
 import Root from './pages/Root';
 import Article from './pages/search/article/Article';
 import Database from './pages/search/database/Database';
-import Journal from './pages/search/journal/Journal';
+import Publication from './pages/search/publication/Publication';
 import ResearchData from './pages/search/researchdata/ResearchData';
 import History from './pages/user/history/History';
 import Licences from './pages/user/licences/Licences';
@@ -63,7 +63,7 @@ const App = () => {
                             </ProtectedRoute>
                         }
                     />
-                    <Route path={RouteJournal} element={<Journal />} />
+                    <Route path={RouteJournal} element={<Publication />} />
                     <Route path={RouteDatabase} element={<Database />} />
                     <Route path={RouteResearchData} element={<ResearchData />} />
                     <Route path={RouteFaq} element={<Faq />} />

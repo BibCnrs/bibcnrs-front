@@ -10,7 +10,7 @@ const Routes = {
     root: '/',
     /* Search engine route */
     article: '/article',
-    journal: '/journal',
+    journal: '/publication',
     database: '/database',
     researchData: '/research-data',
     /* Information route */

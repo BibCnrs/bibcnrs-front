@@ -1,5 +1,6 @@
 import type { TableArgsProps } from './props.types';
 import type { ArticleParam } from '../../services/search/Article';
+import type { PublicationParam } from '../../services/search/Publication';
 import type { TFunction as TF, TypeOptions } from 'i18next';
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -20,24 +21,15 @@ export type SupportedLanguages = SupportedLanguage[];
 
 export type ThemeType = 'dark' | 'light';
 
-// eslint-disable-next-line no-shadow
-export enum Institute {
-    insb = 'insb',
-    inc = 'inc',
-    inee = 'inee',
-    inshs = 'inshs',
-    insis = 'insis',
-    insmi = 'insmi',
-    inp = 'inp',
-    ins2i = 'ins2i',
-    in2p3 = 'in2p3',
-    insu = 'insu',
-}
+export type Institute = 'in2p3' | 'inc' | 'inee' | 'inp' | 'ins2i' | 'insb' | 'inshs' | 'insis' | 'insmi' | 'insu';
 
 export type SearchContextType = {
     query: string | undefined;
+    domain: Institute | undefined;
     article: ArticleParam & {
-        domain: Institute | undefined;
+        table: TableArgsProps;
+    };
+    publication: PublicationParam & {
         table: TableArgsProps;
     };
     metadore: {

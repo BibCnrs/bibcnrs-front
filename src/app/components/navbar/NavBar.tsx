@@ -61,7 +61,7 @@ const NavBar = () => {
                     onClick={journal.handler}
                     href={journal.href}
                 >
-                    {t('components.nav.journal')}
+                    {t('components.nav.publication')}
                 </Button>
                 <Button
                     className="nav-button"

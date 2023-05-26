@@ -1,5 +1,6 @@
 import { createQuery, environment } from '../Environment';
 import type { SessionUserDataType } from '../../shared/types/data.types';
+import type { Institute } from '../../shared/types/types';
 
 class Session {
     private session: Storage;
@@ -33,7 +34,7 @@ class Session {
         return 'null';
     };
 
-    getFavoriteDomain = (): string | undefined => {
+    getFavoriteDomain = (): Institute | undefined => {
         const user = this.getUser();
         if (user) {
             return user.favorite_domain;
@@ -41,10 +42,10 @@ class Session {
         return undefined;
     };
 
-    getDomains = (): string[] => {
+    getDomains = (): Institute[] => {
         const user = this.getUser();
         if (user) {
-            return user.domains as string[];
+            return user.domains;
         }
         return [];
     };

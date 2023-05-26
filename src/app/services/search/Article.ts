@@ -1,7 +1,8 @@
+import { convertFacet, convertPayload } from '../../shared/typeConvertion';
 import { createQuery, environment, json, throwIfNotOk } from '../Environment';
 import { getToken } from '../user/Session';
 import type { ArticleLinksDataType } from '../../shared/types/data.types';
-import type { ArticleRetrieveItemDataType } from '../../shared/types/data.types';
+import type { RetrieveItemDataType } from '../../shared/types/data.types';
 import type { ArticleResultDataType } from '../../shared/types/data.types';
 import type { ArticleRetrieveDataType } from '../../shared/types/data.types';
 import type { ArticleDataType } from '../../shared/types/data.types';
@@ -101,10 +102,6 @@ export const article = async (
         }
     }
 
-    const convertFacet = (array: FacetEntry[]): string[] => {
-        return array.map<string>((value) => value.name);
-    };
-
     if (param.facets) {
         payload.activeFacets = {};
         if (param.facets.source) {
@@ -133,17 +130,9 @@ export const article = async (
         }
     }
 
-    // Convert payload to a valid format
-    const queryPayLoad: any = {
-        ...payload,
-        queries: JSON.stringify(payload.queries),
-    };
-    if (payload.activeFacets) {
-        queryPayLoad.activeFacets = JSON.stringify(payload.activeFacets);
-    }
     // Call api
     const response: Response = await fetch(
-        createQuery(environment.get.search.article.replace('{domain}', domain), queryPayLoad),
+        createQuery(environment.get.search.article.replace('{domain}', domain), convertPayload(payload)),
         {
             credentials: 'include',
             headers: {
@@ -402,7 +391,7 @@ export class ArticleContentGetter {
         return hrefWithIcon.includes(href) || HAL_REGEX.test(href.url);
     };
 
-    private getEntry = (name: string, label?: string): ArticleRetrieveItemDataType[] | null => {
+    private getEntry = (name: string, label?: string): RetrieveItemDataType[] | null => {
         if (!this.retrieve) {
             return null;
         }
@@ -456,7 +445,7 @@ export class ArticleContentGetter {
         return undefined;
     };
 
-    private getString = (retrieveObj: ArticleRetrieveItemDataType[] | null): string | undefined => {
+    private getString = (retrieveObj: RetrieveItemDataType[] | null): string | undefined => {
         if (retrieveObj && retrieveObj.length > 0) {
             const retrieve = this.get(retrieveObj[0].value);
             if (retrieve) {
@@ -469,7 +458,7 @@ export class ArticleContentGetter {
         return undefined;
     };
 
-    private getStringArray = (retrieveObj: ArticleRetrieveItemDataType[] | null): string[] | undefined => {
+    private getStringArray = (retrieveObj: RetrieveItemDataType[] | null): string[] | undefined => {
         if (retrieveObj && retrieveObj.length > 0) {
             const retrieve = this.get(retrieveObj[0].value);
             if (retrieve) {

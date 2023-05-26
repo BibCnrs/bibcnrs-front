@@ -1,3 +1,4 @@
+import { getDomains, getFavoriteDomain } from '../../services/user/Session';
 import { createContext, useEffect, useState } from 'react';
 import type { ContextProviderProps } from '../../shared/types/props.types';
 import type { SearchContextType } from '../../shared/types/types';
@@ -31,9 +32,18 @@ export const BibContext = createContext<BibContextType>(null as any);
 
 export const BibContextArticleDefault: SearchContextType['article'] = {
     orderBy: 'relevance',
-    domain: undefined,
     limiters: {
         fullText: true,
+    },
+    table: {
+        page: 1,
+        perPage: 25,
+    },
+};
+
+export const BibContextPublicationDefault: SearchContextType['publication'] = {
+    limiters: {
+        reviewed: false,
     },
     table: {
         page: 1,
@@ -50,7 +60,9 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
     const [theme, setTheme] = useState<ThemeType>(getStorageTheme());
     const [search, setSearch] = useState<SearchContextType>({
         query: undefined,
+        domain: undefined,
         article: BibContextArticleDefault,
+        publication: BibContextPublicationDefault,
         metadore: {
             field: null,
             table: {
@@ -63,6 +75,23 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
     useEffect(() => {
         setStorageTheme(theme);
     }, [theme]);
+
+    useEffect(() => {
+        if (login && search.domain === undefined) {
+            let domain = getFavoriteDomain();
+            if (domain === undefined) {
+                const domains = getDomains();
+                if (domains === undefined || domains.length === 0) {
+                    throw new Error(`No domain found for this user: ${getFavoriteDomain()}, ${domains}`);
+                }
+                domain = domains[0];
+            }
+            setSearch({
+                ...search,
+                domain,
+            });
+        }
+    }, [login, search]);
 
     return (
         <BibContext.Provider

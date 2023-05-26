@@ -60,7 +60,7 @@ const en: Common = {
         nav: {
             article: 'Article',
             database: 'Database',
-            journal: 'Journal, book',
+            publication: 'Journal, book',
             researchData: 'Research data',
         },
         table: {
@@ -148,7 +148,7 @@ Sincerely`,
             title: 'Database',
             oa: 'Open Access',
         },
-        journal: {
+        publication: {
             title: 'Journal, book',
             searchBar: 'Search journal titles, book titles...',
         },

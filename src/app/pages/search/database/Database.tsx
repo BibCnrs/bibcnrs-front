@@ -114,7 +114,7 @@ const Database = () => {
 
     return (
         <div id="app">
-            <PageTitle page={'database'} t={t} />
+            <PageTitle page="database" t={t} />
             {login ? (
                 <FormControlLabel
                     id="database-oa"
