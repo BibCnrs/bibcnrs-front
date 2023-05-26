@@ -7,6 +7,7 @@ import createTheme from '@mui/material/styles/createTheme';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import { useContext, useEffect } from 'react';
 import type { LocalizedThemeProviderProps } from '../../shared/types/props.types';
+import type { InstituteLowerCase } from '../../shared/types/types';
 import type { Institute, ThemeType } from '../../shared/types/types';
 import type { Property } from 'csstype';
 
@@ -74,7 +75,7 @@ export const colors = {
  * @returns - The color of the institute
  */
 export const getInstituteColor = (institute: Institute | string): Property.Color => {
-    return colors.cnrs.institute[institute.toLowerCase() as Institute];
+    return colors.cnrs.institute[institute.toLowerCase() as InstituteLowerCase];
 };
 
 /**

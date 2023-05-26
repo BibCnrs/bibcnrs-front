@@ -47,7 +47,6 @@ const Publication = () => {
         queryFn: async () => {
             if (
                 (!search.query && search.query !== '') ||
-                !search.domain ||
                 !search.publication.table.perPage ||
                 !search.publication.table.page
             ) {

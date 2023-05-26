@@ -26,7 +26,7 @@ export type PublicationParam = {
 };
 
 export const publication = async (
-    domain: Institute,
+    domain: Institute | undefined,
     query: string,
     page: number,
     perPage: number,
@@ -69,13 +69,15 @@ export const publication = async (
 
     // Call api
     const response: Response = await fetch(
-        createQuery(environment.get.search.publication.replace('{domain}', domain), convertPayload(payload)),
-        {
-            credentials: 'include',
-            headers: {
-                Authorization: `Bearer ${getToken()}`,
-            },
-        },
+        createQuery(environment.get.search.publication.replace('{domain}', domain ?? 'INSHS'), convertPayload(payload)),
+        domain
+            ? {
+                  credentials: 'include',
+                  headers: {
+                      Authorization: `Bearer ${getToken()}`,
+                  },
+              }
+            : undefined,
     );
     throwIfNotOk(response);
     return json<PublicationDataType>(response);

@@ -63,14 +63,7 @@ const App = () => {
                             </ProtectedRoute>
                         }
                     />
-                    <Route
-                        path={RoutePublication}
-                        element={
-                            <ProtectedRoute>
-                                <Publication />
-                            </ProtectedRoute>
-                        }
-                    />
+                    <Route path={RoutePublication} element={<Publication />} />
                     <Route path={RouteDatabase} element={<Database />} />
                     <Route path={RouteResearchData} element={<ResearchData />} />
                     <Route path={RouteFaq} element={<Faq />} />
