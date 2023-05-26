@@ -10,7 +10,7 @@ const Routes = {
     root: '/',
     /* Search engine route */
     article: '/article',
-    journal: '/publication',
+    publication: '/publication',
     database: '/database',
     researchData: '/research-data',
     /* Information route */
@@ -81,7 +81,7 @@ export const getJSON = (query: URLSearchParams, key: string, fallback: any | und
 
 export const RouteRoot = Routes.root;
 export const RouteArticle = Routes.article;
-export const RouteJournal = Routes.journal;
+export const RoutePublication = Routes.publication;
 export const RouteDatabase = Routes.database;
 export const RouteResearchData = Routes.researchData;
 export const RouteFaq = Routes.faq;

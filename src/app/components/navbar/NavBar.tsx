@@ -3,7 +3,7 @@ import { useTranslator } from '../../shared/locales/I18N';
 import {
     RouteArticle,
     RouteDatabase,
-    RouteJournal,
+    RoutePublication,
     RouteResearchData,
     RouteRoot,
     useClickHandler,
@@ -29,17 +29,17 @@ const NavBar = () => {
 
     // Button action handler
     const article = useClickHandler(RouteArticle);
-    const journal = useClickHandler(RouteJournal);
+    const publication = useClickHandler(RoutePublication);
     const database = useClickHandler(RouteDatabase);
     const researchData = useClickHandler(RouteResearchData);
 
     // Current route
     const articleMatch = !!useIsMatching(RouteArticle);
-    const journalMatch = !!useIsMatching(RouteJournal);
+    const publicationMatch = !!useIsMatching(RoutePublication);
     const databaseMatch = !!useIsMatching(RouteDatabase);
     const researchDataMatch = !!useIsMatching(RouteResearchData);
     const rootMatch = !!useIsMatching(RouteRoot);
-    const noneMatch = !articleMatch && !journalMatch && !databaseMatch && !researchDataMatch;
+    const noneMatch = !articleMatch && !publicationMatch && !databaseMatch && !researchDataMatch;
     const disable = noneMatch && !rootMatch;
 
     return (
@@ -56,10 +56,10 @@ const NavBar = () => {
                 </Button>
                 <Button
                     className="nav-button"
-                    id={journalMatch ? getActiveDarkButtonId() : ''}
-                    disabled={journalMatch}
-                    onClick={journal.handler}
-                    href={journal.href}
+                    id={publicationMatch ? getActiveDarkButtonId() : ''}
+                    disabled={publicationMatch}
+                    onClick={publication.handler}
+                    href={publication.href}
                 >
                     {t('components.nav.publication')}
                 </Button>

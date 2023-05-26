@@ -25,7 +25,7 @@ import {
     RouteDatabase,
     RouteFaq,
     RouteHistory,
-    RouteJournal,
+    RoutePublication,
     RouteLegal,
     RouteLicences,
     RouteNews,
@@ -63,7 +63,7 @@ const App = () => {
                             </ProtectedRoute>
                         }
                     />
-                    <Route path={RouteJournal} element={<Publication />} />
+                    <Route path={RoutePublication} element={<Publication />} />
                     <Route path={RouteDatabase} element={<Database />} />
                     <Route path={RouteResearchData} element={<ResearchData />} />
                     <Route path={RouteFaq} element={<Faq />} />
