@@ -48,7 +48,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
     const [legacyError, setLegacyError] = useState(false);
 
     // setLogin Context function used to update interface
-    const { setLogin } = useContext(BibContext);
+    const { setLogin, setAskLogin } = useContext(BibContext);
 
     /**
      * Function used to handle close
@@ -56,7 +56,9 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
     const handleClose = () => {
         setLegacy(false);
         setLegacyError(false);
-        onClose();
+        if (onClose) {
+            onClose();
+        }
     };
 
     /**
@@ -81,6 +83,7 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
         loginToLegacy(data).then((login) => {
             if (login) {
                 setLogin(true);
+                setAskLogin(false);
                 setLegacyError(false);
                 return;
             }

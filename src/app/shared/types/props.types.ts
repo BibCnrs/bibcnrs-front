@@ -48,6 +48,8 @@ export type ExceptedErrorProps = HaveReactChildren;
 
 export type ContextProviderProps = HaveReactChildren;
 
+export type AuthenticationProviderProps = HaveReactChildren;
+
 export type PaginationComponentProps = PropsWithoutRef<{
     extend?: ReactNode;
     total: number;
@@ -80,6 +82,7 @@ export type OpenablePaperProps = PropsWithoutRef<{
     border?: boolean;
     defaultOpenState?: boolean;
     onChange?: (isOpen: boolean) => void;
+    onOpen?: (isOpen: boolean) => void;
 }>;
 
 export type DatabaseDisplayGroupProps = PropsWithoutRef<{
@@ -99,7 +102,7 @@ export type AlertPaperProps = HaveReactChildren;
 
 export type AuthenticationProps = PropsWithoutRef<{
     open: boolean;
-    onClose: () => void;
+    onClose?: () => void;
 }>;
 
 export type ProtectedRouteProps = HaveReactChildren;

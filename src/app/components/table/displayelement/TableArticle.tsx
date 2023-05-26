@@ -1,5 +1,4 @@
 import './scss/TableList.scss';
-import './scss/TableArticle.scss';
 import { retrieve as retrieveFn } from '../../../services/search/Article';
 import { ArticleContentGetter } from '../../../services/search/Article';
 import { useTranslator } from '../../../shared/locales/I18N';

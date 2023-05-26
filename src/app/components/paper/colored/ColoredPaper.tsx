@@ -45,6 +45,7 @@ const getBoxShadow = (elevation: number, color: string): Property.BoxShadow => {
  *                      - Default: false
  * @param id          - HTML ID of the Paper component
  * @param className   - HTML Class of the paper component
+ * @param onClick     - Event call when a click in perform anywhere on the paper component
  * @param onMouseOver - Event call when the cursor is hover the paper component
  * @param onMouseOut  - Event call when the cursor is going out of the paper component
  * @param children    - Paper content
@@ -55,6 +56,7 @@ const ColoredPaper = ({
     border = false,
     id,
     className,
+    onClick,
     onMouseOver,
     onMouseOut,
     children,
@@ -77,6 +79,7 @@ const ColoredPaper = ({
                 boxShadow: getBoxShadow(elevation, convertedColor),
                 ...sx,
             }}
+            onClick={onClick}
             onMouseOver={onMouseOver}
             onMouseOut={onMouseOut}
         >

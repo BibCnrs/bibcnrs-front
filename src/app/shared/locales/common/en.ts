@@ -83,6 +83,10 @@ const en: Common = {
                 languages: 'Language',
                 publisherUrl: 'Publisher URL',
                 noAccess: 'No access for this article',
+                issnOnline: 'eISSN: ',
+                issnPrint: 'pISSN: ',
+                isbnOnline: 'eISBN: ',
+                isbnPrint: 'pISBN: ',
             },
         },
         facet: {
@@ -101,6 +105,7 @@ const en: Common = {
             publisher: 'Publisher',
             provider: 'Content Provider',
             reset: 'Reset your filters',
+            type: 'Type of publication',
         },
         testsnews: {
             common: 'Common',

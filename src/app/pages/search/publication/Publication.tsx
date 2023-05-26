@@ -3,7 +3,7 @@ import Facet from '../../../components/facet/Facet';
 import { BibContext, BibContextPublicationDefault } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import SearchSkeleton from '../../../components/skeleton/SearchSkeleton';
-import TableDebug from '../../../components/table/displayelement/TableDebug';
+import TablePublication from '../../../components/table/displayelement/TablePublication';
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { publication } from '../../../services/search/Publication';
@@ -183,7 +183,7 @@ const Publication = () => {
                 ) : (
                     <Table
                         id="search-content"
-                        DisplayElement={TableDebug}
+                        DisplayElement={TablePublication}
                         results={data?.results}
                         args={search.publication.table}
                         onArgsChange={handleTable}

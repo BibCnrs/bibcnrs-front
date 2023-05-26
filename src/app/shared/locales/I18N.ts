@@ -96,6 +96,10 @@ export type Common = {
                 languages: string;
                 accessNumber: string;
                 dbId: string;
+                issnOnline: string;
+                issnPrint: string;
+                isbnOnline: string;
+                isbnPrint: string;
             };
         };
         facet: {
@@ -114,6 +118,7 @@ export type Common = {
             publisher: string;
             provider: string;
             reset: string;
+            type: string;
         };
         testsnews: {
             common: string;

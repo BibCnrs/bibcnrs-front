@@ -57,6 +57,7 @@ export const BibContextPublicationDefault: SearchContextType['publication'] = {
  */
 const ContextProvider = ({ children }: ContextProviderProps) => {
     const [login, setLogin] = useState<boolean>(false);
+    const [askLogin, setAskLogin] = useState<boolean>(false);
     const [theme, setTheme] = useState<ThemeType>(getStorageTheme());
     const [search, setSearch] = useState<SearchContextType>({
         query: undefined,
@@ -102,6 +103,8 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
                 setTheme,
                 search,
                 setSearch,
+                askLogin,
+                setAskLogin,
             }}
         >
             {children}

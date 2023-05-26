@@ -274,10 +274,10 @@ export type ArticleDataType = {
 export type PublicationResultDataType = {
     id: number;
     publicationId: string;
-    issnOnline: string[];
-    issnPrint: string[];
-    isbnOnline: string[];
-    isbnPrint: string[];
+    issnOnline: string[] | null;
+    issnPrint: string[] | null;
+    isbnOnline: string[] | null;
+    isbnPrint: string[] | null;
     type: string;
     title: string;
     isDiamond: boolean;

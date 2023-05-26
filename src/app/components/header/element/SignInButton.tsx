@@ -1,29 +1,24 @@
 import { useTranslator } from '../../../shared/locales/I18N';
-import Authentication from '../../authentication/Authentication';
+import { BibContext } from '../../provider/ContextProvider';
 import { headerButtonStyle } from '../Header';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
+import { useContext } from 'react';
 
 /**
  * Button component used to sign-in into the application
  */
 const SignInButton = () => {
+    const { setAskLogin } = useContext(BibContext);
     const t = useTranslator();
-    // State used to display the authentication modal
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
+    const handleClick = () => {
+        setAskLogin(true);
     };
 
     return (
         <div className="header-nav">
-            <Button className="header-button" sx={headerButtonStyle} onClick={handleOpen}>
+            <Button className="header-button" sx={headerButtonStyle} onClick={handleClick}>
                 {t('components.header.login')}
             </Button>
-            <Authentication open={open} onClose={handleClose} />
         </div>
     );
 };

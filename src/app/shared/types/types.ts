@@ -52,6 +52,8 @@ export type SearchContextType = {
 export type BibContextType = {
     login: boolean;
     setLogin: Dispatch<SetStateAction<boolean>>;
+    askLogin: boolean;
+    setAskLogin: Dispatch<SetStateAction<boolean>>;
     theme: ThemeType;
     setTheme: Dispatch<SetStateAction<ThemeType>>;
     search: SearchContextType;

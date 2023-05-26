@@ -1,4 +1,5 @@
 import App from './app/App';
+import AuthenticationProvider from './app/components/provider/AuthenticationProvider';
 import ContextProvider from './app/components/provider/ContextProvider';
 import LocalizedThemeProvider from './app/components/provider/LocalizedThemeProvider';
 import ExceptedError from './app/pages/errors/ExceptedError';
@@ -22,7 +23,9 @@ root.render(
                     <LocalizedThemeProvider>
                         <BrowserRouter>
                             <ExceptedError>
-                                <App />
+                                <AuthenticationProvider>
+                                    <App />
+                                </AuthenticationProvider>
                             </ExceptedError>
                         </BrowserRouter>
                     </LocalizedThemeProvider>

@@ -1,7 +1,6 @@
 import { RouteRoot } from '../../shared/Routes';
-import Authentication from '../authentication/Authentication';
 import { BibContext } from '../provider/ContextProvider';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { ProtectedRouteProps } from '../../shared/types/props.types';
 
@@ -11,20 +10,26 @@ import type { ProtectedRouteProps } from '../../shared/types/props.types';
  * @param children - Route content
  */
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-    const { login } = useContext(BibContext);
+    const { login, askLogin, setAskLogin } = useContext(BibContext);
     const navigate = useNavigate();
 
-    return (
-        <>
-            <Authentication
-                open={!login}
-                onClose={() => {
-                    navigate(RouteRoot);
-                }}
-            />
-            {login ? children : null}
-        </>
-    );
+    const [first, setFirst] = useState(true);
+
+    useEffect(() => {
+        if (first) {
+            if (!login && !askLogin) {
+                setAskLogin(true);
+            }
+        } else {
+            if (!login && !askLogin) {
+                navigate(RouteRoot);
+            }
+        }
+        setFirst(false);
+    }, [askLogin, first, login, navigate, setAskLogin]);
+
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <>{login ? children : null}</>;
 };
 
 export default ProtectedRoute;

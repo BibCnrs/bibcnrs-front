@@ -26,6 +26,7 @@ const OpenablePaper = ({
     border,
     defaultOpenState = false,
     onChange,
+    onOpen,
 }: OpenablePaperProps) => {
     const [open, setOpen] = useState<boolean>(defaultOpenState);
 
@@ -35,30 +36,35 @@ const OpenablePaper = ({
         }
     }, [onChange, open]);
 
+    const handlePaperClick = () => {
+        if (!open) {
+            setOpen(true);
+            if (onOpen) {
+                onOpen(true);
+            }
+        }
+    };
+
+    const handleOpen = () => {
+        setOpen(!open);
+        if (onOpen) {
+            onOpen(!open);
+        }
+    };
+
     return (
         <AnimatedPaper
             className={small ? 'openable-paper openable-paper-small' : 'openable-paper'}
             color={color}
             border={border}
-            onClick={() => {
-                if (!open) {
-                    setOpen(true);
-                }
-            }}
+            onClick={handlePaperClick}
         >
             {/* ESLint rule note: A button is available inside this element,
                 this action is to enchant the navigation */}
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
-            <h4
-                className="openable-paper-title"
-                onClick={() => {
-                    setOpen(!open);
-                }}
-            >
+            <h4 className="openable-paper-title" onClick={handleOpen}>
                 <IconButton
-                    onClick={() => {
-                        setOpen(!open);
-                    }}
+                    onClick={handleOpen}
                     size="small"
                     color="primary"
                     className={
