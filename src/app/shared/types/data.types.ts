@@ -74,7 +74,7 @@ export type DatabaseEntryDataType = {
     oa: boolean;
     use_proxy: boolean;
     communities: number[]; // Make a type
-    domains: string[]; // Make a type
+    domains: Institute[]; // Make a type
 };
 
 export type DatabaseDataType = DatabaseEntryDataType[];

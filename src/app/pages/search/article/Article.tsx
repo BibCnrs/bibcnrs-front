@@ -252,7 +252,7 @@ const Article = () => {
 
     return (
         <div>
-            <PageTitle page="article" t={t} />
+            <PageTitle page="article" />
             <div className="header-footer">
                 <SearchBar
                     placeholder={t('pages.article.searchBar')}

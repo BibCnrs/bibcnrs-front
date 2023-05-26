@@ -31,7 +31,7 @@ const Licences = () => {
 
     return (
         <div id="app">
-            <PageTitle page="licences" t={t} />
+            <PageTitle page="licences" />
             <div id="licences">
                 <div id="licences-nav">
                     {data.map((value) => (

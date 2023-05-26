@@ -18,7 +18,7 @@ const News = () => {
 
     return (
         <div id="app">
-            <PageTitle page="news" t={t} />
+            <PageTitle page="news" />
             <h1>{t('pages.news.title')}</h1>
             <TestsNews data={data} />
         </div>

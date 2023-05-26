@@ -1,5 +1,4 @@
 import { convertFacet, convertPayload } from '../../shared/typeConvertion';
-import { ArticleRetrieveDataType } from '../../shared/types/data.types';
 import { createQuery, environment, json, throwIfNotOk } from '../Environment';
 import { getToken } from '../user/Session';
 import type { PublicationDataType, PublicationRetrieveDataType } from '../../shared/types/data.types';

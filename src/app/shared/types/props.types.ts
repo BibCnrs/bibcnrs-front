@@ -16,7 +16,6 @@ export type SearchBarProps = PropsWithoutRef<{
 export type PageTitleProps = PropsWithoutRef<{
     customTitle?: boolean;
     page?: string;
-    t?: TFunction;
 }>;
 
 export type TableDisplayElementProps<T> = PropsWithoutRef<{

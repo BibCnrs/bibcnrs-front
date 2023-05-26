@@ -32,7 +32,7 @@ const RenderContent = ({
     if (!data || data.length < 1) {
         const children = (
             <>
-                {updateDocumentTitle ? <PageTitle page={page} t={t} /> : <PageTitle />}
+                {updateDocumentTitle ? <PageTitle page={page} /> : <PageTitle />}
                 {displayTitle ? <h1>{t(`pages.${page}.title`)}</h1> : null}
             </>
         );

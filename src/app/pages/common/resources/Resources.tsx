@@ -46,7 +46,7 @@ const Resources = () => {
 
     return (
         <div id="app">
-            <PageTitle page="resources" t={t} />
+            <PageTitle page="resources" />
             <h1>{t('pages.resources.title')}</h1>
             <DisplayResources data={data} />
         </div>

@@ -7,7 +7,7 @@ const Publication = () => {
     const t = useTranslator();
     return (
         <div>
-            <PageTitle page="publication" t={t} />
+            <PageTitle page="publication" />
             <div className="header-footer">
                 <SearchBar
                     placeholder={t('pages.publication.searchBar')}

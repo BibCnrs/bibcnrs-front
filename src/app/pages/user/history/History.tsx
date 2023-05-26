@@ -41,7 +41,7 @@ const History = () => {
 
     return (
         <div id="app">
-            <PageTitle page="history" t={t} />
+            <PageTitle page="history" />
             <h1>{t('pages.history.title')}</h1>
             <Table
                 DisplayElement={TableHistory}

@@ -80,7 +80,7 @@ const Article = ({
     const authors = getter.getAuthors();
     const doi = getter.getDOI();
     const source = getter.getSource();
-    const href = getter.proxify(getter.getHref(), search.article.domain);
+    const href = getter.proxify(getter.getHref(), search.domain);
     const openAccess = getter.isOpenAccess();
     return (
         <OpenablePaper
@@ -122,10 +122,7 @@ const Article = ({
                                         <dt>{entry.label}</dt>
                                         <dd>
                                             {entry.content.map((value) => {
-                                                const link = getter.proxify(
-                                                    { url: value, name: value },
-                                                    search.article.domain,
-                                                );
+                                                const link = getter.proxify({ url: value, name: value }, search.domain);
                                                 if (!link) {
                                                     return null;
                                                 }
@@ -173,10 +170,10 @@ const TableArticle = ({ data: dataIn }: TableDisplayElementProps<ArticleResultDa
         isLoading,
         isSuccess,
     } = useQuery<ArticleRetrieveDataType, any, ArticleRetrieveDataType, any>({
-        queryKey: ['article_retrieve', missing, search.article.domain, dataIn.dbId, dataIn.an],
+        queryKey: ['article_retrieve', missing, search.domain, dataIn.dbId, dataIn.an],
         queryFn: async () => {
-            if (missing && search.article.domain) {
-                return retrieveFn(search.article.domain, dataIn.dbId, dataIn.an);
+            if (missing && search.domain) {
+                return retrieveFn(search.domain, dataIn.dbId, dataIn.an);
             }
             return null;
         },
