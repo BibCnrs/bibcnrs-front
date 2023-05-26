@@ -2,12 +2,12 @@ import './Article.scss';
 import Facet from '../../../components/facet/Facet';
 import { BibContext, BibContextArticleDefault } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
-import ArticleSkeleton from '../../../components/skeleton/ArticleSkeleton';
+import SearchSkeleton from '../../../components/skeleton/SearchSkeleton';
 import TableArticle from '../../../components/table/displayelement/TableArticle';
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { article } from '../../../services/search/Article';
-import { useServicesCatch } from '../../../shared/hook';
+import { useFacetsCleaner, useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import {
     getJSON,
@@ -31,6 +31,7 @@ const Article = () => {
     const query = useSearchParams();
     const t = useTranslator();
     const serviceCatch = useServicesCatch();
+    const facetsCleaner = useFacetsCleaner<Omit<ArticleParam, 'orderBy'>>();
     const { search, setSearch } = useContext(BibContext);
 
     const [first, setFirst] = useState<boolean>(true);
@@ -82,26 +83,7 @@ const Article = () => {
     };
 
     const handleFacets = (values: Omit<ArticleParam, 'orderBy'>) => {
-        if (values.limiters) {
-            for (const key of Object.keys(values.limiters)) {
-                if (values.limiters[key] === undefined || values.limiters[key] === false) {
-                    delete values.limiters[key];
-                }
-            }
-            if (Object.keys(values.limiters).length === 0) {
-                delete values.limiters;
-            }
-        }
-        if (values.facets) {
-            for (const key of Object.keys(values.facets)) {
-                if (values.facets[key] === undefined || values.facets[key].length === 0) {
-                    delete values.facets[key];
-                }
-            }
-            if (Object.keys(values.facets).length === 0) {
-                delete values.facets;
-            }
-        }
+        facetsCleaner(values);
         setSearch({
             ...search,
             article: {
@@ -185,7 +167,7 @@ const Article = () => {
     }, [error, isError, serviceCatch]);
 
     const getAvailable = (result: ArticleDataType | undefined) => {
-        const available: Partial<FacetProps['available']> = {};
+        const available: Partial<FacetProps<ArticleParam>['available']> = {};
         available.limiters = {
             fullText: true,
             openAccess: true,
@@ -238,15 +220,10 @@ const Article = () => {
     };
 
     const getActive = () => {
-        const active: Partial<FacetProps['active']> = {
+        const active: Partial<FacetProps<ArticleParam>['active']> = {
             limiters: search.article.limiters,
             facets: search.article.facets,
         };
-        if (!active.limiters) {
-            active.limiters = {
-                fullText: true,
-            };
-        }
         return active;
     };
 
@@ -260,30 +237,28 @@ const Article = () => {
                     onSearch={handleSearch}
                 />
             </div>
-            <div id="app">
-                <div id="articles-container">
-                    <div id="articles-facet">
-                        <Facet
-                            key={seed}
-                            available={getAvailable(data)}
-                            active={getActive()}
-                            onChange={handleFacets}
-                            onReset={handleReset}
-                        />
-                    </div>
-                    {isLoading || isFetching ? (
-                        <ArticleSkeleton />
-                    ) : (
-                        <Table
-                            id="articles-content"
-                            DisplayElement={TableArticle}
-                            results={data?.results}
-                            args={search.article.table}
-                            onArgsChange={handleTable}
-                            total={data?.totalHits}
-                        />
-                    )}
+            <div id="search-container">
+                <div id="search-facet">
+                    <Facet
+                        key={seed}
+                        available={getAvailable(data)}
+                        active={getActive()}
+                        onChange={handleFacets}
+                        onReset={handleReset}
+                    />
                 </div>
+                {isLoading || isFetching ? (
+                    <SearchSkeleton />
+                ) : (
+                    <Table
+                        id="search-content"
+                        DisplayElement={TableArticle}
+                        results={data?.results}
+                        args={search.article.table}
+                        onArgsChange={handleTable}
+                        total={data?.totalHits}
+                    />
+                )}
             </div>
         </div>
     );

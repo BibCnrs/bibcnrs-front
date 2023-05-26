@@ -1,6 +1,5 @@
 import type { CMSResultDataType, DatabaseDataType, TestsNewsDataType } from './data.types';
 import type { FacetEntry, TFunction } from './types';
-import type { ArticleParam } from '../../services/search/Article';
 import type { Property } from 'csstype';
 import type { ReactNode } from 'react';
 import type { ElementType, MouseEventHandler, PropsWithChildren, PropsWithoutRef, ReactElement } from 'react';
@@ -120,23 +119,28 @@ export type TestsNewsProps = PropsWithoutRef<{
     data: TestsNewsDataType | undefined;
 }>;
 
-export type FacetProps = PropsWithoutRef<{
-    available: Omit<ArticleParam, 'orderBy'>;
-    active: Omit<ArticleParam, 'orderBy'>;
-    onChange: (values: Omit<ArticleParam, 'orderBy'>) => void;
+export type FacetRequired = {
+    limiters?: any;
+    facets?: any;
+};
+
+export type FacetProps<T extends FacetRequired> = PropsWithoutRef<{
+    available: Omit<FacetRequired & T, 'orderBy'>;
+    active: Omit<FacetRequired & T, 'orderBy'>;
+    onChange: (values: Omit<FacetRequired & T, 'orderBy'>) => void;
     onReset: () => void;
 }>;
 
-export type FacetLimiterProps = PropsWithoutRef<{
-    available: FacetProps['available']['limiters'];
-    active?: FacetProps['active']['limiters'];
-    onChange: (value: FacetProps['active']['limiters']) => void;
+export type FacetLimiterProps<T extends FacetRequired> = PropsWithoutRef<{
+    available: FacetProps<T>['available']['limiters'];
+    active?: FacetProps<T>['active']['limiters'];
+    onChange: (value: FacetProps<T>['active']['limiters']) => void;
 }>;
 
-export type FacetFacetsProps = PropsWithoutRef<{
-    available: FacetProps['available']['facets'];
-    active?: FacetProps['active']['facets'];
-    onChange: (value: FacetProps['active']['facets']) => void;
+export type FacetFacetsProps<T extends FacetRequired> = PropsWithoutRef<{
+    available: FacetProps<T>['available']['facets'];
+    active?: FacetProps<T>['active']['facets'];
+    onChange: (value: FacetProps<T>['active']['facets']) => void;
 }>;
 
 export type FacetFieldProps<T> = {

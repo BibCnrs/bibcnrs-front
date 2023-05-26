@@ -146,7 +146,7 @@ export type HistoryQueriesDataType = {
     key: string;
 };
 
-export type FacetsKeyDataType =
+export type ArticleFacetsKeyDataType =
     | 'CollectionLibrary'
     | 'ContentProvider'
     | 'Journal'
@@ -156,7 +156,9 @@ export type FacetsKeyDataType =
     | 'SourceType'
     | 'SubjectEDS';
 
-export type HistoryEntryFacetsDataType = Record<FacetsKeyDataType, string[]>;
+export type PublicationFacetsKeyDataType = 'PublisherPubDb' | 'SubjectPubDb' | 'TypePublicationPubD';
+
+export type HistoryEntryFacetsDataType = Record<ArticleFacetsKeyDataType, string[]>;
 
 export type HistoryEntryLimiterDataType = {
     fullText: boolean;
@@ -249,8 +251,8 @@ export type FacetValueDataType = {
     AddAction: string;
 };
 
-export type FacetDataType = {
-    Id: FacetsKeyDataType;
+export type FacetDataType<T extends string> = {
+    Id: T;
     Label: string;
     AvailableFacetValues: FacetValueDataType[];
 };
@@ -260,7 +262,7 @@ export type ArticleDataType = {
     totalHits: number;
     currentPage: 1;
     maxPage: number;
-    facets: FacetDataType[];
+    facets: Array<FacetDataType<ArticleFacetsKeyDataType>>;
     activeFacets: any;
     dateRange: {
         min: number;
@@ -303,7 +305,7 @@ export type PublicationDataType = {
     totalHits: number;
     currentPage: number;
     maxPage: number;
-    facets: FacetDataType[];
+    facets: Array<FacetDataType<PublicationFacetsKeyDataType>>;
     activeFacets: any;
     dateRange: {
         min: number;

@@ -5,19 +5,19 @@ import { useTranslator } from '../../shared/locales/I18N';
 import CustomButton from '../custom/button/CustomButton';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
-import type { FacetProps } from '../../shared/types/props.types';
+import type { FacetProps, FacetRequired } from '../../shared/types/props.types';
 
-const Facet = ({ available, active, onChange, onReset }: FacetProps) => {
+const Facet = ({ available, active, onChange, onReset }: FacetProps<FacetRequired>) => {
     const t = useTranslator();
 
-    const handleLimiter = (limiters: FacetProps['active']['limiters']) => {
+    const handleLimiter = (limiters: FacetProps<FacetRequired>['active']['limiters']) => {
         onChange({
             facets: active.facets,
             limiters,
         });
     };
 
-    const handleFacet = (facets: FacetProps['active']['facets']) => {
+    const handleFacet = (facets: FacetProps<FacetRequired>['active']['facets']) => {
         onChange({
             limiters: active.limiters,
             facets,
