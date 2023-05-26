@@ -5,7 +5,7 @@ import { BibContext } from '../../provider/ContextProvider';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useContext } from 'react';
-import type { FacetsKeyDataType } from '../../../shared/types/data.types';
+import type { ArticleFacetsKeyDataType } from '../../../shared/types/data.types';
 import type {
     HistoryEntryDataType,
     HistoryEntryLimiterDataType,
@@ -54,7 +54,7 @@ const Facets = ({ data }: { data: HistoryEntryFacetsDataType }) => {
     if (!data) {
         return null;
     }
-    const keys = Object.keys(data) as FacetsKeyDataType[];
+    const keys = Object.keys(data) as ArticleFacetsKeyDataType[];
     return (
         <>
             {keys.map((key) => (

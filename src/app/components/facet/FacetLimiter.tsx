@@ -1,9 +1,9 @@
 import DateRange from './element/DateRange';
 import TextType from './element/TextType';
 import Divider from '@mui/material/Divider';
-import type { FacetLimiterProps } from '../../shared/types/props.types';
+import type { FacetLimiterProps, FacetRequired } from '../../shared/types/props.types';
 
-const FacetLimiter = ({ available, active, onChange }: FacetLimiterProps) => {
+const FacetLimiter = ({ available, active, onChange }: FacetLimiterProps<FacetRequired>) => {
     if (!available) {
         return null;
     }

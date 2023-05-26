@@ -1,11 +1,11 @@
 import SearchList from './element/SearchList';
 import Divider from '@mui/material/Divider';
 import { Fragment } from 'react';
-import type { FacetFacetsProps } from '../../shared/types/props.types';
+import type { FacetFacetsProps, FacetRequired } from '../../shared/types/props.types';
 import type { FacetEntry } from '../../shared/types/types';
 import type { ReactNode } from 'react';
 
-const FacetFacets = ({ available, active, onChange }: FacetFacetsProps) => {
+const FacetFacets = ({ available, active, onChange }: FacetFacetsProps<FacetRequired>) => {
     if (!available) {
         return null;
     }
