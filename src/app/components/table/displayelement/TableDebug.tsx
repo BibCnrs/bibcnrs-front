@@ -5,7 +5,7 @@ let init = false;
 const onCall = () => {
     if (!init) {
         init = true;
-        if (import.meta.env.VITE_ENV === 'prod') {
+        if (import.meta.env.VITE_ENV !== 'prod') {
             // eslint-disable-next-line no-console
             console.trace('TableDebug have been imported, please create a element to replace it!');
         }
