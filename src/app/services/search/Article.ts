@@ -1,6 +1,7 @@
 import { convertFacet, convertPayload } from '../../shared/typeConvertion';
 import { createQuery, environment, json, throwIfNotOk } from '../Environment';
 import { getToken } from '../user/Session';
+import type { RetrieveItemValueDataType } from '../../shared/types/data.types';
 import type { ArticleLinksDataType } from '../../shared/types/data.types';
 import type { RetrieveItemDataType } from '../../shared/types/data.types';
 import type { ArticleResultDataType } from '../../shared/types/data.types';
@@ -391,7 +392,10 @@ export class ArticleContentGetter {
         return hrefWithIcon.includes(href) || HAL_REGEX.test(href.url);
     };
 
-    private getEntry = (name: string, label?: string): RetrieveItemDataType[] | null => {
+    private getEntry = (
+        name: string,
+        label?: string,
+    ): Array<RetrieveItemDataType<RetrieveItemValueDataType>> | null => {
         if (!this.retrieve) {
             return null;
         }
@@ -445,7 +449,9 @@ export class ArticleContentGetter {
         return undefined;
     };
 
-    private getString = (retrieveObj: RetrieveItemDataType[] | null): string | undefined => {
+    private getString = (
+        retrieveObj: Array<RetrieveItemDataType<RetrieveItemValueDataType>> | null,
+    ): string | undefined => {
         if (retrieveObj && retrieveObj.length > 0) {
             const retrieve = this.get(retrieveObj[0].value);
             if (retrieve) {
@@ -458,7 +464,9 @@ export class ArticleContentGetter {
         return undefined;
     };
 
-    private getStringArray = (retrieveObj: RetrieveItemDataType[] | null): string[] | undefined => {
+    private getStringArray = (
+        retrieveObj: Array<RetrieveItemDataType<RetrieveItemValueDataType>> | null,
+    ): string[] | undefined => {
         if (retrieveObj && retrieveObj.length > 0) {
             const retrieve = this.get(retrieveObj[0].value);
             if (retrieve) {
