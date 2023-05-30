@@ -271,6 +271,19 @@ export type ArticleDataType = {
     unparsed: any;
 };
 
+export type PublicationCoverageDataType = Array<{
+    start: {
+        month: string;
+        day: string;
+        year: string;
+    };
+    end: {
+        month: string;
+        day: string;
+        year: string;
+    };
+}>;
+
 export type PublicationResultDataType = {
     id: number;
     publicationId: string;
@@ -284,18 +297,7 @@ export type PublicationResultDataType = {
     fullTextHoldings: Array<
         Url & {
             isCurrent: boolean;
-            coverage: Array<{
-                start: {
-                    month: string;
-                    day: string;
-                    year: string;
-                };
-                end: {
-                    month: string;
-                    day: string;
-                    year: string;
-                };
-            }>;
+            coverage: PublicationCoverageDataType;
         }
     >;
 };

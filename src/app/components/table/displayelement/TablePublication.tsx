@@ -9,6 +9,7 @@ import { BibContext } from '../../provider/ContextProvider';
 import SkeletonEntry from '../../skeleton/SkeletonEntry';
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
+import type { PublicationCoverageDataType } from '../../../shared/types/data.types';
 import type { PublicationResultDataType, PublicationRetrieveDataType } from '../../../shared/types/data.types';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 
@@ -62,6 +63,27 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
             setAskLogin(true);
         }
         setOpen(isOpen);
+    };
+
+    const getCoverage = (coverage: PublicationCoverageDataType) => {
+        let coverageString = '';
+        coverage.forEach((value) => {
+            const start = new Date(
+                parseInt(value.start.year, 10),
+                parseInt(value.start.month, 10) - 1,
+                parseInt(value.start.day, 10),
+            );
+            const end = new Date(
+                parseInt(value.end.year, 10),
+                parseInt(value.end.month, 10) - 1,
+                parseInt(value.end.day, 10),
+            );
+            if (coverageString !== '') {
+                coverageString += ', ';
+            }
+            coverageString += `${start.toLocaleDateString()} - ${end.toLocaleDateString()}`;
+        });
+        return coverageString;
     };
 
     const href = fullTextHoldings[0].url;
@@ -127,6 +149,24 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
                                 </span>
                             );
                         })}
+                        <span>
+                            <dt>Accès à l&apos;article</dt>
+                            <dd>
+                                {dataIn.fullTextHoldings.map((value) => (
+                                    <div key={value.name}>
+                                        <a
+                                            className="link"
+                                            href={value.url}
+                                            target="_blank"
+                                            rel="noreferrer nofollow noopener"
+                                        >
+                                            {value.name}
+                                        </a>{' '}
+                                        {getCoverage(value.coverage)}
+                                    </div>
+                                ))}
+                            </dd>
+                        </span>
                     </dl>
                 )
             }
