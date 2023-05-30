@@ -74,7 +74,7 @@ export const colors = {
  * @param institute - The name of the institute
  * @returns - The color of the institute
  */
-export const getInstituteColor = (institute: Institute | string): Property.Color => {
+export const getInstituteColor = (institute: Institute): Property.Color => {
     return colors.cnrs.institute[institute.toLowerCase() as InstituteLowerCase];
 };
 

@@ -9,7 +9,6 @@ import Radio from '@mui/material/Radio';
 import { useState } from 'react';
 import type { TestNewDataType } from '../../shared/types/data.types';
 import type { TestsNewsProps } from '../../shared/types/props.types';
-import type { Institute } from '../../shared/types/types';
 import type { RadioProps } from '@mui/material/Radio/Radio';
 import type { ChangeEvent } from 'react';
 
@@ -29,7 +28,7 @@ const TestsNews = ({ data }: TestsNewsProps) => {
      * @param event - Radio button event
      */
     const handleDomainChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setSelectedDomain(event.target.value as Institute);
+        setSelectedDomain(event.target.value);
     };
 
     /**

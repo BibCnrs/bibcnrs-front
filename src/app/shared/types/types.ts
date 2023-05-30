@@ -34,7 +34,6 @@ export type Institute =
     | 'INSMI'
     | 'INSU';
 export type InstituteLowerCase =
-    | string
     | 'in2p3'
     | 'inc'
     | 'inee'

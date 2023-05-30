@@ -6,7 +6,6 @@ import { resources } from '../../../services/common/Resources';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
 import type { ResourcesDataType } from '../../../shared/types/data.types';
-import type { Institute } from '../../../shared/types/types';
 
 const DisplayResources = ({ data }: { data: ResourcesDataType | undefined }) => {
     const language = useLanguageKey();
@@ -21,7 +20,7 @@ const DisplayResources = ({ data }: { data: ResourcesDataType | undefined }) => 
                 <ColoredPaper
                     elevation={2}
                     key={resource.id}
-                    color={getInstituteColor(resource.community.toLowerCase() as Institute)}
+                    color={getInstituteColor(resource.community)}
                     className="resource"
                     border
                 >
