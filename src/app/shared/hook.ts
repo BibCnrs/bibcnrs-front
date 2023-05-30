@@ -1,5 +1,4 @@
 import { BibContext } from '../components/provider/ContextProvider';
-import { getInstituteColor } from '../components/provider/LocalizedThemeProvider';
 import { getDomains } from '../services/user/Session';
 import { useContext } from 'react';
 import type { FacetRequired } from './types/props.types';

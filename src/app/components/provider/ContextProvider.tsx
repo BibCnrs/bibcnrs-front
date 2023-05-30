@@ -42,9 +42,6 @@ export const BibContextArticleDefault: SearchContextType['article'] = {
 };
 
 export const BibContextPublicationDefault: SearchContextType['publication'] = {
-    limiters: {
-        reviewed: false,
-    },
     table: {
         page: 1,
         perPage: 25,

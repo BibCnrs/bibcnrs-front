@@ -10,21 +10,31 @@ import PageTitle from '../../../components/utils/PageTitle';
 import { publication } from '../../../services/search/Publication';
 import { useDomain, useFacetsCleaner, useFacetsDomainHandler, useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
-import { useSearchParams } from '../../../shared/Routes';
+import {
+    getJSON,
+    getNumber,
+    getString,
+    RoutePublication,
+    updatePageQueryUrl,
+    useSearchParams,
+} from '../../../shared/Routes';
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { PublicationParam } from '../../../services/search/Publication';
 import type { PublicationDataType } from '../../../shared/types/data.types';
 import type { FacetProps, TableArgsProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
 
 const Publication = () => {
+    const navigate = useNavigate();
     const query = useSearchParams();
     const t = useTranslator();
     const serviceCatch = useServicesCatch();
     const facetsCleaner = useFacetsCleaner<PublicationParam>();
     const { search, setSearch } = useContext(BibContext);
 
+    const [first, setFirst] = useState<boolean>(true);
     const [seed, setSeed] = useState<number>(0);
 
     const handleDomain = useFacetsDomainHandler();
@@ -74,6 +84,49 @@ const Publication = () => {
             serviceCatch(error);
         }
     }, [error, isError, serviceCatch]);
+
+    useEffect(() => {
+        if (first) {
+            const queryValue = getString<undefined>(query, 'q', search.query);
+            setSearch({
+                ...search,
+                query: queryValue,
+                publication: {
+                    ...search.publication,
+                    limiters: getJSON(query, 'limiters', search.publication.limiters),
+                    facets: getJSON(query, 'facets', search.publication.facets),
+                    table: {
+                        page: getNumber(query, 'page', search.publication.table.page),
+                        perPage: getNumber(query, 'perPage', search.publication.table.perPage),
+                    },
+                },
+            });
+            setFirst(false);
+            return;
+        }
+        const param: any = {};
+
+        if (search.query) {
+            param.q = search.query;
+        }
+
+        if (search.publication.table.page) {
+            param.page = search.publication.table.page;
+        }
+
+        if (search.publication.table.perPage) {
+            param.perPage = search.publication.table.perPage;
+        }
+
+        if (search.publication.limiters) {
+            param.limiters = JSON.stringify(search.publication.limiters);
+        }
+
+        if (search.publication.facets) {
+            param.facets = JSON.stringify(search.publication.facets);
+        }
+        updatePageQueryUrl(RoutePublication, navigate, param);
+    }, [first, navigate, query, search, setSearch]);
 
     const handleSearch = (value: string): void => {
         setSearch({
