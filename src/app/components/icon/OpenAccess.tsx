@@ -4,7 +4,7 @@ import Tooltip from '@mui/material/Tooltip';
 const OpenAccess = ({ className }: { className?: string }) => {
     const t = useTranslator();
     return (
-        <Tooltip title={t('components.oa.tooltip')} placement="top" arrow>
+        <Tooltip title={t('components.icon.openAccess')} placement="top" arrow>
             <img
                 className={className}
                 style={{ width: '14px', height: '22.4px' }}

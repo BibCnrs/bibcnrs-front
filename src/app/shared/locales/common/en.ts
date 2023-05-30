@@ -106,6 +106,16 @@ const en: Common = {
             provider: 'Content Provider',
             reset: 'Reset your filters',
             type: 'Type of publication',
+            chips: {
+                title: 'Title',
+                description: 'Description',
+                subject: 'Subject',
+                doi: 'DOI',
+            },
+        },
+        icon: {
+            openAccess: "Free access to the journal's content",
+            diamond: 'Open Access publication, free of charge for authors and readers',
         },
         testsnews: {
             common: 'Common',
@@ -166,10 +176,6 @@ Sincerely`,
                 bar: 'Search',
                 chips: {
                     by: 'By',
-                    title: 'Title',
-                    description: 'Description',
-                    subject: 'Subject',
-                    doi: 'DOI',
                 },
             },
         },

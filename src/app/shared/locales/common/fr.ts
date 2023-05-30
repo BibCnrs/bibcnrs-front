@@ -106,6 +106,16 @@ const fr: Common = {
             provider: 'Fournisseur de contenu',
             reset: 'Réinitialiser vos filtres',
             type: 'Type de publication',
+            chips: {
+                title: 'Titre',
+                description: 'Description',
+                subject: 'Sujet',
+                doi: 'DOI',
+            },
+        },
+        icon: {
+            openAccess: 'Accès gratuit au contenu de la revue',
+            diamond: 'Publication en Accès Ouvert gratuit pour les auteurs et les lecteurs',
         },
         testsnews: {
             common: 'Commun',
@@ -167,10 +177,6 @@ Cordialement`,
                 bar: 'Recherche',
                 chips: {
                     by: 'Par',
-                    title: 'Titre',
-                    description: 'Description',
-                    subject: 'Sujet',
-                    doi: 'DOI',
                 },
             },
         },

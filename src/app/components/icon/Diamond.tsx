@@ -4,7 +4,7 @@ import Tooltip from '@mui/material/Tooltip';
 const Diamond = ({ className }: { className?: string }) => {
     const t = useTranslator();
     return (
-        <Tooltip title={t('components.diamond.tooltip')} placement="top" arrow>
+        <Tooltip title={t('components.icon.diamond')} placement="top" arrow>
             <img className={className} style={{ height: '19px' }} src="/icons/diamond.svg" alt="Diamond icon" />
         </Tooltip>
     );

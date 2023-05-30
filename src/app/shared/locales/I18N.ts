@@ -119,6 +119,16 @@ export type Common = {
             provider: string;
             reset: string;
             type: string;
+            chips: {
+                title: string;
+                description: string;
+                subject: string;
+                doi: string;
+            };
+        };
+        icon: {
+            openAccess: string;
+            diamond: string;
         };
         testsnews: {
             common: string;
@@ -160,10 +170,6 @@ export type Common = {
                 bar: string;
                 chips: {
                     by: string;
-                    title: string;
-                    description: string;
-                    subject: string;
-                    doi: string;
                 };
             };
         };
