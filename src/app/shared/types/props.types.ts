@@ -1,6 +1,7 @@
 import type { CMSResultDataType, DatabaseDataType, TestsNewsDataType } from './data.types';
 import type { FacetEntry, TFunction } from './types';
 import type { Property } from 'csstype';
+import type { MouseEvent } from 'react';
 import type { ReactNode } from 'react';
 import type { ElementType, MouseEventHandler, PropsWithChildren, PropsWithoutRef, ReactElement } from 'react';
 
@@ -171,3 +172,13 @@ export type FacetSearchListProps = PropsWithoutRef<
         facets: FacetEntry[];
     }
 >;
+
+export type ChipFacetProps = PropsWithoutRef<{
+    value: string | null;
+    values: Array<{
+        value: string;
+        label: string;
+    }>;
+    useTranslation?: boolean;
+    onChange: (event: MouseEvent<HTMLElement>, field: string | null) => void;
+}>;

@@ -1,4 +1,5 @@
 import './ResearchData.scss';
+import ChipFacet from '../../../components/facet/ChipFacet';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import ResearchDataSkeleton from '../../../components/skeleton/ResearchDataSkeleton';
@@ -9,43 +10,12 @@ import { metadore } from '../../../services/search/Metadore';
 import { useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { RouteResearchData, getNumber, getString, updatePageQueryUrl, useSearchParams } from '../../../shared/Routes';
-import styled from '@mui/material/styles/styled';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { MetadoreDataType } from '../../../shared/types/data.types';
 import type { TableArgsProps } from '../../../shared/types/props.types';
 import type { MouseEvent } from 'react';
-
-const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
-    '& .MuiToggleButtonGroup-grouped': {
-        margin: theme.spacing(0.1),
-        '&:not(:first-of-type)': {
-            marginLeft: '10px',
-            borderLeftColor: '#fff',
-            borderRadius: '5px',
-        },
-        '&:first-of-type': {
-            borderRadius: '5px',
-        },
-    },
-}));
-
-const StyledToggleButton = styled(ToggleButton)(() => ({
-    '&.MuiToggleButton-root': {
-        textTransform: 'initial',
-        fontWeight: '500',
-        color: '#fff',
-        borderColor: '#fff',
-        padding: '5px 20px',
-    },
-    '&.Mui-selected, &.Mui-selected:hover': {
-        color: '#0050a0',
-        backgroundColor: '#fff',
-    },
-}));
 
 const ResearchData = () => {
     const navigate = useNavigate();
@@ -182,25 +152,29 @@ const ResearchData = () => {
                 />
                 <div id="research-data-chips">
                     <span id="research-data-by">{t('pages.researchData.search.chips.by')}</span>
-                    <StyledToggleButtonGroup
-                        size="small"
+                    <ChipFacet
+                        useTranslation
                         value={search.metadore.field}
-                        exclusive
+                        values={[
+                            {
+                                value: 'attributes.titles.title',
+                                label: 'title',
+                            },
+                            {
+                                value: 'attributes.descriptions.description',
+                                label: 'description',
+                            },
+                            {
+                                value: 'attributes.subjects.subject',
+                                label: 'subject',
+                            },
+                            {
+                                value: 'attributes.doi',
+                                label: 'doi',
+                            },
+                        ]}
                         onChange={handleField}
-                    >
-                        <StyledToggleButton value="attributes.titles.title">
-                            {t('pages.researchData.search.chips.title')}
-                        </StyledToggleButton>
-                        <StyledToggleButton value="attributes.descriptions.description">
-                            {t('pages.researchData.search.chips.description')}
-                        </StyledToggleButton>
-                        <StyledToggleButton value="attributes.subjects.subject">
-                            {t('pages.researchData.search.chips.subject')}
-                        </StyledToggleButton>
-                        <StyledToggleButton value="attributes.doi">
-                            {t('pages.researchData.search.chips.doi')}
-                        </StyledToggleButton>
-                    </StyledToggleButtonGroup>
+                    />
                 </div>
             </div>
             <div id="app">
