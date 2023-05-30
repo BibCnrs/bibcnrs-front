@@ -8,8 +8,7 @@ import TablePublication from '../../../components/table/displayelement/TablePubl
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { publication } from '../../../services/search/Publication';
-import { getDomains } from '../../../services/user/Session';
-import { useFacetsCleaner, useFacetsDomainHandler, useServicesCatch } from '../../../shared/hook';
+import { useDomain, useFacetsCleaner, useFacetsDomainHandler, useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { useSearchParams } from '../../../shared/Routes';
 import { useQuery } from '@tanstack/react-query';
@@ -29,12 +28,7 @@ const Publication = () => {
     const [seed, setSeed] = useState<number>(0);
 
     const handleDomain = useFacetsDomainHandler();
-    const domains = getDomains().map((domain) => {
-        return {
-            value: domain,
-            label: domain,
-        };
-    });
+    const domains = useDomain();
 
     const { data, isFetching, isLoading, isError, error } = useQuery<
         PublicationDataType,

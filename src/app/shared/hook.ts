@@ -1,4 +1,6 @@
 import { BibContext } from '../components/provider/ContextProvider';
+import { getInstituteColor } from '../components/provider/LocalizedThemeProvider';
+import { getDomains } from '../services/user/Session';
 import { useContext } from 'react';
 import type { FacetRequired } from './types/props.types';
 import type { MouseEvent } from 'react';
@@ -49,4 +51,13 @@ export const useFacetsDomainHandler = () => {
             domain: field,
         });
     };
+};
+
+export const useDomain = () => {
+    return getDomains().map((domain) => {
+        return {
+            value: domain,
+            label: domain,
+        };
+    });
 };

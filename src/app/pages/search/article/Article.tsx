@@ -8,8 +8,7 @@ import TableArticle from '../../../components/table/displayelement/TableArticle'
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { article } from '../../../services/search/Article';
-import { getDomains } from '../../../services/user/Session';
-import { useFacetsCleaner, useFacetsDomainHandler, useServicesCatch } from '../../../shared/hook';
+import { useDomain, useFacetsCleaner, useFacetsDomainHandler, useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import {
     getJSON,
@@ -40,12 +39,7 @@ const Article = () => {
     const [seed, setSeed] = useState<number>(0);
 
     const handleDomain = useFacetsDomainHandler();
-    const domains = getDomains().map((domain) => {
-        return {
-            value: domain,
-            label: domain,
-        };
-    });
+    const domains = useDomain();
 
     const { data, isFetching, isLoading, isError, error } = useQuery<ArticleDataType, any, ArticleDataType, any>({
         queryKey: [
