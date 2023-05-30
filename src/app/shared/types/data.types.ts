@@ -208,14 +208,14 @@ export type RetrieveItemValueDataType = Array<
     RetrieveItemValueObjectDataType | RetrieveItemValueObjectDataType[] | string[] | string
 >;
 
-export type RetrieveItemDataType = {
+export type RetrieveItemDataType<V> = {
     name: string;
     label: string;
-    value: RetrieveItemValueDataType[];
+    value: V[];
 };
 
 export type ArticleRetrieveDataType = {
-    items: RetrieveItemDataType[];
+    items: Array<RetrieveItemDataType<RetrieveItemValueDataType>>;
     dbLabel: string;
     dbId: string;
     articleLinks: ArticleLinksDataType;
@@ -315,5 +315,5 @@ export type PublicationDataType = {
 };
 
 export type PublicationRetrieveDataType = {
-    items: RetrieveItemDataType[];
+    items: Array<RetrieveItemDataType<string>>;
 };

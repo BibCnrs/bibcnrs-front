@@ -6,6 +6,7 @@ import TableMetadore from '../../../components/table/displayelement/TableMetador
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { metadore } from '../../../services/search/Metadore';
+import { useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { RouteResearchData, getNumber, getString, updatePageQueryUrl, useSearchParams } from '../../../shared/Routes';
 import styled from '@mui/material/styles/styled';
@@ -50,11 +51,12 @@ const ResearchData = () => {
     const navigate = useNavigate();
     const query = useSearchParams();
     const t = useTranslator();
+    const serviceCatch = useServicesCatch();
     const { search, setSearch } = useContext(BibContext);
 
     const [first, setFirst] = useState<boolean>(true);
 
-    const { data, isFetching, isLoading } = useQuery<MetadoreDataType, any, MetadoreDataType, any>({
+    const { data, isFetching, isLoading, isError, error } = useQuery<MetadoreDataType, any, MetadoreDataType, any>({
         queryKey: [
             'metadore',
             search.query,
@@ -86,6 +88,12 @@ const ResearchData = () => {
         staleTime: 3600000, // 1 hour of cache
         cacheTime: 3600000, // 1000 * 60 * 60
     });
+
+    useEffect(() => {
+        if (isError) {
+            serviceCatch(error);
+        }
+    }, [error, isError, serviceCatch]);
 
     useEffect(() => {
         if (first) {

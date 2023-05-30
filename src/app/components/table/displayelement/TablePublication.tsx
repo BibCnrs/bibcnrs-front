@@ -1,11 +1,15 @@
 import './scss/TableList.scss';
+import { retrieve as retrieveFn } from '../../../services/search/Publication';
+import { useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import Diamond from '../../icon/Diamond';
 import OpenAccess from '../../icon/OpenAccess';
 import OpenablePaper from '../../paper/openable/OpenablePaper';
 import { BibContext } from '../../provider/ContextProvider';
-import { useContext } from 'react';
-import type { PublicationResultDataType } from '../../../shared/types/data.types';
+import SkeletonEntry from '../../skeleton/SkeletonEntry';
+import { useQuery } from '@tanstack/react-query';
+import { useContext, useEffect, useState } from 'react';
+import type { PublicationResultDataType, PublicationRetrieveDataType } from '../../../shared/types/data.types';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 
 const TablePublication = ({ data: dataIn }: TableDisplayElementProps<PublicationResultDataType>) => {
@@ -23,12 +27,41 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
     } = dataIn;
 
     const t = useTranslator();
+    const serviceCatch = useServicesCatch();
+    const { search } = useContext(BibContext);
     const { login, setAskLogin } = useContext(BibContext);
+    const [open, setOpen] = useState(false);
+
+    const {
+        data: dataRetrieve,
+        isFetching,
+        isLoading,
+        isError,
+        error,
+    } = useQuery<PublicationRetrieveDataType, any, PublicationRetrieveDataType, any>({
+        queryKey: ['publication_retrieve', open, search.domain, dataIn.publicationId],
+        queryFn: async () => {
+            if (open && search.domain) {
+                return retrieveFn(search.domain, dataIn.publicationId);
+            }
+            return null;
+        },
+        keepPreviousData: true,
+        staleTime: 3600000, // 1 hour of cache
+        cacheTime: 3600000, // 1000 * 60 * 60
+    });
+
+    useEffect(() => {
+        if (isError) {
+            serviceCatch(error);
+        }
+    }, [error, isError, serviceCatch]);
 
     const handleChange = (isOpen: boolean) => {
         if (isOpen && !login) {
             setAskLogin(true);
         }
+        setOpen(isOpen);
     };
 
     const href = fullTextHoldings[0].url;
@@ -74,7 +107,29 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
                 </div>
             }
             /* eslint-disable-next-line react/jsx-no-useless-fragment */
-            FullBody={<>TODO</>}
+            FullBody={
+                !dataRetrieve || isLoading || isFetching ? (
+                    <SkeletonEntry animation="pulse" height={450} />
+                ) : (
+                    <dl className="table-list-body">
+                        {dataRetrieve.items.map((item) => {
+                            if (item.name.toLowerCase() === 'title') {
+                                return null;
+                            }
+                            return (
+                                <span key={item.name}>
+                                    <dt>{item.label}</dt>
+                                    <dd>
+                                        {item.value.map((value) => (
+                                            <div key={value}>{value}</div>
+                                        ))}
+                                    </dd>
+                                </span>
+                            );
+                        })}
+                    </dl>
+                )
+            }
         />
     );
 };

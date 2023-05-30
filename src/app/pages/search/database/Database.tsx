@@ -4,6 +4,7 @@ import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import PageTitle from '../../../components/utils/PageTitle';
 import { database } from '../../../services/search/Database';
+import { useServicesCatch } from '../../../shared/hook';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -79,17 +80,24 @@ const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupPr
 
 const Database = () => {
     const { login } = useContext(BibContext);
+    const serviceCatch = useServicesCatch();
     const [oa, setOa] = useState(!login);
     const t = useTranslator();
     const language = useLanguageKey();
 
-    const { data } = useQuery<DatabaseDataType, any, DatabaseDataType, any>({
+    const { data, isError, error } = useQuery<DatabaseDataType, any, DatabaseDataType, any>({
         queryKey: ['database', oa],
         queryFn: () => database(language, oa),
         keepPreviousData: true,
         staleTime: 3600000, // 1 hour of cache
         cacheTime: 3600000, // 1000 * 60 * 60
     });
+
+    useEffect(() => {
+        if (isError) {
+            serviceCatch(error);
+        }
+    }, [error, isError, serviceCatch]);
 
     useEffect(() => {
         setOa(!login);
