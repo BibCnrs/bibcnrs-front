@@ -1,4 +1,5 @@
 import './Article.scss';
+import ChipFacet from '../../../components/facet/ChipFacet';
 import Facet from '../../../components/facet/Facet';
 import { BibContext, BibContextArticleDefault } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
@@ -7,7 +8,8 @@ import TableArticle from '../../../components/table/displayelement/TableArticle'
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { article } from '../../../services/search/Article';
-import { useFacetsCleaner, useServicesCatch } from '../../../shared/hook';
+import { getDomains } from '../../../services/user/Session';
+import { useFacetsCleaner, useFacetsDomainHandler, useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import {
     getJSON,
@@ -36,6 +38,14 @@ const Article = () => {
 
     const [first, setFirst] = useState<boolean>(true);
     const [seed, setSeed] = useState<number>(0);
+
+    const handleDomain = useFacetsDomainHandler();
+    const domains = getDomains().map((domain) => {
+        return {
+            value: domain,
+            label: domain,
+        };
+    });
 
     const { data, isFetching, isLoading, isError, error } = useQuery<ArticleDataType, any, ArticleDataType, any>({
         queryKey: [
@@ -231,6 +241,9 @@ const Article = () => {
         <div>
             <PageTitle page="article" />
             <div className="header-footer">
+                <div id="article-chips">
+                    <ChipFacet value={search.domain} values={domains} onChange={handleDomain} />
+                </div>
                 <SearchBar
                     placeholder={t('pages.article.searchBar')}
                     value={query.get('q') || search.query}

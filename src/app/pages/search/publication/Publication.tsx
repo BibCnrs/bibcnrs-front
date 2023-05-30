@@ -1,4 +1,5 @@
 import './Publication.scss';
+import ChipFacet from '../../../components/facet/ChipFacet';
 import Facet from '../../../components/facet/Facet';
 import { BibContext, BibContextPublicationDefault } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
@@ -7,27 +8,33 @@ import TablePublication from '../../../components/table/displayelement/TablePubl
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { publication } from '../../../services/search/Publication';
-import { useFacetsCleaner, useServicesCatch } from '../../../shared/hook';
+import { getDomains } from '../../../services/user/Session';
+import { useFacetsCleaner, useFacetsDomainHandler, useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { useSearchParams } from '../../../shared/Routes';
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import type { PublicationParam } from '../../../services/search/Publication';
 import type { PublicationDataType } from '../../../shared/types/data.types';
 import type { FacetProps, TableArgsProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
 
 const Publication = () => {
-    // const navigate = useNavigate();
     const query = useSearchParams();
     const t = useTranslator();
     const serviceCatch = useServicesCatch();
     const facetsCleaner = useFacetsCleaner<PublicationParam>();
     const { search, setSearch } = useContext(BibContext);
 
-    // const [first, setFirst] = useState<boolean>(true);
     const [seed, setSeed] = useState<number>(0);
+
+    const handleDomain = useFacetsDomainHandler();
+    const domains = getDomains().map((domain) => {
+        return {
+            value: domain,
+            label: domain,
+        };
+    });
 
     const { data, isFetching, isLoading, isError, error } = useQuery<
         PublicationDataType,
@@ -162,6 +169,9 @@ const Publication = () => {
         <div>
             <PageTitle page="publication" />
             <div className="header-footer">
+                <div id="publication-chips">
+                    <ChipFacet value={search.domain} values={domains} onChange={handleDomain} />
+                </div>
                 <SearchBar
                     placeholder={t('pages.publication.searchBar')}
                     value={query.get('q') || search.query}

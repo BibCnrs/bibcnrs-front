@@ -1,6 +1,7 @@
 import { BibContext } from '../components/provider/ContextProvider';
 import { useContext } from 'react';
 import type { FacetRequired } from './types/props.types';
+import type { MouseEvent } from 'react';
 
 export const useServicesCatch = () => {
     const { setLogin } = useContext(BibContext);
@@ -34,5 +35,18 @@ export const useFacetsCleaner = <T extends FacetRequired>() => {
             }
         }
         return values;
+    };
+};
+
+export const useFacetsDomainHandler = () => {
+    const { search, setSearch } = useContext(BibContext);
+    return (event: MouseEvent<HTMLElement>, field: string | null) => {
+        if (field === null) {
+            return;
+        }
+        setSearch({
+            ...search,
+            domain: field,
+        });
     };
 };

@@ -174,7 +174,7 @@ export type FacetSearchListProps = PropsWithoutRef<
 >;
 
 export type ChipFacetProps = PropsWithoutRef<{
-    value: string | null;
+    value?: string | null;
     values: Array<{
         value: string;
         label: string;

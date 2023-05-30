@@ -1,2 +1,8 @@
 @import "src/app/scss/app";
 @import "src/app/scss/search_page";
+
+#publication-chips {
+  display: flex;
+  justify-content: center;
+  margin-top: -15px;
+}
