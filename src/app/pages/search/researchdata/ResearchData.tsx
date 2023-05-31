@@ -117,7 +117,7 @@ const ResearchData = () => {
         });
     };
 
-    const handleSearch = (value: string): void => {
+    const handleSearch = (value: string | undefined): void => {
         setSearch({
             ...search,
             query: value,

@@ -72,7 +72,7 @@ const Article = () => {
         cacheTime: 3600000, // 1000 * 60 * 60
     });
 
-    const handleSearch = (value: string): void => {
+    const handleSearch = (value: string | undefined): void => {
         setSearch({
             ...search,
             query: value,

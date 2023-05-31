@@ -44,6 +44,7 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
         if (inputRef.current) {
             inputRef.current.value = '';
             setValue('');
+            onSearch(undefined);
         }
     };
 

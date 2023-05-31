@@ -10,7 +10,7 @@ type HaveReactChildren = PropsWithChildren;
 export type SearchBarProps = PropsWithoutRef<{
     placeholder: string;
     value?: string | null;
-    onSearch: (value: string) => void;
+    onSearch: (value: string | undefined) => void;
 }>;
 
 export type PageTitleProps = PropsWithoutRef<{

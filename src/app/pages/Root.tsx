@@ -29,7 +29,7 @@ const Root = () => {
         cacheTime: 3600000, // 1000 * 60 * 60
     });
 
-    const handleSearch = (q: string) => {
+    const handleSearch = (q: string | undefined) => {
         updatePageQueryUrl(RouteArticle, navigate, { q });
     };
 
