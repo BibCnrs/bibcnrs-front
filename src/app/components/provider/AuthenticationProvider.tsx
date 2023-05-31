@@ -6,7 +6,6 @@ import type { AuthenticationProviderProps } from '../../shared/types/props.types
 const AuthenticationProvider = ({ children }: AuthenticationProviderProps) => {
     const { login, askLogin, setAskLogin } = useContext(BibContext);
     const isOpen = !login && askLogin;
-    console.log(login, askLogin);
     return (
         <>
             <Authentication

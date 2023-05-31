@@ -2,6 +2,7 @@ import './scss/TableList.scss';
 import { retrieve as retrieveFn } from '../../../services/search/Publication';
 import { useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
+import parseFullTextHoldings from '../../../shared/parseFullTextHoldings';
 import Diamond from '../../icon/Diamond';
 import OpenAccess from '../../icon/OpenAccess';
 import OpenablePaper from '../../paper/openable/OpenablePaper';
@@ -10,6 +11,7 @@ import SkeletonEntry from '../../skeleton/SkeletonEntry';
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
 import type { PublicationCoverageDataType } from '../../../shared/types/data.types';
+import type { PublicationHolding } from '../../../shared/types/data.types';
 import type { PublicationResultDataType, PublicationRetrieveDataType } from '../../../shared/types/data.types';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 
@@ -24,8 +26,10 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
         issnPrint,
         isbnOnline,
         isbnPrint,
-        // publicationId,
+        publicationId,
     } = dataIn;
+
+    const reconciledFullTextHoldings = parseFullTextHoldings(fullTextHoldings) as PublicationHolding[];
 
     const t = useTranslator();
     const serviceCatch = useServicesCatch();
@@ -40,10 +44,10 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
         isError,
         error,
     } = useQuery<PublicationRetrieveDataType, any, PublicationRetrieveDataType, any>({
-        queryKey: ['publication_retrieve', open, search.domain, dataIn.publicationId],
+        queryKey: ['publication_retrieve', open, search.domain, publicationId],
         queryFn: async () => {
             if (open && search.domain) {
-                return retrieveFn(search.domain, dataIn.publicationId);
+                return retrieveFn(search.domain, publicationId);
             }
             return null;
         },
@@ -86,8 +90,12 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
         return coverageString;
     };
 
-    const href = fullTextHoldings[0].url;
-    const isOpenAccess = fullTextHoldings[0].name.toLowerCase().includes('open access');
+    if (reconciledFullTextHoldings.length === 0) {
+        return null;
+    }
+
+    const href = reconciledFullTextHoldings[0].url;
+    const isOpenAccess = reconciledFullTextHoldings[0].name.toLowerCase().includes('open access');
     return (
         <OpenablePaper
             onOpen={handleChange}
@@ -152,7 +160,7 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
                         <span>
                             <dt>Accès à l&apos;article</dt>
                             <dd>
-                                {dataIn.fullTextHoldings.map((value) => (
+                                {reconciledFullTextHoldings.map((value) => (
                                     <div key={value.name}>
                                         <a
                                             className="link"

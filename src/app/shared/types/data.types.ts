@@ -284,6 +284,11 @@ export type PublicationCoverageDataType = Array<{
     };
 }>;
 
+export type PublicationHolding = Url & {
+    isCurrent: boolean;
+    coverage: PublicationCoverageDataType;
+};
+
 export type PublicationResultDataType = {
     id: number;
     publicationId: string;
@@ -294,12 +299,7 @@ export type PublicationResultDataType = {
     type: string;
     title: string;
     isDiamond: boolean;
-    fullTextHoldings: Array<
-        Url & {
-            isCurrent: boolean;
-            coverage: PublicationCoverageDataType;
-        }
-    >;
+    fullTextHoldings: PublicationHolding[];
 };
 
 export type PublicationDataType = {
