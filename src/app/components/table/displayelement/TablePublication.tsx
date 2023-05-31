@@ -85,7 +85,11 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
             if (coverageString !== '') {
                 coverageString += ', ';
             }
-            coverageString += `${start.toLocaleDateString()} - ${end.toLocaleDateString()}`;
+            coverageString += `${start.toLocaleDateString()} - ${
+                end.getFullYear() > new Date().getFullYear()
+                    ? t('components.table.content.present')
+                    : end.toLocaleDateString()
+            }`;
         });
         return coverageString;
     };
@@ -160,7 +164,7 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
                         <span>
                             <dt>Accès à l&apos;article</dt>
                             <dd>
-                                {reconciledFullTextHoldings.map((value) => (
+                                {fullTextHoldings.map((value) => (
                                     <div key={value.name}>
                                         <a
                                             className="link"

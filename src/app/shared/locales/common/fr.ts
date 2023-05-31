@@ -87,6 +87,7 @@ const fr: Common = {
                 issnPrint: 'pISSN : ',
                 isbnOnline: 'eISBN : ',
                 isbnPrint: 'pISBN : ',
+                present: 'Présent',
             },
         },
         facet: {

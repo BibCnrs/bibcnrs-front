@@ -100,6 +100,7 @@ export type Common = {
                 issnPrint: string;
                 isbnOnline: string;
                 isbnPrint: string;
+                present: string;
             };
         };
         facet: {
