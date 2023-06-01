@@ -59,7 +59,7 @@ export const article = async (
     param: ArticleParam,
 ): Promise<ArticleDataType> => {
     // Create payload from params
-    const payload: ArticlePayLoad = {
+    const payload: Partial<ArticlePayLoad> = {
         queries: [
             {
                 boolean: 'AND',
@@ -69,8 +69,6 @@ export const article = async (
                 key: 'initial',
             },
         ],
-        currentPage: page,
-        resultsPerPage: perPage,
     };
 
     switch (param.orderBy) {
@@ -87,6 +85,9 @@ export const article = async (
             break;
         }
     }
+
+    payload.currentPage = page;
+    payload.resultsPerPage = perPage;
 
     if (param.limiters) {
         if (param.limiters.fullText) {
