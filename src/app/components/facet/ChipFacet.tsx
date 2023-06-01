@@ -32,14 +32,14 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
     },
 }));
 
-const ChipFacet = ({ value, values, onChange, useTranslation = false }: ChipFacetProps) => {
+const ChipFacet = ({ value, values, onChange, needTranslation = false }: ChipFacetProps) => {
     const t = useTranslator();
 
     return (
         <StyledToggleButtonGroup size="small" value={value} exclusive onChange={onChange}>
             {values.map((v) => (
                 <StyledToggleButton key={v.value} value={v.value}>
-                    {useTranslation ? t(`components.facet.chips.${v.label}`) : v.label}
+                    {needTranslation ? t(`components.facet.chips.${v.label}`) : v.label}
                 </StyledToggleButton>
             ))}
         </StyledToggleButtonGroup>

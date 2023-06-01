@@ -21,18 +21,6 @@ export type SupportedLanguages = SupportedLanguage[];
 
 export type ThemeType = 'dark' | 'light';
 
-export type Institute =
-    | string
-    | 'IN2P3'
-    | 'INC'
-    | 'INEE'
-    | 'INP'
-    | 'INS2I'
-    | 'INSB'
-    | 'INSHS'
-    | 'INSIS'
-    | 'INSMI'
-    | 'INSU';
 export type InstituteLowerCase =
     | 'in2p3'
     | 'inc'
@@ -44,6 +32,8 @@ export type InstituteLowerCase =
     | 'insis'
     | 'insmi'
     | 'insu';
+
+export type Institute = Uppercase<InstituteLowerCase> | string;
 
 export type SearchContextType = {
     query: string | undefined;

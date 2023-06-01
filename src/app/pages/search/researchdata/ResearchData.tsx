@@ -153,7 +153,7 @@ const ResearchData = () => {
                 <div id="research-data-chips">
                     <span id="research-data-by">{t('pages.researchData.search.chips.by')}</span>
                     <ChipFacet
-                        useTranslation
+                        needTranslation
                         value={search.metadore.field}
                         values={[
                             {

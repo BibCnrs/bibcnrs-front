@@ -179,6 +179,6 @@ export type ChipFacetProps = PropsWithoutRef<{
         value: string;
         label: string;
     }>;
-    useTranslation?: boolean;
+    needTranslation?: boolean;
     onChange: (event: MouseEvent<HTMLElement>, field: string | null) => void;
 }>;

@@ -1,14 +1,12 @@
-import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
+import md5 from 'md5';
+import { defineConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 import stylelint from 'vite-plugin-stylelint';
-import md5 from 'md5';
 
 const regex = /(.*node_modules\/)([^\/]+)(.*)/;
 
-const linter = process.env.VITE_ENV === 'prod' ? [] : [
-    eslint(), stylelint()
-];
+const linter = process.env.VITE_ENV === 'prod' ? [] : [eslint(), stylelint()];
 
 export default defineConfig({
     plugins: [react(), ...linter],
@@ -20,14 +18,9 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 manualChunks: (id, meta) => {
-                    if (id.includes('node_modules')) {
-                        if (meta.getModuleInfo(id).isIncluded) {
-                            const hash = md5(
-                                id.match(regex)[2]
-                                    .replace('@', '')
-                            );
-                            return `vendor/${hash.slice(0, 8)}`;
-                        }
+                    if (id.includes('node_modules') && meta.getModuleInfo(id).isIncluded) {
+                        const hash = md5(regex.exec(id)[2].replace('@', ''));
+                        return `vendor/${hash.slice(0, 8)}`;
                     }
                 },
             },
