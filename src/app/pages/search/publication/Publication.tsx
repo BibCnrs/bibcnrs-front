@@ -131,6 +131,13 @@ const Publication = () => {
                     },
                 },
             });
+            if (queryValue) {
+                if (queryValue.length >= 2) {
+                    if (ALPHABET.includes(queryValue[0]) && queryValue.endsWith('*')) {
+                        setSearchByLetter(queryValue[0]);
+                    }
+                }
+            }
             setFirst(false);
             return;
         }
@@ -286,7 +293,14 @@ const Publication = () => {
                             {letter}
                         </button>
                     ))}
-                    <button className="mono publication-letter" onClick={handleSearchByNumber}>
+                    <button
+                        className={`mono publication-letter ${
+                            search.query === '0* OR 1* OR 2* OR 3* OR 4* OR 5* OR 6* OR 7* OR 8* OR 9*'
+                                ? 'publication-letter-active'
+                                : ''
+                        }`}
+                        onClick={handleSearchByNumber}
+                    >
                         0-9
                     </button>
                 </div>
