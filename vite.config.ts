@@ -12,7 +12,11 @@ const linter = process.env.VITE_ENV === 'prod' ? [] : [
 
 export default defineConfig({
     plugins: [react(), ...linter],
+    css: {
+        devSourcemap: process.env.VITE_SOURCE_MAP === 'true',
+    },
     build: {
+        sourcemap: process.env.VITE_SOURCE_MAP === 'true',
         rollupOptions: {
             output: {
                 manualChunks: (id, meta) => {
@@ -30,6 +34,7 @@ export default defineConfig({
         },
         minify: 'terser',
         terserOptions: {
+            sourceMap: process.env.VITE_SOURCE_MAP === 'true',
             ecma: 2018,
             compress: {
                 ecma: 2018,

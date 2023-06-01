@@ -8,6 +8,7 @@ services:
       context: .
       args:
         VITE_BIBAPI_HOST: ${BIBAPI_HOST}
+        VITE_SOURCE_MAP: ${VITE_SOURCE_MAP}
     ports:
       - "8080:8080"
     networks:
