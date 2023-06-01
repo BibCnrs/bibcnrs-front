@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { SearchBarProps } from '../../shared/types/props.types';
 import type { ChangeEvent, KeyboardEvent } from 'react';
 
@@ -19,14 +19,14 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
     // Search bar input reference
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>();
 
-    // Get the search bar default value
-    let defaultValue = '';
-    if (props.value) {
-        defaultValue = props.value;
-    }
-
     // Search bar states
-    const [value, setValue] = useState<string>(defaultValue);
+    const [value, setValue] = useState<string>(props.value ?? '');
+
+    useEffect(() => {
+        if (props.value) {
+            setValue(props.value);
+        }
+    }, [props.value]);
 
     const inputOnChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setValue(event.target.value);

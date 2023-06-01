@@ -1,8 +1,44 @@
 @import "src/app/scss/app";
+@import "src/app/scss/colors";
 @import "src/app/scss/search_page";
+@import "src/app/scss/fonts";
 
-#publication-chips {
+.publication-center {
   display: flex;
   justify-content: center;
+}
+
+#publication-chips {
   margin-top: -15px;
+}
+
+#publication-letter-l1 {
+  padding-bottom: 8px;
+}
+
+#publication-letter-l2 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-top: $white solid 1px;
+}
+
+.publication-letter {
+  padding: 2px 6px;
+  margin: 1px 2px;
+  color: $white;
+  background-color: #0000;
+  border-color: $white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+}
+
+.publication-letter-active {
+  color: $button-background;
+  background-color: $white;
+}
+
+.publication-letter:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
