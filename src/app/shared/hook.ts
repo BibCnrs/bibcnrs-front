@@ -52,7 +52,11 @@ export const useFacetsDomainHandler = () => {
     };
 };
 
-export const useDomain = () => {
+export const useDomain = (): Array<{ value: string; label: string }> => {
+    const { login } = useContext(BibContext);
+    if (!login) {
+        return [];
+    }
     return getDomains().map((domain) => {
         return {
             value: domain,
