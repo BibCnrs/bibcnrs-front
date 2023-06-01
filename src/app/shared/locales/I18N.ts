@@ -156,6 +156,11 @@ export type Common = {
         article: {
             title: string;
             searchBar: string;
+            order: {
+                dateAsc: string;
+                dateDesc: string;
+                relevance: string;
+            };
         };
         publication: {
             title: string;

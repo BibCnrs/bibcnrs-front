@@ -1,10 +1,21 @@
 import SkeletonEntry from './SkeletonEntry';
 import Skeleton from '@mui/material/Skeleton';
 
-const TableSkeleton = () => {
+const TableSkeleton = ({ order }: { order?: boolean }) => {
     return (
         <>
-            <Skeleton variant="rounded" animation="wave" width={300} height={40} style={{ marginBottom: 25 }} />
+            <div style={{ display: 'flex' }}>
+                <Skeleton variant="rounded" animation="wave" width={400} height={40} style={{ marginBottom: 25 }} />
+                {order ? (
+                    <Skeleton
+                        variant="rounded"
+                        animation="wave"
+                        width={150}
+                        height={40}
+                        style={{ marginBottom: 25, marginLeft: 'auto', marginRight: '16px' }}
+                    />
+                ) : null}
+            </div>
             <div>
                 <SkeletonEntry />
                 <SkeletonEntry />
@@ -17,7 +28,7 @@ const TableSkeleton = () => {
                 <SkeletonEntry />
                 <SkeletonEntry />
             </div>
-            <Skeleton variant="rounded" animation="wave" width={300} height={40} style={{ marginBottom: 25 }} />
+            <Skeleton variant="rounded" animation="wave" width={400} height={40} style={{ marginBottom: 25 }} />
         </>
     );
 };

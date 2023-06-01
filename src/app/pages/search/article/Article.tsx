@@ -18,6 +18,9 @@ import {
     updatePageQueryUrl,
     useSearchParams,
 } from '../../../shared/Routes';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -26,6 +29,7 @@ import type { ArticleDataType } from '../../../shared/types/data.types';
 import type { FacetProps } from '../../../shared/types/props.types';
 import type { TableArgsProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
+import type { SelectChangeEvent } from '@mui/material/Select';
 
 const Article = () => {
     const navigate = useNavigate();
@@ -82,6 +86,16 @@ const Article = () => {
                     page: 1,
                     perPage: search.article.table.perPage,
                 },
+            },
+        });
+    };
+
+    const handleOrderChange = (event: SelectChangeEvent<OrderByType>) => {
+        setSearch({
+            ...search,
+            article: {
+                ...search.article,
+                orderBy: event.target.value as OrderByType,
             },
         });
     };
@@ -255,7 +269,7 @@ const Article = () => {
                     />
                 </div>
                 {isLoading || isFetching ? (
-                    <SearchSkeleton />
+                    <SearchSkeleton order />
                 ) : (
                     <Table
                         id="search-content"
@@ -264,6 +278,15 @@ const Article = () => {
                         args={search.article.table}
                         onArgsChange={handleTable}
                         total={data?.totalHits}
+                        header={
+                            <FormControl id="article-order" size="small">
+                                <Select displayEmpty value={search.article.orderBy} onChange={handleOrderChange}>
+                                    <MenuItem value="date_asc">{t('pages.article.order.dateAsc')}</MenuItem>
+                                    <MenuItem value="date_desc">{t('pages.article.order.dateDesc')}</MenuItem>
+                                    <MenuItem value="relevance">{t('pages.article.order.relevance')}</MenuItem>
+                                </Select>
+                            </FormControl>
+                        }
                     />
                 )}
             </div>
