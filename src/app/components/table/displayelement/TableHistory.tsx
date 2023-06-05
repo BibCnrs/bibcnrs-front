@@ -1,4 +1,5 @@
 import './scss/TableHistory.scss';
+import { HistoryContext } from '../../../pages/user/history/History';
 import { useTranslator } from '../../../shared/locales/I18N';
 import CustomButton from '../../custom/button/CustomButton';
 import { BibContext } from '../../provider/ContextProvider';
@@ -76,6 +77,7 @@ const Facets = ({ data }: { data: HistoryEntryFacetsDataType }) => {
 const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<HistoryEntryDataType>) => {
     const t = useTranslator();
     const { theme } = useContext(BibContext);
+    const handleDeleteEntry = useContext(HistoryContext);
     const getClassName = () => {
         let className = 'table-history';
         if (theme === 'light') {
@@ -136,7 +138,13 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
                         </li>
                     </ul>
                     <div className="table-history-box-actions-buttons">
-                        <CustomButton className="table-history-box-actions-button" size="small">
+                        <CustomButton
+                            className="table-history-box-actions-button"
+                            size="small"
+                            onClick={() => {
+                                handleDeleteEntry(data.id);
+                            }}
+                        >
                             <DeleteOutlineIcon />
                         </CustomButton>
                         <CustomButton className="table-history-box-actions-button" size="small">

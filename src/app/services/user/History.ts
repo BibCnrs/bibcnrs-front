@@ -70,7 +70,18 @@ export const addHistory = async (
 };
 
 export const deleteHistory = async (): Promise<void> => {
-    const query = createQuery(environment.delete.account.history);
+    const query = createQuery(environment.delete.account.histories);
+    const response: Response = await fetch(query, {
+        method: 'DELETE',
+        credentials: 'include',
+    });
+    throwIfNotOk(response);
+};
+
+export const deleteHistoryEntry = async (id: number): Promise<void> => {
+    const query = createQuery(environment.delete.account.history, {
+        id,
+    });
     const response: Response = await fetch(query, {
         method: 'DELETE',
         credentials: 'include',

@@ -3,12 +3,14 @@ import CustomButton from '../../../components/custom/button/CustomButton';
 import TableHistory from '../../../components/table/displayelement/TableHistory';
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
-import { deleteHistory, history } from '../../../services/user/History';
+import { deleteHistory, deleteHistoryEntry, history } from '../../../services/user/History';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import type { HistoryDataType } from '../../../shared/types/data.types';
 import type { TableArgsProps } from '../../../shared/types/props.types';
+
+export const HistoryContext = createContext<(id: number) => void>(null as any);
 
 const History = () => {
     const t = useTranslator();
@@ -39,22 +41,33 @@ const History = () => {
         }
     };
 
+    const handleDeleteEntry = (id: number) => {
+        deleteHistoryEntry(id).then(() => {
+            setArgs({
+                ...args,
+                stateIndex: (args.stateIndex ?? 0) + 1,
+            });
+        });
+    };
+
     return (
         <div id="app">
             <PageTitle page="history" />
             <h1>{t('pages.history.title')}</h1>
-            <Table
-                DisplayElement={TableHistory}
-                results={data}
-                args={args}
-                onArgsChange={setArgs}
-                total={data && data[0] ? data[0].totalCount : 0}
-                header={
-                    <div className="history-header">
-                        <CustomButton onClick={handleDelete}>{t('pages.history.buttons.delete')}</CustomButton>
-                    </div>
-                }
-            />
+            <HistoryContext.Provider value={handleDeleteEntry}>
+                <Table
+                    DisplayElement={TableHistory}
+                    results={data}
+                    args={args}
+                    onArgsChange={setArgs}
+                    total={data && data[0] ? data[0].totalCount : 0}
+                    header={
+                        <div className="history-header">
+                            <CustomButton onClick={handleDelete}>{t('pages.history.buttons.delete')}</CustomButton>
+                        </div>
+                    }
+                />
+            </HistoryContext.Provider>
         </div>
     );
 };

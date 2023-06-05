@@ -30,7 +30,8 @@ export const environment = {
     },
     delete: {
         account: {
-            history: '/ebsco/histories',
+            history: '/ebsco/history',
+            histories: '/ebsco/histories',
         },
     },
 } as const;
