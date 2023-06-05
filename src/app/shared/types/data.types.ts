@@ -164,8 +164,8 @@ export type HistoryEntryLimiterDataType = {
     fullText: boolean;
     openAccess: boolean;
     publicationDate: {
-        from: string | null;
-        to: string | null;
+        from: number | null;
+        to: number | null;
     };
     peerReviewed: boolean;
     peerReviewedArticle: boolean;

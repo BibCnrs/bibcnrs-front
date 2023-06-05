@@ -13,6 +13,8 @@ import type {
     HistoryEntryFacetsDataType,
 } from '../../../shared/types/data.types';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
+import type { FacetEntry } from '../../../shared/types/types';
+import type { SearchContextType } from '../../../shared/types/types';
 
 const Limiters = ({ data }: { data: HistoryEntryLimiterDataType }) => {
     const t = useTranslator();
@@ -74,10 +76,19 @@ const Facets = ({ data }: { data: HistoryEntryFacetsDataType }) => {
     );
 };
 
+const convertFacet = (array: string[]): FacetEntry[] => {
+    return array.map<FacetEntry>((value) => {
+        return {
+            name: value,
+            count: 0,
+        };
+    });
+};
+
 const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<HistoryEntryDataType>) => {
     const t = useTranslator();
     const { theme } = useContext(BibContext);
-    const handleDeleteEntry = useContext(HistoryContext);
+    const { handleDeleteEntry } = useContext(HistoryContext);
     const getClassName = () => {
         let className = 'table-history';
         if (theme === 'light') {
@@ -95,6 +106,59 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
         }
         return className;
     };
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const param: SearchContextType['article'] = {
+        facets: undefined,
+        limiters: {
+            fullText: data.event.limiters.fullText,
+            openAccess: data.event.limiters.openAccess,
+            reviewed: data.event.limiters.peerReviewed,
+        },
+        orderBy: data.event.sort,
+        table: {
+            page: 1,
+            perPage: data.event.resultPerPage,
+        },
+    };
+
+    if (data.event.limiters.publicationDate.from && data.event.limiters.publicationDate.to) {
+        param.limiters = {
+            ...param.limiters,
+            dateRange: {
+                from: data.event.limiters.publicationDate.from,
+                to: data.event.limiters.publicationDate.to,
+            },
+        };
+    }
+
+    if (data.event.activeFacets) {
+        param.facets = {};
+        if (data.event.activeFacets.SourceType) {
+            param.facets.source = convertFacet(data.event.activeFacets.SourceType);
+        }
+        if (data.event.activeFacets.SubjectEDS) {
+            param.facets.subject = convertFacet(data.event.activeFacets.SubjectEDS);
+        }
+        if (data.event.activeFacets.Journal) {
+            param.facets.journal = convertFacet(data.event.activeFacets.Journal);
+        }
+        if (data.event.activeFacets.Language) {
+            param.facets.language = convertFacet(data.event.activeFacets.Language);
+        }
+        if (data.event.activeFacets.RangeLexile) {
+            param.facets.lexile = convertFacet(data.event.activeFacets.RangeLexile);
+        }
+        if (data.event.activeFacets.CollectionLibrary) {
+            param.facets.collection = convertFacet(data.event.activeFacets.CollectionLibrary);
+        }
+        if (data.event.activeFacets.Publisher) {
+            param.facets.publisher = convertFacet(data.event.activeFacets.Publisher);
+        }
+        if (data.event.activeFacets.ContentProvider) {
+            param.facets.provider = convertFacet(data.event.activeFacets.ContentProvider);
+        }
+    }
 
     return (
         <>

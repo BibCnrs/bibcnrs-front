@@ -10,7 +10,7 @@ import { createContext, useState } from 'react';
 import type { HistoryDataType } from '../../../shared/types/data.types';
 import type { TableArgsProps } from '../../../shared/types/props.types';
 
-export const HistoryContext = createContext<(id: number) => void>(null as any);
+export const HistoryContext = createContext<{ handleDeleteEntry: (id: number) => void }>(null as any);
 
 const History = () => {
     const t = useTranslator();
@@ -54,7 +54,7 @@ const History = () => {
         <div id="app">
             <PageTitle page="history" />
             <h1>{t('pages.history.title')}</h1>
-            <HistoryContext.Provider value={handleDeleteEntry}>
+            <HistoryContext.Provider value={{ handleDeleteEntry }}>
                 <Table
                     DisplayElement={TableHistory}
                     results={data}
