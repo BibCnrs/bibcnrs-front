@@ -26,6 +26,9 @@ preview:
 build:
 	docker compose -f docker-compose.yml build --build-arg BIBFRONT_VERSION --build-arg BIBAPI_HOST
 
+build-v4:
+	docker compose -f docker-compose.v4.yml build --build-arg BIBFRONT_VERSION --build-arg BIBAPI_HOST
+
 run-prod:
 	docker compose -f docker-compose-prod.yml up -d
 
