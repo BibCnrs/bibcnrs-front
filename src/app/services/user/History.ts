@@ -23,6 +23,9 @@ export const addHistory = async (
     domain: Institute,
     result: ArticleDataType,
 ): Promise<void> => {
+    if (!result) {
+        return;
+    }
     const query = createQuery(environment.post.account.history);
 
     const limiters: ArticleParam['limiters'] & {
