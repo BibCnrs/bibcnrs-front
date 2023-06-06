@@ -95,7 +95,7 @@ const Article = ({
                     >
                         {getter.getTitle()} [{getter.getType()}]
                     </a>
-                    {openAccess ? <OpenAccess className="table-article-oa" /> : null}
+                    {openAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
                 </>
             }
             SmallBody={
