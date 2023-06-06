@@ -28,20 +28,25 @@ const Routes = {
 
 type RoutesType = typeof Routes;
 
+const cleanupParam = (paramIn: any): any => {
+    const param: any = {};
+    for (const [key, value] of Object.entries(paramIn)) {
+        if (value !== null) {
+            param[key] = value;
+        }
+    }
+    return param;
+};
+
 export const useClickHandler = <Route extends RoutesType[keyof RoutesType]>(to: Route) => {
     const href = useHref(to);
     const handler = useLinkClickHandler(to);
     return { href, handler };
 };
 
-export const updatePageQueryUrl = (route: string, navigate: NavigateFunction, param: any) => {
-    const cleanupParam: any = {};
-    for (const [key, value] of Object.entries(param)) {
-        if (value !== null) {
-            cleanupParam[key] = value;
-        }
-    }
-    const query = new URLSearchParams(cleanupParam);
+export const updatePageQueryUrl = (route: string, navigate: NavigateFunction, paramIn: any) => {
+    const param = cleanupParam(paramIn);
+    const query = new URLSearchParams(param);
     navigate(`${route}?${query.toString()}`);
 };
 

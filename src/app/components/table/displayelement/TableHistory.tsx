@@ -1,11 +1,13 @@
 import './scss/TableHistory.scss';
 import { HistoryContext } from '../../../pages/user/history/History';
 import { useTranslator } from '../../../shared/locales/I18N';
+import { RouteArticle, updatePageQueryUrl } from '../../../shared/Routes';
 import CustomButton from '../../custom/button/CustomButton';
 import { BibContext } from '../../provider/ContextProvider';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { ArticleFacetsKeyDataType } from '../../../shared/types/data.types';
 import type {
     HistoryEntryDataType,
@@ -14,7 +16,6 @@ import type {
 } from '../../../shared/types/data.types';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
-import type { SearchContextType } from '../../../shared/types/types';
 
 const Limiters = ({ data }: { data: HistoryEntryLimiterDataType }) => {
     const t = useTranslator();
@@ -85,8 +86,67 @@ const convertFacet = (array: string[]): FacetEntry[] => {
     });
 };
 
+const createParam = (id: number, event: HistoryEntryDataType['event']): any => {
+    const param: any = {
+        q: event.queries[0].term,
+        limiters: {
+            fullText: event.limiters.fullText,
+            openAccess: event.limiters.openAccess,
+            reviewed: event.limiters.peerReviewed,
+        },
+        orderBy: event.sort,
+        page: 1,
+        perPage: event.resultPerPage ?? 25,
+        history: id,
+    };
+
+    if (event.limiters.publicationDate.from && event.limiters.publicationDate.to) {
+        param.limiters = {
+            ...param.limiters,
+            dateRange: {
+                from: event.limiters.publicationDate.from,
+                to: event.limiters.publicationDate.to,
+            },
+        };
+    }
+
+    if (event.activeFacets) {
+        param.facets = {};
+        if (event.activeFacets.SourceType) {
+            param.facets.source = convertFacet(event.activeFacets.SourceType);
+        }
+        if (event.activeFacets.SubjectEDS) {
+            param.facets.subject = convertFacet(event.activeFacets.SubjectEDS);
+        }
+        if (event.activeFacets.Journal) {
+            param.facets.journal = convertFacet(event.activeFacets.Journal);
+        }
+        if (event.activeFacets.Language) {
+            param.facets.language = convertFacet(event.activeFacets.Language);
+        }
+        if (event.activeFacets.RangeLexile) {
+            param.facets.lexile = convertFacet(event.activeFacets.RangeLexile);
+        }
+        if (event.activeFacets.CollectionLibrary) {
+            param.facets.collection = convertFacet(event.activeFacets.CollectionLibrary);
+        }
+        if (event.activeFacets.Publisher) {
+            param.facets.publisher = convertFacet(event.activeFacets.Publisher);
+        }
+        if (event.activeFacets.ContentProvider) {
+            param.facets.provider = convertFacet(event.activeFacets.ContentProvider);
+        }
+    }
+    return {
+        ...param,
+        facets: JSON.stringify(param.facets),
+        limiters: JSON.stringify(param.limiters),
+    };
+};
+
 const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<HistoryEntryDataType>) => {
     const t = useTranslator();
+    const navigate = useNavigate();
     const { theme } = useContext(BibContext);
     const { handleDeleteEntry } = useContext(HistoryContext);
     const getClassName = () => {
@@ -107,58 +167,9 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
         return className;
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const param: SearchContextType['article'] = {
-        facets: undefined,
-        limiters: {
-            fullText: data.event.limiters.fullText,
-            openAccess: data.event.limiters.openAccess,
-            reviewed: data.event.limiters.peerReviewed,
-        },
-        orderBy: data.event.sort,
-        table: {
-            page: 1,
-            perPage: data.event.resultPerPage,
-        },
+    const handleSearch = () => {
+        updatePageQueryUrl(RouteArticle, navigate, createParam(data.id, data.event));
     };
-
-    if (data.event.limiters.publicationDate.from && data.event.limiters.publicationDate.to) {
-        param.limiters = {
-            ...param.limiters,
-            dateRange: {
-                from: data.event.limiters.publicationDate.from,
-                to: data.event.limiters.publicationDate.to,
-            },
-        };
-    }
-
-    if (data.event.activeFacets) {
-        param.facets = {};
-        if (data.event.activeFacets.SourceType) {
-            param.facets.source = convertFacet(data.event.activeFacets.SourceType);
-        }
-        if (data.event.activeFacets.SubjectEDS) {
-            param.facets.subject = convertFacet(data.event.activeFacets.SubjectEDS);
-        }
-        if (data.event.activeFacets.Journal) {
-            param.facets.journal = convertFacet(data.event.activeFacets.Journal);
-        }
-        if (data.event.activeFacets.Language) {
-            param.facets.language = convertFacet(data.event.activeFacets.Language);
-        }
-        if (data.event.activeFacets.RangeLexile) {
-            param.facets.lexile = convertFacet(data.event.activeFacets.RangeLexile);
-        }
-        if (data.event.activeFacets.CollectionLibrary) {
-            param.facets.collection = convertFacet(data.event.activeFacets.CollectionLibrary);
-        }
-        if (data.event.activeFacets.Publisher) {
-            param.facets.publisher = convertFacet(data.event.activeFacets.Publisher);
-        }
-        if (data.event.activeFacets.ContentProvider) {
-            param.facets.provider = convertFacet(data.event.activeFacets.ContentProvider);
-        }
-    }
 
     return (
         <>
@@ -211,7 +222,7 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
                         >
                             <DeleteOutlineIcon />
                         </CustomButton>
-                        <CustomButton className="table-history-box-actions-button" size="small">
+                        <CustomButton className="table-history-box-actions-button" size="small" onClick={handleSearch}>
                             <OpenInNewIcon />
                         </CustomButton>
                     </div>

@@ -81,6 +81,7 @@ const Article = () => {
             ...search,
             query: value,
             article: {
+                limiters: search.article.limiters,
                 orderBy: search.article.orderBy,
                 table: {
                     page: 1,
@@ -166,6 +167,10 @@ const Article = () => {
 
         if (search.article.table.perPage) {
             param.perPage = search.article.table.perPage;
+        }
+
+        if (search.article.orderBy) {
+            param.orderBy = search.article.orderBy;
         }
 
         if (search.article.limiters) {
