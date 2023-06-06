@@ -57,6 +57,7 @@ export const article = async (
     query: string,
     page: number,
     perPage: number,
+    saveHistory: boolean,
     param: ArticleParam,
 ): Promise<ArticleDataType> => {
     // Create payload from params
@@ -145,7 +146,9 @@ export const article = async (
     );
     throwIfNotOk(response);
     const result = await json<ArticleDataType>(response);
-    addHistory(payload, param, domain, result).then();
+    if (saveHistory) {
+        addHistory(payload, param, domain, result).then();
+    }
     return result;
 };
 const HAL_REGEX = /https?:\/\/(?:www\.)?(hal|tel)(shs)?(-.*)?\.(.*)\.(.*)/;

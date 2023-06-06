@@ -41,6 +41,7 @@ const Article = () => {
 
     const [first, setFirst] = useState<boolean>(true);
     const [seed, setSeed] = useState<number>(0);
+    const [saveHistory, setSaveHistory] = useState<boolean>(true);
 
     const handleDomain = useFacetsDomainHandler();
     const domains = useDomain();
@@ -65,11 +66,20 @@ const Article = () => {
             ) {
                 return null;
             }
-            return article(search.domain, search.query, search.article.table.page, search.article.table.perPage, {
-                orderBy: search.article.orderBy,
-                limiters: search.article.limiters,
-                facets: search.article.facets,
-            });
+            const values = await article(
+                search.domain,
+                search.query,
+                search.article.table.page,
+                search.article.table.perPage,
+                saveHistory,
+                {
+                    orderBy: search.article.orderBy,
+                    limiters: search.article.limiters,
+                    facets: search.article.facets,
+                },
+            );
+            setSaveHistory(false);
+            return values;
         },
         keepPreviousData: true,
         staleTime: 3600000, // 1 hour of cache
@@ -77,6 +87,7 @@ const Article = () => {
     });
 
     const handleSearch = (value: string | undefined): void => {
+        setSaveHistory(true);
         setSearch({
             ...search,
             query: value,
@@ -92,6 +103,7 @@ const Article = () => {
     };
 
     const handleOrderChange = (event: SelectChangeEvent<OrderByType>) => {
+        setSaveHistory(true);
         setSearch({
             ...search,
             article: {
@@ -102,6 +114,7 @@ const Article = () => {
     };
 
     const handleFacets = (values: Omit<ArticleParam, 'orderBy'>) => {
+        setSaveHistory(true);
         facetsCleaner(values);
         setSearch({
             ...search,
@@ -115,6 +128,7 @@ const Article = () => {
     };
 
     const handleReset = () => {
+        setSaveHistory(true);
         setSearch({
             ...search,
             article: {

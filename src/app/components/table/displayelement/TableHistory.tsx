@@ -86,7 +86,7 @@ const convertFacet = (array: string[]): FacetEntry[] => {
     });
 };
 
-const createParam = (id: number, event: HistoryEntryDataType['event']): any => {
+const createParam = (event: HistoryEntryDataType['event']): any => {
     const param: any = {
         q: event.queries[0].term,
         limiters: {
@@ -97,7 +97,6 @@ const createParam = (id: number, event: HistoryEntryDataType['event']): any => {
         orderBy: event.sort,
         page: 1,
         perPage: event.resultPerPage ?? 25,
-        history: id,
     };
 
     if (event.limiters.publicationDate.from && event.limiters.publicationDate.to) {
@@ -168,7 +167,7 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
     };
 
     const handleSearch = () => {
-        updatePageQueryUrl(RouteArticle, navigate, createParam(data.id, data.event));
+        updatePageQueryUrl(RouteArticle, navigate, createParam(data.event));
     };
 
     return (
