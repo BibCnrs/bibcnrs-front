@@ -8,23 +8,14 @@ ifneq "$(SUPPORTS_MAKE_ARGS)" ""
     $(eval $(COMMAND_ARGS):;@:)
 endif
 
-docker-install:
+install-dev:
 	docker compose -f docker-compose.dev.yml run --rm bibcnrs-front-dev-npm install
 
-docker-clean-install:
-	docker compose -f docker-compose.dev.yml run --rm bibcnrs-front-dev-npm ci
-
-docker-run-dev:
-	docker compose -f docker-compose.dev.yml run --rm bibcnrs-front-dev-server
-
 install:
-	npm install
+	docker compose -f docker-compose.dev.yml run --rm bibcnrs-front-dev-npm ci
 
 git-pull:
 	git pull
-
-npm-run-dev:
-	npm run dev
 
 npm-build:
 	npm run build
@@ -35,15 +26,9 @@ preview:
 build:
 	docker compose -f docker-compose.yml build --build-arg BIBFRONT_VERSION --build-arg BIBAPI_HOST
 
-build-v4:
-	docker compose -f docker-compose.v4.yml build --build-arg BIBFRONT_VERSION --build-arg BIBAPI_HOST
-
-run-prod:
-	docker compose -f docker-compose-prod.yml up -d
-
 # To remove or to change with a docker who watch files
 run-dev:
-	docker compose -f docker-compose.yml up -d
+	docker compose -f docker-compose.dev.yml run --rm bibcnrs-front-dev-server
 
 stop: ## stop all bibcnrs-front docker image
 	test -z "$$(docker ps | grep bibcnrs-front)" || \
@@ -52,12 +37,6 @@ stop: ## stop all bibcnrs-front docker image
 cleanup-docker: ## remove all bibcnrs-front docker image
 	test -z "$$(docker ps -a | grep bibcnrs-front)" || \
             docker rm --force $$(docker ps -a | grep bibcnrs-front | awk '{ print $$1 }')
-
-build-start-prod: build run-prod
-
-stop-build-start-prod: stop cleanup-docker build-start-prod
-
-update-stop-build-start-prod: git-pull stop-build-start-prod
 
 readme-tree:
 	tree -d -n src > tree.txt
