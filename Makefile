@@ -8,6 +8,15 @@ ifneq "$(SUPPORTS_MAKE_ARGS)" ""
     $(eval $(COMMAND_ARGS):;@:)
 endif
 
+docker-install:
+	docker compose -f docker-compose.dev.yml run --rm bibcnrs-front-dev-npm install
+
+docker-clean-install:
+	docker compose -f docker-compose.dev.yml run --rm bibcnrs-front-dev-npm ci
+
+docker-run-dev:
+	docker compose -f docker-compose.dev.yml run --rm bibcnrs-front-dev-server
+
 install:
 	npm install
 

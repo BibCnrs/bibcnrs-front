@@ -1,0 +1,36 @@
+version: "3.5"
+
+services:
+  bibcnrs-front-dev-server:
+    image: node:18-alpine
+    environment:
+      NODE_ENV: development
+      VITE_ENV: development
+      VITE_BIBAPI_HOST: http://localhost:3000
+      VITE_SOURCE_MAP: true
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: npm run dev
+    networks:
+      bib-frontend-network:
+
+  bibcnrs-front-dev-npm:
+    image: node:18-alpine
+    environment:
+      http_proxy: ${http_proxy}
+      https_proxy: ${https_proxy}
+      no_proxy: "localhost,127.0.0.1,"
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: [ "npm" ]
+    networks:
+      bib-frontend-network:
+
+networks:
+  bib-frontend-network:
+    driver: bridge
+    name: bib-frontend-network
