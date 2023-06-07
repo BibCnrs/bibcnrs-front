@@ -25,11 +25,13 @@ export const environment = {
             legacy: '/ebsco/login',
             user: '/ebsco/getLogin',
             logout: '/ebsco/logout',
+            history: '/ebsco/history',
         },
     },
     delete: {
         account: {
-            history: '/ebsco/histories',
+            history: '/ebsco/history',
+            histories: '/ebsco/histories',
         },
     },
 } as const;

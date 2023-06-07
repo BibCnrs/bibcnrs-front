@@ -1,10 +1,13 @@
 import './scss/TableHistory.scss';
+import { HistoryContext } from '../../../pages/user/history/History';
 import { useTranslator } from '../../../shared/locales/I18N';
+import { RouteArticle, updatePageQueryUrl } from '../../../shared/Routes';
 import CustomButton from '../../custom/button/CustomButton';
 import { BibContext } from '../../provider/ContextProvider';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { ArticleFacetsKeyDataType } from '../../../shared/types/data.types';
 import type {
     HistoryEntryDataType,
@@ -12,6 +15,7 @@ import type {
     HistoryEntryFacetsDataType,
 } from '../../../shared/types/data.types';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
+import type { FacetEntry } from '../../../shared/types/types';
 
 const Limiters = ({ data }: { data: HistoryEntryLimiterDataType }) => {
     const t = useTranslator();
@@ -73,9 +77,77 @@ const Facets = ({ data }: { data: HistoryEntryFacetsDataType }) => {
     );
 };
 
+const convertFacet = (array: string[]): FacetEntry[] => {
+    return array.map<FacetEntry>((value) => {
+        return {
+            name: value,
+            count: 0,
+        };
+    });
+};
+
+const createParam = (event: HistoryEntryDataType['event']): any => {
+    const param: any = {
+        q: event.queries[0].term,
+        limiters: {
+            fullText: event.limiters.fullText,
+            openAccess: event.limiters.openAccess,
+            reviewed: event.limiters.peerReviewed,
+        },
+        orderBy: event.sort,
+        page: 1,
+        perPage: event.resultPerPage ?? 25,
+    };
+
+    if (event.limiters.publicationDate.from && event.limiters.publicationDate.to) {
+        param.limiters = {
+            ...param.limiters,
+            dateRange: {
+                from: event.limiters.publicationDate.from,
+                to: event.limiters.publicationDate.to,
+            },
+        };
+    }
+
+    if (event.activeFacets) {
+        param.facets = {};
+        if (event.activeFacets.SourceType) {
+            param.facets.source = convertFacet(event.activeFacets.SourceType);
+        }
+        if (event.activeFacets.SubjectEDS) {
+            param.facets.subject = convertFacet(event.activeFacets.SubjectEDS);
+        }
+        if (event.activeFacets.Journal) {
+            param.facets.journal = convertFacet(event.activeFacets.Journal);
+        }
+        if (event.activeFacets.Language) {
+            param.facets.language = convertFacet(event.activeFacets.Language);
+        }
+        if (event.activeFacets.RangeLexile) {
+            param.facets.lexile = convertFacet(event.activeFacets.RangeLexile);
+        }
+        if (event.activeFacets.CollectionLibrary) {
+            param.facets.collection = convertFacet(event.activeFacets.CollectionLibrary);
+        }
+        if (event.activeFacets.Publisher) {
+            param.facets.publisher = convertFacet(event.activeFacets.Publisher);
+        }
+        if (event.activeFacets.ContentProvider) {
+            param.facets.provider = convertFacet(event.activeFacets.ContentProvider);
+        }
+    }
+    return {
+        ...param,
+        facets: JSON.stringify(param.facets),
+        limiters: JSON.stringify(param.limiters),
+    };
+};
+
 const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<HistoryEntryDataType>) => {
     const t = useTranslator();
+    const navigate = useNavigate();
     const { theme } = useContext(BibContext);
+    const { handleDeleteEntry } = useContext(HistoryContext);
     const getClassName = () => {
         let className = 'table-history';
         if (theme === 'light') {
@@ -92,6 +164,10 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
             className += ' table-history-last';
         }
         return className;
+    };
+
+    const handleSearch = () => {
+        updatePageQueryUrl(RouteArticle, navigate, createParam(data.event));
     };
 
     return (
@@ -136,10 +212,16 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
                         </li>
                     </ul>
                     <div className="table-history-box-actions-buttons">
-                        <CustomButton className="table-history-box-actions-button" size="small">
+                        <CustomButton
+                            className="table-history-box-actions-button"
+                            size="small"
+                            onClick={() => {
+                                handleDeleteEntry(data.id);
+                            }}
+                        >
                             <DeleteOutlineIcon />
                         </CustomButton>
-                        <CustomButton className="table-history-box-actions-button" size="small">
+                        <CustomButton className="table-history-box-actions-button" size="small" onClick={handleSearch}>
                             <OpenInNewIcon />
                         </CustomButton>
                     </div>

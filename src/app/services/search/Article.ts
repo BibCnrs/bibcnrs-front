@@ -1,5 +1,6 @@
 import { convertFacet, convertPayload } from '../../shared/typeConvertion';
 import { createQuery, environment, json, throwIfNotOk } from '../Environment';
+import { addHistory } from '../user/History';
 import { getToken } from '../user/Session';
 import type { RetrieveItemValueDataType } from '../../shared/types/data.types';
 import type { ArticleLinksDataType } from '../../shared/types/data.types';
@@ -56,6 +57,7 @@ export const article = async (
     query: string,
     page: number,
     perPage: number,
+    saveHistory: boolean,
     param: ArticleParam,
 ): Promise<ArticleDataType> => {
     // Create payload from params
@@ -143,7 +145,11 @@ export const article = async (
         },
     );
     throwIfNotOk(response);
-    return json<ArticleDataType>(response);
+    const result = await json<ArticleDataType>(response);
+    if (saveHistory) {
+        addHistory(payload, param, domain, result).then();
+    }
+    return result;
 };
 const HAL_REGEX = /https?:\/\/(?:www\.)?(hal|tel)(shs)?(-.*)?\.(.*)\.(.*)/;
 export class ArticleContentGetter {
