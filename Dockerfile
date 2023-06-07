@@ -2,11 +2,11 @@ FROM node:18-alpine as build
 WORKDIR /app
 COPY ./package*.json .
 RUN npm ci
-ARG VITE_BIBAPI_HOST
-ARG VITE_SOURCE_MAP
-ENV VITE_BIBAPI_HOST=$VITE_BIBAPI_HOST \
+ARG BIBAPI_HOST
+ARG SOURCE_MAP
+ENV VITE_BIBAPI_HOST=$BIBAPI_HOST \
     VITE_ENV="prod" \
-    VITE_SOURCE_MAP=$VITE_SOURCE_MAP
+    VITE_SOURCE_MAP=$SOURCE_MAP
 COPY ./tsconfig*.json ./vite.config.ts ./index.html ./
 COPY ./public ./public
 COPY ./src ./src

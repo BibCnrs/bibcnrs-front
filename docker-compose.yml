@@ -7,10 +7,10 @@ services:
     build:
       context: .
       args:
-        VITE_BIBAPI_HOST: ${BIBAPI_HOST}
-        VITE_SOURCE_MAP: ${VITE_SOURCE_MAP}
+        BIBAPI_HOST: ${BIBAPI_HOST}
+        SOURCE_MAP: ${SOURCE_MAP}
     ports:
-      - "8888:8888"
+      - "8080:8080"
     networks:
       bib-frontend-network:
 
