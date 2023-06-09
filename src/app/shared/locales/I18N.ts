@@ -256,7 +256,7 @@ export const useFullTranslator = () => {
     return useTranslation('common');
 };
 
-export const useLanguageKey = () => {
+export const useLanguageKey = (): string => {
     const { i18n } = useFullTranslator();
     return i18n.language;
 };
