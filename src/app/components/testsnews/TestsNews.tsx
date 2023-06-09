@@ -95,9 +95,9 @@ const TestsNews = ({ data }: TestsNewsProps) => {
      */
     const getLabel = (value: TestNewDataType) => {
         if (!Array.isArray(value.domains) || value.domains.length === 0) {
-            return t('components.testsnews.common');
+            return null;
         }
-        return value.domains?.join(', ');
+        return ` • ${value.domains?.join(', ')}`;
     };
 
     /**
@@ -116,7 +116,6 @@ const TestsNews = ({ data }: TestsNewsProps) => {
                             <PageDate date={value.to} />
                         </>
                     ) : null}
-                    {' • '}
                     {getLabel(value)}
                 </i>
             </div>
