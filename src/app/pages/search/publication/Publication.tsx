@@ -4,7 +4,7 @@ import Facet from '../../../components/facet/Facet';
 import { BibContext, BibContextPublicationDefault } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import SearchSkeleton from '../../../components/skeleton/SearchSkeleton';
-import TablePublication from '../../../components/table/displayelement/TablePublication';
+import TablePublication from '../../../components/table/element/TablePublication';
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { publication } from '../../../services/search/Publication';

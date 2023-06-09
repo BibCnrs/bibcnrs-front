@@ -3,7 +3,7 @@ import ChipFacet from '../../../components/facet/ChipFacet';
 import { BibContext } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import ResearchDataSkeleton from '../../../components/skeleton/ResearchDataSkeleton';
-import TableMetadore from '../../../components/table/displayelement/TableMetadore';
+import TableMetadore from '../../../components/table/element/TableMetadore';
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { metadore } from '../../../services/search/Metadore';

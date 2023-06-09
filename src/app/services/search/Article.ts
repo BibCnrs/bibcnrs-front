@@ -367,6 +367,10 @@ export class ArticleContentGetter {
 
     public getType = (): string => this.initial.publicationType;
 
+    public getId = (): number => this.initial.id;
+
+    public getExportLink = () => this.initial.exportLinks;
+
     public getAllItems = (): Array<{ label: string; content: string[] }> => {
         if (this.retrieve) {
             const toReturn: Array<{ label: string; content: string[] }> = [];
