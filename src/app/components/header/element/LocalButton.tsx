@@ -57,7 +57,7 @@ const LocalButton = () => {
                         color: colors.white,
                     }}
                 >
-                    {languageKey.toUpperCase()}
+                    {languageKey.split('-')[0].toUpperCase()}
                 </div>
             </Button>
             <Menu
