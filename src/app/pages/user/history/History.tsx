@@ -24,9 +24,6 @@ const History = () => {
     const { data } = useQuery<HistoryDataType, any, HistoryDataType, any>({
         queryKey: ['history', args],
         queryFn: () => history(args.perPage ?? 5, ((args.page ?? 1) - 1) * (args.perPage ?? 1)),
-        keepPreviousData: true,
-        staleTime: 3600000, // 1 hour of cache
-        cacheTime: 3600000, // 1000 * 60 * 60
     });
 
     const handleDelete = () => {
