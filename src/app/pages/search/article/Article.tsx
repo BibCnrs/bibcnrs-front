@@ -8,7 +8,7 @@ import SearchSkeleton from '../../../components/skeleton/SearchSkeleton';
 import TableArticle from '../../../components/table/element/TableArticle';
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
-import { article } from '../../../services/search/Article';
+import { article, retrieveExport } from '../../../services/search/Article';
 import { useDomain, useFacetsCleaner, useFacetsDomainHandler, useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import {
@@ -28,13 +28,16 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { ArticleParam, OrderByType } from '../../../services/search/Article';
 import type { ArticleDataType } from '../../../shared/types/data.types';
-import type { FacetProps } from '../../../shared/types/props.types';
-import type { TableArgsProps } from '../../../shared/types/props.types';
+import type { FacetProps, TableArgsProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
 import type { SelectChangeEvent } from '@mui/material/Select';
 import type { Dispatch, SetStateAction } from 'react';
 
-type ContextData = Array<{ id: number; ris: string; bibtex: string }>;
+type ContextData = Array<{
+    id: number;
+    ris: string;
+    bibtex: string;
+}>;
 
 export const ArticleContext = createContext<{
     exports: ContextData;
@@ -214,6 +217,19 @@ const Article = () => {
         });
     };
 
+    const handleDownload = (target: 'bibtex' | 'ris') => {
+        const links = exports.map((value) => value[target]);
+        retrieveExport(links).then((exportValues) => {
+            const blob = new Blob(exportValues, { type: 'text/plain' });
+            const elem = document.createElement('a');
+            elem.href = URL.createObjectURL(blob);
+            elem.download = `notices.${target === 'bibtex' ? 'bib' : 'ris'}`;
+            document.body.appendChild(elem);
+            elem.click();
+            document.body.removeChild(elem);
+        });
+    };
+
     const getAvailable = (result: ArticleDataType | undefined) => {
         const available: Partial<FacetProps<ArticleParam>['available']> = {};
         available.limiters = {
@@ -321,6 +337,9 @@ const Article = () => {
                                             <CustomButton
                                                 sx={{ paddingLeft: 1, paddingRight: 2 }}
                                                 className="article-action-element"
+                                                onClick={() => {
+                                                    handleDownload('bibtex');
+                                                }}
                                             >
                                                 <SaveAltIcon sx={{ marginRight: 1 }} />
                                                 BIBTEX
@@ -328,6 +347,9 @@ const Article = () => {
                                             <CustomButton
                                                 sx={{ paddingLeft: 1, paddingRight: 2 }}
                                                 className="article-action-element"
+                                                onClick={() => {
+                                                    handleDownload('ris');
+                                                }}
                                             >
                                                 <SaveAltIcon sx={{ marginRight: 1 }} />
                                                 RIS

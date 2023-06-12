@@ -507,3 +507,18 @@ export const retrieve = async (domain: Institute, dbid: string, an: string): Pro
     throwIfNotOk(response);
     return json<ArticleRetrieveDataType>(response);
 };
+
+export const retrieveExport = async (links: string[]): Promise<string[]> => {
+    const response: Response = await fetch(createQuery(environment.post.retrieve.articleExport), {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            links,
+        }),
+    });
+    throwIfNotOk(response);
+    return json<string[]>(response);
+};
