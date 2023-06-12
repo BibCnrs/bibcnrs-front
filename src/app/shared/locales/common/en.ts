@@ -119,7 +119,6 @@ const en: Common = {
             diamond: 'Open Access publication, free of charge for authors and readers',
         },
         testsnews: {
-            common: 'Common',
             from: 'From ',
             to: ' to ',
         },

@@ -132,7 +132,6 @@ export type Common = {
             diamond: string;
         };
         testsnews: {
-            common: string;
             from: string;
             to: string;
         };
