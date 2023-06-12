@@ -1,4 +1,5 @@
-import { useFullTranslator, supportedLanguages } from '../../../shared/locales/I18N';
+import { useFullTranslator, supportedLanguages, useLanguageKey } from '../../../shared/locales/I18N';
+import { colors } from '../../provider/LocalizedThemeProvider';
 import CheckIcon from '@mui/icons-material/Check';
 import TranslateIcon from '@mui/icons-material/Translate';
 import Button from '@mui/material/Button';
@@ -15,6 +16,7 @@ import type { MouseEvent } from 'react';
  */
 const LocalButton = () => {
     const { i18n } = useFullTranslator();
+    const languageKey = useLanguageKey();
 
     // Anchor used to display or not the drop-down menu
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -36,14 +38,27 @@ const LocalButton = () => {
     return (
         <div className="header-nav header-nav-spacer">
             <Button
-                sx={{ width: '36px', minWidth: '36px' }}
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open || undefined}
                 onClick={handleClick}
-                className="header-button-icon"
+                className="header-button header-button-icon"
             >
-                <TranslateIcon />
+                <div
+                    style={{
+                        height: '20px',
+                        marginRight: '4px',
+                    }}
+                >
+                    <TranslateIcon fontSize="small" />
+                </div>
+                <div
+                    style={{
+                        color: colors.white,
+                    }}
+                >
+                    {languageKey.split('-')[0].toUpperCase()}
+                </div>
             </Button>
             <Menu
                 id="basic-menu"

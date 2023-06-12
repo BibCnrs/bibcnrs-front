@@ -255,14 +255,14 @@ export const useFullTranslator = () => {
     return useTranslation('common');
 };
 
-export const useLanguageKey = () => {
+export const useLanguageKey = (): string => {
     const { i18n } = useFullTranslator();
     return i18n.language;
 };
 
 export const supportedLanguages: SupportedLanguages = [
-    { key: 'en', label: 'English' },
-    { key: 'fr', label: 'Français' },
+    { key: 'en', label: 'EN - English' },
+    { key: 'fr', label: 'FR - Français' },
 ];
 
 /**
