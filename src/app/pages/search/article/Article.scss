@@ -7,8 +7,13 @@
   margin-top: -15px;
 }
 
-#article-order {
+#article-action {
   display: flex;
+  flex-direction: row;
   margin-right: 16px;
   margin-left: auto;
+
+  .article-action-element {
+    margin-left: 8px;
+  }
 }

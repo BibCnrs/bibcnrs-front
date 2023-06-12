@@ -1,13 +1,14 @@
 import './Article.scss';
+import CustomButton from '../../../components/custom/button/CustomButton';
 import ChipFacet from '../../../components/facet/ChipFacet';
 import Facet from '../../../components/facet/Facet';
 import { BibContext, BibContextArticleDefault } from '../../../components/provider/ContextProvider';
 import SearchBar from '../../../components/searchbar/SearchBar';
 import SearchSkeleton from '../../../components/skeleton/SearchSkeleton';
-import TableArticle from '../../../components/table/displayelement/TableArticle';
+import TableArticle from '../../../components/table/element/TableArticle';
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
-import { article } from '../../../services/search/Article';
+import { article, retrieveExport } from '../../../services/search/Article';
 import { useDomain, useFacetsCleaner, useFacetsDomainHandler, useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import {
@@ -18,18 +19,30 @@ import {
     updatePageQueryUrl,
     useSearchParams,
 } from '../../../shared/Routes';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useQuery } from '@tanstack/react-query';
-import { useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { ArticleParam, OrderByType } from '../../../services/search/Article';
 import type { ArticleDataType } from '../../../shared/types/data.types';
-import type { FacetProps } from '../../../shared/types/props.types';
-import type { TableArgsProps } from '../../../shared/types/props.types';
+import type { FacetProps, TableArgsProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
 import type { SelectChangeEvent } from '@mui/material/Select';
+import type { Dispatch, SetStateAction } from 'react';
+
+type ContextData = Array<{
+    id: number;
+    ris: string;
+    bibtex: string;
+}>;
+
+export const ArticleContext = createContext<{
+    exports: ContextData;
+    setExports: Dispatch<SetStateAction<ContextData>>;
+}>(null as any);
 
 const Article = () => {
     const navigate = useNavigate();
@@ -42,6 +55,7 @@ const Article = () => {
     const [first, setFirst] = useState<boolean>(true);
     const [seed, setSeed] = useState<number>(0);
     const [saveHistory, setSaveHistory] = useState<boolean>(true);
+    const [exports, setExports] = useState<ContextData>([]);
 
     const handleDomain = useFacetsDomainHandler();
     const domains = useDomain();
@@ -85,6 +99,60 @@ const Article = () => {
         staleTime: 3600000, // 1 hour of cache
         cacheTime: 3600000, // 1000 * 60 * 60
     });
+
+    useEffect(() => {
+        if (first) {
+            const queryValue = getString<undefined>(query, 'q', search.query);
+            setSearch({
+                ...search,
+                query: queryValue,
+                article: {
+                    ...search.article,
+                    limiters: getJSON(query, 'limiters', search.article.limiters),
+                    facets: getJSON(query, 'facets', search.article.facets),
+                    orderBy: getString(query, 'orderBy', search.article.orderBy) as OrderByType,
+                    table: {
+                        page: getNumber(query, 'page', search.article.table.page),
+                        perPage: getNumber(query, 'perPage', search.article.table.perPage),
+                    },
+                },
+            });
+            setFirst(false);
+            return;
+        }
+        const param: any = {};
+
+        if (search.query) {
+            param.q = search.query;
+        }
+
+        if (search.article.table.page) {
+            param.page = search.article.table.page;
+        }
+
+        if (search.article.table.perPage) {
+            param.perPage = search.article.table.perPage;
+        }
+
+        if (search.article.orderBy) {
+            param.orderBy = search.article.orderBy;
+        }
+
+        if (search.article.limiters) {
+            param.limiters = JSON.stringify(search.article.limiters);
+        }
+
+        if (search.article.facets) {
+            param.facets = JSON.stringify(search.article.facets);
+        }
+        updatePageQueryUrl(RouteArticle, navigate, param);
+    }, [first, navigate, query, search, setSearch]);
+
+    useEffect(() => {
+        if (isError) {
+            serviceCatch(error);
+        }
+    }, [error, isError, serviceCatch]);
 
     const handleSearch = (value: string | undefined): void => {
         setSaveHistory(true);
@@ -149,59 +217,18 @@ const Article = () => {
         });
     };
 
-    useEffect(() => {
-        if (first) {
-            const queryValue = getString<undefined>(query, 'q', search.query);
-            setSearch({
-                ...search,
-                query: queryValue,
-                article: {
-                    ...search.article,
-                    limiters: getJSON(query, 'limiters', search.article.limiters),
-                    facets: getJSON(query, 'facets', search.article.facets),
-                    orderBy: getString(query, 'orderBy', search.article.orderBy) as OrderByType,
-                    table: {
-                        page: getNumber(query, 'page', search.article.table.page),
-                        perPage: getNumber(query, 'perPage', search.article.table.perPage),
-                    },
-                },
-            });
-            setFirst(false);
-            return;
-        }
-        const param: any = {};
-
-        if (search.query) {
-            param.q = search.query;
-        }
-
-        if (search.article.table.page) {
-            param.page = search.article.table.page;
-        }
-
-        if (search.article.table.perPage) {
-            param.perPage = search.article.table.perPage;
-        }
-
-        if (search.article.orderBy) {
-            param.orderBy = search.article.orderBy;
-        }
-
-        if (search.article.limiters) {
-            param.limiters = JSON.stringify(search.article.limiters);
-        }
-
-        if (search.article.facets) {
-            param.facets = JSON.stringify(search.article.facets);
-        }
-        updatePageQueryUrl(RouteArticle, navigate, param);
-    }, [first, navigate, query, search, setSearch]);
-
-    useEffect(() => {
-        if (isError) {
-            serviceCatch(error);
-        }
-    }, [error, isError, serviceCatch]);
+    const handleDownload = (target: 'bibtex' | 'ris') => {
+        const links = exports.map((value) => value[target]);
+        retrieveExport(links).then((exportValues) => {
+            const blob = new Blob([exportValues.join('\n')], { type: 'text/plain' });
+            const elem = document.createElement('a');
+            elem.href = URL.createObjectURL(blob);
+            elem.download = `notices.${target === 'bibtex' ? 'bib' : 'ris'}`;
+            document.body.appendChild(elem);
+            elem.click();
+            document.body.removeChild(elem);
+        });
+    };
 
     const getAvailable = (result: ArticleDataType | undefined) => {
         const available: Partial<FacetProps<ArticleParam>['available']> = {};
@@ -290,23 +317,59 @@ const Article = () => {
                 {isLoading || isFetching ? (
                     <SearchSkeleton order />
                 ) : (
-                    <Table
-                        id="search-content"
-                        DisplayElement={TableArticle}
-                        results={data?.results}
-                        args={search.article.table}
-                        onArgsChange={handleTable}
-                        total={data?.totalHits}
-                        header={
-                            <FormControl id="article-order" size="small">
-                                <Select displayEmpty value={search.article.orderBy} onChange={handleOrderChange}>
-                                    <MenuItem value="date_asc">{t('pages.article.order.dateAsc')}</MenuItem>
-                                    <MenuItem value="date_desc">{t('pages.article.order.dateDesc')}</MenuItem>
-                                    <MenuItem value="relevance">{t('pages.article.order.relevance')}</MenuItem>
-                                </Select>
-                            </FormControl>
-                        }
-                    />
+                    <ArticleContext.Provider
+                        value={{
+                            exports,
+                            setExports,
+                        }}
+                    >
+                        <Table
+                            id="search-content"
+                            DisplayElement={TableArticle}
+                            results={data?.results}
+                            args={search.article.table}
+                            onArgsChange={handleTable}
+                            total={data?.totalHits}
+                            header={
+                                <FormControl id="article-action" size="small">
+                                    {exports.length !== 0 ? (
+                                        <>
+                                            <CustomButton
+                                                sx={{ paddingLeft: 1, paddingRight: 2 }}
+                                                className="article-action-element"
+                                                onClick={() => {
+                                                    handleDownload('bibtex');
+                                                }}
+                                            >
+                                                <SaveAltIcon sx={{ marginRight: 1 }} />
+                                                BIBTEX
+                                            </CustomButton>
+                                            <CustomButton
+                                                sx={{ paddingLeft: 1, paddingRight: 2 }}
+                                                className="article-action-element"
+                                                onClick={() => {
+                                                    handleDownload('ris');
+                                                }}
+                                            >
+                                                <SaveAltIcon sx={{ marginRight: 1 }} />
+                                                RIS
+                                            </CustomButton>
+                                        </>
+                                    ) : null}
+                                    <Select
+                                        className="article-action-element"
+                                        value={search.article.orderBy}
+                                        onChange={handleOrderChange}
+                                        displayEmpty
+                                    >
+                                        <MenuItem value="date_asc">{t('pages.article.order.dateAsc')}</MenuItem>
+                                        <MenuItem value="date_desc">{t('pages.article.order.dateDesc')}</MenuItem>
+                                        <MenuItem value="relevance">{t('pages.article.order.relevance')}</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            }
+                        />
+                    </ArticleContext.Provider>
                 )}
             </div>
         </div>

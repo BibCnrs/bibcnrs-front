@@ -27,6 +27,9 @@ export const environment = {
             logout: '/ebsco/logout',
             history: '/ebsco/history',
         },
+        retrieve: {
+            articleExport: '/ebsco/retrieve_ris',
+        },
     },
     delete: {
         account: {

@@ -1,6 +1,6 @@
 import './History.scss';
 import CustomButton from '../../../components/custom/button/CustomButton';
-import TableHistory from '../../../components/table/displayelement/TableHistory';
+import TableHistory from '../../../components/table/element/TableHistory';
 import Table from '../../../components/table/Table';
 import PageTitle from '../../../components/utils/PageTitle';
 import { deleteHistory, deleteHistoryEntry, history } from '../../../services/user/History';

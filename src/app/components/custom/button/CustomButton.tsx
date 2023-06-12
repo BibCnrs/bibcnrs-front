@@ -4,7 +4,7 @@ import type { ButtonProps } from '@mui/material/Button';
 
 /**
  * Custom component extending Material UI Button.
- * This component changes the default color of the button tu match CNRS color chart.
+ * This component changes the default color of the button to match CNRS color chart.
  * @param className - HTML Class name
  * @param props - Material UI button props
  */

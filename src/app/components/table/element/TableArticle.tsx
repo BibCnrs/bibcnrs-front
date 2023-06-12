@@ -1,4 +1,5 @@
 import './scss/TableList.scss';
+import { ArticleContext } from '../../../pages/search/article/Article';
 import { retrieve as retrieveFn } from '../../../services/search/Article';
 import { ArticleContentGetter } from '../../../services/search/Article';
 import { useTranslator } from '../../../shared/locales/I18N';
@@ -6,11 +7,13 @@ import OpenAccess from '../../icon/OpenAccess';
 import OpenablePaper from '../../paper/openable/OpenablePaper';
 import { BibContext } from '../../provider/ContextProvider';
 import SkeletonEntry from '../../skeleton/SkeletonEntry';
+import Checkbox from '@mui/material/Checkbox';
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
 import type { ArticleResultDataType } from '../../../shared/types/data.types';
 import type { ArticleRetrieveDataType } from '../../../shared/types/data.types';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
+import type { ChangeEvent } from 'react';
 
 const NoAccessArticle = ({ getter }: { getter: ArticleContentGetter }) => {
     const t = useTranslator();
@@ -76,17 +79,41 @@ const Article = ({
 }) => {
     const t = useTranslator();
     const { search } = useContext(BibContext);
+    const { exports, setExports } = useContext(ArticleContext);
+    const id = getter.getId();
     const authors = getter.getAuthors();
+    const exportLinks = getter.getExportLink() ?? { bibtex: '', ris: '' };
     const doi = getter.getDOI();
     const source = getter.getSource();
     const href = getter.proxify(getter.getHref(), search.domain);
     const openAccess = getter.isOpenAccess();
+
+    const handleOnChange = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+        if (checked) {
+            setExports([
+                ...exports,
+                {
+                    id,
+                    ...exportLinks,
+                },
+            ]);
+            return;
+        }
+        setExports(exports.filter((value) => value.id !== id));
+    };
+
     return (
         <OpenablePaper
             onChange={onChange}
             defaultOpenState={open}
             Title={
                 <>
+                    <Checkbox
+                        sx={{ padding: 0, marginTop: '-2px', marginRight: 1 }}
+                        size="small"
+                        onChange={handleOnChange}
+                        checked={exports.findIndex((value) => value.id === id) >= 0}
+                    />
                     <a
                         className="table-list-title link"
                         href={href ? href : '#'}
