@@ -93,7 +93,7 @@ const fr: Common = {
         facet: {
             title: 'Affiner votre recherche',
             text: 'Type de documents',
-            reviewed: 'Relu par un comité',
+            reviewed: 'Relu par un comité de lecture',
             fullText: 'Texte intégral',
             openAccess: 'Accès ouvert',
             date: 'Date de publication',
