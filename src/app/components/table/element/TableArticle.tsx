@@ -23,7 +23,8 @@ const NoAccessArticle = ({ getter }: { getter: ArticleContentGetter }) => {
         <OpenablePaper
             Title={
                 <div className="table-list-title link">
-                    {getter.getTitle()} [{getter.getType()}] <i>({t('components.table.content.noAccess')})</i>
+                    {getter.getId()}. {getter.getTitle()} [{getter.getType()}]{' '}
+                    <i>({t('components.table.content.noAccess')})</i>
                 </div>
             }
             SmallBody={null}
@@ -120,7 +121,7 @@ const Article = ({
                         target="_blank"
                         rel="noreferrer noopener nofollow"
                     >
-                        {getter.getTitle()} [{getter.getType()}]
+                        {getter.getId()}. {getter.getTitle()} [{getter.getType()}]
                     </a>
                     {openAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
                 </>

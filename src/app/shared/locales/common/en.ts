@@ -155,6 +155,7 @@ Sincerely`,
         article: {
             title: 'Article',
             searchBar: 'Search articles, book chapters, DOIs, authors, words from the title abstract, ISSN, ISBN.',
+            selectAll: 'Select all',
             order: {
                 dateAsc: 'newest',
                 dateDesc: 'oldest',

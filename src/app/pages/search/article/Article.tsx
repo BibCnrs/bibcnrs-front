@@ -20,7 +20,9 @@ import {
     useSearchParams,
 } from '../../../shared/Routes';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useQuery } from '@tanstack/react-query';
@@ -31,7 +33,7 @@ import type { ArticleDataType } from '../../../shared/types/data.types';
 import type { FacetProps, TableArgsProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
 import type { SelectChangeEvent } from '@mui/material/Select';
-import type { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction, ChangeEvent } from 'react';
 
 type ContextData = Array<{
     id: number;
@@ -217,6 +219,21 @@ const Article = () => {
         });
     };
 
+    const handleSelectAll = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+        if (data && checked) {
+            const all: ContextData = data.results.map((value) => {
+                return {
+                    id: value.id,
+                    ris: value.exportLinks?.ris ?? '',
+                    bibtex: value.exportLinks?.bibtex ?? '',
+                };
+            });
+            setExports(all);
+            return;
+        }
+        setExports([]);
+    };
+
     const handleDownload = (target: 'bibtex' | 'ris') => {
         const links = exports.map((value) => value[target]);
         retrieveExport(links).then((exportValues) => {
@@ -356,6 +373,11 @@ const Article = () => {
                                             </CustomButton>
                                         </>
                                     ) : null}
+                                    <FormControlLabel
+                                        sx={{ marginLeft: 2 }}
+                                        control={<Checkbox onChange={handleSelectAll} />}
+                                        label={t('pages.article.selectAll')}
+                                    />
                                     <Select
                                         className="article-action-element"
                                         value={search.article.orderBy}
