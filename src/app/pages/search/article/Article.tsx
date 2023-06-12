@@ -220,7 +220,7 @@ const Article = () => {
     const handleDownload = (target: 'bibtex' | 'ris') => {
         const links = exports.map((value) => value[target]);
         retrieveExport(links).then((exportValues) => {
-            const blob = new Blob(exportValues, { type: 'text/plain' });
+            const blob = new Blob([exportValues.join('\n')], { type: 'text/plain' });
             const elem = document.createElement('a');
             elem.href = URL.createObjectURL(blob);
             elem.download = `notices.${target === 'bibtex' ? 'bib' : 'ris'}`;
