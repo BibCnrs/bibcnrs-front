@@ -155,6 +155,7 @@ export type Common = {
         article: {
             title: string;
             searchBar: string;
+            selectAll: string;
             order: {
                 dateAsc: string;
                 dateDesc: string;

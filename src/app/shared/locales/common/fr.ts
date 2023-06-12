@@ -156,6 +156,7 @@ Cordialement`,
             title: 'Article',
             searchBar:
                 'Rechercher des articles, des chapitres de livre, des DOIs, des auteurs, des mots du résumé du titre, ISSN, ISBN.',
+            selectAll: 'Tout sélectionner',
             order: {
                 dateAsc: '+ récent',
                 dateDesc: '+ ancien',

@@ -15,6 +15,35 @@ import type { ArticleRetrieveDataType } from '../../../shared/types/data.types';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 import type { ChangeEvent } from 'react';
 
+const ExportCheckbox = ({ getter }: { getter: ArticleContentGetter }) => {
+    const { exports, setExports } = useContext(ArticleContext);
+    const id = getter.getId();
+    const exportLinks = getter.getExportLink() ?? { bibtex: '', ris: '' };
+
+    const handleOnChange = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+        if (checked) {
+            setExports([
+                ...exports,
+                {
+                    id,
+                    ...exportLinks,
+                },
+            ]);
+            return;
+        }
+        setExports(exports.filter((value) => value.id !== id));
+    };
+
+    return (
+        <Checkbox
+            sx={{ padding: 0, marginTop: '-2px', marginRight: 1 }}
+            size="small"
+            onChange={handleOnChange}
+            checked={exports.findIndex((value) => value.id === id) >= 0}
+        />
+    );
+};
+
 const NoAccessArticle = ({ getter }: { getter: ArticleContentGetter }) => {
     const t = useTranslator();
     const urls = getter.getPublisherURL();
@@ -22,9 +51,13 @@ const NoAccessArticle = ({ getter }: { getter: ArticleContentGetter }) => {
     return (
         <OpenablePaper
             Title={
-                <div className="table-list-title link">
-                    {getter.getTitle()} [{getter.getType()}] <i>({t('components.table.content.noAccess')})</i>
-                </div>
+                <>
+                    <ExportCheckbox getter={getter} />
+                    <div className="table-list-title link">
+                        {getter.getId()}. {getter.getTitle()} [{getter.getType()}]{' '}
+                        <i>({t('components.table.content.noAccess')})</i>
+                    </div>
+                </>
             }
             SmallBody={null}
             FullBody={
@@ -79,28 +112,11 @@ const Article = ({
 }) => {
     const t = useTranslator();
     const { search } = useContext(BibContext);
-    const { exports, setExports } = useContext(ArticleContext);
-    const id = getter.getId();
     const authors = getter.getAuthors();
-    const exportLinks = getter.getExportLink() ?? { bibtex: '', ris: '' };
     const doi = getter.getDOI();
     const source = getter.getSource();
     const href = getter.proxify(getter.getHref(), search.domain);
     const openAccess = getter.isOpenAccess();
-
-    const handleOnChange = (event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
-        if (checked) {
-            setExports([
-                ...exports,
-                {
-                    id,
-                    ...exportLinks,
-                },
-            ]);
-            return;
-        }
-        setExports(exports.filter((value) => value.id !== id));
-    };
 
     return (
         <OpenablePaper
@@ -108,19 +124,14 @@ const Article = ({
             defaultOpenState={open}
             Title={
                 <>
-                    <Checkbox
-                        sx={{ padding: 0, marginTop: '-2px', marginRight: 1 }}
-                        size="small"
-                        onChange={handleOnChange}
-                        checked={exports.findIndex((value) => value.id === id) >= 0}
-                    />
+                    <ExportCheckbox getter={getter} />
                     <a
                         className="table-list-title link"
                         href={href ? href : '#'}
                         target="_blank"
                         rel="noreferrer noopener nofollow"
                     >
-                        {getter.getTitle()} [{getter.getType()}]
+                        {getter.getId()}. {getter.getTitle()} [{getter.getType()}]
                     </a>
                     {openAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
                 </>
