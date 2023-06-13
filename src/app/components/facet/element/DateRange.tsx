@@ -4,7 +4,7 @@ import Chip from '@mui/material/Chip';
 import Slider from '@mui/material/Slider';
 import { useState } from 'react';
 import type { FacetDateRangeProps } from '../../../shared/types/props.types';
-import type { SyntheticEvent } from 'react';
+import type { SyntheticEvent, KeyboardEvent } from 'react';
 
 const DateRange = ({ min, max, initial, onChange, minDistance = 1 }: FacetDateRangeProps) => {
     const t = useTranslator();
@@ -23,11 +23,25 @@ const DateRange = ({ min, max, initial, onChange, minDistance = 1 }: FacetDateRa
         }
     };
 
-    const handleCommitted = (event: Event | SyntheticEvent, committedRange: number[] | number) => {
+    const handleChipChange = (border: 0 | 1, newRange: number) => {
+        if (border === 0) {
+            setRange([Math.min(newRange, range[1] - minDistance), range[1]]);
+        } else {
+            setRange([range[0], Math.max(newRange, range[0] + minDistance)]);
+        }
+    };
+
+    const handleCommitted = (event: Event | SyntheticEvent | undefined, committedRange: number[] | number) => {
         if (!Array.isArray(committedRange)) {
             return;
         }
         onChange(committedRange);
+    };
+
+    const handleChipCommitted = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            handleCommitted(undefined, range);
+        }
     };
 
     return (
@@ -35,7 +49,20 @@ const DateRange = ({ min, max, initial, onChange, minDistance = 1 }: FacetDateRa
             <label>
                 {t('components.facet.date')}
                 <div id="facet-date-range">
-                    <Chip label={range[0]} />
+                    <Chip
+                        label={
+                            <input
+                                className="mono facet-date-range-input"
+                                type="number"
+                                name="date-range-lower"
+                                value={range[0]}
+                                onKeyUp={handleChipCommitted}
+                                onChange={(event) => {
+                                    handleChipChange(0, parseInt(event.target.value, 10));
+                                }}
+                            />
+                        }
+                    />
                     <Slider
                         id="facet-date-range-slider"
                         getAriaLabel={() => 'Minimum distance'}
@@ -47,7 +74,20 @@ const DateRange = ({ min, max, initial, onChange, minDistance = 1 }: FacetDateRa
                         disableSwap
                         onChangeCommitted={handleCommitted}
                     />
-                    <Chip label={range[1]} />
+                    <Chip
+                        label={
+                            <input
+                                className="mono facet-date-range-input"
+                                type="number"
+                                name="date-range-lower"
+                                value={range[1]}
+                                onKeyUp={handleChipCommitted}
+                                onChange={(event) => {
+                                    handleChipChange(1, parseInt(event.target.value, 10));
+                                }}
+                            />
+                        }
+                    />
                 </div>
             </label>
         </div>

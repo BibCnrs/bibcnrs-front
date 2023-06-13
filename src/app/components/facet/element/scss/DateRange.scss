@@ -1,8 +1,21 @@
+@import "src/app/scss/fonts";
+
 #facet-date-range {
   display: grid;
   grid-template-columns: 56px auto 56px;
   grid-auto-flow: column;
   // width: 100%;
+
+  .facet-date-range-input {
+    padding: 0;
+    margin: 0;
+    background-color: #0000;
+    border: none;
+  }
+
+  .facet-date-range-input:focus-visible {
+    outline: none;
+  }
 
   #facet-date-range-slider {
     width: calc(100% - 15px);
