@@ -169,6 +169,7 @@ Cordialement`,
         database: {
             title: 'Base de données',
             oa: 'Accès Ouvert',
+            anonymousMessage: 'Connectez-vous pour accéder à toutes les bases',
         },
         publication: {
             title: 'Revue, ouvrage',
