@@ -1,7 +1,9 @@
 import './Database.scss';
 import OpenAccess from '../../../components/icon/OpenAccess';
 import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
+import ColoredPaper from '../../../components/paper/colored/ColoredPaper';
 import { BibContext } from '../../../components/provider/ContextProvider';
+import { getHeaderBackgroundColor } from '../../../components/provider/LocalizedThemeProvider';
 import PageTitle from '../../../components/utils/PageTitle';
 import { database } from '../../../services/search/Database';
 import { useServicesCatch } from '../../../shared/hook';
@@ -79,7 +81,7 @@ const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupPr
 };
 
 const Database = () => {
-    const { login } = useContext(BibContext);
+    const { login, theme } = useContext(BibContext);
     const serviceCatch = useServicesCatch();
     const [oa, setOa] = useState(!login);
     const t = useTranslator();
@@ -139,8 +141,11 @@ const Database = () => {
                     label={t('pages.database.oa')}
                     labelPlacement="end"
                 />
-            ) : null}
-
+            ) : (
+                <ColoredPaper id="database-anonymous" elevation={4} color={getHeaderBackgroundColor(theme)} border>
+                    {t('pages.database.anonymousMessage')}
+                </ColoredPaper>
+            )}
             <ul id="database">
                 {letters.map((letter) => (
                     <li key={letter} className="database-letter">

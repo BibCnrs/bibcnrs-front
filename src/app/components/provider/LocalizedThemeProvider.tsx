@@ -78,6 +78,10 @@ export const getInstituteColor = (institute: Institute): Property.Color => {
     return colors.cnrs.institute[institute.toLowerCase() as InstituteLowerCase];
 };
 
+export const getHeaderBackgroundColor = (theme: ThemeType): Property.Color => {
+    return theme === 'light' ? colors.cnrs.secondary.darkBlue : colors.cnrs.primary.dark;
+};
+
 /**
  * Function used to update css variables on startup or when the user changes the application theme
  * @param theme - Name of the theme to load

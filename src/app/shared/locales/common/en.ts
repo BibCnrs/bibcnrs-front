@@ -168,6 +168,7 @@ Sincerely`,
         database: {
             title: 'Database',
             oa: 'Open Access',
+            anonymousMessage: 'Sign in to access all databases',
         },
         publication: {
             title: 'Journal, book',

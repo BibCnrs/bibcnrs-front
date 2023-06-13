@@ -169,6 +169,7 @@ export type Common = {
         database: {
             title: string;
             oa: string;
+            anonymousMessage: string;
         };
         researchData: {
             title: string;
