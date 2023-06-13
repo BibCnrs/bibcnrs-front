@@ -25,9 +25,9 @@ const DateRange = ({ min, max, initial, onChange, minDistance = 1 }: FacetDateRa
 
     const handleChipChange = (border: 0 | 1, newRange: number) => {
         if (border === 0) {
-            setRange([Math.min(newRange, range[1] - minDistance), range[1]]);
+            setRange([newRange, range[1]]);
         } else {
-            setRange([range[0], Math.max(newRange, range[0] + minDistance)]);
+            setRange([range[0], newRange]);
         }
     };
 
@@ -40,7 +40,15 @@ const DateRange = ({ min, max, initial, onChange, minDistance = 1 }: FacetDateRa
 
     const handleChipCommitted = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            handleCommitted(undefined, range);
+            let rangeTmp = range;
+            if (rangeTmp[1] < rangeTmp[0]) {
+                rangeTmp = [rangeTmp[1], rangeTmp[0]];
+            }
+            if (rangeTmp[0] === rangeTmp[1]) {
+                rangeTmp = [rangeTmp[0], rangeTmp[1] + 1];
+            }
+            setRange(rangeTmp);
+            handleCommitted(undefined, rangeTmp);
         }
     };
 
