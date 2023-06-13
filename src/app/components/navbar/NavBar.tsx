@@ -47,8 +47,8 @@ const NavBar = () => {
             <div id="nav-container">
                 <Button
                     className="nav-button"
-                    id={(articleMatch || noneMatch) && !disable ? getActiveDarkButtonId() : ''}
-                    disabled={articleMatch || noneMatch ? !disable : false}
+                    id={articleMatch && !disable ? getActiveDarkButtonId() : ''}
+                    disabled={articleMatch ? !disable : false}
                     onClick={article.handler}
                     href={article.href}
                 >
