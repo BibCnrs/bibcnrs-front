@@ -1,9 +1,7 @@
 import { useFullTranslator, supportedLanguages, useLanguageKey } from '../../../shared/locales/I18N';
 import { colors } from '../../provider/LocalizedThemeProvider';
-import CheckIcon from '@mui/icons-material/Check';
 import TranslateIcon from '@mui/icons-material/Translate';
 import Button from '@mui/material/Button';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
@@ -75,13 +73,13 @@ const LocalButton = () => {
                         onClick={() => {
                             handleClose(lang.key);
                         }}
+                        sx={{
+                            borderLeftStyle: 'solid',
+                            borderLeftWidth: '4px',
+                            borderLeftColor: i18n.language.includes(lang.key) ? 'var(--text)' : '#00000000',
+                        }}
                     >
-                        {i18n.language === lang.key ? (
-                            <ListItemIcon>
-                                <CheckIcon />
-                            </ListItemIcon>
-                        ) : null}
-                        {lang.label}
+                        {i18n.language.includes(lang.key) ? <b>{lang.label}</b> : lang.label}
                     </MenuItem>
                 ))}
             </Menu>

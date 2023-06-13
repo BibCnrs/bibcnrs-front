@@ -262,8 +262,8 @@ export const useLanguageKey = (): string => {
 };
 
 export const supportedLanguages: SupportedLanguages = [
-    { key: 'en', label: 'EN - English' },
     { key: 'fr', label: 'FR - Français' },
+    { key: 'en', label: 'EN - English' },
 ];
 
 /**
