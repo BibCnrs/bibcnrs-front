@@ -1,4 +1,4 @@
-import './easter';
+import './app/shared/easterEgg/konamiCode';
 import App from './app/App';
 import AuthenticationProvider from './app/components/provider/AuthenticationProvider';
 import ContextProvider from './app/components/provider/ContextProvider';
