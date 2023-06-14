@@ -3,9 +3,9 @@ import ResearchDataSkeleton from '../../../components/element/skeleton/ResearchD
 import TableMetadore from '../../../components/element/table/TableMetadore';
 import PageTitle from '../../../components/internal/PageTitle';
 import { BibContext } from '../../../components/internal/provider/ContextProvider';
-import ChipFacet from '../../../components/pages/facet/ChipFacet';
-import SearchBar from '../../../components/pages/searchbar/SearchBar';
-import Table from '../../../components/pages/table/Table';
+import ChipFacet from '../../../components/page/facet/ChipFacet';
+import SearchBar from '../../../components/page/searchbar/SearchBar';
+import Table from '../../../components/page/table/Table';
 import { metadore } from '../../../services/search/Metadore';
 import { useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';

@@ -1,5 +1,5 @@
 import { BibContext } from './ContextProvider';
-import Authentication from '../../pages/authentication/Authentication';
+import Authentication from '../../element/authentication/Authentication';
 import { useContext } from 'react';
 import type { AuthenticationProviderProps } from '../../../shared/types/props.types';
 

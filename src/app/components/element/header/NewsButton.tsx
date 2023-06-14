@@ -1,10 +1,10 @@
 import { useTranslator } from '../../../shared/locales/I18N';
 import { useClickHandler, RouteNews } from '../../../shared/Routes';
-import { headerButtonStyle } from '../../pages/header/Header';
+import { headerButtonStyle } from '../../page/header/Header';
 import Button from '@mui/material/Button';
 
 /**
- * Button used to go to News page
+ * Button used to go to RenderNews page
  */
 const NewsButton = () => {
     const t = useTranslator();

@@ -118,7 +118,7 @@ const fr: Common = {
             openAccess: 'Accès gratuit au contenu de la revue',
             diamond: 'Publication en Accès Ouvert gratuit pour les auteurs et les lecteurs',
         },
-        testsnews: {
+        news: {
             from: 'Du ',
             to: ' au ',
         },

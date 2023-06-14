@@ -1,5 +1,5 @@
 import PageTitle from '../../../components/internal/PageTitle';
-import TestsNews from '../../../components/pages/testsnews/TestsNews';
+import RenderNews from '../../../components/page/render/RenderNews';
 import { tests } from '../../../services/user/TestsNews';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
@@ -20,7 +20,7 @@ const Tests = () => {
         <div id="app">
             <PageTitle page="tests" />
             <h1>{t('pages.tests.title')}</h1>
-            <TestsNews data={data} />
+            <RenderNews data={data} />
         </div>
     );
 };

@@ -1,8 +1,8 @@
 import './App.scss';
 import ProtectedRoute from './components/internal/ProtectedRoute';
 import { BibContext } from './components/internal/provider/ContextProvider';
-import Footer from './components/pages/footer/Footer';
-import Header from './components/pages/header/Header';
+import Footer from './components/page/footer/Footer';
+import Header from './components/page/header/Header';
 import About from './pages/common/about/About';
 import Faq from './pages/common/faq/Faq';
 import Legal from './pages/common/legal/Legal';

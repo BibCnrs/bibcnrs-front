@@ -1,6 +1,6 @@
 import { useTranslator } from '../../../shared/locales/I18N';
 import { BibContext } from '../../internal/provider/ContextProvider';
-import { headerButtonStyle } from '../../pages/header/Header';
+import { headerButtonStyle } from '../../page/header/Header';
 import Button from '@mui/material/Button';
 import { useContext } from 'react';
 

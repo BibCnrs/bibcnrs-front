@@ -118,7 +118,7 @@ const en: Common = {
             openAccess: "Free access to the journal's content",
             diamond: 'Open Access publication, free of charge for authors and readers',
         },
-        testsnews: {
+        news: {
             from: 'From ',
             to: ' to ',
         },

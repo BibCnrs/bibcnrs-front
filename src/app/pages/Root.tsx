@@ -1,7 +1,7 @@
 import './Root.scss';
 import AlertPaper from '../components/element/paper/alert/AlertPaper';
-import RenderContent from '../components/pages/rendercontent/RenderContent';
-import SearchBar from '../components/pages/searchbar/SearchBar';
+import RenderContent from '../components/page/render/RenderContent';
+import SearchBar from '../components/page/searchbar/SearchBar';
 import { alert, home } from '../services/common/CMS';
 import { useTranslator } from '../shared/locales/I18N';
 import { RouteArticle, updatePageQueryUrl } from '../shared/Routes';

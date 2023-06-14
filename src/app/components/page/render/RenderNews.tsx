@@ -1,4 +1,4 @@
-import './TestsNews.scss';
+import './scss/News.scss';
 import { getDomains, getFavoriteDomain } from '../../../services/user/Session';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import PageDate from '../../element/PageDate';
@@ -16,7 +16,7 @@ import type { ChangeEvent } from 'react';
  * Component used to display news and tests article
  * @param data - Array of Articles
  */
-const TestsNews = ({ data }: TestsNewsProps) => {
+const RenderNews = ({ data }: TestsNewsProps) => {
     const t = useTranslator();
     const language = useLanguageKey();
     const favoriteDomain = getFavoriteDomain();
@@ -108,11 +108,11 @@ const TestsNews = ({ data }: TestsNewsProps) => {
         return (
             <div>
                 <i>
-                    {value.to ? t('components.testsnews.from') : null}
+                    {value.to ? t('components.news.from') : null}
                     <PageDate date={value.from} />
                     {value.to ? (
                         <>
-                            {t('components.testsnews.to')}
+                            {t('components.news.to')}
                             <PageDate date={value.to} />
                         </>
                     ) : null}
@@ -191,4 +191,4 @@ const TestsNews = ({ data }: TestsNewsProps) => {
     );
 };
 
-export default TestsNews;
+export default RenderNews;

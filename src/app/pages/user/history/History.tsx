@@ -2,7 +2,7 @@ import './History.scss';
 import CustomButton from '../../../components/element/button/CustomButton';
 import TableHistory from '../../../components/element/table/TableHistory';
 import PageTitle from '../../../components/internal/PageTitle';
-import Table from '../../../components/pages/table/Table';
+import Table from '../../../components/page/table/Table';
 import { deleteHistory, deleteHistoryEntry, history } from '../../../services/user/History';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';

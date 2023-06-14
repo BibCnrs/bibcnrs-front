@@ -1,5 +1,5 @@
 import './Legal.scss';
-import RenderContent from '../../../components/pages/rendercontent/RenderContent';
+import RenderContent from '../../../components/page/render/RenderContent';
 import { legal } from '../../../services/common/CMS';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';

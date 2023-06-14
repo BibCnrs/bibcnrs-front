@@ -1,4 +1,4 @@
-import './RenderContent.scss';
+import './scss/RenderContent.scss';
 import { useLanguageKey } from '../../../shared/locales/I18N';
 import PageDate from '../../element/PageDate';
 import PageTitle from '../../internal/PageTitle';
