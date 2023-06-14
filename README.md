@@ -17,14 +17,15 @@ Structure :
 
 Liste des préfixes :
 
-| préfixe         | description                                                                                       |
-|-----------------|---------------------------------------------------------------------------------------------------|
-| **feat**        | Ajoute de fonctionnalités                                                                         |
-| **fix**         | Correction d'un bug                                                                               |
-| **style**       | Correction de typos, formatage du code et autre element ne changent pas le fonctionnement du code |
-| **build**       | Modification du système lié au build et dependence de l'application                               |
-| **ci**          | Modification de la ci / cd                                                                        |
-| **prototype**   | Branch experimental qui a pour vocation de testé des fonctionnalités                              |
+| préfixe       | description                                                                                       |
+|---------------|---------------------------------------------------------------------------------------------------|
+| **feat**      | Ajoute de fonctionnalités                                                                         |
+| **fix**       | Correction d'un bug                                                                               |
+| **refactor**  | Change des element structure du code sans forcément changé le fonctionnement final                |
+| **style**     | Correction de typos, formatage du code et autre element ne changent pas le fonctionnement du code |
+| **build**     | Modification du système lié au build et dependence de l'application                               |
+| **ci**        | Modification de la ci / cd                                                                        |
+| **prototype** | Branch experimental qui a pour vocation de testé des fonctionnalités                              |
 
 
 Exemple :

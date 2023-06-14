@@ -1,7 +1,7 @@
 import './Resources.scss';
-import ColoredPaper from '../../../components/paper/colored/ColoredPaper';
-import { getInstituteColor } from '../../../components/provider/LocalizedThemeProvider';
-import PageTitle from '../../../components/utils/PageTitle';
+import ColoredPaper from '../../../components/element/paper/colored/ColoredPaper';
+import PageTitle from '../../../components/internal/PageTitle';
+import { getInstituteColor } from '../../../components/internal/provider/LocalizedThemeProvider';
 import { resources } from '../../../services/common/Resources';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';

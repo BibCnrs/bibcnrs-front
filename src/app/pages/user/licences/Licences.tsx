@@ -1,5 +1,5 @@
 import './Licences.scss';
-import PageTitle from '../../../components/utils/PageTitle';
+import PageTitle from '../../../components/internal/PageTitle';
 import { licences } from '../../../services/user/Licences';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';

@@ -1,5 +1,5 @@
-import TestsNews from '../../../components/testsnews/TestsNews';
-import PageTitle from '../../../components/utils/PageTitle';
+import PageTitle from '../../../components/internal/PageTitle';
+import TestsNews from '../../../components/pages/testsnews/TestsNews';
 import { tests } from '../../../services/user/TestsNews';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
