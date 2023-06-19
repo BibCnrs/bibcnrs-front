@@ -103,90 +103,98 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
     const bookmarkTitle = `${title} - ${reconciledFullTextHoldings[0].name}`;
     const isOpenAccess = reconciledFullTextHoldings[0].name.toLowerCase().includes('open access');
     return (
-        <OpenablePaper
-            onOpen={handleChange}
-            Title={
-                <>
-                    <a className="table-list-title link" href={href} target="_blank" rel="noreferrer noopener nofollow">
-                        {id}. {title} [{type}]
-                    </a>
-                    {isOpenAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
-                    {isDiamond ? <Diamond className="table-icon" /> : null}
-                </>
-            }
-            SmallBody={
-                <div className="table-list-body">
-                    {issnOnline && issnOnline.length > 0 ? (
-                        <div>
-                            {t('components.table.content.issnOnline') /* eISSN */}
-                            {issnOnline.join(', ')}
-                        </div>
-                    ) : null}
-                    {issnPrint && issnPrint.length > 0 ? (
-                        <div>
-                            {t('components.table.content.issnPrint') /* pISSN */}
-                            {issnPrint.join(', ')}
-                        </div>
-                    ) : null}
-                    {isbnOnline && isbnOnline.length > 0 ? (
-                        <div>
-                            {t('components.table.content.isbnOnline') /* eISBN */}
-                            {isbnOnline.join(', ')}
-                        </div>
-                    ) : null}
-                    {isbnPrint && isbnPrint.length > 0 ? (
-                        <div>
-                            {t('components.table.content.isbnPrint') /* pISBN */}
-                            {isbnPrint.join(', ')}
-                        </div>
-                    ) : null}
-                    {login ? <BookmarkButton className="table-bookmark" title={bookmarkTitle} url={href} /> : null}
-                </div>
-            }
-            /* eslint-disable-next-line react/jsx-no-useless-fragment */
-            FullBody={
-                !dataRetrieve || isLoading || isFetching ? (
-                    <SkeletonEntry animation="pulse" height={450} />
-                ) : (
-                    <dl className="table-list-body">
-                        {dataRetrieve.items.map((item) => {
-                            if (item.name.toLowerCase() === 'title') {
-                                return null;
-                            }
-                            return (
-                                <span key={item.name}>
-                                    <dt>{item.label}</dt>
-                                    <dd>
-                                        {item.value.map((value) => (
-                                            <div key={value}>{value}</div>
-                                        ))}
-                                    </dd>
-                                </span>
-                            );
-                        })}
-                        <span>
-                            <dt>Accès à l&apos;article</dt>
-                            <dd>
-                                {fullTextHoldings.map((value) => (
-                                    <div key={value.name}>
-                                        <a
-                                            className="link"
-                                            href={value.url}
-                                            target="_blank"
-                                            rel="noreferrer nofollow noopener"
-                                        >
-                                            {value.name}
-                                        </a>{' '}
-                                        {getCoverage(value.coverage)}
-                                    </div>
-                                ))}
-                            </dd>
-                        </span>
-                        {login ? <BookmarkButton className="table-bookmark" title={bookmarkTitle} url={href} /> : null}
-                    </dl>
-                )
-            }
-        />
+        <div>
+            <OpenablePaper
+                onOpen={handleChange}
+                Title={
+                    <>
+                        <a
+                            className="table-list-title link"
+                            href={href}
+                            target="_blank"
+                            rel="noreferrer noopener nofollow"
+                        >
+                            {id}. {title} [{type}]
+                        </a>
+                        {isOpenAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
+                        {isDiamond ? <Diamond className="table-icon" /> : null}
+                    </>
+                }
+                SmallBody={
+                    <div className="table-list-body">
+                        {issnOnline && issnOnline.length > 0 ? (
+                            <div>
+                                {t('components.table.content.issnOnline') /* eISSN */}
+                                {issnOnline.join(', ')}
+                            </div>
+                        ) : null}
+                        {issnPrint && issnPrint.length > 0 ? (
+                            <div>
+                                {t('components.table.content.issnPrint') /* pISSN */}
+                                {issnPrint.join(', ')}
+                            </div>
+                        ) : null}
+                        {isbnOnline && isbnOnline.length > 0 ? (
+                            <div>
+                                {t('components.table.content.isbnOnline') /* eISBN */}
+                                {isbnOnline.join(', ')}
+                            </div>
+                        ) : null}
+                        {isbnPrint && isbnPrint.length > 0 ? (
+                            <div>
+                                {t('components.table.content.isbnPrint') /* pISBN */}
+                                {isbnPrint.join(', ')}
+                            </div>
+                        ) : null}
+                    </div>
+                }
+                /* eslint-disable-next-line react/jsx-no-useless-fragment */
+                FullBody={
+                    !dataRetrieve || isLoading || isFetching ? (
+                        <SkeletonEntry animation="pulse" height={450} />
+                    ) : (
+                        <dl className="table-list-body">
+                            {dataRetrieve.items.map((item) => {
+                                if (item.name.toLowerCase() === 'title') {
+                                    return null;
+                                }
+                                return (
+                                    <span key={item.name}>
+                                        <dt>{item.label}</dt>
+                                        <dd>
+                                            {item.value.map((value) => (
+                                                <div key={value}>{value}</div>
+                                            ))}
+                                        </dd>
+                                    </span>
+                                );
+                            })}
+                            <span>
+                                <dt>Accès à l&apos;article</dt>
+                                <dd>
+                                    {fullTextHoldings.map((value) => (
+                                        <div key={value.name}>
+                                            <a
+                                                className="link"
+                                                href={value.url}
+                                                target="_blank"
+                                                rel="noreferrer nofollow noopener"
+                                            >
+                                                {value.name}
+                                            </a>{' '}
+                                            {getCoverage(value.coverage)}
+                                        </div>
+                                    ))}
+                                </dd>
+                            </span>
+                        </dl>
+                    )
+                }
+            />
+            <div className="table-bookmark">
+                {login ? <BookmarkButton className="table-bookmark-button" title={bookmarkTitle} url={href} /> : null}
+            </div>
+        </div>
     );
 };
 

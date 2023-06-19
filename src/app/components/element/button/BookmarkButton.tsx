@@ -7,7 +7,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { useContext, useEffect, useState } from 'react';
 import type { BookmarkButtonProps } from '../../../shared/types/props.types';
 
-const BookmarkButton = ({ title, url, className }: BookmarkButtonProps) => {
+const BookmarkButton = ({ title, url, className = '' }: BookmarkButtonProps) => {
     const { login } = useContext(BibContext);
     const t = useTranslator();
     const { favoriteResources, addFavorite, removeFavorite } = useFavoriteResources();

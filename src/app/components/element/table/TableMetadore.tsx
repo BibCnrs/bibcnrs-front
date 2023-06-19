@@ -66,51 +66,61 @@ const TableMetadore = ({ data }: TableDisplayElementProps<MetadoreResultType>) =
     const bookmarkTitle = `${data.type} - ${title}`;
 
     return (
-        <OpenablePaper
-            Title={
-                <a className="table-list-title link" href={data.url} target="_blank" rel="noopener noreferrer nofollow">
-                    {data.id}. {title} [{data.type}]
-                </a>
-            }
-            SmallBody={
-                <div className="table-list-body">
-                    {t('components.table.content.doiColon')}
-                    {data.doi}
-                    {login ? <BookmarkButton className="table-bookmark" title={bookmarkTitle} url={data.url} /> : null}
-                </div>
-            }
-            FullBody={
-                <dl className="table-list-body">
-                    <span>
-                        <dt>{t('components.table.content.doi')}</dt>
-                        <dd>{data.doi}</dd>
-                    </span>
-                    <span>
-                        <dt>{t('components.table.content.type')}</dt>
-                        <dd>{data.type}</dd>
-                    </span>
-                    <span>
-                        <dt>{t('components.table.content.publicationYear')}</dt>
-                        <dd>{data.publicationYear}</dd>
-                    </span>
-                    {/* Show description if available */}
-                    {description ? (
+        <div>
+            <OpenablePaper
+                Title={
+                    <a
+                        className="table-list-title link"
+                        href={data.url}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                    >
+                        {data.id}. {title} [{data.type}]
+                    </a>
+                }
+                SmallBody={
+                    <div className="table-list-body">
+                        {t('components.table.content.doiColon')}
+                        {data.doi}
+                    </div>
+                }
+                FullBody={
+                    <dl className="table-list-body">
                         <span>
-                            <dt>{t('components.table.content.description')}</dt>
-                            <dd>{description}</dd>
+                            <dt>{t('components.table.content.doi')}</dt>
+                            <dd>{data.doi}</dd>
                         </span>
-                    ) : null}
-                    {/* Show subjects if available */}
-                    {data.subjects.length !== 0 ? (
                         <span>
-                            <dt>{t('components.table.content.subjects')}</dt>
-                            <dd>{data.subjects.join(', ')}</dd>
+                            <dt>{t('components.table.content.type')}</dt>
+                            <dd>{data.type}</dd>
                         </span>
-                    ) : null}
-                    {login ? <BookmarkButton className="table-bookmark" title={bookmarkTitle} url={data.url} /> : null}
-                </dl>
-            }
-        />
+                        <span>
+                            <dt>{t('components.table.content.publicationYear')}</dt>
+                            <dd>{data.publicationYear}</dd>
+                        </span>
+                        {/* Show description if available */}
+                        {description ? (
+                            <span>
+                                <dt>{t('components.table.content.description')}</dt>
+                                <dd>{description}</dd>
+                            </span>
+                        ) : null}
+                        {/* Show subjects if available */}
+                        {data.subjects.length !== 0 ? (
+                            <span>
+                                <dt>{t('components.table.content.subjects')}</dt>
+                                <dd>{data.subjects.join(', ')}</dd>
+                            </span>
+                        ) : null}
+                    </dl>
+                }
+            />
+            <div className="table-bookmark">
+                {login ? (
+                    <BookmarkButton className="table-bookmark-button" title={bookmarkTitle} url={data.url} />
+                ) : null}
+            </div>
+        </div>
     );
 };
 

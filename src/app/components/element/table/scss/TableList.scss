@@ -6,9 +6,15 @@
 }
 
 .table-bookmark {
-  position: absolute;
-  right: 22px;
-  bottom: 14px;
+  display: flex;
+  pointer-events: none;
+  transform: translate(0, -56px);
+
+  .table-bookmark-button {
+    margin-right: 38px;
+    margin-left: auto;
+    pointer-events: auto;
+  }
 }
 
 .table-list-body {
