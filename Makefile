@@ -28,7 +28,7 @@ build:
 
 # To remove or to change with a docker who watch files
 run-dev:
-	docker compose -f docker-compose.dev.yml run --rm bibcnrs-front-dev-server
+	docker compose -f docker-compose.dev.yml up bibcnrs-front-dev-server
 
 stop: ## stop all bibcnrs-front docker image
 	test -z "$$(docker ps | grep bibcnrs-front)" || \
