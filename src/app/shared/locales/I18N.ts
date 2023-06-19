@@ -131,6 +131,11 @@ export type Common = {
             openAccess: string;
             diamond: string;
         };
+        button: {
+            favorite: {
+                tooltip: string;
+            };
+        };
         news: {
             from: string;
             to: string;

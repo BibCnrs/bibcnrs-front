@@ -118,6 +118,11 @@ const en: Common = {
             openAccess: "Free access to the journal's content",
             diamond: 'Open Access publication, free of charge for authors and readers',
         },
+        button: {
+            favorite: {
+                tooltip: 'Add to favorites',
+            },
+        },
         news: {
             from: 'From ',
             to: ' to ',
