@@ -1,7 +1,24 @@
+@import "src/app/scss/colors";
+
 .favorite-button-container {
   display: inline;
   width: 20px;
   height: 20px;
+  transition: transform 75ms;
+}
+
+.favorite-button-container:hover {
+  transform: scale(1.4);
+}
+
+.favorite-button-container-animation {
+  animation: beat 225ms;
+}
+
+@keyframes beat {
+  50% {
+    transform: scale(1.6);
+  }
 }
 
 .favorite-button {
@@ -12,4 +29,12 @@
   cursor: pointer;
   background-color: #0000;
   border: none;
+}
+
+.favorite-button-icon {
+  color: $gray;
+}
+
+.favorite-button-icon-active {
+  color: $cnrs-secondary-blue;
 }

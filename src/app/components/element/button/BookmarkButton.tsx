@@ -3,7 +3,6 @@ import { useFavoriteResources } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { BibContext } from '../../internal/provider/ContextProvider';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Tooltip from '@mui/material/Tooltip';
 import { useContext, useEffect, useState } from 'react';
 import type { BookmarkButtonProps } from '../../../shared/types/props.types';
@@ -13,6 +12,7 @@ const BookmarkButton = ({ title, url, className }: BookmarkButtonProps) => {
     const t = useTranslator();
     const { favoriteResources, addFavorite, removeFavorite } = useFavoriteResources();
     const [inBookmark, setInBookmark] = useState(false);
+    const [animated, setAnimated] = useState(false);
 
     useEffect(() => {
         if (login) {
@@ -29,6 +29,7 @@ const BookmarkButton = ({ title, url, className }: BookmarkButtonProps) => {
     }, [favoriteResources, login, title, url]);
 
     const handleClick = () => {
+        setAnimated(true);
         if (!inBookmark) {
             addFavorite({
                 title,
@@ -46,10 +47,20 @@ const BookmarkButton = ({ title, url, className }: BookmarkButtonProps) => {
     };
 
     return (
-        <div className={`favorite-button-container ${className}`}>
+        <div
+            className={`favorite-button-container ${className} ${
+                animated ? 'favorite-button-container-animation' : ''
+            }`}
+            onAnimationEnd={() => {
+                setAnimated(false);
+            }}
+        >
             <Tooltip title={t('components.button.favorite.tooltip')} arrow>
                 <button className="favorite-button" onClick={handleClick}>
-                    {inBookmark ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
+                    <FavoriteIcon
+                        className={`favorite-button-icon ${inBookmark ? 'favorite-button-icon-active' : ''}`}
+                        fontSize="small"
+                    />
                 </button>
             </Tooltip>
         </div>
