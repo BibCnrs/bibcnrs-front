@@ -70,7 +70,7 @@ export const useFavoriteResources = () => {
     const [favorites, setFavorites] = useState(getFavoriteResources());
     const addFavorite = (entry: FavouriteResourceDataType) => {
         const favoriteResources = getFavoriteResources();
-        updateFavoriteResources([...favoriteResources, entry]).then(() => {
+        updateFavoriteResources([entry, ...favoriteResources]).then(() => {
             setFavorites(getFavoriteResources());
         });
     };
