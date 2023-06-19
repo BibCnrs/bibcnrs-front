@@ -1,9 +1,8 @@
 import './App.scss';
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
-import NavBar from './components/navbar/NavBar';
-import ProtectedRoute from './components/protectedroute/ProtectedRoute';
-import { BibContext } from './components/provider/ContextProvider';
+import ProtectedRoute from './components/internal/ProtectedRoute';
+import { BibContext } from './components/internal/provider/ContextProvider';
+import Footer from './components/page/footer/Footer';
+import Header from './components/page/header/Header';
 import About from './pages/common/about/About';
 import Faq from './pages/common/faq/Faq';
 import Legal from './pages/common/legal/Legal';
@@ -48,7 +47,6 @@ const App = () => {
         <>
             <div className="header-footer">
                 <Header />
-                <NavBar />
             </div>
             <div id="app-container">
                 <Routes>

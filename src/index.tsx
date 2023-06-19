@@ -1,8 +1,8 @@
 import './app/shared/easter-egg/konamiCode';
 import App from './app/App';
-import AuthenticationProvider from './app/components/provider/AuthenticationProvider';
-import ContextProvider from './app/components/provider/ContextProvider';
-import LocalizedThemeProvider from './app/components/provider/LocalizedThemeProvider';
+import AuthenticationProvider from './app/components/internal/provider/AuthenticationProvider';
+import ContextProvider from './app/components/internal/provider/ContextProvider';
+import LocalizedThemeProvider from './app/components/internal/provider/LocalizedThemeProvider';
 import ExceptedError from './app/pages/errors/ExceptedError';
 import I18N from './app/shared/locales/I18N';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

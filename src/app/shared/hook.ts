@@ -1,4 +1,4 @@
-import { BibContext } from '../components/provider/ContextProvider';
+import { BibContext } from '../components/internal/provider/ContextProvider';
 import { getDomains } from '../services/user/Session';
 import { useContext } from 'react';
 import type { FacetRequired } from './types/props.types';

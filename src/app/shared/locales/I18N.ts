@@ -131,7 +131,7 @@ export type Common = {
             openAccess: string;
             diamond: string;
         };
-        testsnews: {
+        news: {
             from: string;
             to: string;
         };
