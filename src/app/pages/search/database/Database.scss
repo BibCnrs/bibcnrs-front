@@ -43,6 +43,7 @@
     list-style: none;
 
     .database-entry {
+      z-index: 1;
       text-decoration: none;
 
       .database-entry-content {
@@ -73,12 +74,24 @@
         text-align: right;
         vertical-align: middle;
       }
+    }
 
-      .database-entry-oa {
-        position: absolute;
-        right: 7px;
-        bottom: 6px;
-      }
+    .database-icon {
+      z-index: 0;
+      display: flex;
+      pointer-events: none;
+      transform: translate(10px, -26px);
+    }
+
+    .database-icon-oa {
+      margin-left: auto;
+      pointer-events: auto;
+    }
+
+    .database-icon-favorite {
+      margin-top: 2px;
+      margin-left: 4px;
+      pointer-events: auto;
     }
   }
 }

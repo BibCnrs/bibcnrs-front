@@ -1,4 +1,4 @@
-import './CustomButton.scss';
+import './scss/CustomButton.scss';
 import Button from '@mui/material/Button';
 import type { ButtonProps } from '@mui/material/Button';
 

@@ -1,5 +1,6 @@
+import { updateFavorite } from './Favorite';
 import { createQuery, environment } from '../Environment';
-import type { SessionUserDataType } from '../../shared/types/data.types';
+import type { FavouriteResourceDataType, SessionUserDataType } from '../../shared/types/data.types';
 import type { Institute } from '../../shared/types/types';
 
 class Session {
@@ -50,6 +51,23 @@ class Session {
         return [];
     };
 
+    getFavoriteResources = (): FavouriteResourceDataType[] => {
+        const user = this.getUser();
+        if (user) {
+            return user.favouriteResources ?? [];
+        }
+        return [];
+    };
+
+    updateFavoriteResources = async (data: FavouriteResourceDataType[]) => {
+        const user = this.getUser();
+        if (user) {
+            user.favouriteResources = data;
+            await updateFavorite(user.id, data);
+            this.update(user);
+        }
+    };
+
     getToken = (): string | undefined => {
         const user = this.getUser();
         if (user) {
@@ -90,6 +108,8 @@ export const getUsername = session.getUsername;
 export const isLegacy = session.isLegacy;
 export const getDomains = session.getDomains;
 export const getFavoriteDomain = session.getFavoriteDomain;
+export const getFavoriteResources = session.getFavoriteResources;
+export const updateFavoriteResources = session.updateFavoriteResources;
 export const getToken = session.getToken;
 
 export const loginToJanus = (): void => {

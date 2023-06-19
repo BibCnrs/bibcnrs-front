@@ -31,6 +31,11 @@ export const environment = {
             articleExport: '/ebsco/retrieve_ris',
         },
     },
+    put: {
+        account: {
+            favourite: '/ebsco/favourite_resources',
+        },
+    },
     delete: {
         account: {
             history: '/ebsco/history',

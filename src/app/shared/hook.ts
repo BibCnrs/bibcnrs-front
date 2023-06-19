@@ -1,6 +1,7 @@
 import { BibContext } from '../components/internal/provider/ContextProvider';
-import { getDomains } from '../services/user/Session';
-import { useContext } from 'react';
+import { getDomains, getFavoriteResources, updateFavoriteResources } from '../services/user/Session';
+import { useContext, useState } from 'react';
+import type { FavouriteResourceDataType } from './types/data.types';
 import type { FacetRequired } from './types/props.types';
 import type { MouseEvent } from 'react';
 
@@ -63,4 +64,33 @@ export const useDomain = (): Array<{ value: string; label: string }> => {
             label: domain,
         };
     });
+};
+
+export const useFavoriteResources = () => {
+    const [favorites, setFavorites] = useState(getFavoriteResources());
+    const addFavorite = (entry: FavouriteResourceDataType) => {
+        const favoriteResources = getFavoriteResources();
+        updateFavoriteResources([...favoriteResources, entry]).then(() => {
+            setFavorites(getFavoriteResources());
+        });
+    };
+
+    const removeFavorite = (entry: FavouriteResourceDataType) => {
+        const favoriteResources = getFavoriteResources();
+        const filtered = favoriteResources.filter((value) => {
+            if (value.title === entry.title) {
+                return false;
+            }
+            return value.url !== entry.url;
+        });
+        updateFavoriteResources(filtered).then(() => {
+            setFavorites(getFavoriteResources());
+        });
+    };
+
+    return {
+        favoriteResources: favorites,
+        addFavorite,
+        removeFavorite,
+    };
 };

@@ -182,3 +182,9 @@ export type ChipFacetProps = PropsWithoutRef<{
     needTranslation?: boolean;
     onChange: (event: MouseEvent<HTMLElement>, field: string | null) => void;
 }>;
+
+export type BookmarkButtonProps = PropsWithoutRef<{
+    title: string;
+    url: string;
+    className: string;
+}>;

@@ -90,12 +90,18 @@ export type ResourceDataType = {
 
 export type ResourcesDataType = ResourceDataType[];
 
+export type FavouriteResourceDataType = {
+    title: string;
+    url: string;
+    personal?: boolean;
+};
+
 export type SessionUserDataType = {
-    id?: number;
+    id: number;
     username: string;
     domains: Institute[];
     favorite_domain?: Institute;
-    favouriteResources?: any[]; // TODO add type
+    favouriteResources?: FavouriteResourceDataType[];
     origin?: string;
     token: string;
     fetch: false;
