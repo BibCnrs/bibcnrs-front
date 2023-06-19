@@ -1,10 +1,10 @@
 import './Database.scss';
-import OpenAccess from '../../../components/icon/OpenAccess';
-import AnimatedPaper from '../../../components/paper/animated/AnimatedPaper';
-import ColoredPaper from '../../../components/paper/colored/ColoredPaper';
-import { BibContext } from '../../../components/provider/ContextProvider';
-import { getHeaderBackgroundColor } from '../../../components/provider/LocalizedThemeProvider';
-import PageTitle from '../../../components/utils/PageTitle';
+import OpenAccess from '../../../components/element/icon/OpenAccess';
+import AnimatedPaper from '../../../components/element/paper/animated/AnimatedPaper';
+import ColoredPaper from '../../../components/element/paper/colored/ColoredPaper';
+import PageTitle from '../../../components/internal/PageTitle';
+import { BibContext } from '../../../components/internal/provider/ContextProvider';
+import { getHeaderBackgroundColor } from '../../../components/internal/provider/LocalizedThemeProvider';
 import { database } from '../../../services/search/Database';
 import { useServicesCatch } from '../../../shared/hook';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';

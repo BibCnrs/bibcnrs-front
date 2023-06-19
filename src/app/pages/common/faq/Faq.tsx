@@ -1,6 +1,6 @@
 import './Faq.scss';
-import OpenablePaper from '../../../components/paper/openable/OpenablePaper';
-import PageTitle from '../../../components/utils/PageTitle';
+import OpenablePaper from '../../../components/element/paper/openable/OpenablePaper';
+import PageTitle from '../../../components/internal/PageTitle';
 import { faq } from '../../../services/common/CMS';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import { useQuery } from '@tanstack/react-query';
