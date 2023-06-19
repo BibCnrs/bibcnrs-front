@@ -9,12 +9,16 @@ const doQuery = async <Page extends Pages>(page: Page): Promise<TestsNewsDataTyp
         domains: getDomains().join(','),
         page,
     });
+
     const response: Response = await fetch(query, {
         credentials: 'include',
     });
+
     throwIfNotOk(response);
+
     return json<TestsNewsDataType>(response);
 };
 
 export const tests = (): Promise<TestsNewsDataType> => doQuery('tests');
+
 export const news = (): Promise<TestsNewsDataType> => doQuery('news');

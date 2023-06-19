@@ -69,10 +69,7 @@ const RenderNews = ({ data }: TestsNewsProps) => {
                 return true;
             }
             const domainsSet = new Set(value.domains);
-            if (favoriteDomain && domainsSet.has(favoriteDomain)) {
-                return true;
-            }
-            return domains.some((d) => domainsSet.has(d));
+            return domainsSet.has(selectedDomain);
         });
     };
 
