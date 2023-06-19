@@ -186,5 +186,5 @@ export type ChipFacetProps = PropsWithoutRef<{
 export type BookmarkButtonProps = PropsWithoutRef<{
     title: string;
     url: string;
-    className: string;
+    className?: string;
 }>;

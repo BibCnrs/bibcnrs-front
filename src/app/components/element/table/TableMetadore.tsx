@@ -1,6 +1,9 @@
 import './scss/TableList.scss';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
+import { BibContext } from '../../internal/provider/ContextProvider';
+import BookmarkButton from '../button/BookmarkButton';
 import OpenablePaper from '../paper/openable/OpenablePaper';
+import { useContext } from 'react';
 import type {
     MetadoreResultDescriptionType,
     MetadoreResultTitleType,
@@ -55,10 +58,12 @@ const TableMetadore = ({ data }: TableDisplayElementProps<MetadoreResultType>) =
     // Get translation function and language key
     const t = useTranslator();
     const languageKey = useLanguageKey();
+    const { login } = useContext(BibContext);
 
     // Get translated title and description if available
     const title = getTitle(data.titles, languageKey);
     const description = getDescription(data.descriptions, languageKey);
+    const bookmarkTitle = `${data.type} - ${title}`;
 
     return (
         <OpenablePaper
@@ -71,6 +76,7 @@ const TableMetadore = ({ data }: TableDisplayElementProps<MetadoreResultType>) =
                 <div className="table-list-body">
                     {t('components.table.content.doiColon')}
                     {data.doi}
+                    {login ? <BookmarkButton className="table-bookmark" title={bookmarkTitle} url={data.url} /> : null}
                 </div>
             }
             FullBody={
@@ -101,6 +107,7 @@ const TableMetadore = ({ data }: TableDisplayElementProps<MetadoreResultType>) =
                             <dd>{data.subjects.join(', ')}</dd>
                         </span>
                     ) : null}
+                    {login ? <BookmarkButton className="table-bookmark" title={bookmarkTitle} url={data.url} /> : null}
                 </dl>
             }
         />

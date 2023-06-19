@@ -5,6 +5,12 @@
   color: $cnrs-secondary-blue;
 }
 
+.table-bookmark {
+  position: absolute;
+  right: 22px;
+  bottom: 14px;
+}
+
 .table-list-body {
   display: flex;
   flex-direction: column;

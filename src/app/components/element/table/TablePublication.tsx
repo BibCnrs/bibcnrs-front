@@ -4,6 +4,7 @@ import { useServicesCatch } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import parseFullTextHoldings from '../../../shared/parseFullTextHoldings';
 import { BibContext } from '../../internal/provider/ContextProvider';
+import BookmarkButton from '../button/BookmarkButton';
 import Diamond from '../icon/Diamond';
 import OpenAccess from '../icon/OpenAccess';
 import OpenablePaper from '../paper/openable/OpenablePaper';
@@ -99,6 +100,7 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
     }
 
     const href = reconciledFullTextHoldings[0].url;
+    const bookmarkTitle = `${title} - ${reconciledFullTextHoldings[0].name}`;
     const isOpenAccess = reconciledFullTextHoldings[0].name.toLowerCase().includes('open access');
     return (
         <OpenablePaper
@@ -138,6 +140,7 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
                             {isbnPrint.join(', ')}
                         </div>
                     ) : null}
+                    {login ? <BookmarkButton className="table-bookmark" title={bookmarkTitle} url={href} /> : null}
                 </div>
             }
             /* eslint-disable-next-line react/jsx-no-useless-fragment */
@@ -179,6 +182,7 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
                                 ))}
                             </dd>
                         </span>
+                        {login ? <BookmarkButton className="table-bookmark" title={bookmarkTitle} url={href} /> : null}
                     </dl>
                 )
             }
