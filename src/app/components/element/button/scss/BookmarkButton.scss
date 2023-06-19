@@ -8,7 +8,7 @@
 }
 
 .favorite-button-container:hover {
-  transform: scale(1.4);
+  transform: scale(1.2);
 }
 
 .favorite-button-container-animation {
@@ -17,7 +17,7 @@
 
 @keyframes beat {
   50% {
-    transform: scale(1.6);
+    transform: scale(1.4);
   }
 }
 
