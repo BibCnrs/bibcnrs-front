@@ -1,17 +1,17 @@
 @import "src/app/scss/colors";
 
-.favorite-button-container {
+.favourite-button-container {
   display: inline;
   width: 20px;
   height: 20px;
   transition: transform 75ms;
 }
 
-.favorite-button-container:hover {
+.favourite-button-container:hover {
   transform: scale(1.2);
 }
 
-.favorite-button-container-animation {
+.favourite-button-container-animation {
   animation: beat 225ms;
 }
 
@@ -21,7 +21,7 @@
   }
 }
 
-.favorite-button {
+.favourite-button {
   width: 20px;
   height: 20px;
   padding: 0;
@@ -31,10 +31,10 @@
   border: none;
 }
 
-.favorite-button-icon {
+.favourite-button-icon {
   color: $gray;
 }
 
-.favorite-button-icon-active {
+.favourite-button-icon-active {
   color: $cnrs-secondary-blue;
 }

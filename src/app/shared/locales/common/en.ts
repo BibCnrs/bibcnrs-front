@@ -119,8 +119,8 @@ const en: Common = {
             diamond: 'Open Access publication, free of charge for authors and readers',
         },
         button: {
-            favorite: {
-                tooltip: 'Add to favorites',
+            favourite: {
+                tooltip: 'Add to favourites',
             },
         },
         news: {

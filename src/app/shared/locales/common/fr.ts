@@ -119,7 +119,7 @@ const fr: Common = {
             diamond: 'Publication en Accès Ouvert gratuit pour les auteurs et les lecteurs',
         },
         button: {
-            favorite: {
+            favourite: {
                 tooltip: 'Ajouter aux favoris',
             },
         },

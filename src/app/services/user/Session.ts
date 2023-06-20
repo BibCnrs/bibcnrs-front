@@ -1,4 +1,4 @@
-import { updateFavorite } from './Favorite';
+import { updateFavourite } from './Favourite';
 import { createQuery, environment } from '../Environment';
 import type { FavouriteResourceDataType, SessionUserDataType } from '../../shared/types/data.types';
 import type { Institute } from '../../shared/types/types';
@@ -35,7 +35,7 @@ class Session {
         return 'null';
     };
 
-    getFavoriteDomain = (): Institute | undefined => {
+    getFavouriteDomain = (): Institute | undefined => {
         const user = this.getUser();
         if (user) {
             return user.favorite_domain;
@@ -51,7 +51,7 @@ class Session {
         return [];
     };
 
-    getFavoriteResources = (): FavouriteResourceDataType[] => {
+    getFavouriteResources = (): FavouriteResourceDataType[] => {
         const user = this.getUser();
         if (user) {
             return user.favouriteResources ?? [];
@@ -59,11 +59,11 @@ class Session {
         return [];
     };
 
-    updateFavoriteResources = async (data: FavouriteResourceDataType[]) => {
+    updateFavouriteResources = async (data: FavouriteResourceDataType[]) => {
         const user = this.getUser();
         if (user) {
             user.favouriteResources = data;
-            await updateFavorite(user.id, data);
+            await updateFavourite(user.id, data);
             this.update(user);
         }
     };
@@ -107,9 +107,9 @@ const session = new Session();
 export const getUsername = session.getUsername;
 export const isLegacy = session.isLegacy;
 export const getDomains = session.getDomains;
-export const getFavoriteDomain = session.getFavoriteDomain;
-export const getFavoriteResources = session.getFavoriteResources;
-export const updateFavoriteResources = session.updateFavoriteResources;
+export const getFavouriteDomain = session.getFavouriteDomain;
+export const getFavouriteResources = session.getFavouriteResources;
+export const updateFavouriteResources = session.updateFavouriteResources;
 export const getToken = session.getToken;
 
 export const loginToJanus = (): void => {

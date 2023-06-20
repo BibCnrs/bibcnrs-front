@@ -132,7 +132,7 @@ export type Common = {
             diamond: string;
         };
         button: {
-            favorite: {
+            favourite: {
                 tooltip: string;
             };
         };

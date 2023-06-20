@@ -55,7 +55,7 @@ const DatabaseIcons = ({ title, url, oa }: { title: string; url: string; oa: boo
     return (
         <>
             {oa ? <OpenAccess className="database-icon-oa" /> : <div className="database-icon-oa"></div>}
-            <BookmarkButton className="database-icon-favorite" title={title} url={url} />
+            <BookmarkButton className="database-icon-favourite" title={title} url={url} />
         </>
     );
 };

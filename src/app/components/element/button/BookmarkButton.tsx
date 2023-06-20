@@ -1,5 +1,5 @@
 import './scss/BookmarkButton.scss';
-import { useFavoriteResources } from '../../../shared/hook';
+import { useFavouriteResources } from '../../../shared/hook';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { BibContext } from '../../internal/provider/ContextProvider';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -10,28 +10,28 @@ import type { BookmarkButtonProps } from '../../../shared/types/props.types';
 const BookmarkButton = ({ title, url, className = '' }: BookmarkButtonProps) => {
     const { login } = useContext(BibContext);
     const t = useTranslator();
-    const { favoriteResources, addFavorite, removeFavorite } = useFavoriteResources();
+    const { favouriteResources, addFavourite, removeFavourite } = useFavouriteResources();
     const [inBookmark, setInBookmark] = useState(false);
     const [animated, setAnimated] = useState(false);
 
     useEffect(() => {
         if (login) {
-            const titles = new Set(favoriteResources.map((value) => value.title));
+            const titles = new Set(favouriteResources.map((value) => value.title));
             if (titles.has(title)) {
                 setInBookmark(true);
                 return;
             }
-            const urls = new Set(favoriteResources.map((value) => value.url));
+            const urls = new Set(favouriteResources.map((value) => value.url));
             if (urls.has(url)) {
                 setInBookmark(true);
             }
         }
-    }, [favoriteResources, login, title, url]);
+    }, [favouriteResources, login, title, url]);
 
     const handleClick = () => {
         setAnimated(true);
         if (!inBookmark) {
-            addFavorite({
+            addFavourite({
                 title,
                 url,
                 personal: false,
@@ -39,7 +39,7 @@ const BookmarkButton = ({ title, url, className = '' }: BookmarkButtonProps) => 
             setInBookmark(true);
             return;
         }
-        removeFavorite({
+        removeFavourite({
             title,
             url,
         });
@@ -48,17 +48,17 @@ const BookmarkButton = ({ title, url, className = '' }: BookmarkButtonProps) => 
 
     return (
         <div
-            className={`favorite-button-container ${className} ${
-                animated ? 'favorite-button-container-animation' : ''
+            className={`favourite-button-container ${className} ${
+                animated ? 'favourite-button-container-animation' : ''
             }`}
             onAnimationEnd={() => {
                 setAnimated(false);
             }}
         >
-            <Tooltip title={t('components.button.favorite.tooltip')} arrow>
-                <button className="favorite-button" onClick={handleClick}>
+            <Tooltip title={t('components.button.favourite.tooltip')} arrow>
+                <button className="favourite-button" onClick={handleClick}>
                     <FavoriteIcon
-                        className={`favorite-button-icon ${inBookmark ? 'favorite-button-icon-active' : ''}`}
+                        className={`favourite-button-icon ${inBookmark ? 'favourite-button-icon-active' : ''}`}
                         fontSize="small"
                     />
                 </button>

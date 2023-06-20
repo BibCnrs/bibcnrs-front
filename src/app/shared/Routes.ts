@@ -24,6 +24,7 @@ const Routes = {
     licences: '/licences',
     /* Account specific route */
     history: '/account/history',
+    favourite: '/account/favourite',
 } as const;
 
 type RoutesType = typeof Routes;

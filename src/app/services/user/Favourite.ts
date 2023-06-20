@@ -1,7 +1,7 @@
 import { createQuery, environment, json, throwIfNotOk } from '../Environment';
 import type { FavouriteResourceDataType } from '../../shared/types/data.types';
 
-export const updateFavorite = async (userId: number, favorites: FavouriteResourceDataType[]) => {
+export const updateFavourite = async (userId: number, favourites: FavouriteResourceDataType[]) => {
     const response: Response = await fetch(createQuery(`${environment.put.account.favourite}/${userId}`), {
         credentials: 'include',
         method: 'PUT',
@@ -10,7 +10,7 @@ export const updateFavorite = async (userId: number, favorites: FavouriteResourc
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            favouriteResources: favorites,
+            favouriteResources: favourites,
         }),
     });
     throwIfNotOk(response);

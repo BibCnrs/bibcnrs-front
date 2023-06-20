@@ -1,5 +1,5 @@
 import { BibContext } from '../components/internal/provider/ContextProvider';
-import { getDomains, getFavoriteResources, updateFavoriteResources } from '../services/user/Session';
+import { getDomains, getFavouriteResources, updateFavouriteResources } from '../services/user/Session';
 import { useContext, useState } from 'react';
 import type { FavouriteResourceDataType } from './types/data.types';
 import type { FacetRequired } from './types/props.types';
@@ -66,31 +66,31 @@ export const useDomain = (): Array<{ value: string; label: string }> => {
     });
 };
 
-export const useFavoriteResources = () => {
-    const [favorites, setFavorites] = useState(getFavoriteResources());
-    const addFavorite = (entry: FavouriteResourceDataType) => {
-        const favoriteResources = getFavoriteResources();
-        updateFavoriteResources([entry, ...favoriteResources]).then(() => {
-            setFavorites(getFavoriteResources());
+export const useFavouriteResources = () => {
+    const [favourites, setFavourites] = useState(getFavouriteResources());
+    const addFavourite = (entry: FavouriteResourceDataType) => {
+        const favouriteResources = getFavouriteResources();
+        updateFavouriteResources([entry, ...favouriteResources]).then(() => {
+            setFavourites(getFavouriteResources());
         });
     };
 
-    const removeFavorite = (entry: FavouriteResourceDataType) => {
-        const favoriteResources = getFavoriteResources();
-        const filtered = favoriteResources.filter((value) => {
+    const removeFavourite = (entry: FavouriteResourceDataType) => {
+        const favouriteResources = getFavouriteResources();
+        const filtered = favouriteResources.filter((value) => {
             if (value.title === entry.title) {
                 return false;
             }
             return value.url !== entry.url;
         });
-        updateFavoriteResources(filtered).then(() => {
-            setFavorites(getFavoriteResources());
+        updateFavouriteResources(filtered).then(() => {
+            setFavourites(getFavouriteResources());
         });
     };
 
     return {
-        favoriteResources: favorites,
-        addFavorite,
-        removeFavorite,
+        favouriteResources: favourites,
+        addFavourite,
+        removeFavourite,
     };
 };
