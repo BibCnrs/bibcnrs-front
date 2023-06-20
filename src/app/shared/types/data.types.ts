@@ -1,5 +1,6 @@
 import type { Url } from './types';
 import type { Institute } from './types';
+import type { UniqueIdentifier } from '@dnd-kit/core';
 
 export type MetadoreResultTitleType = {
     title: string;

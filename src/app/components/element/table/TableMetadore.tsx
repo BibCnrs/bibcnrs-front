@@ -66,7 +66,7 @@ const TableMetadore = ({ data }: TableDisplayElementProps<MetadoreResultType>) =
     const bookmarkTitle = `${data.type} - ${title}`;
 
     return (
-        <div>
+        <div className="table-bookmark-size">
             <OpenablePaper
                 Title={
                     <a

@@ -123,6 +123,12 @@ const en: Common = {
                 tooltip: 'Add to favourites',
             },
         },
+        dnd: {
+            favourite: {
+                open: 'Access',
+                delete: 'Delete',
+            },
+        },
         news: {
             from: 'From ',
             to: ' to ',
@@ -213,6 +219,9 @@ Sincerely`,
             confirm: {
                 delete: 'Do you really want to delete all the history (excluding alerts)?',
             },
+        },
+        favourite: {
+            title: 'My Favourites',
         },
     },
     error: {

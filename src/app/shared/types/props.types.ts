@@ -1,5 +1,7 @@
 import type { CMSResultDataType, DatabaseDataType, TestsNewsDataType } from './data.types';
+import type { FavouriteResourceWithId } from './types';
 import type { FacetEntry, TFunction } from './types';
+import type { UniqueIdentifier } from '@dnd-kit/core';
 import type { Property } from 'csstype';
 import type { MouseEvent } from 'react';
 import type { ReactNode } from 'react';
@@ -187,4 +189,9 @@ export type BookmarkButtonProps = PropsWithoutRef<{
     title: string;
     url: string;
     className?: string;
+}>;
+
+export type SortableFavouriteProps = PropsWithoutRef<{
+    id: UniqueIdentifier;
+    entry?: FavouriteResourceWithId;
 }>;

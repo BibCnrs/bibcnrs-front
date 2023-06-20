@@ -123,6 +123,12 @@ const fr: Common = {
                 tooltip: 'Ajouter aux favoris',
             },
         },
+        dnd: {
+            favourite: {
+                open: 'Accéder',
+                delete: 'Supprimer',
+            },
+        },
         news: {
             from: 'Du ',
             to: ' au ',
@@ -214,6 +220,9 @@ Cordialement`,
             confirm: {
                 delete: "Voulez vous vraiment supprimer tout l'historique (hors alertes) ?",
             },
+        },
+        favourite: {
+            title: 'Mes Favoris',
         },
     },
     error: {

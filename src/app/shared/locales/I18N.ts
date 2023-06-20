@@ -136,6 +136,12 @@ export type Common = {
                 tooltip: string;
             };
         };
+        dnd: {
+            favourite: {
+                open: string;
+                delete: string;
+            };
+        };
         news: {
             from: string;
             to: string;
@@ -204,6 +210,9 @@ export type Common = {
             confirm: {
                 delete: string;
             };
+        };
+        favourite: {
+            title: string;
         };
         faq: {
             title: string;

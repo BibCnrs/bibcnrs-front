@@ -1,8 +1,9 @@
 import { BibContext } from '../components/internal/provider/ContextProvider';
 import { getDomains, getFavouriteResources, updateFavouriteResources } from '../services/user/Session';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import type { FavouriteResourceDataType } from './types/data.types';
 import type { FacetRequired } from './types/props.types';
+import type { FavouriteResourceWithId } from './types/types';
 import type { MouseEvent } from 'react';
 
 export const useServicesCatch = () => {
@@ -66,16 +67,42 @@ export const useDomain = (): Array<{ value: string; label: string }> => {
     });
 };
 
-export const useFavouriteResources = () => {
-    const [favourites, setFavourites] = useState(getFavouriteResources());
-    const addFavourite = (entry: FavouriteResourceDataType) => {
+type UseFavouriteResourcesType = {
+    favouriteResources: FavouriteResourceWithId[];
+    addFavourite: (entry: FavouriteResourceDataType | FavouriteResourceWithId) => void;
+    removeFavourite: (entry: FavouriteResourceDataType | FavouriteResourceWithId) => void;
+};
+export const useFavouriteResources = (): UseFavouriteResourcesType => {
+    const [favourites, setFavourites] = useState<FavouriteResourceDataType[]>(getFavouriteResources());
+    const [favouritesWithId, setFavouritesWithId] = useState<FavouriteResourceWithId[]>([]);
+
+    useEffect(() => {
+        let index = 1;
+        setFavouritesWithId(
+            favourites.map((value) => {
+                return {
+                    id: index++,
+                    ...value,
+                };
+            }),
+        );
+    }, [favourites]);
+
+    const addFavourite = (entry: FavouriteResourceDataType | FavouriteResourceWithId) => {
         const favouriteResources = getFavouriteResources();
-        updateFavouriteResources([entry, ...favouriteResources]).then(() => {
+        updateFavouriteResources([
+            {
+                title: entry.title,
+                url: entry.url,
+                personal: entry.personal,
+            },
+            ...favouriteResources,
+        ]).then(() => {
             setFavourites(getFavouriteResources());
         });
     };
 
-    const removeFavourite = (entry: FavouriteResourceDataType) => {
+    const removeFavourite = (entry: FavouriteResourceDataType | FavouriteResourceWithId) => {
         const favouriteResources = getFavouriteResources();
         const filtered = favouriteResources.filter((value) => {
             if (value.title === entry.title) {
@@ -89,7 +116,7 @@ export const useFavouriteResources = () => {
     };
 
     return {
-        favouriteResources: favourites,
+        favouriteResources: favouritesWithId,
         addFavourite,
         removeFavourite,
     };
