@@ -16,6 +16,7 @@ import type { Property } from 'csstype';
  */
 export const colors = {
     white: '#fff',
+    grey: '#c0c0d0',
     text: {
         dark: '#cfcfe0',
         light: '#000000DE',
