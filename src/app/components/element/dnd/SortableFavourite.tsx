@@ -7,6 +7,7 @@ import { CSS as DndCSS } from '@dnd-kit/utilities';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { memo } from 'react';
 import type { SortableFavouriteProps } from '../../../shared/types/props.types';
 
 const SortableFavourite = ({ id, onDelete }: SortableFavouriteProps) => {
@@ -77,4 +78,4 @@ const SortableFavourite = ({ id, onDelete }: SortableFavouriteProps) => {
     );
 };
 
-export default SortableFavourite;
+export default memo(SortableFavourite);

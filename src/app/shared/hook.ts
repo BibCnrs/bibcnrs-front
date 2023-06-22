@@ -1,7 +1,7 @@
 import { BibContext } from '../components/internal/provider/ContextProvider';
 import { getDomains, getFavouriteResources, updateFavouriteResources } from '../services/user/Session';
 import { arrayMove } from '@dnd-kit/sortable';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import type { FavouriteResourceDataType } from './types/data.types';
 import type { FacetRequired } from './types/props.types';
 import type { FavouriteResourceWithId } from './types/types';
@@ -70,13 +70,15 @@ export const useDomain = (): Array<{ value: string; label: string }> => {
 
 export const useStatelessFavouriteResources = (): FavouriteResourceWithId[] => {
     const favourites = getFavouriteResources();
-    let index = 1;
-    return favourites.map((value) => {
-        return {
-            id: index++,
-            ...value,
-        };
-    });
+    return useMemo(() => {
+        let index = 1;
+        return favourites.map((value) => {
+            return {
+                id: index++,
+                ...value,
+            };
+        });
+    }, [favourites]);
 };
 
 type UseFavouriteResourcesType = {
@@ -91,18 +93,15 @@ type UseFavouriteResourcesType = {
 };
 export const useFavouriteResources = (): UseFavouriteResourcesType => {
     const [favourites, setFavourites] = useState<FavouriteResourceDataType[]>(getFavouriteResources());
-    const [favouritesWithId, setFavouritesWithId] = useState<FavouriteResourceWithId[]>([]);
 
-    useEffect(() => {
+    const favouritesWithId = useMemo(() => {
         let index = 1;
-        setFavouritesWithId(
-            favourites.map((value) => {
-                return {
-                    id: index++,
-                    ...value,
-                };
-            }),
-        );
+        return favourites.map((value) => {
+            return {
+                id: index++,
+                ...value,
+            };
+        });
     }, [favourites]);
 
     const addFavourite = (entry: FavouriteResourceDataType | FavouriteResourceWithId) => {
