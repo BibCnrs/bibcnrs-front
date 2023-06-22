@@ -103,7 +103,7 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
     const bookmarkTitle = `${title} - ${reconciledFullTextHoldings[0].name}`;
     const isOpenAccess = reconciledFullTextHoldings[0].name.toLowerCase().includes('open access');
     return (
-        <div className="table-bookmark-size">
+        <div className={login ? 'table-bookmark-size' : undefined}>
             <OpenablePaper
                 onOpen={handleChange}
                 Title={
