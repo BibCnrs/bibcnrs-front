@@ -193,5 +193,5 @@ export type BookmarkButtonProps = PropsWithoutRef<{
 
 export type SortableFavouriteProps = PropsWithoutRef<{
     id: UniqueIdentifier;
-    entry?: FavouriteResourceWithId;
+    onDelete: (entry: FavouriteResourceWithId) => void;
 }>;

@@ -1,4 +1,5 @@
 import './SortableFavourite.scss';
+import { useStatelessFavouriteResources } from '../../../shared/hook';
 import CustomButton from '../button/CustomButton';
 import AnimatedPaper from '../paper/animated/AnimatedPaper';
 import { useSortable } from '@dnd-kit/sortable';
@@ -8,12 +9,23 @@ import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import type { SortableFavouriteProps } from '../../../shared/types/props.types';
 
-const SortableFavourite = ({ id, entry }: SortableFavouriteProps) => {
+const SortableFavourite = ({ id, onDelete }: SortableFavouriteProps) => {
+    const favouriteResources = useStatelessFavouriteResources();
+    const entry = favouriteResources.find((value) => value.id === id);
+
     const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition } = useSortable({ id });
 
     if (!entry) {
         return null;
     }
+
+    const handleDelete = () => {
+        onDelete(entry);
+    };
+
+    const handleOpen = () => {
+        window.open(entry.url, '_blank');
+    };
 
     return (
         <div
@@ -48,10 +60,14 @@ const SortableFavourite = ({ id, entry }: SortableFavouriteProps) => {
                         </h1>
                     </div>
                     <div className="favourite-entry-content-button-container">
-                        <CustomButton className="favourite-entry-content-button margin" size="small">
+                        <CustomButton
+                            onClick={handleDelete}
+                            className="favourite-entry-content-button margin"
+                            size="small"
+                        >
                             <DeleteOutlineIcon />
                         </CustomButton>
-                        <CustomButton className="favourite-entry-content-button" size="small">
+                        <CustomButton onClick={handleOpen} className="favourite-entry-content-button" size="small">
                             <OpenInNewIcon />
                         </CustomButton>
                     </div>

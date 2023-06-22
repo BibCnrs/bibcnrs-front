@@ -1,5 +1,6 @@
 import { BibContext } from '../components/internal/provider/ContextProvider';
 import { getDomains, getFavouriteResources, updateFavouriteResources } from '../services/user/Session';
+import { arrayMove } from '@dnd-kit/sortable';
 import { useContext, useEffect, useState } from 'react';
 import type { FavouriteResourceDataType } from './types/data.types';
 import type { FacetRequired } from './types/props.types';
@@ -67,9 +68,25 @@ export const useDomain = (): Array<{ value: string; label: string }> => {
     });
 };
 
+export const useStatelessFavouriteResources = (): FavouriteResourceWithId[] => {
+    const favourites = getFavouriteResources();
+    let index = 1;
+    return favourites.map((value) => {
+        return {
+            id: index++,
+            ...value,
+        };
+    });
+};
+
 type UseFavouriteResourcesType = {
     favouriteResources: FavouriteResourceWithId[];
     addFavourite: (entry: FavouriteResourceDataType | FavouriteResourceWithId) => void;
+    moveFavourite: (
+        entry: FavouriteResourceDataType | FavouriteResourceWithId,
+        oldIndex: number,
+        newIndex: number,
+    ) => void;
     removeFavourite: (entry: FavouriteResourceDataType | FavouriteResourceWithId) => void;
 };
 export const useFavouriteResources = (): UseFavouriteResourcesType => {
@@ -115,9 +132,21 @@ export const useFavouriteResources = (): UseFavouriteResourcesType => {
         });
     };
 
+    const moveFavourite = (
+        entry: FavouriteResourceDataType | FavouriteResourceWithId,
+        oldIndex: number,
+        newIndex: number,
+    ) => {
+        const favouriteResources = getFavouriteResources();
+        updateFavouriteResources(arrayMove(favouriteResources, oldIndex, newIndex)).then(() => {
+            setFavourites(getFavouriteResources());
+        });
+    };
+
     return {
         favouriteResources: favouritesWithId,
         addFavourite,
+        moveFavourite,
         removeFavourite,
     };
 };

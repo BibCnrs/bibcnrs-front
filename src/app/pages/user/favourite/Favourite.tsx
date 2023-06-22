@@ -11,12 +11,13 @@ import {
     verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { useEffect, useState } from 'react';
-import type { DragEndEvent } from '@dnd-kit/core';
+import type { FavouriteResourceWithId } from '../../../shared/types/types';
+import type { DragEndEvent, UniqueIdentifier } from '@dnd-kit/core';
 
 const Favourite = () => {
     const t = useTranslator();
-    const { favouriteResources } = useFavouriteResources();
-    const [items, setItems] = useState(favouriteResources.map((value) => value.id));
+    const { favouriteResources, removeFavourite, moveFavourite } = useFavouriteResources();
+    const [items, setItems] = useState<UniqueIdentifier[]>([]);
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(KeyboardSensor, {
@@ -37,10 +38,16 @@ const Favourite = () => {
                     const oldIndex = identifiers.indexOf(active.id);
                     const newIndex = identifiers.indexOf(over.id);
 
+                    moveFavourite(favouriteResources[oldIndex], oldIndex, newIndex);
+
                     return arrayMove(identifiers, oldIndex, newIndex);
                 });
             }
         }
+    };
+
+    const handleDelete = (entry: FavouriteResourceWithId) => {
+        removeFavourite(entry);
     };
 
     return (
@@ -61,8 +68,7 @@ const Favourite = () => {
                         }}
                     >
                         {items.map((id) => {
-                            const entry = favouriteResources.find((value) => value.id === id);
-                            return <SortableFavourite key={id} id={id} entry={entry} />;
+                            return <SortableFavourite key={id} id={id} onDelete={handleDelete} />;
                         })}
                     </div>
                 </SortableContext>
