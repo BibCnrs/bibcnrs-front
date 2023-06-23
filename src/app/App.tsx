@@ -13,6 +13,7 @@ import Article from './pages/search/article/Article';
 import Database from './pages/search/database/Database';
 import Publication from './pages/search/publication/Publication';
 import ResearchData from './pages/search/researchdata/ResearchData';
+import Favourite from './pages/user/favourite/Favourite';
 import History from './pages/user/history/History';
 import Licences from './pages/user/licences/Licences';
 import News from './pages/user/news/News';
@@ -32,6 +33,7 @@ import {
     RouteResources,
     RouteRoot,
     RouteTests,
+    RouteFavourite,
 } from './shared/Routes';
 import { useContext, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -96,6 +98,14 @@ const App = () => {
                         element={
                             <ProtectedRoute>
                                 <History />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path={RouteFavourite}
+                        element={
+                            <ProtectedRoute>
+                                <Favourite />
                             </ProtectedRoute>
                         }
                     />

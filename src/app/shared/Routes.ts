@@ -24,6 +24,7 @@ const Routes = {
     licences: '/licences',
     /* Account specific route */
     history: '/account/history',
+    favourite: '/account/favourite',
 } as const;
 
 type RoutesType = typeof Routes;
@@ -97,3 +98,5 @@ export const RouteLicences = Routes.licences;
 export const RouteTests = Routes.tests;
 export const RouteNews = Routes.news;
 export const RouteHistory = Routes.history;
+
+export const RouteFavourite = Routes.favourite;

@@ -1,5 +1,6 @@
+import { updateFavourite } from './Favourite';
 import { createQuery, environment } from '../Environment';
-import type { SessionUserDataType } from '../../shared/types/data.types';
+import type { FavouriteResourceDataType, SessionUserDataType } from '../../shared/types/data.types';
 import type { Institute } from '../../shared/types/types';
 
 class Session {
@@ -34,7 +35,7 @@ class Session {
         return 'null';
     };
 
-    getFavoriteDomain = (): Institute | undefined => {
+    getFavouriteDomain = (): Institute | undefined => {
         const user = this.getUser();
         if (user) {
             return user.favorite_domain;
@@ -48,6 +49,23 @@ class Session {
             return user.domains;
         }
         return [];
+    };
+
+    getFavouriteResources = (): FavouriteResourceDataType[] => {
+        const user = this.getUser();
+        if (user) {
+            return user.favouriteResources ?? [];
+        }
+        return [];
+    };
+
+    updateFavouriteResources = async (data: FavouriteResourceDataType[]) => {
+        const user = this.getUser();
+        if (user) {
+            user.favouriteResources = data;
+            await updateFavourite(user.id, data);
+            this.update(user);
+        }
     };
 
     getToken = (): string | undefined => {
@@ -89,7 +107,9 @@ const session = new Session();
 export const getUsername = session.getUsername;
 export const isLegacy = session.isLegacy;
 export const getDomains = session.getDomains;
-export const getFavoriteDomain = session.getFavoriteDomain;
+export const getFavouriteDomain = session.getFavouriteDomain;
+export const getFavouriteResources = session.getFavouriteResources;
+export const updateFavouriteResources = session.updateFavouriteResources;
 export const getToken = session.getToken;
 
 export const loginToJanus = (): void => {

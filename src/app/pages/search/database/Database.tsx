@@ -1,4 +1,5 @@
 import './Database.scss';
+import BookmarkButton from '../../../components/element/button/BookmarkButton';
 import OpenAccess from '../../../components/element/icon/OpenAccess';
 import AnimatedPaper from '../../../components/element/paper/animated/AnimatedPaper';
 import ColoredPaper from '../../../components/element/paper/colored/ColoredPaper';
@@ -46,6 +47,19 @@ const getImage = (entry: DatabaseEntryDataType) => {
     return undefined;
 };
 
+const DatabaseIcons = ({ title, url, oa }: { title: string; url: string; oa: boolean }) => {
+    const { login } = useContext(BibContext);
+    if (!login) {
+        return oa ? <OpenAccess className="database-icon-oa" /> : null;
+    }
+    return (
+        <>
+            {oa ? <OpenAccess className="database-icon-oa" /> : <div className="database-icon-oa"></div>}
+            <BookmarkButton className="database-icon-favourite" title={title} url={url} />
+        </>
+    );
+};
+
 const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupProps) => {
     const filteredData = data.filter((value) => {
         if (language === 'en') {
@@ -69,11 +83,13 @@ const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupPr
                             <AnimatedPaper className="database-entry-content">
                                 <div className="database-entry-content-inner" style={getImage(entry)}>
                                     <span className="database-entry-text">{getName(entry, language)}</span>
-                                    {entry.oa ? <OpenAccess className="database-entry-oa" /> : null}
                                 </div>
                             </AnimatedPaper>
                         </a>
                     </Tooltip>
+                    <div className="database-icon">
+                        <DatabaseIcons title={getName(entry, language)} url={getUrl(entry, language)} oa={entry.oa} />
+                    </div>
                 </li>
             ))}
         </ul>

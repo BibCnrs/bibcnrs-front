@@ -1,4 +1,4 @@
-import { getDomains, getFavoriteDomain } from '../../../services/user/Session';
+import { getDomains, getFavouriteDomain } from '../../../services/user/Session';
 import { createContext, useEffect, useState } from 'react';
 import type { ContextProviderProps } from '../../../shared/types/props.types';
 import type { SearchContextType } from '../../../shared/types/types';
@@ -76,11 +76,11 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
 
     useEffect(() => {
         if (login && search.domain === undefined) {
-            let domain = getFavoriteDomain();
+            let domain = getFavouriteDomain();
             if (domain === undefined) {
                 const domains = getDomains();
                 if (domains === undefined || domains.length === 0) {
-                    throw new Error(`No domain found for this user: ${getFavoriteDomain()}, ${domains}`);
+                    throw new Error(`No domain found for this user: ${getFavouriteDomain()}, ${domains}`);
                 }
                 domain = domains[0];
             }

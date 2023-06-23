@@ -1,0 +1,54 @@
+@import "src/app/scss/colors";
+
+.favourite-entry {
+  display: flex;
+  height: fit-content;
+  min-height: 80px;
+  padding: 6px;
+  margin: 8px 8px 18px;
+}
+
+.favourite-entry-navigation {
+  display: flex;
+  padding: 4px 6px 4px 4px;
+  margin-right: 12px;
+  border-right: $table-border solid 2px;
+}
+
+.favourite-entry-navigation-button {
+  width: 24px;
+  height: 24px;
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: move;
+}
+
+.favourite-entry-content {
+  position: relative;
+  width: 100%;
+  color: $text;
+
+  .favourite-entry-content-textual {
+    width: 93%;
+    .favourite-entry-content-title {
+      font-size: 1.125em;
+    }
+  }
+
+  .favourite-entry-content-button-container {
+    position: absolute;
+    right: 4px;
+    bottom: 8px;
+    display: flex;
+    width: fit-content;
+
+    .favourite-entry-content-button {
+      min-width: 24px;
+      margin-right: 4px;
+    }
+
+    .margin {
+      margin-right: 12px;
+    }
+  }
+}

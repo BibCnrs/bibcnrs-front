@@ -1,5 +1,5 @@
 import './scss/News.scss';
-import { getDomains, getFavoriteDomain } from '../../../services/user/Session';
+import { getDomains, getFavouriteDomain } from '../../../services/user/Session';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import PageDate from '../../element/PageDate';
 import OpenablePaper from '../../element/paper/openable/OpenablePaper';
@@ -19,9 +19,9 @@ import type { ChangeEvent } from 'react';
 const RenderNews = ({ data }: TestsNewsProps) => {
     const t = useTranslator();
     const language = useLanguageKey();
-    const favoriteDomain = getFavoriteDomain();
-    const domains = getDomains().filter((domain) => domain !== favoriteDomain);
-    const [selectedDomain, setSelectedDomain] = useState(favoriteDomain || domains[0]);
+    const favouriteDomain = getFavouriteDomain();
+    const domains = getDomains().filter((domain) => domain !== favouriteDomain);
+    const [selectedDomain, setSelectedDomain] = useState(favouriteDomain || domains[0]);
 
     /**
      * Function used to handle domain change
@@ -123,10 +123,10 @@ const RenderNews = ({ data }: TestsNewsProps) => {
         <div id="tests-news">
             {/*------------ Domain nav bar, used to select a domain ------------*/}
             <div id="tests-news-nav">
-                {favoriteDomain ? (
+                {favouriteDomain ? (
                     <FormControlLabel
-                        control={<Radio {...navigationControlProps(favoriteDomain)} />}
-                        label={favoriteDomain}
+                        control={<Radio {...navigationControlProps(favouriteDomain)} />}
+                        label={favouriteDomain}
                         sx={{
                             color: 'var(--text)',
                         }}

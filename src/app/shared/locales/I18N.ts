@@ -131,6 +131,17 @@ export type Common = {
             openAccess: string;
             diamond: string;
         };
+        button: {
+            favourite: {
+                tooltip: string;
+            };
+        };
+        dnd: {
+            favourite: {
+                open: string;
+                delete: string;
+            };
+        };
         news: {
             from: string;
             to: string;
@@ -199,6 +210,9 @@ export type Common = {
             confirm: {
                 delete: string;
             };
+        };
+        favourite: {
+            title: string;
         };
         faq: {
             title: string;

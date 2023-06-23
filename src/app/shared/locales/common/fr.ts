@@ -118,6 +118,17 @@ const fr: Common = {
             openAccess: 'Accès gratuit au contenu de la revue',
             diamond: 'Publication en Accès Ouvert gratuit pour les auteurs et les lecteurs',
         },
+        button: {
+            favourite: {
+                tooltip: 'Ajouter aux favoris',
+            },
+        },
+        dnd: {
+            favourite: {
+                open: 'Accéder',
+                delete: 'Supprimer',
+            },
+        },
         news: {
             from: 'Du ',
             to: ' au ',
@@ -209,6 +220,9 @@ Cordialement`,
             confirm: {
                 delete: "Voulez vous vraiment supprimer tout l'historique (hors alertes) ?",
             },
+        },
+        favourite: {
+            title: 'Mes Favoris',
         },
     },
     error: {

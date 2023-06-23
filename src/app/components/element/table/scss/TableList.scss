@@ -5,6 +5,22 @@
   color: $cnrs-secondary-blue;
 }
 
+.table-bookmark-size {
+  margin-bottom: -20px;
+}
+
+.table-bookmark {
+  display: flex;
+  pointer-events: none;
+  transform: translate(0, -56px);
+
+  .table-bookmark-button {
+    margin-right: 38px;
+    margin-left: auto;
+    pointer-events: auto;
+  }
+}
+
 .table-list-body {
   display: flex;
   flex-direction: column;
