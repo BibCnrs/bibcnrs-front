@@ -1,100 +1,17 @@
 import './Database.scss';
-import BookmarkButton from '../../../components/element/button/BookmarkButton';
-import OpenAccess from '../../../components/element/icon/OpenAccess';
-import AnimatedPaper from '../../../components/element/paper/animated/AnimatedPaper';
 import ColoredPaper from '../../../components/element/paper/colored/ColoredPaper';
 import PageTitle from '../../../components/internal/PageTitle';
 import { BibContext } from '../../../components/internal/provider/ContextProvider';
 import { getHeaderBackgroundColor } from '../../../components/internal/provider/LocalizedThemeProvider';
+import DatabaseDisplayGroup from '../../../components/page/render/DatabaseDisplayGroup';
 import { database } from '../../../services/search/Database';
 import { useServicesCatch } from '../../../shared/hook';
 import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import Tooltip from '@mui/material/Tooltip';
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
-import type { DatabaseDataType, DatabaseEntryDataType } from '../../../shared/types/data.types';
-import type { DatabaseDisplayGroupProps } from '../../../shared/types/props.types';
-
-const getName = (entry: DatabaseEntryDataType, language: string) => {
-    if (language === 'en') {
-        return entry.name_en;
-    }
-    return entry.name_fr;
-};
-
-const getText = (entry: DatabaseEntryDataType, language: string) => {
-    if (language === 'en') {
-        return entry.text_en;
-    }
-    return entry.text_fr;
-};
-
-const getUrl = (entry: DatabaseEntryDataType, language: string) => {
-    if (language === 'en') {
-        return entry.url_en;
-    }
-    return entry.url_fr;
-};
-
-const getImage = (entry: DatabaseEntryDataType) => {
-    if (entry.image) {
-        return {
-            backgroundImage: `url("${entry.image}")`,
-        };
-    }
-    return undefined;
-};
-
-const DatabaseIcons = ({ title, url, oa }: { title: string; url: string; oa: boolean }) => {
-    const { login } = useContext(BibContext);
-    if (!login) {
-        return oa ? <OpenAccess className="database-icon-oa" /> : null;
-    }
-    return (
-        <>
-            {oa ? <OpenAccess className="database-icon-oa" /> : <div className="database-icon-oa"></div>}
-            <BookmarkButton className="database-icon-favourite" title={title} url={url} />
-        </>
-    );
-};
-
-const DatabaseDisplayGroup = ({ letter, data, language }: DatabaseDisplayGroupProps) => {
-    const filteredData = data.filter((value) => {
-        if (language === 'en') {
-            return value.name_en.toUpperCase().startsWith(letter);
-        }
-        return value.name_fr.toUpperCase().startsWith(letter);
-    });
-
-    return (
-        <ul>
-            {filteredData.map((entry) => (
-                <li key={entry.id}>
-                    <Tooltip title={getText(entry, language)} arrow>
-                        <a
-                            href={getUrl(entry, language)}
-                            target="_blank"
-                            rel="noopener noreferrer nofollow"
-                            aria-label={getName(entry, language)}
-                            className="database-entry"
-                        >
-                            <AnimatedPaper className="database-entry-content">
-                                <div className="database-entry-content-inner" style={getImage(entry)}>
-                                    <span className="database-entry-text">{getName(entry, language)}</span>
-                                </div>
-                            </AnimatedPaper>
-                        </a>
-                    </Tooltip>
-                    <div className="database-icon">
-                        <DatabaseIcons title={getName(entry, language)} url={getUrl(entry, language)} oa={entry.oa} />
-                    </div>
-                </li>
-            ))}
-        </ul>
-    );
-};
+import type { DatabaseDataType } from '../../../shared/types/data.types';
 
 const Database = () => {
     const { login, theme } = useContext(BibContext);
