@@ -3,7 +3,7 @@ import { useTranslator } from '../../../shared/locales/I18N';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import type { FacetTextTypeProps } from '../../../shared/types/props.types';
 import type { ChangeEvent } from 'react';
 
@@ -52,4 +52,4 @@ const TextType = ({ texts, initial, onChange }: FacetTextTypeProps) => {
     );
 };
 
-export default TextType;
+export default memo(TextType);

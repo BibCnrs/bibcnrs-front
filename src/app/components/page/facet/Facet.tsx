@@ -5,6 +5,7 @@ import FacetFacets from '../../element/facet/FacetFacets';
 import FacetLimiter from '../../element/facet/FacetLimiter';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
+import { memo } from 'react';
 import type { FacetProps, FacetRequired } from '../../../shared/types/props.types';
 
 const Facet = ({ available, active, onChange, onReset }: FacetProps<FacetRequired>) => {
@@ -43,4 +44,4 @@ const Facet = ({ available, active, onChange, onReset }: FacetProps<FacetRequire
     );
 };
 
-export default Facet;
+export default memo(Facet);

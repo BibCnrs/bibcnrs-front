@@ -1,6 +1,7 @@
 import { useTranslator } from '../../../shared/locales/I18N';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import { memo } from 'react';
 import type { FacetSearchListProps } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
 import type { SyntheticEvent } from 'react';
@@ -44,4 +45,4 @@ const SearchList = ({ facets, name, onChange, initial = undefined }: FacetSearch
     );
 };
 
-export default SearchList;
+export default memo(SearchList);

@@ -1,7 +1,7 @@
 import { BibContext } from '../../internal/provider/ContextProvider';
 import styled from '@mui/material/styles/styled';
 import Switch from '@mui/material/Switch';
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import type { ChangeEvent } from 'react';
 
 // Style from https://mui.com/material-ui/react-switch/
@@ -76,4 +76,4 @@ const ThemeButton = () => {
     );
 };
 
-export default ThemeButton;
+export default memo(ThemeButton);

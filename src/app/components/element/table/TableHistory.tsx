@@ -6,7 +6,7 @@ import { BibContext } from '../../internal/provider/ContextProvider';
 import CustomButton from '../button/CustomButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { ArticleFacetsKeyDataType } from '../../../shared/types/data.types';
 import type {
@@ -231,4 +231,4 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
     );
 };
 
-export default TableHistory;
+export default memo(TableHistory);

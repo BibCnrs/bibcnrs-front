@@ -2,6 +2,7 @@ import { useTranslator } from '../../../shared/locales/I18N';
 import { useClickHandler, RouteNews } from '../../../shared/Routes';
 import { headerButtonStyle } from '../../page/header/Header';
 import Button from '@mui/material/Button';
+import { memo } from 'react';
 
 /**
  * Button used to go to RenderNews page
@@ -18,4 +19,4 @@ const NewsButton = () => {
     );
 };
 
-export default NewsButton;
+export default memo(NewsButton);

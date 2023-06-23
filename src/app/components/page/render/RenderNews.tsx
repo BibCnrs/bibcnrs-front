@@ -6,7 +6,7 @@ import OpenablePaper from '../../element/paper/openable/OpenablePaper';
 import { getInstituteColor } from '../../internal/provider/LocalizedThemeProvider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import type { TestNewDataType } from '../../../shared/types/data.types';
 import type { TestsNewsProps } from '../../../shared/types/props.types';
 import type { RadioProps } from '@mui/material/Radio/Radio';
@@ -188,4 +188,4 @@ const RenderNews = ({ data }: TestsNewsProps) => {
     );
 };
 
-export default RenderNews;
+export default memo(RenderNews);

@@ -1,5 +1,5 @@
 import { useTranslator } from '../../shared/locales/I18N';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import type { PageTitleProps } from '../../shared/types/props.types';
 
 /**
@@ -23,4 +23,4 @@ const PageTitle = ({ customTitle, page }: PageTitleProps) => {
     return null;
 };
 
-export default PageTitle;
+export default memo(PageTitle);

@@ -15,7 +15,7 @@ import styled from '@mui/material/styles/styled';
 import TextField from '@mui/material/TextField';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import { useContext, useState } from 'react';
+import { memo, useContext, useState } from 'react';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import type { AuthenticationProps } from '../../../shared/types/props.types';
 import type { TooltipProps } from '@mui/material/Tooltip';
@@ -210,4 +210,4 @@ const Authentication = ({ open, onClose }: AuthenticationProps) => {
     );
 };
 
-export default Authentication;
+export default memo(Authentication);

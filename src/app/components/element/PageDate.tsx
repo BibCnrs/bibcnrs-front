@@ -1,4 +1,5 @@
 import { useTranslator } from '../../shared/locales/I18N';
+import { memo } from 'react';
 import type { PageDateProps } from '../../shared/types/props.types';
 
 /**
@@ -16,4 +17,4 @@ const PageDate = ({ date, updateAtLabel = false }: PageDateProps) => {
     return <i>{formattedDate}</i>;
 };
 
-export default PageDate;
+export default memo(PageDate);

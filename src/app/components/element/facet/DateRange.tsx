@@ -2,7 +2,7 @@ import './scss/DateRange.scss';
 import { useTranslator } from '../../../shared/locales/I18N';
 import Chip from '@mui/material/Chip';
 import Slider from '@mui/material/Slider';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import type { FacetDateRangeProps } from '../../../shared/types/props.types';
 import type { SyntheticEvent, KeyboardEvent } from 'react';
 
@@ -102,4 +102,4 @@ const DateRange = ({ min, max, initial, onChange, minDistance = 1 }: FacetDateRa
     );
 };
 
-export default DateRange;
+export default memo(DateRange);

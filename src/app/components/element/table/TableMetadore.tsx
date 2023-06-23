@@ -3,7 +3,7 @@ import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
 import { BibContext } from '../../internal/provider/ContextProvider';
 import BookmarkButton from '../button/BookmarkButton';
 import OpenablePaper from '../paper/openable/OpenablePaper';
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import type {
     MetadoreResultDescriptionType,
     MetadoreResultTitleType,
@@ -124,4 +124,4 @@ const TableMetadore = ({ data }: TableDisplayElementProps<MetadoreResultType>) =
     );
 };
 
-export default TableMetadore;
+export default memo(TableMetadore);

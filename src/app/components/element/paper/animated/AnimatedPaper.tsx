@@ -1,5 +1,5 @@
 import ColoredPaper from '../colored/ColoredPaper';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import type { AnimatedPaperProps } from '../../../../shared/types/props.types';
 
 /**
@@ -25,4 +25,4 @@ const AnimatedPaper = ({ children, ...props }: AnimatedPaperProps) => {
     );
 };
 
-export default AnimatedPaper;
+export default memo(AnimatedPaper);

@@ -1,6 +1,7 @@
 import DateRange from './DateRange';
 import TextType from './TextType';
 import Divider from '@mui/material/Divider';
+import { memo } from 'react';
 import type { FacetLimiterProps, FacetRequired } from '../../../shared/types/props.types';
 
 const FacetLimiter = ({ available, active, onChange }: FacetLimiterProps<FacetRequired>) => {
@@ -101,4 +102,4 @@ const FacetLimiter = ({ available, active, onChange }: FacetLimiterProps<FacetRe
     );
 };
 
-export default FacetLimiter;
+export default memo(FacetLimiter);

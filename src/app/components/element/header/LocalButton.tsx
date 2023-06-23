@@ -4,7 +4,7 @@ import TranslateIcon from '@mui/icons-material/Translate';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import type { SupportedLanguageKeys } from '../../../shared/types/types';
 import type { MouseEvent } from 'react';
 
@@ -87,4 +87,4 @@ const LocalButton = () => {
     );
 };
 
-export default LocalButton;
+export default memo(LocalButton);

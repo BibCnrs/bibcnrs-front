@@ -2,6 +2,7 @@ import './scss/RenderContent.scss';
 import { useLanguageKey } from '../../../shared/locales/I18N';
 import PageDate from '../../element/PageDate';
 import PageTitle from '../../internal/PageTitle';
+import { memo } from 'react';
 import type { RenderContentProps } from '../../../shared/types/props.types';
 
 /**
@@ -72,4 +73,4 @@ const RenderContent = ({
     return children;
 };
 
-export default RenderContent;
+export default memo(RenderContent);

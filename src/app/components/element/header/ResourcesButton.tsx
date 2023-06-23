@@ -2,6 +2,7 @@ import { useTranslator } from '../../../shared/locales/I18N';
 import { useClickHandler, RouteResources } from '../../../shared/Routes';
 import { headerButtonStyle } from '../../page/header/Header';
 import Button from '@mui/material/Button';
+import { memo } from 'react';
 
 /**
  * Button used to go to Ressources page
@@ -18,4 +19,4 @@ const ResourcesButton = () => {
     );
 };
 
-export default ResourcesButton;
+export default memo(ResourcesButton);

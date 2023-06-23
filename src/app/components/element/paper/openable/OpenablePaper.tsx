@@ -2,7 +2,7 @@ import './OpenablePaper.scss';
 import AnimatedPaper from '../animated/AnimatedPaper';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import IconButton from '@mui/material/IconButton';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import type { OpenablePaperProps } from '../../../../shared/types/props.types';
 
 /**
@@ -84,4 +84,4 @@ const OpenablePaper = ({
     );
 };
 
-export default OpenablePaper;
+export default memo(OpenablePaper);

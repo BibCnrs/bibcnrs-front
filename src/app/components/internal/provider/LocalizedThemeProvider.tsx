@@ -5,7 +5,7 @@ import { enUS } from '@mui/material/locale';
 import createPalette from '@mui/material/styles/createPalette';
 import createTheme from '@mui/material/styles/createTheme';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
-import { useContext, useEffect } from 'react';
+import { memo, useContext, useEffect } from 'react';
 import type { LocalizedThemeProviderProps } from '../../../shared/types/props.types';
 import type { InstituteLowerCase } from '../../../shared/types/types';
 import type { Institute, ThemeType } from '../../../shared/types/types';
@@ -163,4 +163,4 @@ const LocalizedThemeProvider = ({ children }: LocalizedThemeProviderProps) => {
     return <ThemeProvider theme={muiTheme}>{children}</ThemeProvider>;
 };
 
-export default LocalizedThemeProvider;
+export default memo(LocalizedThemeProvider);

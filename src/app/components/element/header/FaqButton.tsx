@@ -2,6 +2,7 @@ import { useTranslator } from '../../../shared/locales/I18N';
 import { useClickHandler, RouteFaq } from '../../../shared/Routes';
 import { headerButtonStyle } from '../../page/header/Header';
 import Button from '@mui/material/Button';
+import { memo } from 'react';
 
 /**
  * Button used to go to Faq page
@@ -18,4 +19,4 @@ const FaqButton = () => {
     );
 };
 
-export default FaqButton;
+export default memo(FaqButton);

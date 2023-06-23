@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import type { SearchBarProps } from '../../../shared/types/props.types';
 import type { ChangeEvent, KeyboardEvent } from 'react';
 
@@ -80,4 +80,4 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
     );
 };
 
-export default SearchBar;
+export default memo(SearchBar);

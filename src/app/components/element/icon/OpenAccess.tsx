@@ -1,5 +1,6 @@
 import { useTranslator } from '../../../shared/locales/I18N';
 import Tooltip from '@mui/material/Tooltip';
+import { memo } from 'react';
 
 const OpenAccess = ({ className }: { className?: string }) => {
     const t = useTranslator();
@@ -15,4 +16,4 @@ const OpenAccess = ({ className }: { className?: string }) => {
     );
 };
 
-export default OpenAccess;
+export default memo(OpenAccess);

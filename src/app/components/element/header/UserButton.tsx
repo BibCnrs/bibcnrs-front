@@ -13,7 +13,7 @@ import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useContext, useState } from 'react';
+import { memo, useContext, useState } from 'react';
 import type { MouseEvent, ReactElement } from 'react';
 
 /**
@@ -152,4 +152,4 @@ const UserButton = () => {
     );
 };
 
-export default UserButton;
+export default memo(UserButton);

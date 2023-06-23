@@ -4,6 +4,7 @@ import CNRSLogo from '/logos/cnrs.png';
 import { RouteAbout, RouteLegal } from '../../../shared/Routes';
 import CustomLink from '../../element/link/CustomLink';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import { memo } from 'react';
 
 /**
  * Footer component used in every page
@@ -43,4 +44,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default memo(Footer);

@@ -1,6 +1,6 @@
 import { BibContext } from './ContextProvider';
 import Authentication from '../../element/authentication/Authentication';
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import type { AuthenticationProviderProps } from '../../../shared/types/props.types';
 
 const AuthenticationProvider = ({ children }: AuthenticationProviderProps) => {
@@ -19,4 +19,4 @@ const AuthenticationProvider = ({ children }: AuthenticationProviderProps) => {
     );
 };
 
-export default AuthenticationProvider;
+export default memo(AuthenticationProvider);
