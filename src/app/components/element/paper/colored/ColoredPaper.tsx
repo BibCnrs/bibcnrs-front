@@ -1,5 +1,6 @@
 import Paper from '@mui/material/Paper';
 import { hexToRgb, decomposeColor } from '@mui/system/colorManipulator';
+import { memo } from 'react';
 import type { ColoredPaperProps } from '../../../../shared/types/props.types';
 import type { Theme } from '@mui/material/styles/createTheme';
 import type { SxProps } from '@mui/system/styleFunctionSx/styleFunctionSx';
@@ -88,4 +89,4 @@ const ColoredPaper = ({
     );
 };
 
-export default ColoredPaper;
+export default memo(ColoredPaper);

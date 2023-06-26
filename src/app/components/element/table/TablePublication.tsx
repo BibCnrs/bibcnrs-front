@@ -10,7 +10,7 @@ import OpenAccess from '../icon/OpenAccess';
 import OpenablePaper from '../paper/openable/OpenablePaper';
 import SkeletonEntry from '../skeleton/SkeletonEntry';
 import { useQuery } from '@tanstack/react-query';
-import { useContext, useEffect, useState } from 'react';
+import { memo, useContext, useEffect, useState } from 'react';
 import type { PublicationCoverageDataType } from '../../../shared/types/data.types';
 import type { PublicationHolding } from '../../../shared/types/data.types';
 import type { PublicationResultDataType, PublicationRetrieveDataType } from '../../../shared/types/data.types';
@@ -198,4 +198,4 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
     );
 };
 
-export default TablePublication;
+export default memo(TablePublication);

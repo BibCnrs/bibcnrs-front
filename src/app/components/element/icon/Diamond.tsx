@@ -1,5 +1,6 @@
 import { useTranslator } from '../../../shared/locales/I18N';
 import Tooltip from '@mui/material/Tooltip';
+import { memo } from 'react';
 
 const Diamond = ({ className }: { className?: string }) => {
     const t = useTranslator();
@@ -10,4 +11,4 @@ const Diamond = ({ className }: { className?: string }) => {
     );
 };
 
-export default Diamond;
+export default memo(Diamond);

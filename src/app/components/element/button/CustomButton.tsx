@@ -1,5 +1,6 @@
 import './scss/CustomButton.scss';
 import Button from '@mui/material/Button';
+import { memo } from 'react';
 import type { ButtonProps } from '@mui/material/Button';
 
 /**
@@ -16,4 +17,4 @@ const CustomButton = ({ className, ...props }: ButtonProps) => {
     );
 };
 
-export default CustomButton;
+export default memo(CustomButton);

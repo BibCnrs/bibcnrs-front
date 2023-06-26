@@ -1,5 +1,6 @@
 import './CustomLink.scss';
 import { useIsMatching } from '../../../shared/Routes';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import type { LinkProps } from 'react-router-dom';
 
@@ -22,4 +23,4 @@ const CustomLink = ({ children, to, ...props }: LinkProps) => {
     );
 };
 
-export default CustomLink;
+export default memo(CustomLink);

@@ -1,5 +1,6 @@
 import SkeletonEntry from './SkeletonEntry';
 import Skeleton from '@mui/material/Skeleton';
+import { memo } from 'react';
 
 const TableSkeleton = ({ order }: { order?: boolean }) => {
     return (
@@ -33,4 +34,4 @@ const TableSkeleton = ({ order }: { order?: boolean }) => {
     );
 };
 
-export default TableSkeleton;
+export default memo(TableSkeleton);

@@ -7,7 +7,7 @@ import CustomLink from '../../element/link/CustomLink';
 import { useTranslator } from '../../../shared/locales/I18N';
 import ThemeButton from '../../element/header/ThemeButton';
 import UserButton from '../../element/header/UserButton';
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import { BibContext } from '../../internal/provider/ContextProvider';
 import NewsButton from '../../element/header/NewsButton';
 import TestsButton from '../../element/header/TestsButton';
@@ -65,4 +65,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default memo(Header);

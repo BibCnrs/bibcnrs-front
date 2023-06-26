@@ -4,7 +4,7 @@ import { useTranslator } from '../../../shared/locales/I18N';
 import { BibContext } from '../../internal/provider/ContextProvider';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Tooltip from '@mui/material/Tooltip';
-import { useContext, useEffect, useState } from 'react';
+import { memo, useContext, useEffect, useState } from 'react';
 import type { BookmarkButtonProps } from '../../../shared/types/props.types';
 
 const BookmarkButton = ({ title, url, className = '' }: BookmarkButtonProps) => {
@@ -67,4 +67,4 @@ const BookmarkButton = ({ title, url, className = '' }: BookmarkButtonProps) => 
     );
 };
 
-export default BookmarkButton;
+export default memo(BookmarkButton);

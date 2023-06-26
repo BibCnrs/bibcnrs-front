@@ -1,72 +1,9 @@
 import './Table.scss';
 import { useTranslator } from '../../../shared/locales/I18N';
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import Pagination from '@mui/material/Pagination';
-import Select from '@mui/material/Select';
+import PaginationComponent from '../../element/table/PaginationComponent';
 import md5 from 'md5';
-import type { PaginationComponentProps, TableProps } from '../../../shared/types/props.types';
-import type { SelectChangeEvent } from '@mui/material/Select';
-
-/**
- * Pagination component used by Table.
- * @param total          - Total number of elements
- * @param resultsPerPage - Number of elements per page
- * @param currentPage    - Current page
- * @param onChange       - Event called when the page or number of elements per page is updated
- * @param extend         - Variable containing elements to display at the end of the pagination
- */
-const PaginationComponent = ({
-    total,
-    resultsPerPage,
-    currentPage,
-    onChange,
-    extend = null,
-}: PaginationComponentProps) => {
-    // Set the default values if the current page and the number of results per page is not initialized
-    const page = currentPage ? currentPage : 1;
-    const perPage = resultsPerPage ? resultsPerPage : 25;
-    return (
-        <div className="pagination">
-            {/* Show the current element index and the number of elements found */}
-            {total === 0 ? (
-                <span className="current-page">0-0 / 0</span>
-            ) : (
-                <span className="current-page">
-                    {1 + (page - 1) * perPage}-{Math.min(1 + page * perPage, total)} / {total}
-                </span>
-            )}
-            {/* Pagination component used to show and change the current page */}
-            <Pagination
-                onChange={(event, newPage) => {
-                    onChange(newPage, perPage);
-                }}
-                color="primary"
-                className="page-selector"
-                count={Math.ceil(total / perPage)}
-                page={page}
-            />
-            {/* Show and change select number of results per page */}
-            <FormControl size="small">
-                <Select
-                    onChange={(event: SelectChangeEvent<number>) => {
-                        onChange(1, event.target.value as number);
-                    }}
-                    autoWidth
-                    value={perPage}
-                    sx={{ borderRadius: '64px' }}
-                >
-                    <MenuItem value={5}>5</MenuItem>
-                    <MenuItem value={10}>10</MenuItem>
-                    <MenuItem value={25}>25</MenuItem>
-                    <MenuItem value={50}>50</MenuItem>
-                    <MenuItem value={100}>100</MenuItem>
-                </Select>
-            </FormControl>
-            {extend}
-        </div>
-    );
-};
+import { memo } from 'react';
+import type { TableProps } from '../../../shared/types/props.types';
 
 /**
  * Table component used to display search results and any other results which needs a table format.
@@ -136,4 +73,4 @@ const Table = ({ id, className, results, DisplayElement, total, args, onArgsChan
     );
 };
 
-export default Table;
+export default memo(Table);

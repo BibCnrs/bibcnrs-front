@@ -1,6 +1,6 @@
 import SearchList from './SearchList';
 import Divider from '@mui/material/Divider';
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import type { FacetFacetsProps, FacetRequired } from '../../../shared/types/props.types';
 import type { FacetEntry } from '../../../shared/types/types';
 import type { ReactNode } from 'react';
@@ -56,4 +56,4 @@ const FacetFacets = ({ available, active, onChange }: FacetFacetsProps<FacetRequ
     return <div>{facets}</div>;
 };
 
-export default FacetFacets;
+export default memo(FacetFacets);

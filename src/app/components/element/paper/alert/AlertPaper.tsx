@@ -1,5 +1,6 @@
 import './AlertPaper.scss';
 import ColoredPaper from '../colored/ColoredPaper';
+import { memo } from 'react';
 import type { AlertPaperProps } from '../../../../shared/types/props.types';
 
 /**
@@ -14,4 +15,4 @@ const AlertPaper = ({ children }: AlertPaperProps) => {
     );
 };
 
-export default AlertPaper;
+export default memo(AlertPaper);

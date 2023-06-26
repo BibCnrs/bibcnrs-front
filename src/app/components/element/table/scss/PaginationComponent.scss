@@ -1,0 +1,17 @@
+@import "src/app/scss/colors";
+
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+
+  .current-page {
+    margin-top: auto;
+    margin-bottom: auto;
+    color: $text;
+  }
+
+  .page-selector {
+    padding: 0;
+  }
+}

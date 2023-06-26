@@ -2,6 +2,7 @@ import { useTranslator } from '../../../shared/locales/I18N';
 import styled from '@mui/material/styles/styled';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { memo } from 'react';
 import type { ChipFacetProps } from '../../../shared/types/props.types';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
@@ -46,4 +47,4 @@ const ChipFacet = ({ value, values, onChange, needTranslation = false }: ChipFac
     );
 };
 
-export default ChipFacet;
+export default memo(ChipFacet);

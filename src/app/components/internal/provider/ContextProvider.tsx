@@ -1,5 +1,5 @@
 import { getDomains, getFavouriteDomain } from '../../../services/user/Session';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, memo, useEffect, useState } from 'react';
 import type { ContextProviderProps } from '../../../shared/types/props.types';
 import type { SearchContextType } from '../../../shared/types/types';
 import type { BibContextType, ThemeType } from '../../../shared/types/types';
@@ -109,4 +109,4 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
     );
 };
 
-export default ContextProvider;
+export default memo(ContextProvider);

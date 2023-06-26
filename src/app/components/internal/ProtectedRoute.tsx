@@ -1,6 +1,6 @@
 import { BibContext } from './provider/ContextProvider';
 import { RouteRoot } from '../../shared/Routes';
-import { useContext, useEffect, useState } from 'react';
+import { memo, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { ProtectedRouteProps } from '../../shared/types/props.types';
 
@@ -32,4 +32,4 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     return <>{login ? children : null}</>;
 };
 
-export default ProtectedRoute;
+export default memo(ProtectedRoute);

@@ -1,4 +1,5 @@
 import OpenablePaper from '../paper/openable/OpenablePaper';
+import { memo } from 'react';
 import type { TableDisplayElementProps } from '../../../shared/types/props.types';
 
 let init = false;
@@ -29,4 +30,4 @@ const TableDebug = ({ data, debugKey, last, first, index }: TableDisplayElementP
     );
 };
 
-export default TableDebug;
+export default memo(TableDebug);
