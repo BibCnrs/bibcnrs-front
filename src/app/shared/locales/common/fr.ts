@@ -58,7 +58,7 @@ const fr: Common = {
             contact: 'Nous contacter',
         },
         dialog: {
-            cancel: 'Annulé',
+            cancel: 'Annuler',
             save: 'Enregistrer',
         },
         nav: {
@@ -98,7 +98,7 @@ const fr: Common = {
                         week: 'Hebdomadaire',
                         month: 'Mensuelle',
                     },
-                    disable: "Déssactiver/réactiver l'alerte",
+                    disable: "Désactiver/réactiver l'alerte",
                 },
             },
         },
