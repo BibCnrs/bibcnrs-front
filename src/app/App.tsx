@@ -34,6 +34,7 @@ import {
     RouteRoot,
     RouteTests,
     RouteFavourite,
+    RouteAlert,
 } from './shared/Routes';
 import { useContext, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -98,6 +99,14 @@ const App = () => {
                         element={
                             <ProtectedRoute>
                                 <History />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path={RouteAlert}
+                        element={
+                            <ProtectedRoute>
+                                <History displayOnlyAlert />
                             </ProtectedRoute>
                         }
                     />

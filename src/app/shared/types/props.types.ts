@@ -1,3 +1,4 @@
+import type { HistoryEntryDataType } from './data.types';
 import type { CMSResultDataType, DatabaseDataType, TestsNewsDataType } from './data.types';
 import type { FavouriteResourceWithId } from './types';
 import type { FacetEntry, TFunction } from './types';
@@ -194,4 +195,10 @@ export type BookmarkButtonProps = PropsWithoutRef<{
 export type SortableFavouriteProps = PropsWithoutRef<{
     id: UniqueIdentifier;
     onDelete: (entry: FavouriteResourceWithId) => void;
+}>;
+
+export type AlertModificationProps = PropsWithoutRef<{
+    data: HistoryEntryDataType;
+    open: boolean;
+    onClose: () => void;
 }>;

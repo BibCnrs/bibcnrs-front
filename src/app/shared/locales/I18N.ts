@@ -70,6 +70,10 @@ export type Common = {
             };
             contact: string;
         };
+        dialog: {
+            cancel: string;
+            save: string;
+        };
         nav: {
             article: string;
             publication: string;
@@ -101,6 +105,14 @@ export type Common = {
                 isbnOnline: string;
                 isbnPrint: string;
                 present: string;
+                alert: {
+                    active: {
+                        day: string;
+                        week: string;
+                        month: string;
+                    };
+                    disable: string;
+                };
             };
         };
         facet: {
@@ -206,10 +218,14 @@ export type Common = {
             title: string;
             buttons: {
                 delete: string;
+                disable: string;
             };
             confirm: {
                 delete: string;
             };
+        };
+        alert: {
+            title: string;
         };
         favourite: {
             title: string;

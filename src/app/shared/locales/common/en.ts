@@ -57,6 +57,10 @@ const en: Common = {
             },
             contact: 'Contact us',
         },
+        dialog: {
+            cancel: 'Cancel',
+            save: 'Save',
+        },
         nav: {
             article: 'Article',
             database: 'Database',
@@ -88,6 +92,14 @@ const en: Common = {
                 isbnOnline: 'eISBN: ',
                 isbnPrint: 'pISBN: ',
                 present: 'Present',
+                alert: {
+                    active: {
+                        day: 'Daily',
+                        week: 'Weekly',
+                        month: 'Monthly',
+                    },
+                    disable: 'Disable/enable the alert',
+                },
             },
         },
         facet: {
@@ -215,10 +227,14 @@ Sincerely`,
             title: 'History',
             buttons: {
                 delete: 'Delete history',
+                disable: 'Enable/disable all alert',
             },
             confirm: {
                 delete: 'Do you really want to delete all the history (excluding alerts)?',
             },
+        },
+        alert: {
+            title: 'Alert',
         },
         favourite: {
             title: 'My Favourites',

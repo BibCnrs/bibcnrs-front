@@ -1,6 +1,6 @@
 import { getUsername, isLegacy, logout } from '../../../services/user/Session';
 import { useTranslator } from '../../../shared/locales/I18N';
-import { useClickHandler, RouteHistory, RouteFavourite } from '../../../shared/Routes';
+import { useClickHandler, RouteHistory, RouteFavourite, RouteAlert } from '../../../shared/Routes';
 import { BibContext } from '../../internal/provider/ContextProvider';
 import { colors } from '../../internal/provider/LocalizedThemeProvider';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
@@ -27,6 +27,7 @@ const UserButton = () => {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const open = Boolean(anchorEl);
     const history = useClickHandler(RouteHistory);
+    const alert = useClickHandler(RouteAlert);
     const favourite = useClickHandler(RouteFavourite);
 
     let username = getUsername();
@@ -90,7 +91,7 @@ const UserButton = () => {
                 </ListItemIcon>
                 {t('components.header.user.bookmark')}
             </MenuItem>,
-            <MenuItem key="notfications">
+            <MenuItem key="notfications" onClick={alert.handler} href={alert.href}>
                 <ListItemIcon>
                     <NotificationsIcon fontSize="small" />
                 </ListItemIcon>

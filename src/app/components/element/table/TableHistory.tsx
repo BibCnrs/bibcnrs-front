@@ -4,9 +4,14 @@ import { useTranslator } from '../../../shared/locales/I18N';
 import { RouteArticle, updatePageQueryUrl } from '../../../shared/Routes';
 import { BibContext } from '../../internal/provider/ContextProvider';
 import CustomButton from '../button/CustomButton';
+import AlertModification from '../dialog/AlertModification';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { memo, useContext } from 'react';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { memo, useContext, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { ArticleFacetsKeyDataType } from '../../../shared/types/data.types';
 import type {
@@ -75,6 +80,18 @@ const Facets = ({ data }: { data: HistoryEntryFacetsDataType }) => {
             ))}
         </>
     );
+};
+
+const BellIcon = ({ hasAlert, active }: Pick<HistoryEntryDataType, 'active' | 'hasAlert'>) => {
+    if (hasAlert && !active) {
+        return <NotificationsOffIcon />;
+    }
+
+    if (hasAlert && active) {
+        return <NotificationsActiveIcon />;
+    }
+
+    return <NotificationAddIcon />;
 };
 
 const convertFacet = (array: string[]): FacetEntry[] => {
@@ -148,7 +165,10 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
     const navigate = useNavigate();
     const { theme } = useContext(BibContext);
     const { handleDeleteEntry } = useContext(HistoryContext);
-    const getClassName = () => {
+
+    const [open, setOpen] = useState(false);
+
+    const themedClassName = useMemo(() => {
         let className = 'table-history';
         if (theme === 'light') {
             if (index % 2 === 0) {
@@ -164,10 +184,26 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
             className += ' table-history-last';
         }
         return className;
-    };
+    }, [index, last, theme]);
+
+    const alertText = useMemo(() => {
+        if (data.hasAlert && data.active) {
+            return t(`components.table.content.alert.active.${data.frequence}`);
+        }
+
+        return '';
+    }, [data.active, data.frequence, data.hasAlert, t]);
 
     const handleSearch = () => {
         updatePageQueryUrl(RouteArticle, navigate, createParam(data.event));
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     };
 
     return (
@@ -191,7 +227,7 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
                     </div>
                 </div>
             ) : null}
-            <div className={getClassName()}>
+            <div className={themedClassName}>
                 <div className="table-history-box">
                     <b>{data.event.queries[0].term}</b>
                 </div>
@@ -224,6 +260,22 @@ const TableHistory = ({ data, first, last, index }: TableDisplayElementProps<His
                         <CustomButton className="table-history-box-actions-button" size="small" onClick={handleSearch}>
                             <OpenInNewIcon />
                         </CustomButton>
+                        <FormControlLabel
+                            sx={{
+                                marginLeft: '0',
+                            }}
+                            control={
+                                <CustomButton
+                                    className="table-history-box-actions-button"
+                                    size="small"
+                                    onClick={handleOpen}
+                                >
+                                    <BellIcon hasAlert={data.hasAlert} active={data.active} />
+                                </CustomButton>
+                            }
+                            label={alertText}
+                        />
+                        <AlertModification data={data} open={open} onClose={handleClose} />
                     </div>
                 </div>
             </div>
