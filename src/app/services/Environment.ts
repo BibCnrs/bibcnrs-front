@@ -18,6 +18,7 @@ export const environment = {
             licences: '/ebsco/licenses',
             testsNews: '/ebsco/news',
             history: '/ebsco/history',
+            disableSearchAlert: '/ebsco/history/disable',
         },
     },
     post: {
@@ -34,6 +35,7 @@ export const environment = {
     put: {
         account: {
             favourite: '/ebsco/favourite_resources',
+            searchAlert: '/ebsco/search_alert',
         },
     },
     delete: {

@@ -24,6 +24,7 @@ const Routes = {
     licences: '/licences',
     /* Account specific route */
     history: '/account/history',
+    alert: '/account/alert',
     favourite: '/account/favourite',
 } as const;
 
@@ -98,5 +99,5 @@ export const RouteLicences = Routes.licences;
 export const RouteTests = Routes.tests;
 export const RouteNews = Routes.news;
 export const RouteHistory = Routes.history;
-
+export const RouteAlert = Routes.alert;
 export const RouteFavourite = Routes.favourite;

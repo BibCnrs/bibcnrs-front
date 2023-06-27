@@ -57,6 +57,10 @@ const fr: Common = {
             },
             contact: 'Nous contacter',
         },
+        dialog: {
+            cancel: 'Annuler',
+            save: 'Enregistrer',
+        },
         nav: {
             article: 'Article',
             database: 'Base de données',
@@ -88,6 +92,14 @@ const fr: Common = {
                 isbnOnline: 'eISBN : ',
                 isbnPrint: 'pISBN : ',
                 present: 'Présent',
+                alert: {
+                    active: {
+                        day: 'Quotidenne',
+                        week: 'Hebdomadaire',
+                        month: 'Mensuelle',
+                    },
+                    disable: "Désactiver/réactiver l'alerte",
+                },
             },
         },
         facet: {
@@ -216,10 +228,14 @@ Cordialement`,
             title: 'Historique',
             buttons: {
                 delete: "Supprimer l'historique",
+                disable: 'Activer/Désactiver toutes les alertes',
             },
             confirm: {
                 delete: "Voulez vous vraiment supprimer tout l'historique (hors alertes) ?",
             },
+        },
+        alert: {
+            title: 'Alerte',
         },
         favourite: {
             title: 'Mes Favoris',

@@ -5,7 +5,7 @@ import type { Institute } from '../../shared/types/types';
 import type { ArticleParam } from '../search/Article';
 import type { ArticlePayLoad } from '../search/Article';
 
-export const history = async (limit: number, offset: number): Promise<HistoryDataType> => {
+export const history = async (limit: number, offset: number, displayOnlyAlert: boolean): Promise<HistoryDataType> => {
     const query = createQuery(environment.get.account.history, {
         limit,
         offset,
@@ -14,7 +14,13 @@ export const history = async (limit: number, offset: number): Promise<HistoryDat
         credentials: 'include',
     });
     throwIfNotOk(response);
-    return json<HistoryDataType>(response);
+    const results = await json<HistoryDataType>(response);
+
+    if (displayOnlyAlert) {
+        return results.filter((value) => value.hasAlert);
+    }
+
+    return results;
 };
 
 export const addHistory = async (

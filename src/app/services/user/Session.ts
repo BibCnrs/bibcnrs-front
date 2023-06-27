@@ -1,4 +1,5 @@
 import { updateFavourite } from './Favourite';
+import { updateAlert } from './SearchAlert';
 import { createQuery, environment } from '../Environment';
 import type { FavouriteResourceDataType, SessionUserDataType } from '../../shared/types/data.types';
 import type { Institute } from '../../shared/types/types';
@@ -68,6 +69,13 @@ class Session {
         }
     };
 
+    updateSearchAlert = async (historyId: number, frequency: string) => {
+        const user = this.getUser();
+        if (user) {
+            await updateAlert(user.id, historyId, frequency);
+        }
+    };
+
     getToken = (): string | undefined => {
         const user = this.getUser();
         if (user) {
@@ -110,6 +118,7 @@ export const getDomains = session.getDomains;
 export const getFavouriteDomain = session.getFavouriteDomain;
 export const getFavouriteResources = session.getFavouriteResources;
 export const updateFavouriteResources = session.updateFavouriteResources;
+export const updateSearchAlert = session.updateSearchAlert;
 export const getToken = session.getToken;
 
 export const loginToJanus = (): void => {
