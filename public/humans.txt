@@ -1,0 +1,10 @@
+/* TEAM */
+    Services: Portails et Plateformes - BibCNRS
+    Contact: assistance-portail [at] inist.fr
+    Twitter: @BibCnrs
+    Location: 2, Allée du Parc de Brabois, Rue Jean Zay, 54500 Vandœuvre-lès-Nancy, France
+
+/* SITE */
+    Language: English / French
+    Doctype: HTML5, CSS3, Javascript
+    Components: React, Mui
