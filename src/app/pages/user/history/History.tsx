@@ -11,7 +11,10 @@ import { createContext, useState } from 'react';
 import type { HistoryDataType } from '../../../shared/types/data.types';
 import type { TableArgsProps } from '../../../shared/types/props.types';
 
-export const HistoryContext = createContext<{ handleDeleteEntry: (id: number) => void }>(null as any);
+export const HistoryContext = createContext<{
+    handleDeleteEntry: (id: number) => void;
+    requestUpdate: () => void;
+}>(null as any);
 
 const History = ({ displayOnlyAlert = false }: { displayOnlyAlert?: boolean }) => {
     const t = useTranslator();
@@ -58,11 +61,18 @@ const History = ({ displayOnlyAlert = false }: { displayOnlyAlert?: boolean }) =
         });
     };
 
+    const handleUpdateRequest = () => {
+        setArgs({
+            ...args,
+            stateIndex: (args.stateIndex ?? 0) + 1,
+        });
+    };
+
     return (
         <div id="app">
             <PageTitle page={displayOnlyAlert ? 'alert' : 'history'} />
             <h1>{t(`pages.${displayOnlyAlert ? 'alert' : 'history'}.title`)}</h1>
-            <HistoryContext.Provider value={{ handleDeleteEntry }}>
+            <HistoryContext.Provider value={{ handleDeleteEntry, requestUpdate: handleUpdateRequest }}>
                 <Table
                     DisplayElement={TableHistory}
                     results={data}

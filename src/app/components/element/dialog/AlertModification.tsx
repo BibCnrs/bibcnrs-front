@@ -1,3 +1,4 @@
+import { HistoryContext } from '../../../pages/user/history/History';
 import { disableSearchAlert } from '../../../services/user/SearchAlert';
 import { updateSearchAlert } from '../../../services/user/Session';
 import { useTranslator } from '../../../shared/locales/I18N';
@@ -13,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import type { AlertModificationProps } from '../../../shared/types/props.types';
 import type { SelectChangeEvent } from '@mui/material/Select';
 
@@ -21,6 +22,7 @@ const AlertModification = ({ data, open, onClose }: AlertModificationProps) => {
     const t = useTranslator();
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const { requestUpdate } = useContext(HistoryContext);
 
     const [value, setValue] = useState<string>(data.active ? data.frequence : 'disable');
     const [backdropLoading, setBackdropLoading] = useState(false);
@@ -37,6 +39,7 @@ const AlertModification = ({ data, open, onClose }: AlertModificationProps) => {
                 disableSearchAlert(data.id).then(() => {
                     setBackdropLoading(false);
                     onClose();
+                    requestUpdate();
                 });
                 break;
             }
@@ -48,6 +51,7 @@ const AlertModification = ({ data, open, onClose }: AlertModificationProps) => {
                         updateSearchAlert(data.id, value).then(() => {
                             setBackdropLoading(false);
                             onClose();
+                            requestUpdate();
                         });
                     });
                     break;
@@ -55,6 +59,7 @@ const AlertModification = ({ data, open, onClose }: AlertModificationProps) => {
                 updateSearchAlert(data.id, value).then(() => {
                     setBackdropLoading(false);
                     onClose();
+                    requestUpdate();
                 });
                 break;
             }
