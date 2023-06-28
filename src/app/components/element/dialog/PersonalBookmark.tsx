@@ -68,21 +68,22 @@ const PersonalBookmark = ({ open, onClose }: DialogProps) => {
 
     return (
         <Dialog fullScreen={fullScreen} open={open}>
-            <DialogTitle>Réglages Alerte</DialogTitle>
+            <DialogTitle>{t('components.dialog.title.bookmark')}</DialogTitle>
             <DialogContent>
                 <FormControl sx={{ m: 1, minWidth: 240 }}>
                     <TextField
                         value={title}
                         onChange={handleFormChange('title')}
                         error={formError}
-                        label={t('components.dialog.title')}
+                        label={t('components.dialog.fields.title')}
                         size="small"
                     />
                     <TextField
+                        sx={{ marginTop: '20px' }}
                         value={url}
                         onChange={handleFormChange('url')}
                         error={formError}
-                        label={t('components.dialog.url')}
+                        label={t('components.dialog.fields.url')}
                         size="small"
                     />
                 </FormControl>

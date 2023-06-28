@@ -71,6 +71,14 @@ export type Common = {
             contact: string;
         };
         dialog: {
+            title: {
+                alert: string;
+                bookmark: string;
+            };
+            fields: {
+                title: string;
+                url: string;
+            };
             cancel: string;
             save: string;
         };
@@ -229,6 +237,7 @@ export type Common = {
         };
         favourite: {
             title: string;
+            add: string;
         };
         faq: {
             title: string;
