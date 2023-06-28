@@ -197,8 +197,13 @@ export type SortableFavouriteProps = PropsWithoutRef<{
     onDelete: (entry: FavouriteResourceWithId) => void;
 }>;
 
-export type AlertModificationProps = PropsWithoutRef<{
-    data: HistoryEntryDataType;
+export type DialogProps = PropsWithoutRef<{
     open: boolean;
     onClose: () => void;
 }>;
+
+export type AlertModificationProps = PropsWithoutRef<
+    DialogProps & {
+        data: HistoryEntryDataType;
+    }
+>;

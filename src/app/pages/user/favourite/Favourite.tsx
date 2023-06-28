@@ -1,3 +1,5 @@
+import CustomButton from '../../../components/element/button/CustomButton';
+import PersonalBookmark from '../../../components/element/dialog/PersonalBookmark';
 import SortableFavourite from '../../../components/element/dnd/SortableFavourite';
 import PageTitle from '../../../components/internal/PageTitle';
 import { useFavouriteResources } from '../../../shared/hook';
@@ -17,13 +19,16 @@ import type { DragEndEvent, UniqueIdentifier } from '@dnd-kit/core';
 const Favourite = () => {
     const t = useTranslator();
     const { favouriteResources, removeFavourite, moveFavourite } = useFavouriteResources();
-    const [items, setItems] = useState<UniqueIdentifier[]>([]);
+
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
         }),
     );
+
+    const [items, setItems] = useState<UniqueIdentifier[]>([]);
+    const [personal, setPersonal] = useState(false);
 
     useEffect(() => {
         setItems(favouriteResources.map((value) => value.id));
@@ -50,10 +55,32 @@ const Favourite = () => {
         removeFavourite(entry);
     };
 
+    const handleAddPersonalOpen = () => {
+        setPersonal(true);
+    };
+
+    const handlerAddPersonalClose = () => {
+        setPersonal(false);
+    };
+
     return (
         <div id="app">
             <PageTitle page="favourite" />
-            <h1>{t('pages.favourite.title')}</h1>
+            <PersonalBookmark open={personal} onClose={handlerAddPersonalClose} />
+            <h1
+                style={{
+                    display: 'flex',
+                }}
+            >
+                <div
+                    style={{
+                        marginRight: 'auto',
+                    }}
+                >
+                    {t('pages.favourite.title')}
+                </div>
+                <CustomButton onClick={handleAddPersonalOpen}>{t('pages.favourite.add')}</CustomButton>
+            </h1>
             <DndContext
                 sensors={sensors}
                 onDragEnd={handleDragEnd}
