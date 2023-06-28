@@ -247,7 +247,7 @@ Cordialement`,
         },
         favourite: {
             title: 'Mes Favoris',
-            add: 'Ajouté une ressource personnelle',
+            add: 'Ajouter une ressource personnelle',
         },
     },
     error: {
