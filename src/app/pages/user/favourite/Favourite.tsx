@@ -1,3 +1,5 @@
+import CustomButton from '../../../components/element/button/CustomButton';
+import PersonalBookmark from '../../../components/element/dialog/PersonalBookmark';
 import SortableFavourite from '../../../components/element/dnd/SortableFavourite';
 import PageTitle from '../../../components/internal/PageTitle';
 import { useFavouriteResources } from '../../../shared/hook';
@@ -16,8 +18,8 @@ import type { DragEndEvent, UniqueIdentifier } from '@dnd-kit/core';
 
 const Favourite = () => {
     const t = useTranslator();
-    const { favouriteResources, removeFavourite, moveFavourite } = useFavouriteResources();
-    const [items, setItems] = useState<UniqueIdentifier[]>([]);
+    const { favouritesWithId, removeFavourite, moveFavourite } = useFavouriteResources();
+
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(KeyboardSensor, {
@@ -25,9 +27,12 @@ const Favourite = () => {
         }),
     );
 
+    const [items, setItems] = useState<UniqueIdentifier[]>([]);
+    const [personal, setPersonal] = useState(false);
+
     useEffect(() => {
-        setItems(favouriteResources.map((value) => value.id));
-    }, [favouriteResources]);
+        setItems(favouritesWithId.map((value) => value.id));
+    }, [favouritesWithId]);
 
     const handleDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
@@ -38,7 +43,7 @@ const Favourite = () => {
                     const oldIndex = identifiers.indexOf(active.id);
                     const newIndex = identifiers.indexOf(over.id);
 
-                    moveFavourite(favouriteResources[oldIndex], oldIndex, newIndex);
+                    moveFavourite(favouritesWithId[oldIndex], oldIndex, newIndex);
 
                     return arrayMove(identifiers, oldIndex, newIndex);
                 });
@@ -50,10 +55,32 @@ const Favourite = () => {
         removeFavourite(entry);
     };
 
+    const handleAddPersonalOpen = () => {
+        setPersonal(true);
+    };
+
+    const handlerAddPersonalClose = () => {
+        setPersonal(false);
+    };
+
     return (
         <div id="app">
             <PageTitle page="favourite" />
-            <h1>{t('pages.favourite.title')}</h1>
+            <PersonalBookmark open={personal} onClose={handlerAddPersonalClose} />
+            <h1
+                style={{
+                    display: 'flex',
+                }}
+            >
+                <div
+                    style={{
+                        marginRight: 'auto',
+                    }}
+                >
+                    {t('pages.favourite.title')}
+                </div>
+                <CustomButton onClick={handleAddPersonalOpen}>{t('pages.favourite.add')}</CustomButton>
+            </h1>
             <DndContext
                 sensors={sensors}
                 onDragEnd={handleDragEnd}

@@ -58,6 +58,14 @@ const en: Common = {
             contact: 'Contact us',
         },
         dialog: {
+            title: {
+                alert: 'Alert settings',
+                bookmark: 'Personal Resource',
+            },
+            fields: {
+                title: 'Title',
+                url: 'URL',
+            },
             cancel: 'Cancel',
             save: 'Save',
         },
@@ -238,6 +246,7 @@ Sincerely`,
         },
         favourite: {
             title: 'My Favourites',
+            add: 'Add a personal resource',
         },
     },
     error: {

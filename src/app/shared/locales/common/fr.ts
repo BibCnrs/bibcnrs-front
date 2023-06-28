@@ -58,6 +58,14 @@ const fr: Common = {
             contact: 'Nous contacter',
         },
         dialog: {
+            title: {
+                alert: 'Réglages Alerte',
+                bookmark: 'Ressource personnelle',
+            },
+            fields: {
+                title: 'Titre',
+                url: 'URL',
+            },
             cancel: 'Annuler',
             save: 'Enregistrer',
         },
@@ -239,6 +247,7 @@ Cordialement`,
         },
         favourite: {
             title: 'Mes Favoris',
+            add: 'Ajouter une ressource personnelle',
         },
     },
     error: {

@@ -73,7 +73,7 @@ const AlertModification = ({ data, open, onClose }: AlertModificationProps) => {
     return (
         <div>
             <Dialog fullScreen={fullScreen} open={open}>
-                <DialogTitle>Réglages Alerte</DialogTitle>
+                <DialogTitle>{t('components.dialog.title.alert')}</DialogTitle>
                 <DialogContent>
                     <FormControl sx={{ m: 1, minWidth: 240 }}>
                         <Select value={value} onChange={handleChange} displayEmpty>
