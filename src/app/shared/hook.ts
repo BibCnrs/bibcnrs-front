@@ -82,7 +82,8 @@ export const useStatelessFavouriteResources = (): FavouriteResourceWithId[] => {
 };
 
 type UseFavouriteResourcesType = {
-    favouriteResources: FavouriteResourceWithId[];
+    favouriteResources: FavouriteResourceDataType[];
+    favouritesWithId: FavouriteResourceWithId[];
     addFavourite: (entry: FavouriteResourceDataType | FavouriteResourceWithId) => void;
     moveFavourite: (
         entry: FavouriteResourceDataType | FavouriteResourceWithId,
@@ -134,7 +135,8 @@ export const useFavouriteResources = (): UseFavouriteResourcesType => {
 
     let index = 1;
     return {
-        favouriteResources: favourites.map((value) => {
+        favouriteResources: favourites,
+        favouritesWithId: favourites.map((value) => {
             return {
                 id: index++,
                 ...value,

@@ -18,7 +18,7 @@ import type { DragEndEvent, UniqueIdentifier } from '@dnd-kit/core';
 
 const Favourite = () => {
     const t = useTranslator();
-    const { favouriteResources, removeFavourite, moveFavourite } = useFavouriteResources();
+    const { favouritesWithId, removeFavourite, moveFavourite } = useFavouriteResources();
 
     const sensors = useSensors(
         useSensor(PointerSensor),
@@ -31,8 +31,8 @@ const Favourite = () => {
     const [personal, setPersonal] = useState(false);
 
     useEffect(() => {
-        setItems(favouriteResources.map((value) => value.id));
-    }, [favouriteResources]);
+        setItems(favouritesWithId.map((value) => value.id));
+    }, [favouritesWithId]);
 
     const handleDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
@@ -43,7 +43,7 @@ const Favourite = () => {
                     const oldIndex = identifiers.indexOf(active.id);
                     const newIndex = identifiers.indexOf(over.id);
 
-                    moveFavourite(favouriteResources[oldIndex], oldIndex, newIndex);
+                    moveFavourite(favouritesWithId[oldIndex], oldIndex, newIndex);
 
                     return arrayMove(identifiers, oldIndex, newIndex);
                 });
