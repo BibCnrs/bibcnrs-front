@@ -63,6 +63,10 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
 
     const handleAutocompleteChange = (event: SyntheticEvent, newValue: string | undefined) => {
         setAutocompleteValue(newValue);
+        onSearch(newValue);
+        if (newValue) {
+            setValue(newValue);
+        }
     };
 
     const handleChange = (event: SyntheticEvent, newValue: string) => {
