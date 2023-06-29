@@ -3,10 +3,14 @@ import type { AutoCompleteDataType } from '../../shared/types/data.types';
 
 export const autoComplete = async (value: string): Promise<string[]> => {
     const response = await fetch(
-        createQuery('https://widgets.ebscohost.com/prod/simplekey/autocomplete/autocomplete.php', {
-            userId: '!Qw0.nnkOvwtnfBHjZ37',
-            q: value,
-        }),
+        createQuery(
+            'https://widgets.ebscohost.com/prod/simplekey/autocomplete/autocomplete.php',
+            {
+                userid: '!Qw0.nnkOvwtnfBHjZ37',
+                q: value,
+            },
+            true,
+        ),
     );
     throwIfNotOk(response);
     const autoCompleteData = await json<AutoCompleteDataType>(response);

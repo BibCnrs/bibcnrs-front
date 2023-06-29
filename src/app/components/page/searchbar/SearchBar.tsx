@@ -1,13 +1,16 @@
 import './SearchBar.scss';
+import { autoComplete } from '../../../services/common/AutoComplete';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
+import Autocomplete from '@mui/material/Autocomplete';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
-import { memo, useEffect, useRef, useState } from 'react';
+import TextField from '@mui/material/TextField';
+import { useQuery } from '@tanstack/react-query';
+import { memo, useEffect, useState } from 'react';
 import type { SearchBarProps } from '../../../shared/types/props.types';
-import type { ChangeEvent, KeyboardEvent } from 'react';
+import type { KeyboardEvent, SyntheticEvent } from 'react';
 
 /**
  * Search bar component used in: "Root", "Article", "Journal, book", "Database" and "Research data"
@@ -16,11 +19,9 @@ import type { ChangeEvent, KeyboardEvent } from 'react';
  * @param props       - Rest of the search bar props
  */
 const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
-    // Search bar input reference
-    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>();
-
     // Search bar states
     const [value, setValue] = useState<string>(props.value ?? '');
+    const [autocompleteValue, setAutocompleteValue] = useState<string | undefined>('');
 
     useEffect(() => {
         if (props.value) {
@@ -28,12 +29,21 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
         }
     }, [props.value]);
 
-    const inputOnChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setValue(event.target.value);
-    };
+    const { data } = useQuery<string[], any, string[], any>({
+        queryKey: ['search-bar', value],
+        queryFn: () => {
+            if (value === '') {
+                return [];
+            }
+            return autoComplete(value);
+        },
+        keepPreviousData: true,
+        staleTime: 3600000, // 1 hour of cache
+        cacheTime: 3600000, // 1000 * 60 * 60
+    });
 
     // Perform search when the user press 'Enters'
-    const inputKeyDown = (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const inputKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
         if (event.key === 'Enter') {
             onSearch(value);
         }
@@ -41,11 +51,9 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
 
     // Clear the input when the user clicks on the clear button
     const clearOnClick = () => {
-        if (inputRef.current) {
-            inputRef.current.value = '';
-            setValue('');
-            onSearch(undefined);
-        }
+        setValue('');
+        setAutocompleteValue(undefined);
+        onSearch(undefined);
     };
 
     // Perform search when the user clicks on the search button
@@ -53,16 +61,38 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
         onSearch(value);
     };
 
+    const handleAutocompleteChange = (event: SyntheticEvent, newValue: string | undefined) => {
+        setAutocompleteValue(newValue);
+        onSearch(newValue);
+        if (newValue) {
+            setValue(newValue);
+        }
+    };
+
+    const handleChange = (event: SyntheticEvent, newValue: string) => {
+        setValue(newValue);
+    };
+
     return (
         <div id="search-container">
             <Paper id="search-box">
-                <InputBase
-                    placeholder={placeholder}
-                    onChange={inputOnChange}
+                <Autocomplete
+                    inputValue={value}
+                    value={autocompleteValue}
+                    onChange={handleAutocompleteChange}
+                    onInputChange={handleChange}
                     onKeyDown={inputKeyDown}
-                    inputRef={inputRef}
-                    value={value}
+                    renderInput={(params) => <TextField {...params} placeholder={placeholder} />}
+                    options={data ?? []}
                     id="search-box-input"
+                    freeSolo
+                    disableClearable
+                    size="small"
+                    sx={{
+                        '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+                            border: 'none',
+                        },
+                    }}
                 />
                 {value !== '' ? (
                     <>
