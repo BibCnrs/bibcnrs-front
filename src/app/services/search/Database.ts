@@ -1,8 +1,12 @@
 import { createQuery, environment, throwIfNotOk } from '../Environment';
-import { getDomains } from '../user/Session';
 import type { DatabaseDataType } from '../../shared/types/data.types';
+import type { Institute } from '../../shared/types/types';
 
-export const database = async (language: string, oa: boolean): Promise<DatabaseDataType> => {
+export const database = async (
+    language: string,
+    oa: boolean,
+    domain: Institute | undefined,
+): Promise<DatabaseDataType> => {
     const response: Response = await fetch(createQuery(environment.get.search.database));
     throwIfNotOk(response);
     const data: DatabaseDataType = await response.json();
@@ -17,10 +21,9 @@ export const database = async (language: string, oa: boolean): Promise<DatabaseD
         }
         return 0;
     });
-    const domains = getDomains();
     return data.filter((value) => {
         if (!oa) {
-            return value.domains.filter((domain) => domains.includes(domain)).length > 0 || value.oa;
+            return value.domains.includes(domain ?? '') || value.oa;
         }
         return value.oa;
     });
