@@ -165,12 +165,15 @@ const RenderNews = ({ data }: TestsNewsProps) => {
                                                 <li key={url.name}>
                                                     <a
                                                         className="link"
-                                                        href={url.url}
+                                                        href={
+                                                            url.proxy
+                                                                ? `https://${selectedDomain}.bib.cnrs.fr/login?url=${url.url}`
+                                                                : url.url
+                                                        }
                                                         rel="noreferrer noopener nofollow"
                                                     >
                                                         {url.name}
                                                     </a>
-                                                    {url.proxy ? <i> (URL PROXY)</i> : null}
                                                 </li>
                                             ))}
                                         </ul>
