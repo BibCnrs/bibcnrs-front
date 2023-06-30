@@ -14,13 +14,7 @@ export const database = async (
         .sort((a, b) => {
             const nameA = language === 'en' ? a.name_en.toLowerCase() : a.name_fr.toLowerCase();
             const nameB = language === 'en' ? b.name_en.toLowerCase() : b.name_fr.toLowerCase();
-            if (nameA < nameB) {
-                return -1;
-            }
-            if (nameA > nameB) {
-                return 1;
-            }
-            return 0;
+            return nameA.localeCompare(nameB, language);
         })
         .filter((value) => {
             if (!oa) {
