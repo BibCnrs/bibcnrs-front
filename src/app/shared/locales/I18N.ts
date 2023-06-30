@@ -113,6 +113,7 @@ export type Common = {
                 isbnOnline: string;
                 isbnPrint: string;
                 present: string;
+                links: string;
                 alert: {
                     active: {
                         day: string;

@@ -1,5 +1,6 @@
 import { useTranslator } from '../../../shared/locales/I18N';
 import { BibContext } from '../../internal/provider/ContextProvider';
+import BookmarkButton from '../button/BookmarkButton';
 import ExportArticleCheckbox from '../button/ExportArticleCheckbox';
 import OpenAccess from '../icon/OpenAccess';
 import OpenablePaper from '../paper/openable/OpenablePaper';
@@ -25,6 +26,8 @@ const Article = ({
     const source = getter.getSource();
     const href = getter.proxify(getter.getHref(), search.domain);
     const openAccess = getter.isOpenAccess();
+    const articlesLinks = getter.getArticleLinks();
+    const title = getter.getTitle();
 
     return (
         <OpenablePaper
@@ -39,7 +42,7 @@ const Article = ({
                         target="_blank"
                         rel="noreferrer noopener nofollow"
                     >
-                        {getter.getId()}. {getter.getTitle()} [{getter.getType()}]
+                        {getter.getId()}. {title} [{getter.getType()}]
                     </a>
                     {openAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
                 </>
@@ -94,6 +97,35 @@ const Article = ({
                                 </span>
                             );
                         })}
+                        <span>
+                            <dt>{t('components.table.content.links')}</dt>
+                            <dd>
+                                {articlesLinks.fullTextLinks.map((value) => (
+                                    <div
+                                        key={value.name}
+                                        style={{
+                                            display: 'flex',
+                                        }}
+                                    >
+                                        <a
+                                            className="link"
+                                            href={value.url}
+                                            target="_blank"
+                                            rel="nofollow noreferrer noopener"
+                                        >
+                                            {value.name}
+                                        </a>
+                                        <span
+                                            style={{
+                                                marginLeft: '4px',
+                                            }}
+                                        >
+                                            <BookmarkButton title={`${title} - ${value.name}`} url={value.url} />
+                                        </span>
+                                    </div>
+                                ))}
+                            </dd>
+                        </span>
                     </dl>
                 )
             }

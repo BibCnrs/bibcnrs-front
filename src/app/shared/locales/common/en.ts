@@ -100,6 +100,7 @@ const en: Common = {
                 isbnOnline: 'eISBN: ',
                 isbnPrint: 'pISBN: ',
                 present: 'Present',
+                links: 'Article access',
                 alert: {
                     active: {
                         day: 'Daily',

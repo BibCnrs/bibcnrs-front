@@ -100,6 +100,7 @@ const fr: Common = {
                 isbnOnline: 'eISBN : ',
                 isbnPrint: 'pISBN : ',
                 present: 'Présent',
+                links: "Accès à l'article",
                 alert: {
                     active: {
                         day: 'Quotidenne',
