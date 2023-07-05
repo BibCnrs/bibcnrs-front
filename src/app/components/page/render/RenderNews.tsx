@@ -154,7 +154,7 @@ const RenderNews = ({ data }: TestsNewsProps) => {
                     <OpenablePaper
                         key={value.id}
                         Title={
-                            value.urls.length > 0 ? (
+                            value.urls.length === 1 ? (
                                 <a
                                     className="tests-news-title link"
                                     href={getUrl(value.urls[0])}
