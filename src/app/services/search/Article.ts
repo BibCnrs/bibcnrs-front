@@ -255,19 +255,39 @@ export class ArticleContentGetter {
         }
         if (this.retrieve) {
             if (Array.isArray(this.retrieve.articleLinks.fullTextLinks)) {
-                articleLinks.fullTextLinks.push(...this.retrieve.articleLinks.fullTextLinks);
+                for (const fullTextLink of articleLinks.fullTextLinks) {
+                    if (
+                        articleLinks.fullTextLinks.findIndex(
+                            (v) => v.name === fullTextLink.name && v.url === fullTextLink.url,
+                        ) < 0
+                    ) {
+                        articleLinks.fullTextLinks.push(fullTextLink);
+                    }
+                }
             }
             if (Array.isArray(this.retrieve.articleLinks.pdfLinks)) {
-                articleLinks.pdfLinks.push(...this.retrieve.articleLinks.pdfLinks);
+                for (const pdfLink of articleLinks.pdfLinks) {
+                    if (articleLinks.pdfLinks.findIndex((v) => v.name === pdfLink.name && v.url === pdfLink.url) < 0) {
+                        articleLinks.pdfLinks.push(pdfLink);
+                    }
+                }
             }
             if (Array.isArray(this.retrieve.articleLinks.html)) {
                 if (!Array.isArray(articleLinks.html)) {
                     articleLinks.html = [];
                 }
-                articleLinks.html.push(...this.retrieve.articleLinks.html);
+                for (const html of articleLinks.html) {
+                    if (articleLinks.html.findIndex((v) => v.name === html.name && v.url === html.url) < 0) {
+                        articleLinks.html.push(html);
+                    }
+                }
             }
             if (Array.isArray(this.retrieve.articleLinks.urls)) {
-                articleLinks.urls.push(...this.retrieve.articleLinks.urls);
+                for (const url of articleLinks.urls) {
+                    if (articleLinks.urls.findIndex((v) => v.name === url.name && v.url === url.url) < 0) {
+                        articleLinks.urls.push(url);
+                    }
+                }
             }
         }
         return articleLinks;
