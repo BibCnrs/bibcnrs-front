@@ -7,6 +7,7 @@ import { getInstituteColor } from '../../internal/provider/LocalizedThemeProvide
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import { memo, useState } from 'react';
+import type { TestNewUrlDataType } from '../../../shared/types/data.types';
 import type { TestNewDataType } from '../../../shared/types/data.types';
 import type { TestsNewsProps } from '../../../shared/types/props.types';
 import type { RadioProps } from '@mui/material/Radio/Radio';
@@ -97,6 +98,10 @@ const RenderNews = ({ data }: TestsNewsProps) => {
         return ` • ${value.domains?.join(', ')}`;
     };
 
+    const getUrl = (url: TestNewUrlDataType): string => {
+        return url.proxy ? `https://${selectedDomain}.bib.cnrs.fr/login?url=${url.url}` : url.url;
+    };
+
     /**
      * Function used to create article footer
      * @param value - Article
@@ -148,7 +153,21 @@ const RenderNews = ({ data }: TestsNewsProps) => {
                 {getData().map((value) => (
                     <OpenablePaper
                         key={value.id}
-                        Title={language === 'en' ? value.name_en : value.name_fr}
+                        Title={
+                            value.urls.length > 0 ? (
+                                <a
+                                    className="tests-news-title link"
+                                    href={getUrl(value.urls[0])}
+                                    rel="noopener noreferrer nofollow"
+                                >
+                                    {language === 'en' ? value.name_en : value.name_fr}
+                                </a>
+                            ) : (
+                                <div className="tests-news-title">
+                                    {language === 'en' ? value.name_en : value.name_fr}
+                                </div>
+                            )
+                        }
                         SmallBody={<TestsNewsFooter value={value} />}
                         FullBody={
                             <div>
@@ -165,11 +184,7 @@ const RenderNews = ({ data }: TestsNewsProps) => {
                                                 <li key={url.name}>
                                                     <a
                                                         className="link"
-                                                        href={
-                                                            url.proxy
-                                                                ? `https://${selectedDomain}.bib.cnrs.fr/login?url=${url.url}`
-                                                                : url.url
-                                                        }
+                                                        href={getUrl(url)}
                                                         rel="noreferrer noopener nofollow"
                                                     >
                                                         {url.name}
