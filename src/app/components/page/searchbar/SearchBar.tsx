@@ -1,5 +1,6 @@
 import './SearchBar.scss';
 import { autoComplete } from '../../../services/common/AutoComplete';
+import { useDebounce } from '../../../shared/hook';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -29,8 +30,10 @@ const SearchBar = ({ placeholder, onSearch, ...props }: SearchBarProps) => {
         }
     }, [props.value]);
 
+    const debounceValue = useDebounce(value, 375);
+
     const { data } = useQuery<string[], any, string[], any>({
-        queryKey: ['search-bar', value],
+        queryKey: ['search-bar', debounceValue],
         queryFn: () => {
             if (value === '') {
                 return [];

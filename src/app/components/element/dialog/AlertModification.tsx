@@ -25,6 +25,7 @@ const AlertModification = ({ data, open, onClose }: AlertModificationProps) => {
     const { requestUpdate } = useContext(HistoryContext);
 
     const [value, setValue] = useState<string>(data.active ? data.frequence : 'disable');
+    // TODO: Enlevais le backdrop
     const [backdropLoading, setBackdropLoading] = useState(false);
 
     const handleCancel = () => {
@@ -36,6 +37,7 @@ const AlertModification = ({ data, open, onClose }: AlertModificationProps) => {
         setBackdropLoading(true);
         switch (value) {
             case 'disable': {
+                // TODO: Utilisé des await
                 disableSearchAlert(data.id).then(() => {
                     setBackdropLoading(false);
                     onClose();
@@ -47,6 +49,7 @@ const AlertModification = ({ data, open, onClose }: AlertModificationProps) => {
             case 'week':
             case 'month': {
                 if (!data.active) {
+                    // TODO: Utilisé des await
                     disableSearchAlert(data.id).then(() => {
                         updateSearchAlert(data.id, value).then(() => {
                             setBackdropLoading(false);
@@ -56,6 +59,7 @@ const AlertModification = ({ data, open, onClose }: AlertModificationProps) => {
                     });
                     break;
                 }
+                // TODO: Utilisé des await
                 updateSearchAlert(data.id, value).then(() => {
                     setBackdropLoading(false);
                     onClose();

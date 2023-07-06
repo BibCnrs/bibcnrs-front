@@ -16,14 +16,9 @@ const BookmarkButton = ({ title, url, className = '' }: BookmarkButtonProps) => 
 
     useEffect(() => {
         if (login) {
-            const titles = new Set(favouriteResources.map((value) => value.title));
-            if (titles.has(title)) {
+            if (favouriteResources.some((value) => value.title === title || value.url === url)) {
                 setInBookmark(true);
                 return;
-            }
-            const urls = new Set(favouriteResources.map((value) => value.url));
-            if (urls.has(url)) {
-                setInBookmark(true);
             }
         }
     }, [favouriteResources, login, title, url]);

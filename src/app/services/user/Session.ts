@@ -64,8 +64,8 @@ class Session {
         const user = this.getUser();
         if (user) {
             user.favouriteResources = data;
-            await updateFavourite(user.id, data);
             this.update(user);
+            updateFavourite(user.id, data).then();
         }
     };
 
