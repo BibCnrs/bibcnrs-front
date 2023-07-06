@@ -69,7 +69,7 @@ export type Url = {
 };
 
 export type Url2 = {
-    value: string;
+    name?: string;
     url: string;
 };
 

@@ -101,6 +101,7 @@ const fr: Common = {
                 isbnPrint: 'pISBN : ',
                 present: 'Présent',
                 links: "Accès à l'article",
+                pdf: 'Accès au pdf',
                 alert: {
                     active: {
                         day: 'Quotidenne',
