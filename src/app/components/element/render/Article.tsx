@@ -97,35 +97,68 @@ const Article = ({
                                 </span>
                             );
                         })}
-                        <span>
-                            <dt>{t('components.table.content.links')}</dt>
-                            <dd>
-                                {articlesLinks.fullTextLinks.map((value) => (
-                                    <div
-                                        key={value.name}
-                                        style={{
-                                            display: 'flex',
-                                        }}
-                                    >
-                                        <a
-                                            className="link"
-                                            href={value.url}
-                                            target="_blank"
-                                            rel="nofollow noreferrer noopener"
-                                        >
-                                            {value.name}
-                                        </a>
-                                        <span
+                        {articlesLinks.fullTextLinks.length > 0 ? (
+                            <span>
+                                <dt>{t('components.table.content.links')}</dt>
+                                <dd>
+                                    {articlesLinks.fullTextLinks.map((value) => (
+                                        <div
+                                            key={value.name}
                                             style={{
-                                                marginLeft: '4px',
+                                                display: 'flex',
                                             }}
                                         >
-                                            <BookmarkButton title={`${title} - ${value.name}`} url={value.url} />
-                                        </span>
-                                    </div>
-                                ))}
-                            </dd>
-                        </span>
+                                            <a
+                                                className="link"
+                                                href={value.url}
+                                                target="_blank"
+                                                rel="nofollow noreferrer noopener"
+                                            >
+                                                {value.name}
+                                            </a>
+                                            <span
+                                                style={{
+                                                    marginLeft: '4px',
+                                                }}
+                                            >
+                                                <BookmarkButton title={`${title} - ${value.name}`} url={value.url} />
+                                            </span>
+                                        </div>
+                                    ))}
+                                </dd>
+                            </span>
+                        ) : null}
+                        {articlesLinks.pdfLinks.length > 0 ? (
+                            <span>
+                                <dt>{t('components.table.content.pdf')}</dt>
+                                <dd>
+                                    {articlesLinks.pdfLinks.map((value) => (
+                                        <div
+                                            key={value.name}
+                                            style={{
+                                                display: 'flex',
+                                            }}
+                                        >
+                                            <a
+                                                className="link"
+                                                href={value.url}
+                                                target="_blank"
+                                                rel="nofollow noreferrer noopener"
+                                            >
+                                                {value.name}
+                                            </a>
+                                            <span
+                                                style={{
+                                                    marginLeft: '4px',
+                                                }}
+                                            >
+                                                <BookmarkButton title={`${title} - ${value.name}`} url={value.url} />
+                                            </span>
+                                        </div>
+                                    ))}
+                                </dd>
+                            </span>
+                        ) : null}
                     </dl>
                 )
             }

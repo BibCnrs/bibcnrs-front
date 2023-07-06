@@ -8,6 +8,7 @@ import type { RetrieveItemDataType } from '../../shared/types/data.types';
 import type { ArticleResultDataType } from '../../shared/types/data.types';
 import type { ArticleRetrieveDataType } from '../../shared/types/data.types';
 import type { ArticleDataType } from '../../shared/types/data.types';
+import type { Url2 } from '../../shared/types/types';
 import type { Url } from '../../shared/types/types';
 import type { FacetEntry } from '../../shared/types/types';
 import type { Institute } from '../../shared/types/types';
@@ -255,7 +256,7 @@ export class ArticleContentGetter {
         }
         if (this.retrieve) {
             if (Array.isArray(this.retrieve.articleLinks.fullTextLinks)) {
-                for (const fullTextLink of articleLinks.fullTextLinks) {
+                for (const fullTextLink of this.retrieve.articleLinks.fullTextLinks) {
                     if (
                         articleLinks.fullTextLinks.findIndex(
                             (v) => v.name === fullTextLink.name && v.url === fullTextLink.url,
@@ -266,7 +267,7 @@ export class ArticleContentGetter {
                 }
             }
             if (Array.isArray(this.retrieve.articleLinks.pdfLinks)) {
-                for (const pdfLink of articleLinks.pdfLinks) {
+                for (const pdfLink of this.retrieve.articleLinks.pdfLinks) {
                     if (articleLinks.pdfLinks.findIndex((v) => v.name === pdfLink.name && v.url === pdfLink.url) < 0) {
                         articleLinks.pdfLinks.push(pdfLink);
                     }
@@ -276,20 +277,22 @@ export class ArticleContentGetter {
                 if (!Array.isArray(articleLinks.html)) {
                     articleLinks.html = [];
                 }
-                for (const html of articleLinks.html) {
+                for (const html of this.retrieve.articleLinks.html) {
                     if (articleLinks.html.findIndex((v) => v.name === html.name && v.url === html.url) < 0) {
                         articleLinks.html.push(html);
                     }
                 }
             }
             if (Array.isArray(this.retrieve.articleLinks.urls)) {
-                for (const url of articleLinks.urls) {
+                for (const url of this.retrieve.articleLinks.urls) {
                     if (articleLinks.urls.findIndex((v) => v.name === url.name && v.url === url.url) < 0) {
                         articleLinks.urls.push(url);
                     }
                 }
             }
         }
+        articleLinks.fullTextLinks = this.articleLinksNameCleanup(articleLinks.fullTextLinks);
+        articleLinks.pdfLinks = this.articleLinksNameCleanup(articleLinks.pdfLinks);
         return articleLinks;
     };
 
@@ -406,6 +409,22 @@ export class ArticleContentGetter {
             return toReturn;
         }
         return [];
+    };
+
+    private articleLinksNameCleanup = (urls: Url2[]): Url[] => {
+        return urls.map((url: Url2): Url => {
+            const name = url.name ?? url.url;
+            if (name.length > 130) {
+                return {
+                    ...url,
+                    name: `${name.substring(0, 130)}...`,
+                };
+            }
+            return {
+                ...url,
+                name,
+            };
+        });
     };
 
     private isOpenAccessUnpaywall = (): boolean => {
