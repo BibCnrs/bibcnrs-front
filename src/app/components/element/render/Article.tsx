@@ -20,7 +20,7 @@ const Article = ({
     onChange: (isOpen: boolean) => void;
 }) => {
     const t = useTranslator();
-    const { search } = useContext(BibContext);
+    const { search, login } = useContext(BibContext);
     const authors = getter.getAuthors();
     const doi = getter.getDOI();
     const source = getter.getSource();
@@ -30,139 +30,155 @@ const Article = ({
     const title = getter.getTitle();
 
     return (
-        <OpenablePaper
-            onChange={onChange}
-            defaultOpenState={open}
-            Title={
-                <>
-                    <ExportArticleCheckbox getter={getter} />
-                    <a
-                        className="table-list-title link"
-                        href={href ? href : '#'}
-                        target="_blank"
-                        rel="noreferrer noopener nofollow"
-                    >
-                        {getter.getId()}. {title} [{getter.getType()}]
-                    </a>
-                    {openAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
-                </>
-            }
-            SmallBody={
-                <div className="table-list-body">
-                    {authors ? <div>{authors.join(', ')}</div> : null}
-                    {source ? <div>{source}</div> : null}
-                    {doi ? (
-                        <div>
-                            {t('components.table.content.doiColon')} {doi}
-                        </div>
-                    ) : null}
-                </div>
-            }
-            FullBody={
-                isWaiting ? (
-                    <SkeletonEntry animation="pulse" height={450} />
-                ) : (
-                    <dl className="table-list-body">
-                        {getter.getAllItems().map((entry) => {
-                            if (entry.label === 'Access URL') {
+        <div className={login ? 'table-bookmark-size' : undefined}>
+            <OpenablePaper
+                onChange={onChange}
+                defaultOpenState={open}
+                Title={
+                    <>
+                        <ExportArticleCheckbox getter={getter} />
+                        <a
+                            className="table-list-title link"
+                            href={href ? href : '#'}
+                            target="_blank"
+                            rel="noreferrer noopener nofollow"
+                        >
+                            {getter.getId()}. {title} [{getter.getType()}]
+                        </a>
+                        {openAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
+                    </>
+                }
+                SmallBody={
+                    <div className="table-list-body">
+                        {authors ? <div>{authors.join(', ')}</div> : null}
+                        {source ? <div>{source}</div> : null}
+                        {doi ? (
+                            <div>
+                                {t('components.table.content.doiColon')} {doi}
+                            </div>
+                        ) : null}
+                    </div>
+                }
+                FullBody={
+                    isWaiting ? (
+                        <SkeletonEntry animation="pulse" height={450} />
+                    ) : (
+                        <dl className="table-list-body">
+                            {getter.getAllItems().map((entry) => {
+                                if (entry.label === 'Access URL') {
+                                    return (
+                                        <span key={entry.label}>
+                                            <dt>{entry.label}</dt>
+                                            <dd>
+                                                {entry.content.map((value) => {
+                                                    const link = getter.proxify(
+                                                        { url: value, name: value },
+                                                        search.domain,
+                                                    );
+                                                    if (!link) {
+                                                        return null;
+                                                    }
+                                                    return (
+                                                        <div key={value}>
+                                                            <a className="link" href={link}>
+                                                                {value}
+                                                            </a>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </dd>
+                                        </span>
+                                    );
+                                }
                                 return (
                                     <span key={entry.label}>
                                         <dt>{entry.label}</dt>
                                         <dd>
-                                            {entry.content.map((value) => {
-                                                const link = getter.proxify({ url: value, name: value }, search.domain);
-                                                if (!link) {
-                                                    return null;
-                                                }
-                                                return (
-                                                    <div key={value}>
-                                                        <a className="link" href={link}>
-                                                            {value}
-                                                        </a>
-                                                    </div>
-                                                );
-                                            })}
+                                            {entry.content.map((value) => (
+                                                <div key={value}>{value}</div>
+                                            ))}
                                         </dd>
                                     </span>
                                 );
-                            }
-                            return (
-                                <span key={entry.label}>
-                                    <dt>{entry.label}</dt>
+                            })}
+                            {articlesLinks.fullTextLinks.length > 0 ? (
+                                <span>
+                                    <dt>{t('components.table.content.links')}</dt>
                                     <dd>
-                                        {entry.content.map((value) => (
-                                            <div key={value}>{value}</div>
+                                        {articlesLinks.fullTextLinks.map((value) => (
+                                            <div
+                                                key={value.name}
+                                                style={{
+                                                    display: 'flex',
+                                                }}
+                                            >
+                                                <a
+                                                    className="link"
+                                                    href={value.url}
+                                                    target="_blank"
+                                                    rel="nofollow noreferrer noopener"
+                                                >
+                                                    {value.name}
+                                                </a>
+                                                <span
+                                                    style={{
+                                                        marginLeft: '4px',
+                                                    }}
+                                                >
+                                                    <BookmarkButton
+                                                        title={`${title} - ${value.name}`}
+                                                        url={value.url}
+                                                    />
+                                                </span>
+                                            </div>
                                         ))}
                                     </dd>
                                 </span>
-                            );
-                        })}
-                        {articlesLinks.fullTextLinks.length > 0 ? (
-                            <span>
-                                <dt>{t('components.table.content.links')}</dt>
-                                <dd>
-                                    {articlesLinks.fullTextLinks.map((value) => (
-                                        <div
-                                            key={value.name}
-                                            style={{
-                                                display: 'flex',
-                                            }}
-                                        >
-                                            <a
-                                                className="link"
-                                                href={value.url}
-                                                target="_blank"
-                                                rel="nofollow noreferrer noopener"
-                                            >
-                                                {value.name}
-                                            </a>
-                                            <span
+                            ) : null}
+                            {articlesLinks.pdfLinks.length > 0 ? (
+                                <span>
+                                    <dt>{t('components.table.content.pdf')}</dt>
+                                    <dd>
+                                        {articlesLinks.pdfLinks.map((value) => (
+                                            <div
+                                                key={value.name}
                                                 style={{
-                                                    marginLeft: '4px',
+                                                    display: 'flex',
                                                 }}
                                             >
-                                                <BookmarkButton title={`${title} - ${value.name}`} url={value.url} />
-                                            </span>
-                                        </div>
-                                    ))}
-                                </dd>
-                            </span>
-                        ) : null}
-                        {articlesLinks.pdfLinks.length > 0 ? (
-                            <span>
-                                <dt>{t('components.table.content.pdf')}</dt>
-                                <dd>
-                                    {articlesLinks.pdfLinks.map((value) => (
-                                        <div
-                                            key={value.name}
-                                            style={{
-                                                display: 'flex',
-                                            }}
-                                        >
-                                            <a
-                                                className="link"
-                                                href={value.url}
-                                                target="_blank"
-                                                rel="nofollow noreferrer noopener"
-                                            >
-                                                {value.name}
-                                            </a>
-                                            <span
-                                                style={{
-                                                    marginLeft: '4px',
-                                                }}
-                                            >
-                                                <BookmarkButton title={`${title} - ${value.name}`} url={value.url} />
-                                            </span>
-                                        </div>
-                                    ))}
-                                </dd>
-                            </span>
-                        ) : null}
-                    </dl>
-                )
-            }
-        />
+                                                <a
+                                                    className="link"
+                                                    href={value.url}
+                                                    target="_blank"
+                                                    rel="nofollow noreferrer noopener"
+                                                >
+                                                    {value.name}
+                                                </a>
+                                                <span
+                                                    style={{
+                                                        marginLeft: '4px',
+                                                    }}
+                                                >
+                                                    <BookmarkButton
+                                                        title={`${title} - ${value.name}`}
+                                                        url={value.url}
+                                                    />
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </dd>
+                                </span>
+                            ) : null}
+                        </dl>
+                    )
+                }
+            />
+            <div className="table-bookmark">
+                {login && title && href ? (
+                    <BookmarkButton className="table-bookmark-button" title={title} url={href} />
+                ) : null}
+            </div>
+        </div>
     );
 };
 
