@@ -200,7 +200,7 @@ export type HistoryDataType = HistoryEntryDataType[];
 export type ArticleLinksDataType = {
     fullTextLinks: Url[];
     pdfLinks: Url[];
-    html?: Url[] | null;
+    html?: string | null;
     urls: Url[];
 };
 
