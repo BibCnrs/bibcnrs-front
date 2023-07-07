@@ -7,12 +7,14 @@ import { CSS as DndCSS } from '@dnd-kit/utilities';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import type { SortableFavouriteProps } from '../../../shared/types/props.types';
 
 const SortableFavourite = ({ id, onDelete }: SortableFavouriteProps) => {
     const favouriteResources = useStatelessFavouriteResources();
-    const entry = favouriteResources.find((value) => value.id === id);
+    const entry = useMemo(() => {
+        return favouriteResources.find((value) => value.id === id);
+    }, [favouriteResources, id]);
 
     const { attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition } = useSortable({ id });
 

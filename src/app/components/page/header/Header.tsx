@@ -1,6 +1,6 @@
 import './Header.scss';
 import BibCNRSLogo from '/logos/bibcnrs.png';
-import LocalButton from '../../element/header/LocalButton';
+import LocalButton from '../../element/header/LocaleButton';
 import SignInButton from '../../element/header/SignInButton';
 import { RouteRoot } from '../../../shared/Routes';
 import CustomLink from '../../element/link/CustomLink';

@@ -12,7 +12,7 @@ import type { MouseEvent } from 'react';
  * Local Button component used by the header.
  * This element is used to change the application language
  */
-const LocalButton = () => {
+const LocaleButton = () => {
     const { i18n } = useFullTranslator();
     const languageKey = useLanguageKey();
 
@@ -55,7 +55,7 @@ const LocalButton = () => {
                         color: colors.white,
                     }}
                 >
-                    {languageKey.split('-')[0].toUpperCase()}
+                    {languageKey.split('-', 2)[0].toUpperCase()}
                 </div>
             </Button>
             <Menu
@@ -87,4 +87,4 @@ const LocalButton = () => {
     );
 };
 
-export default memo(LocalButton);
+export default memo(LocaleButton);

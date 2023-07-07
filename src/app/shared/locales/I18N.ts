@@ -284,18 +284,18 @@ i18next
     });
 
 /**
- * export the translation function
- */
-export const useTranslator = (): TFunction => {
-    const { t } = useTranslation('common');
-    return t;
-};
-
-/**
  * export the translation function and the i18n system
  */
 export const useFullTranslator = () => {
     return useTranslation('common');
+};
+
+/**
+ * export the translation function
+ */
+export const useTranslator = (): TFunction => {
+    const { t } = useFullTranslator();
+    return t;
 };
 
 export const useLanguageKey = (): string => {

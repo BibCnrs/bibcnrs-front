@@ -1,7 +1,7 @@
 import { BibContext } from '../components/internal/provider/ContextProvider';
 import { getDomains, getFavouriteResources, updateFavouriteResources } from '../services/user/Session';
 import { arrayMove } from '@dnd-kit/sortable';
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import type { FavouriteResourceDataType } from './types/data.types';
 import type { FacetRequired } from './types/props.types';
 import type { FavouriteResourceWithId } from './types/types';
@@ -95,6 +95,16 @@ type UseFavouriteResourcesType = {
 export const useFavouriteResources = (): UseFavouriteResourcesType => {
     const [favourites, setFavourites] = useState<FavouriteResourceDataType[]>(getFavouriteResources());
 
+    const favouritesWithId = useMemo(() => {
+        let index = 1;
+        return favourites.map((value) => {
+            return {
+                id: index++,
+                ...value,
+            };
+        });
+    }, [favourites]);
+
     const addFavourite = (entry: FavouriteResourceDataType | FavouriteResourceWithId) => {
         const favouriteResources = getFavouriteResources();
         updateFavouriteResources([
@@ -133,17 +143,28 @@ export const useFavouriteResources = (): UseFavouriteResourcesType => {
         });
     };
 
-    let index = 1;
     return {
         favouriteResources: favourites,
-        favouritesWithId: favourites.map((value) => {
-            return {
-                id: index++,
-                ...value,
-            };
-        }),
+        favouritesWithId,
         addFavourite,
         moveFavourite,
         removeFavourite,
     };
+};
+
+// https://codesandbox.io/s/react-query-debounce-ted8o?file=/src/useDebounce.js
+export const useDebounce = <T>(value: T, delay: number): T => {
+    // State and setters for debounced value
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedValue(value);
+        }, delay);
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [value, delay]);
+
+    return debouncedValue;
 };
