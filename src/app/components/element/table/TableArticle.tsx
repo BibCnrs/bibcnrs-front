@@ -45,11 +45,11 @@ const TableArticle = ({ data: dataIn }: TableDisplayElementProps<ArticleResultDa
     };
 
     useEffect(() => {
-        if (!dataIn.authors || !dataIn.source) {
+        if (first && (!dataIn.authors || !dataIn.source || !getter.getHref())) {
             setMissing(true);
         }
         setFirst(false);
-    }, [dataIn]);
+    }, [dataIn, getter]);
 
     useEffect(() => {
         if (isSuccess) {
