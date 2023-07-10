@@ -1,3 +1,4 @@
+import ArticleLinks from './ArticleLinks';
 import { useTranslator } from '../../../shared/locales/I18N';
 import { BibContext } from '../../internal/provider/ContextProvider';
 import BookmarkButton from '../button/BookmarkButton';
@@ -104,69 +105,23 @@ const Article = ({
                             {articlesLinks.fullTextLinks.length > 0 ? (
                                 <span>
                                     <dt>{t('components.table.content.links')}</dt>
-                                    <dd>
-                                        {articlesLinks.fullTextLinks.map((value) => (
-                                            <div
-                                                key={value.name}
-                                                style={{
-                                                    display: 'flex',
-                                                }}
-                                            >
-                                                <a
-                                                    className="link"
-                                                    href={value.url}
-                                                    target="_blank"
-                                                    rel="nofollow noreferrer noopener"
-                                                >
-                                                    {value.name}
-                                                </a>
-                                                <span
-                                                    style={{
-                                                        marginLeft: '4px',
-                                                    }}
-                                                >
-                                                    <BookmarkButton
-                                                        title={`${title} - ${value.name}`}
-                                                        url={value.url}
-                                                    />
-                                                </span>
-                                            </div>
-                                        ))}
-                                    </dd>
+                                    <ArticleLinks
+                                        links={articlesLinks.fullTextLinks}
+                                        title={title}
+                                        domain={search.domain}
+                                        proxify={getter.proxify}
+                                    />
                                 </span>
                             ) : null}
                             {articlesLinks.pdfLinks.length > 0 ? (
                                 <span>
                                     <dt>{t('components.table.content.pdf')}</dt>
-                                    <dd>
-                                        {articlesLinks.pdfLinks.map((value) => (
-                                            <div
-                                                key={value.name}
-                                                style={{
-                                                    display: 'flex',
-                                                }}
-                                            >
-                                                <a
-                                                    className="link"
-                                                    href={value.url}
-                                                    target="_blank"
-                                                    rel="nofollow noreferrer noopener"
-                                                >
-                                                    {value.name}
-                                                </a>
-                                                <span
-                                                    style={{
-                                                        marginLeft: '4px',
-                                                    }}
-                                                >
-                                                    <BookmarkButton
-                                                        title={`${title} - ${value.name}`}
-                                                        url={value.url}
-                                                    />
-                                                </span>
-                                            </div>
-                                        ))}
-                                    </dd>
+                                    <ArticleLinks
+                                        links={articlesLinks.pdfLinks}
+                                        title={title}
+                                        domain={search.domain}
+                                        proxify={getter.proxify}
+                                    />
                                 </span>
                             ) : null}
                         </dl>
