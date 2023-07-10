@@ -244,11 +244,8 @@ export class ArticleContentGetter {
             if (Array.isArray(this.initial.articleLinks.pdfLinks)) {
                 articleLinks.pdfLinks.push(...this.initial.articleLinks.pdfLinks);
             }
-            if (Array.isArray(this.initial.articleLinks.html)) {
-                if (!Array.isArray(articleLinks.html)) {
-                    articleLinks.html = [];
-                }
-                articleLinks.html.push(...this.initial.articleLinks.html);
+            if (this.initial.articleLinks.html) {
+                articleLinks.html = this.initial.articleLinks.html;
             }
             if (Array.isArray(this.initial.articleLinks.urls)) {
                 articleLinks.urls.push(...this.initial.articleLinks.urls);
@@ -273,15 +270,8 @@ export class ArticleContentGetter {
                     }
                 }
             }
-            if (Array.isArray(this.retrieve.articleLinks.html)) {
-                if (!Array.isArray(articleLinks.html)) {
-                    articleLinks.html = [];
-                }
-                for (const html of this.retrieve.articleLinks.html) {
-                    if (articleLinks.html.findIndex((v) => v.name === html.name && v.url === html.url) < 0) {
-                        articleLinks.html.push(html);
-                    }
-                }
+            if (this.retrieve.articleLinks.html) {
+                articleLinks.html = this.retrieve.articleLinks.html;
             }
             if (Array.isArray(this.retrieve.articleLinks.urls)) {
                 for (const url of this.retrieve.articleLinks.urls) {
@@ -439,7 +429,7 @@ export class ArticleContentGetter {
             openAccess = articleLinks.fullTextLinks.find((d) => /accès en ligne en open access/i.test(d.name));
         }
         const hrefWithIcon = [openAccess, unpaywall].filter(Boolean);
-        return hrefWithIcon.includes(href) || HAL_REGEX.test(href.url);
+        return hrefWithIcon.some((url) => url && url.url === href.url) || HAL_REGEX.test(href.url);
     };
 
     private getEntry = (
