@@ -49,7 +49,7 @@ const TableArticle = ({ data: dataIn }: TableDisplayElementProps<ArticleResultDa
             setMissing(true);
         }
         setFirst(false);
-    }, [dataIn, getter]);
+    }, [dataIn, first, getter]);
 
     useEffect(() => {
         if (isSuccess) {
