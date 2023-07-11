@@ -1,10 +1,11 @@
 import { getDomains } from './Session';
 import { createQuery, environment, json, throwIfNotOk } from '../Environment';
+import type { TestNewDataType } from '../../shared/types/data.types';
 import type { TestsNewsDataType } from '../../shared/types/data.types';
 
-type Pages = 'news' | 'tests';
+export type Pages = 'news' | 'tests';
 
-const doQuery = async <Page extends Pages>(page: Page): Promise<TestsNewsDataType> => {
+export const news = async <Page extends Pages>(page: Page): Promise<TestsNewsDataType> => {
     const query = createQuery(environment.get.account.testsNews, {
         domains: getDomains().join(','),
         page,
@@ -19,6 +20,14 @@ const doQuery = async <Page extends Pages>(page: Page): Promise<TestsNewsDataTyp
     return json<TestsNewsDataType>(response);
 };
 
-export const tests = (): Promise<TestsNewsDataType> => doQuery('tests');
+export const newsById = async (id: number): Promise<TestNewDataType> => {
+    const query = createQuery(`${environment.get.account.testsNews}/${id}`);
 
-export const news = (): Promise<TestsNewsDataType> => doQuery('news');
+    const response: Response = await fetch(query, {
+        credentials: 'include',
+    });
+
+    throwIfNotOk(response);
+
+    return json<TestNewDataType>(response);
+};

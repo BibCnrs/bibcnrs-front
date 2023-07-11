@@ -22,3 +22,23 @@
     color: $link;
   }
 }
+
+.news-footer {
+  display: flex;
+
+  .news-footer-text {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .news-footer-button {
+    margin-left: auto;
+  }
+}
+
+.individual-news {
+  width: 85%;
+  padding: 8px 16px 16px;
+  margin-right: auto;
+  margin-left: auto;
+}
