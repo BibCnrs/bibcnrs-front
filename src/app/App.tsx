@@ -16,8 +16,8 @@ import ResearchData from './pages/search/researchdata/ResearchData';
 import Favourite from './pages/user/favourite/Favourite';
 import History from './pages/user/history/History';
 import Licences from './pages/user/licences/Licences';
+import IndividualNews from './pages/user/news/IndividualNews';
 import News from './pages/user/news/News';
-import Tests from './pages/user/tests/Tests';
 import { initSession } from './services/user/Session';
 import {
     RouteAbout,
@@ -82,7 +82,15 @@ const App = () => {
                         path={RouteTests}
                         element={
                             <ProtectedRoute>
-                                <Tests />
+                                <News page="tests" />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path={`${RouteTests}/:id`}
+                        element={
+                            <ProtectedRoute>
+                                <IndividualNews />
                             </ProtectedRoute>
                         }
                     />
@@ -90,7 +98,15 @@ const App = () => {
                         path={RouteNews}
                         element={
                             <ProtectedRoute>
-                                <News />
+                                <News page="news" />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path={`${RouteNews}/:id`}
+                        element={
+                            <ProtectedRoute>
+                                <IndividualNews />
                             </ProtectedRoute>
                         }
                     />

@@ -1,8 +1,8 @@
 import './scss/News.scss';
 import { getDomains, getFavouriteDomain } from '../../../services/user/Session';
-import { useLanguageKey, useTranslator } from '../../../shared/locales/I18N';
-import PageDate from '../../element/PageDate';
+import { useLanguageKey } from '../../../shared/locales/I18N';
 import OpenablePaper from '../../element/paper/openable/OpenablePaper';
+import TestsNewsFooter from '../../element/render/TestsNewsFooter';
 import { getInstituteColor } from '../../internal/provider/LocalizedThemeProvider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
@@ -18,7 +18,6 @@ import type { ChangeEvent } from 'react';
  * @param data - Array of Articles
  */
 const RenderNews = ({ data }: TestsNewsProps) => {
-    const t = useTranslator();
     const language = useLanguageKey();
     const favouriteDomain = getFavouriteDomain();
     const domains = getDomains().filter((domain) => domain !== favouriteDomain);
@@ -86,42 +85,8 @@ const RenderNews = ({ data }: TestsNewsProps) => {
         return getInstituteColor(value.domains[0]);
     };
 
-    /**
-     * Function used to get the article domain label
-     * @param value - Article
-     * @returns - Join labels
-     */
-    const getLabel = (value: TestNewDataType) => {
-        if (!Array.isArray(value.domains) || value.domains.length === 0) {
-            return null;
-        }
-        return ` • ${value.domains?.join(', ')}`;
-    };
-
     const getUrl = (url: TestNewUrlDataType): string => {
         return url.proxy ? `https://${selectedDomain}.bib.cnrs.fr/login?url=${url.url}` : url.url;
-    };
-
-    /**
-     * Function used to create article footer
-     * @param value - Article
-     */
-    const TestsNewsFooter = ({ value }: { value: TestNewDataType }) => {
-        return (
-            <div>
-                <i>
-                    {value.to ? t('components.news.from') : null}
-                    <PageDate date={value.from} />
-                    {value.to ? (
-                        <>
-                            {t('components.news.to')}
-                            <PageDate date={value.to} />
-                        </>
-                    ) : null}
-                    {getLabel(value)}
-                </i>
-            </div>
-        );
     };
 
     return (
@@ -168,7 +133,16 @@ const RenderNews = ({ data }: TestsNewsProps) => {
                                 </div>
                             )
                         }
-                        SmallBody={<TestsNewsFooter value={value} />}
+                        SmallBody={
+                            <TestsNewsFooter
+                                id={value.id}
+                                page={value.page}
+                                from={value.from}
+                                to={value.to}
+                                domains={value.domains}
+                                showOpenButton
+                            />
+                        }
                         FullBody={
                             <div>
                                 <div
@@ -194,7 +168,14 @@ const RenderNews = ({ data }: TestsNewsProps) => {
                                         </ul>
                                     </div>
                                 ) : null}
-                                <TestsNewsFooter value={value} />
+                                <TestsNewsFooter
+                                    id={value.id}
+                                    page={value.page}
+                                    from={value.from}
+                                    to={value.to}
+                                    domains={value.domains}
+                                    showOpenButton
+                                />
                             </div>
                         }
                         color={getColor(value)}
