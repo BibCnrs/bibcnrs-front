@@ -27,6 +27,7 @@ const RenderIndividualNews = ({ id, page, urls, content_fr, content_en, from, to
     return (
         <ColoredPaper className="individual-news" color={getInstituteColor(selectedDomain)} elevation={4} border>
             <div
+                className="tests-news-content cms-content"
                 dangerouslySetInnerHTML={{
                     __html: language === 'en' ? content_en : content_fr,
                 }}
