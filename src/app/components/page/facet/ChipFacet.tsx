@@ -2,7 +2,7 @@ import { useTranslator } from '../../../shared/locales/I18N';
 import styled from '@mui/material/styles/styled';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import type { ChipFacetProps } from '../../../shared/types/props.types';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
@@ -36,9 +36,24 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
 const ChipFacet = ({ value, values, onChange, needTranslation = false }: ChipFacetProps) => {
     const t = useTranslator();
 
+    const formattedValues = useMemo(() => {
+        if (values.length > 0) {
+            return values.map((v) => {
+                if (typeof v === 'string') {
+                    return {
+                        label: v,
+                        value: v,
+                    };
+                }
+                return v;
+            });
+        }
+        return [];
+    }, [values]);
+
     return (
         <StyledToggleButtonGroup size="small" value={value} exclusive onChange={onChange}>
-            {values.map((v) => (
+            {formattedValues.map((v) => (
                 <StyledToggleButton key={v.value} value={v.value}>
                     {needTranslation ? t(`components.facet.chips.${v.label}`) : v.label}
                 </StyledToggleButton>

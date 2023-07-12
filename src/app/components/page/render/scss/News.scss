@@ -3,24 +3,14 @@
 @import "src/app/scss/app";
 @import "src/app/scss/cms";
 
-#tests-news {
-  display: flex;
+#tests-news-content {
+  width: 85%;
+  margin-right: auto;
+  margin-left: auto;
+}
 
-  #tests-news-nav {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    height: fit-content;
-    margin-right: 40px;
-  }
-
-  #tests-news-content {
-    width: 100%;
-  }
-
-  .tests-news-title {
-    color: $link;
-  }
+.tests-news-title {
+  color: $link;
 }
 
 .news-footer {
@@ -37,8 +27,5 @@
 }
 
 .individual-news {
-  width: 85%;
   padding: 8px 16px 16px;
-  margin-right: auto;
-  margin-left: auto;
 }
