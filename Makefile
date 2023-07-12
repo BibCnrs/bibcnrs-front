@@ -26,9 +26,13 @@ preview:
 build:
 	docker compose -f docker-compose.yml build --build-arg BIBFRONT_VERSION --build-arg BIBAPI_HOST
 
-# To remove or to change with a docker who watch files
-run-dev:
-	docker compose -f docker-compose.dev.yml up bibcnrs-front-dev-server
+cleanup-dev-docker: ## remove all bibcnrs-front docker image
+	test -z "$$(docker ps -a | grep bibcnrs-dev-front)" || \
+            docker rm --force $$(docker ps -a | grep bibcnrs-dev-front | awk '{ print $$1 }')
+
+run-dev: ## run project in development mode
+	make cleanup-dev-docker
+	docker compose -f docker-compose.dev.yml up --force-recreate bibcnrs-front-dev-server
 
 stop: ## stop all bibcnrs-front docker image
 	test -z "$$(docker ps | grep bibcnrs-front)" || \
