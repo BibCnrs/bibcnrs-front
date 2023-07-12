@@ -2,8 +2,8 @@ version: "3.5"
 
 services:
   bibcnrs-front-dev-server:
+    container_name: bibcnrs-dev-front
     image: node:18-alpine
-    container_name: bibcnrs-front-standalone-dev-server
     environment:
       NODE_ENV: development
       VITE_ENV: development
