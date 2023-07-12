@@ -124,6 +124,7 @@ export type ColoredPaperProps = PropsWithChildren<{
 
 export type TestsNewsProps = PropsWithoutRef<{
     data: TestsNewsDataType | undefined;
+    domain: string;
 }>;
 
 export type FacetRequired = {
@@ -178,10 +179,13 @@ export type FacetSearchListProps = PropsWithoutRef<
 
 export type ChipFacetProps = PropsWithoutRef<{
     value?: string | null;
-    values: Array<{
-        value: string;
-        label: string;
-    }>;
+    values: Array<
+        | string
+        | {
+              value: string;
+              label: string;
+          }
+    >;
     needTranslation?: boolean;
     onChange: (event: MouseEvent<HTMLElement>, field: string | null) => void;
 }>;

@@ -25,28 +25,30 @@ const RenderIndividualNews = ({ id, page, urls, content_fr, content_en, from, to
     };
 
     return (
-        <ColoredPaper className="individual-news" color={getInstituteColor(selectedDomain)} elevation={4} border>
-            <div
-                className="tests-news-content cms-content"
-                dangerouslySetInnerHTML={{
-                    __html: language === 'en' ? content_en : content_fr,
-                }}
-            ></div>
-            {Array.isArray(urls) && urls.length > 0 ? (
-                <div key={`${id}-urls`}>
-                    <ul>
-                        {urls.map((url) => (
-                            <li key={url.name}>
-                                <a className="link" href={getUrl(url)} rel="noreferrer noopener nofollow">
-                                    {url.name}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            ) : null}
-            <TestsNewsFooter id={id} page={page} from={from} to={to} domains={domains} />
-        </ColoredPaper>
+        <div id="tests-news-content">
+            <ColoredPaper className="individual-news" color={getInstituteColor(selectedDomain)} elevation={4} border>
+                <div
+                    className="tests-news-content cms-content"
+                    dangerouslySetInnerHTML={{
+                        __html: language === 'en' ? content_en : content_fr,
+                    }}
+                ></div>
+                {Array.isArray(urls) && urls.length > 0 ? (
+                    <div key={`${id}-urls`}>
+                        <ul>
+                            {urls.map((url) => (
+                                <li key={url.name}>
+                                    <a className="link" href={getUrl(url)} rel="noreferrer noopener nofollow">
+                                        {url.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ) : null}
+                <TestsNewsFooter id={id} page={page} from={from} to={to} domains={domains} />
+            </ColoredPaper>
+        </div>
     );
 };
 
