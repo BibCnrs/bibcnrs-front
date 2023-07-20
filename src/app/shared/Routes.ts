@@ -28,7 +28,9 @@ const Routes = {
     favourite: '/account/favourite',
 } as const;
 
-type RoutesType = typeof Routes;
+type RoutesT = typeof Routes;
+
+export type RoutesType = RoutesT[keyof RoutesT];
 
 const cleanupParam = (paramIn: any): any => {
     const param: any = {};
@@ -40,7 +42,7 @@ const cleanupParam = (paramIn: any): any => {
     return param;
 };
 
-export const useClickHandler = <Route extends RoutesType[keyof RoutesType]>(to: Route) => {
+export const useClickHandler = <Route extends RoutesType>(to: Route) => {
     const href = useHref(to);
     const handler = useLinkClickHandler(to);
     return { href, handler };
