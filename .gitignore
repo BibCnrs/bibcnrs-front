@@ -20,6 +20,7 @@
 .idea
 .vscode
 .stylelintcache
+sbom.json
 
 npm-debug.log*
 yarn-debug.log*
