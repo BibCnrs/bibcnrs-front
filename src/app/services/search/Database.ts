@@ -31,7 +31,7 @@ export const database = async (
                 : createQuery(environment.get.oa.database, {
                       url: value.url_fr,
                       sid: 'bdd',
-                      domaine: 'domain',
+                      domaine: domain ?? null,
                       doi: null,
                   });
             // eslint-disable-next-line camelcase
@@ -42,7 +42,7 @@ export const database = async (
                 : createQuery(environment.get.oa.database, {
                       url: value.url_en,
                       sid: 'bdd',
-                      domaine: 'domain',
+                      domaine: domain ?? null,
                       doi: null,
                   });
             return {
