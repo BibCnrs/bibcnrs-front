@@ -23,21 +23,34 @@ export const database = async (
             return value.oa;
         })
         .map((value) => {
-            if (value.use_proxy) {
-                return {
-                    ...value,
-                    // eslint-disable-next-line camelcase
-                    url_fr: `https://${domain}.bib.cnrs.fr/login?url=${value.url_fr}`,
-                    // eslint-disable-next-line camelcase
-                    url_en: `https://${domain}.bib.cnrs.fr/login?url=${value.url_en}`,
-                };
-            }
+            // eslint-disable-next-line camelcase
+            const url_fr = value.use_proxy
+                ? createQuery(`https://${domain}.bib.cnrs.fr/login`, {
+                      url: value.url_fr,
+                  })
+                : createQuery(environment.get.oa.database, {
+                      url: value.url_fr,
+                      sid: 'bdd',
+                      domaine: domain ?? null,
+                      doi: null,
+                  });
+            // eslint-disable-next-line camelcase
+            const url_en = value.use_proxy
+                ? createQuery(`https://${domain}.bib.cnrs.fr/login`, {
+                      url: value.url_en,
+                  })
+                : createQuery(environment.get.oa.database, {
+                      url: value.url_en,
+                      sid: 'bdd',
+                      domaine: domain ?? null,
+                      doi: null,
+                  });
             return {
                 ...value,
                 // eslint-disable-next-line camelcase
-                url_fr: `${environment.host}/ebsco/oa?url=${value.url_fr}&sid=bdd&domaine=${domain}&doi=null`,
+                url_fr: url_fr.href,
                 // eslint-disable-next-line camelcase
-                url_en: `${environment.host}/ebsco/oa?url=${value.url_en}&sid=bdd&domaine=${domain}&doi=null`,
+                url_en: url_en.href,
             };
         });
 };

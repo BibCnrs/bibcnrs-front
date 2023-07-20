@@ -3,6 +3,9 @@ export const environment = {
     get: {
         cms: '/ebsco/cms',
         resources: '/ebsco/resources',
+        oa: {
+            database: '/ebsco/oa_database',
+        },
         search: {
             article: '/ebsco/{domain}/article/search',
             publication: '/ebsco/{domain}/publication/search',
