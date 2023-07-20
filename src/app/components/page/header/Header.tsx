@@ -2,20 +2,16 @@ import './Header.scss';
 import BibCNRSLogo from '/logos/bibcnrs.png';
 import LocalButton from '../../element/header/LocaleButton';
 import SignInButton from '../../element/header/SignInButton';
-import { RouteRoot } from '../../../shared/Routes';
+import { RouteFaq, RouteLicences, RouteNews, RouteResources, RouteRoot, RouteTests } from '../../../shared/Routes';
 import CustomLink from '../../element/link/CustomLink';
 import { useTranslator } from '../../../shared/locales/I18N';
 import ThemeButton from '../../element/header/ThemeButton';
 import UserButton from '../../element/header/UserButton';
 import { memo, useContext } from 'react';
 import { BibContext } from '../../internal/provider/ContextProvider';
-import NewsButton from '../../element/header/NewsButton';
-import TestsButton from '../../element/header/TestsButton';
-import LicencesButton from '../../element/header/LicencesButton';
-import FaqButton from '../../element/header/FaqButton';
-import ResourcesButton from '../../element/header/ResourcesButton';
 import createSxProps from '../../../shared/createSxProps';
 import NavBar from '../../element/navbar/NavBar';
+import HeaderButton from '../../element/header/HeaderButton';
 
 export const headerButtonStyle = createSxProps({
     fontFamily: '"Source Sans Pro", sans-serif',
@@ -47,15 +43,15 @@ const Header = () => {
                     {login ? (
                         <>
                             <UserButton />
-                            <NewsButton />
-                            <TestsButton />
-                            <LicencesButton />
+                            <HeaderButton name="news" route={RouteNews} />
+                            <HeaderButton name="tests" route={RouteTests} />
+                            <HeaderButton name="licences" route={RouteLicences} />
                         </>
                     ) : (
                         <SignInButton />
                     )}
-                    <ResourcesButton />
-                    <FaqButton />
+                    <HeaderButton name="resources" route={RouteResources} />
+                    <HeaderButton name="questions" route={RouteFaq} />
                     <LocalButton />
                     <ThemeButton />
                 </div>
