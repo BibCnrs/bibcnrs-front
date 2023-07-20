@@ -28,7 +28,7 @@ const fr: Common = {
             logout: 'Déconnexion',
             title: 'Accès aux ressources documentaires du CNRS',
             questions: 'FAQ',
-            resources: 'Ressources',
+            resources: 'Listes des ressources',
             licences: 'Licences',
             tests: 'Tests',
             news: 'Actualités',
@@ -180,7 +180,7 @@ Cordialement`,
             title: 'Accueil',
         },
         resources: {
-            title: 'Ressources',
+            title: 'Listes des ressources documentaires',
         },
         about: {
             title: 'A propos',
