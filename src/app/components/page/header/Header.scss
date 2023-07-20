@@ -85,11 +85,8 @@ header {
         transition: background-size .3s ease;
       }
 
+      #header-button-active,
       .header-button:hover {
-        background-size: 100% 2px;
-      }
-
-      #header-button-active {
         background-size: 100% 2px;
       }
 
