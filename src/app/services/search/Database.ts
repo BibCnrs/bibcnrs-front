@@ -25,9 +25,13 @@ export const database = async (
         .map((value) => {
             // eslint-disable-next-line camelcase
             const url_fr = value.use_proxy
-                ? createQuery(`https://${domain}.bib.cnrs.fr/login`, {
-                      url: value.url_fr,
-                  })
+                ? createQuery(
+                      `https://${domain}.bib.cnrs.fr/login`,
+                      {
+                          url: value.url_fr,
+                      },
+                      true,
+                  )
                 : createQuery(environment.get.oa.database, {
                       url: value.url_fr,
                       sid: 'bdd',
@@ -36,9 +40,13 @@ export const database = async (
                   });
             // eslint-disable-next-line camelcase
             const url_en = value.use_proxy
-                ? createQuery(`https://${domain}.bib.cnrs.fr/login`, {
-                      url: value.url_en,
-                  })
+                ? createQuery(
+                      `https://${domain}.bib.cnrs.fr/login`,
+                      {
+                          url: value.url_en,
+                      },
+                      true,
+                  )
                 : createQuery(environment.get.oa.database, {
                       url: value.url_en,
                       sid: 'bdd',
