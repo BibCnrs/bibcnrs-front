@@ -6,6 +6,7 @@ import ExportArticleCheckbox from '../button/ExportArticleCheckbox';
 import OpenAccess from '../icon/OpenAccess';
 import OpenablePaper from '../paper/openable/OpenablePaper';
 import SkeletonEntry from '../skeleton/SkeletonEntry';
+import Link from '@mui/material/Link';
 import { memo, useContext } from 'react';
 import type { ArticleContentGetter } from '../../../services/search/Article';
 
@@ -38,14 +39,19 @@ const Article = ({
                 Title={
                     <>
                         <ExportArticleCheckbox getter={getter} />
-                        <a
+                        <Link
                             className="table-list-title link"
-                            href={href ? href : '#'}
+                            underline={href ? 'hover' : 'none'}
+                            href={href ?? undefined}
                             target="_blank"
                             rel="noreferrer noopener nofollow"
+                            aria-label={
+                                href ? t('components.table.content.links') : t('components.table.content.noAccess')
+                            }
                         >
-                            {getter.getId()}. {title} [{getter.getType()}]
-                        </a>
+                            {getter.getId()}. {title} {getter.getType() ? `[${getter.getType()}]` : null}
+                            {!href ? <i> ({t('components.table.content.noAccess')})</i> : null}
+                        </Link>
                         {openAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
                     </>
                 }

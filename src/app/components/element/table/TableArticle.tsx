@@ -3,7 +3,6 @@ import { retrieve as retrieveFn } from '../../../services/search/Article';
 import { ArticleContentGetter } from '../../../services/search/Article';
 import { BibContext } from '../../internal/provider/ContextProvider';
 import Article from '../render/Article';
-import NoAccessArticle from '../render/NoAccessArticle';
 import SkeletonEntry from '../skeleton/SkeletonEntry';
 import { useQuery } from '@tanstack/react-query';
 import { memo, useContext, useEffect, useState } from 'react';
@@ -61,11 +60,6 @@ const TableArticle = ({ data: dataIn }: TableDisplayElementProps<ArticleResultDa
     if (((missing && !retrieve) || first || isFetching || isLoading || !getter) && !open) {
         return <SkeletonEntry animation="pulse" />;
     }
-
-    if (!getter.getAuthors() || !getter.getSource()) {
-        return <NoAccessArticle getter={getter} />;
-    }
-
     return <Article onChange={handleOpen} open={open} getter={getter} isWaiting={isFetching || isLoading} />;
 };
 
