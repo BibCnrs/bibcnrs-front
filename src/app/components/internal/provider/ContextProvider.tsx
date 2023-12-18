@@ -76,18 +76,22 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
 
     useEffect(() => {
         if (login && search.domain === undefined) {
-            let domain = getFavouriteDomain();
-            if (domain === undefined) {
-                const domains = getDomains();
-                if (domains === undefined || domains.length === 0) {
-                    throw new Error(`No domain found for this user: ${getFavouriteDomain()}, ${domains}`);
+            try {
+                let domain = getFavouriteDomain();
+                if (domain === undefined) {
+                    const domains = getDomains();
+                    if (domains === undefined || domains.length === 0) {
+                        throw new Error(`No domain found for this user: ${getFavouriteDomain()}, ${domains}`);
+                    }
+                    domain = domains[0];
                 }
-                domain = domains[0];
+                setSearch({
+                    ...search,
+                    domain,
+                });
+            } catch (error) {
+                console.error(error);
             }
-            setSearch({
-                ...search,
-                domain,
-            });
         }
     }, [login, search]);
 
