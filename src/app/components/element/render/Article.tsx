@@ -44,7 +44,10 @@ const Article = ({
                             target="_blank"
                             rel="noreferrer noopener nofollow"
                         >
-                            {getter.getId()}. {title} [{getter.getType()}]
+                            {getter.getId()}. {title} {getter.getType() ? `[${getter.getType()}]` : null}
+                            {articlesLinks?.fullTextLinks?.length === 0 ? (
+                                <i> ({t('components.table.content.noAccess')})</i>
+                            ) : null}
                         </a>
                         {openAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
                     </>
