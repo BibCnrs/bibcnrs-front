@@ -23,42 +23,21 @@ export const database = async (
             return value.oa;
         })
         .map((value) => {
-            // eslint-disable-next-line camelcase
-            const url_fr = value.use_proxy
-                ? createQuery(
-                      `https://${domain}.bib.cnrs.fr/login`,
-                      {
-                          url: value.url_fr,
-                      },
-                      true,
-                  )
-                : createQuery(environment.get.oa.database, {
-                      url: value.url_fr,
-                      sid: 'bdd',
-                      domaine: domain ?? null,
-                      doi: null,
-                  });
-            // eslint-disable-next-line camelcase
-            const url_en = value.use_proxy
-                ? createQuery(
-                      `https://${domain}.bib.cnrs.fr/login`,
-                      {
-                          url: value.url_en,
-                      },
-                      true,
-                  )
-                : createQuery(environment.get.oa.database, {
-                      url: value.url_en,
-                      sid: 'bdd',
-                      domaine: domain ?? null,
-                      doi: null,
-                  });
+            if (value.use_proxy) {
+                return {
+                    ...value,
+                    // eslint-disable-next-line camelcase
+                    url_fr: `https://${domain}.bib.cnrs.fr/login?url=${value.url_fr}`,
+                    // eslint-disable-next-line camelcase
+                    url_en: `https://${domain}.bib.cnrs.fr/login?url=${value.url_en}`,
+                };
+            }
             return {
                 ...value,
                 // eslint-disable-next-line camelcase
-                url_fr: url_fr.href,
+                url_fr: `${environment.host}/ebsco/oa?url=${value.url_fr}&sid=bdd&domaine=${domain}&doi=null`,
                 // eslint-disable-next-line camelcase
-                url_en: url_en.href,
+                url_en: `${environment.host}/ebsco/oa?url=${value.url_en}&sid=bdd&domaine=${domain}&doi=null`,
             };
         });
 };

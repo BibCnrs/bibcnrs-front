@@ -52,7 +52,7 @@ const Article = ({
                             {getter.getId()}. {title} {getter.getType() ? `[${getter.getType()}]` : null}
                             {!href ? <i> ({t('components.table.content.noAccess')})</i> : null}
                         </Link>
-                        {openAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
+                        {openAccess && href ? <OpenAccess className="table-icon table-icon-oa" /> : null}
                     </>
                 }
                 SmallBody={
