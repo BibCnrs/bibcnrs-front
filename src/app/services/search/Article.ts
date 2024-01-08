@@ -350,28 +350,6 @@ export class ArticleContentGetter {
         return `${environment.host}/ebsco/${path}?url=${url}&sid=${sid}&domaine=${domain}&doi=${this.getDOI()}`;
     };
 
-    public isOpenAccess = (): boolean => {
-        if (this.initial.articleLinks) {
-            if (this.initial.articleLinks.urls && this.initial.articleLinks.urls.length > 0) {
-                const openAccess = !this.initial.articleLinks.urls[0].url.includes('bib.cnrs.fr');
-                if (openAccess) {
-                    return true;
-                }
-            }
-        }
-        if (this.retrieve) {
-            if (this.retrieve.articleLinks) {
-                if (this.retrieve.articleLinks.urls && this.retrieve.articleLinks.urls.length > 0) {
-                    const openAccess = !this.retrieve.articleLinks.urls[0].url.includes('bib.cnrs.fr');
-                    if (openAccess) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return this.isOpenAccessUnpaywall();
-    };
-
     public getAN = (): string => this.initial.an;
 
     public getDBID = (): string => this.initial.dbId;
@@ -401,6 +379,21 @@ export class ArticleContentGetter {
         return [];
     };
 
+    public isOpenAccess = (): boolean => {
+        const href = this.getHref();
+        if (!href) {
+            return false;
+        }
+        const articleLinks = this.getArticleLinks();
+        let openAccess = null;
+        const unpaywall = articleLinks.urls.find((d) => /unpaywalleds/i.test(d.name));
+        if (!unpaywall) {
+            openAccess = articleLinks.fullTextLinks.find((d) => /accès en ligne en open access/i.test(d.name));
+        }
+        const hrefWithIcon = [openAccess, unpaywall].filter(Boolean);
+        return hrefWithIcon.some((url) => url && url.url === href.url) || HAL_REGEX.test(href.url);
+    };
+
     private articleLinksNameCleanup = (urls: Url2[]): Url[] => {
         return urls.map((url: Url2): Url => {
             const name = url.name ?? url.url;
@@ -415,21 +408,6 @@ export class ArticleContentGetter {
                 name,
             };
         });
-    };
-
-    private isOpenAccessUnpaywall = (): boolean => {
-        const href = this.getHref();
-        if (!href) {
-            return false;
-        }
-        const articleLinks = this.getArticleLinks();
-        let openAccess = null;
-        const unpaywall = articleLinks.urls.find((d) => /unpaywalleds/i.test(d.name));
-        if (!unpaywall) {
-            openAccess = articleLinks.fullTextLinks.find((d) => /accès en ligne en open access/i.test(d.name));
-        }
-        const hrefWithIcon = [openAccess, unpaywall].filter(Boolean);
-        return hrefWithIcon.some((url) => url && url.url === href.url) || HAL_REGEX.test(href.url);
     };
 
     private getEntry = (
