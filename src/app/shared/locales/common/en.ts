@@ -49,7 +49,7 @@ const en: Common = {
                 ask: 'Request a janus account',
             },
             legacy: {
-                button: 'Via your old portal access code',
+                button: 'Via your unit access code',
                 username: 'Username',
                 password: 'Password',
                 login: 'Connection',
