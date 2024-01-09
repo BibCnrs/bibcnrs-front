@@ -39,7 +39,7 @@ export const publication = async (
                 boolean: 'AND',
                 term: query,
                 suggestedTerms: [],
-                field: 'TI',
+                field: null,
                 key: 'initial',
             },
         ],
