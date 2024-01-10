@@ -9,7 +9,7 @@ import type { TestNewUrlDataType } from '../../../shared/types/data.types';
 import type { TestNewDataType } from '../../../shared/types/data.types';
 
 /* eslint-disable camelcase */
-const RenderIndividualNews = ({ id, page, urls, content_fr, content_en, from, to, domains }: TestNewDataType) => {
+const RenderIndividualNews = ({ id, page, urls, content_fr, content_en, from, to }: TestNewDataType) => {
     const language = useLanguageKey();
 
     const favouriteDomain = getFavouriteDomain();
@@ -46,7 +46,7 @@ const RenderIndividualNews = ({ id, page, urls, content_fr, content_en, from, to
                         </ul>
                     </div>
                 ) : null}
-                <TestsNewsFooter id={id} page={page} from={from} to={to} domains={domains} />
+                <TestsNewsFooter id={id} page={page} from={from} to={to} />
             </ColoredPaper>
         </div>
     );

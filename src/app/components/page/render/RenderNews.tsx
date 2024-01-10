@@ -72,7 +72,6 @@ const RenderNews = ({ data, domain }: TestsNewsProps) => {
                             page={value.page}
                             from={value.from}
                             to={value.to}
-                            domains={value.domains}
                             showOpenButton
                         />
                     }
@@ -106,7 +105,6 @@ const RenderNews = ({ data, domain }: TestsNewsProps) => {
                                 page={value.page}
                                 from={value.from}
                                 to={value.to}
-                                domains={value.domains}
                                 showOpenButton
                             />
                         </div>
