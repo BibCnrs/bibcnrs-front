@@ -2,25 +2,16 @@ import { useTranslator } from '../../../shared/locales/I18N';
 import PageDate from '../PageDate';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import Button from '@mui/material/Button';
-import { useMemo } from 'react';
 import type { TestNewDataType } from '../../../shared/types/data.types';
 
 const TestsNewsFooter = ({
     id,
     from,
     to,
-    domains,
     page,
     showOpenButton = false,
-}: Pick<TestNewDataType, 'domains' | 'from' | 'id' | 'page' | 'to'> & { showOpenButton?: boolean }) => {
+}: Pick<TestNewDataType, 'from' | 'id' | 'page' | 'to'> & { showOpenButton?: boolean }) => {
     const t = useTranslator();
-
-    const label = useMemo(() => {
-        if (!Array.isArray(domains) || domains.length === 0) {
-            return null;
-        }
-        return ` • ${domains?.join(', ')}`;
-    }, [domains]);
 
     return (
         <div className="news-footer">
@@ -34,7 +25,6 @@ const TestsNewsFooter = ({
                             <PageDate date={to} />
                         </>
                     ) : null}
-                    {label}
                 </i>
             </div>
             {showOpenButton ? (
