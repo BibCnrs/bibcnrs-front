@@ -1,9 +1,9 @@
 import './Footer.scss';
 import { useTranslator } from '../../../shared/locales/I18N';
 import CNRSLogo from '/logos/cnrs.png';
+import TwitterLogo from '/logos/twitter.png';
 import { RouteAbout, RouteLegal } from '../../../shared/Routes';
 import CustomLink from '../../element/link/CustomLink';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import { memo } from 'react';
 
 /**
@@ -37,7 +37,7 @@ const Footer = () => {
             </ul>
             <div id={'social-media'}>
                 <a href="https://twitter.com/BibCnrs" target="_blank" rel="noreferrer noopener nofollow">
-                    <TwitterIcon />
+                    <img src={TwitterLogo} alt="twitter logo" />
                 </a>
             </div>
         </footer>
