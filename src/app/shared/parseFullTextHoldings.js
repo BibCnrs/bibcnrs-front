@@ -95,7 +95,10 @@ const shouldKeepAOverBWhenPresent = (a, b) => {
         // the one with no embargo or with the lowest embargo is kept
 
         if (bCalendar.embargo && isNil(aCalendar.embargo)) {
-            return true;
+            // compare start date
+            if (isAfter(bCalendar.start, aCalendar.start)) {
+                return true;
+            }
         }
 
         if (isNil(bCalendar.embargo) && aCalendar.embargo) {
@@ -103,6 +106,10 @@ const shouldKeepAOverBWhenPresent = (a, b) => {
         }
 
         if (isNil(bCalendar.embargo) && isNil(aCalendar.embargo)) {
+            // compare start date
+            if (isAfter(bCalendar.start, aCalendar.start)) {
+                return true;
+            }
             return false;
         }
 
@@ -131,6 +138,7 @@ const parseFullTextHoldings = (fullTextHoldings = []) => {
                 ...d,
                 [CALENDAR]: computeCalendarData(d),
             }))
+            // we first deduplicate the holdings
             .filter((a, index, array) => {
                 return (
                     array.findIndex((b) => {
@@ -138,6 +146,7 @@ const parseFullTextHoldings = (fullTextHoldings = []) => {
                     }) === index
                 );
             })
+            // we keep the oldest end date when start dates match
             .filter((holding, index, self) => {
                 const holdingsWithSameStartDate = self.filter(
                     (d, i) => d[CALENDAR].start === holding[CALENDAR].start && i !== index,
@@ -160,20 +169,27 @@ const parseFullTextHoldings = (fullTextHoldings = []) => {
             })
             // we keep the present without embargo
             .filter((holding, index, self) => {
-                const holdingsWithSameEndDate = self.filter((d, i) => {
-                    return d[CALENDAR].end === holding[CALENDAR].end && i !== index;
-                });
+                const holdingsWithSameEndDate = self.filter(
+                    (d, i) => d[CALENDAR].end === holding[CALENDAR].end && i !== index,
+                );
                 return !holdingsWithSameEndDate.find((d) => {
                     return shouldKeepAOverBWhenPresent(d, holding);
                 });
             })
             // we keep the oldest start date when end dates match
             .filter((holding, index, self) => {
-                const holdingsWithSameEndDate = self.filter((d, i) => {
-                    return d[CALENDAR].end === holding[CALENDAR].end && i !== index;
-                });
+                const holdingsWithSameEndDate = self.filter(
+                    (d, i) => d[CALENDAR].end === holding[CALENDAR].end && i !== index,
+                );
                 return !holdingsWithSameEndDate.find((d) => {
-                    return isBefore(d[CALENDAR].start, holding[CALENDAR].start);
+                    if (shouldKeepAOverBWhenPresent(d, holding)) {
+                        return true;
+                    }
+                    return (
+                        isBefore(d[CALENDAR].start, holding[CALENDAR].start) &&
+                        d[CALENDAR].end !== PRESENT &&
+                        holding[CALENDAR].end !== PRESENT
+                    );
                 });
             })
             // we keep the max range between overlapping dates
