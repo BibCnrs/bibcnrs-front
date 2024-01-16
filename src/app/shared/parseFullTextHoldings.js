@@ -112,6 +112,7 @@ const shouldKeepAOverBWhenPresent = (a, b) => {
             }
             return false;
         }
+
         return aCalendar.embargo < bCalendar.embargo;
     }
 
@@ -168,9 +169,9 @@ const parseFullTextHoldings = (fullTextHoldings = []) => {
             })
             // we keep the present without embargo
             .filter((holding, index, self) => {
-                const holdingsWithSameEndDate = self.filter((d, i) => {
-                    return d[CALENDAR].end === holding[CALENDAR].end && i !== index;
-                });
+                const holdingsWithSameEndDate = self.filter(
+                    (d, i) => d[CALENDAR].end === holding[CALENDAR].end && i !== index,
+                );
                 return !holdingsWithSameEndDate.find((d) => {
                     return shouldKeepAOverBWhenPresent(d, holding);
                 });
@@ -178,22 +179,17 @@ const parseFullTextHoldings = (fullTextHoldings = []) => {
             // we keep the oldest start date when end dates match
             .filter((holding, index, self) => {
                 const holdingsWithSameEndDate = self.filter(
-                    (d, i) =>
-                        isEqual(d[CALENDAR].end, holding[CALENDAR].end) &&
-                        i !== index,
+                    (d, i) => d[CALENDAR].end === holding[CALENDAR].end && i !== index,
                 );
-                return !holdingsWithSameEndDate.find(d => {
+                return !holdingsWithSameEndDate.find((d) => {
                     if (shouldKeepAOverBWhenPresent(d, holding)) {
                         return true;
                     }
-                    if (
+                    return (
                         isBefore(d[CALENDAR].start, holding[CALENDAR].start) &&
                         d[CALENDAR].end !== PRESENT &&
                         holding[CALENDAR].end !== PRESENT
-                    ) {
-                        return true;
-                    }
-                    return false;
+                    );
                 });
             })
             // we keep the max range between overlapping dates
