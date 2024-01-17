@@ -183,6 +183,9 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
                                                 {value.name}
                                             </a>{' '}
                                             {getCoverage(value.coverage)}
+                                            {value.embargo
+                                                ? ` (embargo: ${value.embargo.value} ${value.embargo.unit})`
+                                                : null}
                                         </div>
                                     ))}
                                 </dd>
