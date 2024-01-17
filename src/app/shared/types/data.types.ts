@@ -293,6 +293,10 @@ export type PublicationCoverageDataType = Array<{
 export type PublicationHolding = Url & {
     isCurrent: boolean;
     coverage: PublicationCoverageDataType;
+    embargo: {
+        unit: string;
+        value: number;
+    };
 };
 
 export type PublicationResultDataType = {
