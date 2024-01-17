@@ -102,6 +102,13 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
     const href = reconciledFullTextHoldings[0].url;
     const bookmarkTitle = `${title} - ${reconciledFullTextHoldings[0].name}`;
     const isOpenAccess = reconciledFullTextHoldings[0].name.toLowerCase().includes('open access');
+    const getTitleCoverage = () => {
+        let reconciledFullTextHoldingString = getCoverage(reconciledFullTextHoldings[0].coverage);
+        reconciledFullTextHoldingString += reconciledFullTextHoldings[0].embargo
+            ? ` (embargo: ${reconciledFullTextHoldings[0].embargo.value} ${reconciledFullTextHoldings[0].embargo.unit})`
+            : '';
+        return ' ' + reconciledFullTextHoldingString;
+    };
     return (
         <div className={login ? 'table-bookmark-size' : undefined}>
             <OpenablePaper
@@ -116,6 +123,7 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
                         >
                             {id}. {title} [{type}]
                         </a>
+                        &nbsp;&nbsp;{getTitleCoverage()}
                         {isOpenAccess ? <OpenAccess className="table-icon table-icon-oa" /> : null}
                         {isDiamond ? <Diamond className="table-icon" /> : null}
                     </>
