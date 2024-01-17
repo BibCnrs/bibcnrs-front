@@ -37,14 +37,14 @@ export const BibContextArticleDefault: SearchContextType['article'] = {
     },
     table: {
         page: 1,
-        perPage: 25,
+        perPage: 20,
     },
 };
 
 export const BibContextPublicationDefault: SearchContextType['publication'] = {
     table: {
         page: 1,
-        perPage: 25,
+        perPage: 20,
     },
 };
 
@@ -65,7 +65,7 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
             field: null,
             table: {
                 page: 1,
-                perPage: 25,
+                perPage: 20,
             },
         },
     });

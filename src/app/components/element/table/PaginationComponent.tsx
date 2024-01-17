@@ -24,7 +24,7 @@ const PaginationComponent = ({
 }: PaginationComponentProps) => {
     // Set the default values if the current page and the number of results per page is not initialized
     const page = currentPage ? currentPage : 1;
-    const perPage = resultsPerPage ? resultsPerPage : 25;
+    const perPage = resultsPerPage ? resultsPerPage : 20;
     return (
         <div className="pagination">
             {/* Show the current element index and the number of elements found */}
@@ -57,7 +57,7 @@ const PaginationComponent = ({
                 >
                     <MenuItem value={5}>5</MenuItem>
                     <MenuItem value={10}>10</MenuItem>
-                    <MenuItem value={25}>25</MenuItem>
+                    <MenuItem value={20}>20</MenuItem>
                     <MenuItem value={50}>50</MenuItem>
                     <MenuItem value={100}>100</MenuItem>
                 </Select>
