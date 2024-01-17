@@ -21,7 +21,7 @@ const History = ({ displayOnlyAlert = false }: { displayOnlyAlert?: boolean }) =
 
     const [args, setArgs] = useState<TableArgsProps>({
         page: 1,
-        perPage: 25,
+        perPage: 20,
         stateIndex: 0,
     });
 
@@ -35,7 +35,7 @@ const History = ({ displayOnlyAlert = false }: { displayOnlyAlert?: boolean }) =
             deleteHistory().then(() => {
                 setArgs({
                     page: 1,
-                    perPage: 25,
+                    perPage: 20,
                     stateIndex: (args.stateIndex ?? 0) + 1,
                 });
             });
@@ -46,7 +46,7 @@ const History = ({ displayOnlyAlert = false }: { displayOnlyAlert?: boolean }) =
         disableAllSearchAlert().then(() => {
             setArgs({
                 page: 1,
-                perPage: 25,
+                perPage: 20,
                 stateIndex: (args.stateIndex ?? 0) + 1,
             });
         });

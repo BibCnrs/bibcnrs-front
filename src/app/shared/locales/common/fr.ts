@@ -225,7 +225,7 @@ Cordialement`,
         },
         licences: {
             title: 'Licences',
-            empty: "Aucune licences n'a étais trouvé.",
+            empty: 'Aucune licence trouvée.',
             pdf: 'Lien PDF :',
         },
         news: {

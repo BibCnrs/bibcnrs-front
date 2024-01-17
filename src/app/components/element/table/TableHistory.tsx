@@ -113,7 +113,7 @@ const createParam = (event: HistoryEntryDataType['event']): any => {
         },
         orderBy: event.sort,
         page: 1,
-        perPage: event.resultPerPage ?? 25,
+        perPage: event.resultPerPage ?? 20,
     };
 
     if (event.limiters.publicationDate.from && event.limiters.publicationDate.to) {
