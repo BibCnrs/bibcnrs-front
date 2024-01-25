@@ -22,7 +22,7 @@
         "@dnd-kit/utilities": "^3.2.1",
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
-        "@mui/icons-material": "^5.14.1",
+        "@mui/icons-material": "^5.15.6",
         "@mui/material": "^5.14.1",
         "@mui/system": "^5.14.1",
         "@tanstack/react-query": "^4.29.25",
@@ -60,7 +60,7 @@
         "stylelint-config-twbs-bootstrap": "^11.0.1",
         "terser": "^5.19.1",
         "typescript": "~5.0.4",
-        "vite": "^4.4.4",
+        "vite": "^4.5.2",
         "vite-plugin-eslint": "^1.8.1",
         "vite-plugin-stylelint": "^4.3.0"
     }
