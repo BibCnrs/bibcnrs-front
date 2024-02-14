@@ -35,9 +35,9 @@ export const database = async (
             return {
                 ...value,
                 // eslint-disable-next-line camelcase
-                url_fr: `${environment.host}/ebsco/oa?url=${value.url_fr}&sid=bdd&domaine=${domain}&doi=null`,
+                url_fr: `${environment.host}${environment.get.oa.database}?url=${value.url_fr}&sid=bdd&domaine=${domain}&doi=null`,
                 // eslint-disable-next-line camelcase
-                url_en: `${environment.host}/ebsco/oa?url=${value.url_en}&sid=bdd&domaine=${domain}&doi=null`,
+                url_en: `${environment.host}${environment.get.oa.database}?url=${value.url_en}&sid=bdd&domaine=${domain}&doi=null`,
             };
         });
 };
