@@ -91,10 +91,11 @@ const updateTheme = (theme: ThemeType) => {
     const style = document.documentElement.style;
     style.setProperty('--text', colors.text[theme]);
     style.setProperty('--background', colors.background[theme]);
-    style.setProperty(
+    style.setProperty('--background-nav', colors.cnrs.primary.dark);
+    /*style.setProperty(
         '--background-nav',
         theme === 'light' ? colors.cnrs.secondary.darkBlue : colors.cnrs.primary.dark,
-    );
+    );*/
     style.setProperty('--link', theme === 'light' ? colors.cnrs.secondary.blue : colors.cnrs.primary.light);
     style.setProperty('--nav-button-active', colors.button.navActive[theme]);
     style.setProperty('--nav-button-hover', colors.button.hover[theme]);
