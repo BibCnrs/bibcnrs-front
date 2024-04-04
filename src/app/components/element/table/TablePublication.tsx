@@ -72,26 +72,30 @@ const TablePublication = ({ data: dataIn }: TableDisplayElementProps<Publication
 
     const getCoverage = (coverage: PublicationCoverageDataType) => {
         let coverageString = '';
-        coverage.forEach((value) => {
-            const start = new Date(
-                parseInt(value.start.year, 10),
-                parseInt(value.start.month, 10) - 1,
-                parseInt(value.start.day, 10),
-            );
-            const end = new Date(
-                parseInt(value.end.year, 10),
-                parseInt(value.end.month, 10) - 1,
-                parseInt(value.end.day, 10),
-            );
-            if (coverageString !== '') {
-                coverageString += ', ';
-            }
-            coverageString += `${start.toLocaleDateString()} - ${
-                end.getFullYear() > new Date().getFullYear()
-                    ? t('components.table.content.present')
-                    : end.toLocaleDateString()
-            }`;
-        });
+        try {
+            coverage.forEach((value) => {
+                const start = new Date(
+                    parseInt(value.start.year, 10),
+                    parseInt(value.start.month, 10) - 1,
+                    parseInt(value.start.day, 10),
+                );
+                const end = new Date(
+                    parseInt(value.end.year, 10),
+                    parseInt(value.end.month, 10) - 1,
+                    parseInt(value.end.day, 10),
+                );
+                if (coverageString !== '') {
+                    coverageString += ', ';
+                }
+                coverageString += `${start.toLocaleDateString()} - ${
+                    end.getFullYear() > new Date().getFullYear()
+                        ? t('components.table.content.present')
+                        : end.toLocaleDateString()
+                }`;
+            });
+        } catch (e) {
+            console.error(e);
+        }
         return coverageString;
     };
 
